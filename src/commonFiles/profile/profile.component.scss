@@ -1,0 +1,55 @@
+// .table-striped>tbody>tr:nth-of-type(odd) {
+//     background-color: #fff;
+// }
+// .table-striped>tbody>tr>td:nth-child(1) {  
+//     background-color: #eaeaea;
+//   }
+ 
+nav ul li a .fa {
+	width: 16px;
+	text-align: center;
+	margin-right: 5px;
+	float:right;
+}
+nav ul ul {
+	background: rgba(0, 0, 0, 0.2);
+}
+nav ul li ul li a {
+	
+	border-left: 4px solid transparent;
+	padding: 10px 15px;
+    border-left: 3px solid #fff;
+}
+nav ul li ul li a:hover {
+
+	border-left: 3px solid #f15502;
+}
+.mat-expansion-panel{
+    background: transparent;
+    box-shadow: none;
+}
+.mat-expansion-panel-header{
+    background-color: transparent;
+    padding:0px;
+    font-size: 14px;
+    font-family: "Poppins" , sans-serif !important;
+    font-weight: 500;
+    padding-left:10px;
+}
+.left-navbar .navbar-nav ul{
+    background: #fff;
+}
+.left-navbar .navbar-nav ul li{
+    padding:10px 0px;
+    font-size: 14px;
+    font-family: "Poppins" , sans-serif !important;
+}
+.btn2 {
+  border: 3px dashed #ccc;
+  color: #f15502;
+  padding: 50px;
+  font-size: 14px;
+  background-color: transparent;
+  width: 100%;
+  display: block;
+}

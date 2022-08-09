@@ -1,0 +1,133 @@
+<div class="main">
+    <div class="row">
+        <app-left-nav></app-left-nav>
+        <div class="col-md-9">
+            <div class="card">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="title-bar">
+                            <h2 class="title">Order History </h2><span class="title-border"></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 
+                <div class="row">
+                    <div class="col-sm-6" *ngFor="let p of orderHistory">
+                        <li>Order No.:{{p.orderNo}}</li>
+                        <li>Order Date:{{p.orderDate | date:'dd/mm/yyyy'}}</li>
+                        <li>Order Status:{{p.orderStatusDesc}}</li>
+                        <li>totalAmount:{{p.totalAmount}}</li>
+                        <li>totalAmount:{{p.totalAmount}}</li>
+
+                    </div>
+
+                </div> -->
+
+
+
+                <!-- <div class="row">
+                    <div class="col-sm-12 text-right m-t-10">
+                        <a class="btn btn-primary">Confirm All Changes</a>
+                       
+                    </div>
+                </div> -->
+
+                <div class="panel-body " *ngFor="let p of orderHistory">
+                    <div class="col-md-12 border ">
+                        <div class="col-md-8 col-xs-12">
+                            <div class="order-id " >
+                                <p><strong>Order No.: </strong>
+                                    {{p.orderNo}}</p>
+                                <p><strong>Order Date: </strong>
+                                    {{p.orderDate | date:'dd/mm/yyyy'}}</p>
+                                <p><strong>Order Status: </strong>{{p.orderStatusDesc}}</p>
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-xs-12">
+                            <div class="order-id pull-right-lg">
+                                <p>
+                                    <strong>Total Amount : </strong>
+                                    {{p.totalAmount| number: '1.2-2'}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 border">
+                        <div class="col-md-3">
+                            <div class="order-image">
+                                <img src="/Uploads/Product/21067/" class="img-responsive">
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="col-md-7">
+                                <div class="order-detailes">
+                                    <div>
+                                        <span>
+                                            <b>Product Name : </b>
+                                            {{p.userName}}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span>
+                                            <b>Seller : </b>
+                                            {{p.seller}}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span>
+                                            <b>Quantity : </b>
+                                            1
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span>
+                                            <b>Province : </b>
+                                            {{p.locality}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="order-detailes pull-right">
+                                    <div>
+                                        <span>
+                                            <b>Price : </b>
+                                            {{p.orderAmount | number: '1.2-2'}}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span>
+                                            <b>Discount : </b>
+                                           {{p.discountAmount | number: '1.2-2'}}
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-12 border">
+                        <div class="col-md-6">
+
+                        </div>
+                        <div class="pull-right">
+                            <button class="custom-btn btn btn-default" style="display:none"
+                                onclick="trackOrder(1018)">Track Your Order</button>
+                            <button class="btn btn-default btn-custom" onclick="CancelOrder(1018)">Cancel Order</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- extra -->

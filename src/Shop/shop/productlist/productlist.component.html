@@ -1,0 +1,226 @@
+<div class="main">
+    <div class="card">
+        <div class="row">
+            <div class="col-sm-1">
+                <img src="assets/images/img1.jpg" width="100" />
+            </div>
+            <div class="col-sm-11 p-l-50 product-list">
+                <h1> {{this.shopdetails?.address.addressName}} <img src="assets/images/verified.jpg" height="50"></h1>
+                <p> {{this.myaddress}}</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 m-t-20">
+                <div class="pro-details">
+                    <div>
+                        <span class="fa fa-star checked m-r-5"></span>
+                        <span class="fa fa-star m-r-5 checked"></span>
+                        <span class="fa fa-star m-r-5 checked"></span>
+                        <span class="fa fa-star m-r-5 checkbox"></span>
+                        <span class="fa fa-star m-r-5"></span>
+                        (4.1) <a href="#"> 17679 Ratings </a> | <a href="#"> 933 Reviews </a>
+                    </div>
+
+                    <hr class="m-t-10 m-b-20">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <h2> About Seller </h2>
+            </div>
+            <div class="col-sm-6">
+                <h2> Contact Details </h2>
+                <div class="form-grop">
+                    <label> Contact No.:{{this.shopdetails?.address.mobileNo}} </label>
+                </div>
+            </div>
+            <div class="col-sm-12 shop-page sub-page">
+                <section class="shop-section section-padding">
+
+                    <div class="row">
+
+
+                        <div class="col-md-12 m-t-20">
+
+                            <div class="right-bar">
+                                <div class="product-selection">
+                                    <div class="row">
+                                        <div class="col-md-3 col-sm-6" *ngFor="let p of productLst">
+                                            <div class="product-wrapper">
+
+                                                <div class="product-detail item-list">
+                                                    <a routerLink="/shop/Addproduct" class="animate-scale">
+                                                        <div class="not_img">370 x 440px</div>
+                                                    </a>
+                                                    <h6 class="clr-red itemtitle">{{p.productName}}</h6>
+                                                    <h6 class="head1"> Seller : thafarm </h6>
+                                                    <h6 class="head2 m-b-20"> Product Brand : {{p.productBrand}} </h6>
+                                                    <h6 class="head2 m-b-20"> Province :{{p.province}} </h6>
+                                                    <div class="price price1">$ {{p.standardPrice}}</div>
+
+                                                    <a href="#"> <i class="icon-heart"></i> </a>
+                                                    <a href="#"> <i class="icon-share"></i> </a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="col-md-3 col-sm-6">
+                                            <div class="product-wrapper">
+
+                                                <div class="product-detail item-list"><a href="#">
+                                                    </a><a href="#" class="animate-scale">
+                                                        <div class="not_img">370 x 440px</div>
+                                                    </a>
+                                                    <h6 class="clr-red itemtitle">chicken911</h6>
+                                                    <h6 class="head1"> Seller : thafarm </h6>
+                                                    <h6 class="head2 m-b-20"> Product Brand : thafarm </h6>
+                                                    <h6 class="head2 m-b-20"> Province : </h6>
+                                                    <div class="price price1">$ 2500.00</div>
+
+                                                    <a href="#"> <i class="icon-heart"></i> </a>
+                                                    <a href="#"> <i class="icon-share"></i> </a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="product-wrapper">
+
+                                                <div class="product-detail item-list"><a href="#">
+                                                    </a><a href="#" class="animate-scale">
+                                                        <div class="not_img">370 x 440px</div>
+                                                    </a>
+                                                    <h6 class="clr-red itemtitle">chicken911</h6>
+                                                    <h6 class="head1"> Seller : thafarm </h6>
+                                                    <h6 class="head2 m-b-20"> Product Brand : thafarm </h6>
+                                                    <h6 class="head2 m-b-20"> Province : </h6>
+                                                    <div class="price price1">$ 2500.00</div>
+
+                                                    <a href="#"> <i class="icon-heart"></i> </a>
+                                                    <a href="#"> <i class="icon-share"></i> </a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="product-wrapper">
+
+                                                <div class="product-detail item-list"><a href="#">
+                                                    </a><a href="#" class="animate-scale">
+                                                        <div class="not_img">370 x 440px</div>
+                                                    </a>
+                                                    <h6 class="clr-red itemtitle">chicken911</h6>
+                                                    <h6 class="head1"> Seller : thafarm </h6>
+                                                    <h6 class="head2 m-b-20"> Product Brand : thafarm </h6>
+                                                    <h6 class="head2 m-b-20"> Province : </h6>
+                                                    <div class="price price1">$ 2500.00</div>
+
+                                                    <a href="#"> <i class="icon-heart"></i> </a>
+                                                    <a href="#"> <i class="icon-share"></i> </a>
+
+                                                </div>
+                                            </div>
+                                        </div> -->
+
+                                    </div>
+                                    <!-- <div class="row">
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="product-wrapper">
+
+                                                <div class="product-detail item-list"> <a routerLink="/shop/Addproduct"
+                                                        class="animate-scale">
+                                                        <div class="not_img">370 x 440px</div>
+                                                    </a>
+                                                    <h6 class="clr-red itemtitle">chicken911</h6>
+                                                    <h6 class="head1"> Seller : thafarm </h6>
+                                                    <h6 class="head2 m-b-20"> Product Brand : thafarm </h6>
+                                                    <h6 class="head2 m-b-20"> Province : </h6>
+                                                    <div class="price price1">$ 2500.00</div>
+
+                                                    <a href="#"> <i class="icon-heart"></i> </a>
+                                                    <a href="#"> <i class="icon-share"></i> </a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="product-wrapper">
+
+                                                <div class="product-detail item-list"><a href="#">
+                                                    </a><a href="#" class="animate-scale">
+                                                        <div class="not_img">370 x 440px</div>
+                                                    </a>
+                                                    <h6 class="clr-red itemtitle">chicken911</h6>
+                                                    <h6 class="head1"> Seller : thafarm </h6>
+                                                    <h6 class="head2 m-b-20"> Product Brand : thafarm </h6>
+                                                    <h6 class="head2 m-b-20"> Province : </h6>
+                                                    <div class="price price1">$ 2500.00</div>
+
+                                                    <a href="#"> <i class="icon-heart"></i> </a>
+                                                    <a href="#"> <i class="icon-share"></i> </a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="product-wrapper">
+
+                                                <div class="product-detail item-list"><a href="#">
+                                                    </a><a href="#" class="animate-scale">
+                                                        <div class="not_img">370 x 440px</div>
+                                                    </a>
+                                                    <h6 class="clr-red itemtitle">chicken911</h6>
+                                                    <h6 class="head1"> Seller : thafarm </h6>
+                                                    <h6 class="head2 m-b-20"> Product Brand : thafarm </h6>
+                                                    <h6 class="head2 m-b-20"> Province : </h6>
+                                                    <div class="price price1">$ 2500.00</div>
+
+                                                    <a href="#"> <i class="icon-heart"></i> </a>
+                                                    <a href="#"> <i class="icon-share"></i> </a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="product-wrapper">
+
+                                                <div class="product-detail item-list"><a href="#">
+                                                    </a><a href="#" class="animate-scale">
+                                                        <div class="not_img">370 x 440px</div>
+                                                    </a>
+                                                    <h6 class="clr-red itemtitle">chicken911</h6>
+                                                    <h6 class="head1"> Seller : thafarm </h6>
+                                                    <h6 class="head2 m-b-20"> Product Brand : thafarm </h6>
+                                                    <h6 class="head2 m-b-20"> Province : </h6>
+                                                    <div class="price price1">$ 2500.00</div>
+
+                                                    <a href="#"> <i class="icon-heart"></i> </a>
+                                                    <a href="#"> <i class="icon-share"></i> </a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </div> -->
+                                </div> <!-- product-selection -->
+
+
+                            </div> <!-- right-bar -->
+                        </div>
+                    </div>
+
+                </section> <!-- shop-page -->
+                <button class="followers" (click)="follower()">Followers</button>
+                <button class="btn btn-primary">Following</button>
+            </div>
+        </div>
+
+    </div>
+</div>

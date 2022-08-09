@@ -1,0 +1,60 @@
+<div class="main">
+    <div class="card">
+        <div class="row">
+            <div class="col-sm-12 m-b-20">
+                <div class="title-bar">
+                    <h2 class="title text-left border-bottom top-35"> Notifications </h2>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <table id="e-product-list" class="table table-responsive table-striped" role="grid"
+                    style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <!-- <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 125px;">Image</th> -->
+                            <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 1023px;">Notifications
+                            </th>
+                            <!-- <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 153px;">Amount</th> -->
+                            <!-- <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 100px;">Qty</th> -->
+                            <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 154px;">Mark All As Read
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="odd" *ngFor="let p of notifications">
+                            <td class="pro-name">
+                                <h6>{{p.message}} </h6>
+                            </td>
+                            <td>
+                                <h6>Read:{{p.isRead}}</h6>
+                            </td>
+                            <!-- <td class="pro-list-img" tabindex="0">
+                                <img src="assets/images/img1.jpg" width="70" class="img-fluid" alt="tbl">
+                            </td>
+                            <td class="pro-name">
+                                <h6>{{p.productName}} </h6>
+                            </td>
+                            <td>${{p.totalAmount}}</td> -->
+                            <td>
+                                <!-- <label> <div class="number-input">
+                                    <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+                                    <input class="quantity" min="0" name="quantity" value="1" type="number">
+                                    <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                                  </div> </label> -->
+                            </td>
+                            <td class="action-icon text-center">
+                                <!-- <a   href="#" class="btn btn-primary address-btn"><i _ngcontent-hjg-c17="" class="icon-trash"></i></a> -->
+                                <!-- <button class="btn btn-primary address-btn" (click)="delete(p.cartID)"><i  class="icon-trash"></i></button> -->
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- <div class="col-sm-12 text-right m-t-20 m-b-20">
+                <a class="btn btn-default"> Continue Shopping </a>
+                <a class="btn btn-primary"> Proceed to Payment </a>
+            </div> -->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,256 @@
+<div class="row">
+    <div class="col-sm-3 ">
+        <div class="category-sec">
+            <select class="form-control">
+
+                <option> Vaccine </option>
+                <option> Medicine </option>
+                <option> Food </option>
+                <option> SUPPLEMENTARY FOOD </option>
+                <option> EQUIPMENT </option>
+                <option> CHICKEN </option>
+            </select>
+            <div class="panel-group m-t-20" id="accordion">
+                <div class="panel panel-default">
+                    <mat-accordion class="example-headers-align">
+                        <mat-expansion-panel hideToggle>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+
+                                    <span class="col-sm-6" id="AccordionHeadings">CHICKEN</span><span
+                                        class="glyphicon glyphicon-menu-down col-sm-6 text-right f-10 menu-dropdown-accordion"></span>
+
+                                </mat-panel-title>
+
+                            </mat-expansion-panel-header>
+
+                            <!-- sublinks collapse -->
+                            <form   name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
+                                <div class="list-group-item small d-flex align-items-center ">
+                                    <div class="form-group category-padding m-t-10">
+                                        <label> Product Name </label>
+                                        <input type="text" class="form-control" [(ngModel)]="form.productName" #productName="ngModel" name="productName">
+                                    </div>
+                                    <div class="form-group category-padding">
+                                        <label> Product Brand </label>
+                                        <input type="text" class="form-control" [(ngModel)]="form.productBrand" #productBrand="ngModel" name="productBrand">
+                                    </div>
+                                    <div class="form-group category-padding">
+                                        <label> Age </label>
+                                        <input type="text" class="form-control" [(ngModel)]="form.age" #age="ngModel" name="age">
+                                    </div>
+                                </div>
+                                <div class="list-group-item small d-flex align-items-center">
+
+                                    <div class="form-group category-padding">
+                                        <label> Price(From price - to price) </label>
+                                        <input id="slider" type="range" min="4" max="32" value="16"
+                                            class=" slider m-b-20" />
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" [(ngModel)]="form.priceFrom" #priceFrom="ngModel" name="priceFrom">
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" [(ngModel)]="form.priceTo" #priceTo="ngModel" name="priceTo">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="list-group-item small d-flex align-items-center">
+
+                                    <div class="form-group category-padding">
+                                        <label> Province </label>
+                                        <input type="text" class="form-control" [(ngModel)]="form.province" #province="ngModel" name="province">
+                                    </div>
+                                </div>
+                                <div class="list-group-item small d-flex align-items-center">
+
+                                    <div class="form-group category-padding">
+                                        <label> Promotion/Discount </label> <br>
+                                        <input type="checkbox" [(ngModel)]="form.promotion" #promotion="ngModel" name="promotion"> Has Discount/Promotion
+                                    </div>
+                                </div>
+
+                                <mat-action-row>
+                                    <button type="submit" mat-button color="primary">Next</button>
+                                    <!-- <button mat-button color="primary" (click)="nextStep()">Next</button> -->
+                                </mat-action-row>
+                            </form>
+                        </mat-expansion-panel>
+
+
+
+                    </mat-accordion>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 m-t-20  ">
+                        <a (click)="OpenModal()" class="btn btn-primary" style="width:100%;" *ngIf="!gs.isLoggedIn()"> Free Registration</a>
+                    </div>
+                </div>
+
+            </div> 
+        </div>
+    </div>
+    <div class="col-sm-9">
+        <section class="slider-section">
+            <div class="main-slider">
+                <div id="main-slider-carousel" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <!-- <div class="slider-one"></div> -->
+
+                            <div class="content text-center">
+                                <h1 class="large-text wow fadeInDown" data-wow-delay="0.5s" data-wow-duration="0.6s">
+                                    Where does it come from?</h1>
+
+                                <div class="guard">
+                                    <p class="small-text wow fadeInDown" data-wow-delay="0.9s">
+                                        What is Lorem Ipsum
+                                    </p>
+                                </div>
+
+                                <div class="link-button wow fadeInUp" data-wow-delay="1.2s">
+                                    <a href="about.html" class="btn btn-primary">About us</a>
+                                    <a href="contact.html" class="btn btn-default">Contact</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div class="slider-two"></div>
+
+                            <div class="content">
+                                <h1 class="large-text wow fadeInDown" data-wow-delay="0.5s" data-wow-duration="0.6s">
+                                    What is Lorem Ipsum</h1>
+
+                                <div class="guard">
+                                    <p class="small-text wow fadeInDown" data-wow-delay="0.9s">Lorem Ipsum is simply
+                                        dummy text of the printing and typesetting industry. </p>
+                                </div>
+
+                                <div class="link-button wow fadeInUp" data-wow-delay="1.2s">
+                                    <a href="about.html" class="btn btn-primary">About us</a>
+                                    <a href="contact.html" class="btn btn-default">Contact</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div class="slider-three"></div>
+
+                            <div class="content text-left">
+                                <h1 class="large-text wow fadeInDown" data-wow-delay="0.5s" data-wow-duration="0.6s">
+                                    Lorem Ipsum is simply dummy </h1>
+
+                                <div class="guard">
+                                    <p class="small-text wow fadeInDown" data-wow-delay="0.9s">Lorem Ipsum is simply
+                                        dummy text of the printing and typesetting industry. </p>
+                                </div>
+
+                                <div class="link-button wow fadeInUp" data-wow-delay="1.2s">
+                                    <a href="about.html" class="btn btn-primary">About us</a>
+                                    <a href="contact.html" class="btn btn-default">Contact</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a class="left carousel-control" href="#main-slider-carousel" role="button" data-slide="prev"><i
+                            class="fa fa-angle-left" aria-hidden="true"></i></a>
+
+                    <a class="right carousel-control" href="#main-slider-carousel" role="button" data-slide="next"><i
+                            class="fa fa-angle-right" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </section> <!-- slider-section -->
+
+
+    </div>
+</div>
+
+
+<div class="col-sm-12 shop-page sub-page">
+    <section class="shop-section section-padding">
+
+        <div class="row">
+
+
+            <div class="col-md-12 m-t-20">
+                <div class="title-bar">
+                    <h2 class="title">NEW ARRIVALS </h2>
+                    <span class="title-border"></span>
+                </div> <!-- title-bar -->
+                <div class="right-bar">
+                    <div class="product-selection">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6" *ngFor="let p of product">
+                                <div class="product-wrapper">
+
+                                    <div class="product-detail item-list"  routerLink="customer/ProdcutDetails/{{p.productId}}">
+                                        <!-- <a href="#"></a> -->
+                                        <a class="animate-scale">
+                                            <div class="not_img" *ngIf="!p.productImage || p.productImage =='NULL' " >370 x 440px</div>
+                                            <img src="{{productPicUrl}}/{{p.productId}}/{{p.productImage}}" *ngIf="p.productImage && p.productImage !='NULL' "/>
+                                        </a>
+                                        <!-- condition for image is null better to not save null or check later -->
+                                        <!-- <h6 class="clr-red itemtitle">chicken911</h6> -->
+                                        <h6 class="title1">{{p.productName}}</h6>
+                                        <h6 class="head1"> Seller : {{p.productId}} </h6>
+                                        <h6 class="head2 m-b-20"> Province : {{p.province}} </h6>
+                                        <div class="price price1">${{p.standardPrice}}</div>
+                                        <span class="qty">Stock: {{p.stockQty}} </span>
+                                        <i class="fa fa-youtube-play ytube-icon"></i>
+                                        <i (click)="addwish()" class="fa fa-thumbs-o-up thum-icon">{{likeCount}}</i>
+                                        <!-- <i  class="fa fa-thumbs-o-up thum-icon"></i> -->
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="col-md-3 col-sm-6">
+                                <div class="product-wrapper">
+
+                                    <div class="product-detail item-list"><a href="#">
+                                        </a><a href="#" class="animate-scale">
+                                            <div class="not_img">370 x 440px</div>
+                                        </a>
+                                        <h6 class="clr-red itemtitle">chicken911</h6>
+                                        <h6 class="title1">ไก่บ้าน 12 กย</h6>
+                                        <h6 class="head1"> Seller : thafarm </h6>
+                                        <h6 class="head2 m-b-20"> Province : thafarm </h6>
+                                        <div class="price price1">$ 2500.00</div>
+                                        <span class="qty"> 1 </span>
+                                        <i class="fa fa-youtube-play ytube-icon"></i>
+                                        <i class="fa fa-thumbs-o-up thum-icon"></i>
+
+                                    </div>
+                                </div>
+                            </div> -->
+
+
+
+                        </div>
+                    </div> <!-- product-selection -->
+
+
+                </div> <!-- right-bar -->
+            </div>
+        </div>
+
+    </section> <!-- shop-page -->
+
+</div>
+
+
+<section class="research-section section-padding">
+
+    <div class="row">
+
+
+        <div class="col-md-12">
+        </div>
+    </div>
+
+</section>

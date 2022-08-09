@@ -1,0 +1,424 @@
+<div class="main">
+    <div class="row">
+        <app-left-nav></app-left-nav>
+        <div class="col-md-9">
+            <div class="card">
+                <div *ngIf="!isShowAddseller">
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <div class="title-bar">
+                                <h2 class="title text-left m-0">Ready To Sell List </h2>
+                            </div>
+                        </div>
+                        <div class="col-sm-5 text-right">
+                            <a class="btn btn-primary" (click)="showtemp()"> Sell Your Product</a>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="border-bottom"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 m-t-20">
+                            <table class="table table-responsive table-striped sell-table">
+                                <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th> Product Name</th>
+                                        <th> Price</th>
+                                        <th>Actions </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let p of sellerList;">
+                                        <td>
+                                            <img src="{{productPicUrl}}/{{p.productID}}/{{p.productImage}}" width="70"
+                                                height="70" onerror="this.src='./assets/images/defaultImg.jpg';"
+                                                class="d-block w-100" alt="image">
+                                        </td>
+                                        <td> {{p.productName}} </td>
+                                        <td> {{p.standardPrice | number: '1.2-2'}} </td>
+
+                                        <td> <a (click)="editseller(p)"> <i class="icon-note f-18"></i> </a>
+                                            <a (click)="delete(p)"> <i class="icon-trash f-18 m-l-10"></i></a>
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="isShowAddseller">
+                    <form name="form" (ngSubmit)="f.form.valid && createsell() " #f="ngForm">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="title-bar">
+                                    <h2 class="title">Ready to Sell Information </h2><span class="title-border"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 text-right">
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label> Product Name </label>
+                                    <input type="text" [(ngModel)]="formsell.productName" #productName="ngModel"
+                                        [ngClass]="{ 'is-invalid': f.submitted && productName.invalid }"
+                                        name="productName" class="form-control" required />
+                                    <div *ngIf="f.submitted && productName.invalid" class="invalid-feedback">
+                                        <div *ngIf="productName.errors?.['required']" style="color:red">ProductName is
+                                            required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label> Talent </label>
+                                    <textarea [(ngModel)]="formsell.talents" #talents="ngModel" name="talents"
+                                        class="form-control"
+                                        [ngClass]="{ 'is-invalid': f.submitted && talents.invalid }" required>
+                                     </textarea>
+                                    <div *ngIf="f.submitted && talents.invalid" class="invalid-feedback">
+                                        <div *ngIf="talents.errors?.['required']" style="color:red">Talents is required
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label> Gender </label>
+                                            <select [(ngModel)]="formsell.gender" #gender="ngModel" name="gender"
+                                                class="form-control"
+                                                [ngClass]="{ 'is-invalid': f.submitted && gender.invalid }" required>
+                                                <option value="">Select Gender Type</option>
+                                                <option value="{{p.lookupId}}" *ngFor="let p of genderList">
+                                                    {{p.lookupCode}} </option>
+                                            </select>
+                                            <div *ngIf="f.submitted && gender.invalid" class="invalid-feedback">
+                                                <div *ngIf="gender.errors?.['required']" style="color:red">Gender is
+                                                    required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label> Sire/Breeder </label>
+                                            <select [(ngModel)]="formsell.breedType" #breedType="ngModel"
+                                                [ngClass]="{ 'is-invalid': f.submitted && breedType.invalid }" required
+                                                name="breedType" class="form-control">
+                                                <option value="">Select Bread Type</option>
+                                                <option value="{{p.lookupId}}" *ngFor="let p of breedList">
+                                                    {{p.lookupDescription}} </option>
+                                            </select>
+                                            <div *ngIf="f.submitted && breedType.invalid" class="invalid-feedback">
+                                                <div *ngIf="breedType.errors?.['required']" style="color:red">BreedType
+                                                    is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label> Fighting Record </label>
+                                    <textarea [(ngModel)]="formsell.fightingRecord" #fightingRecord="ngModel"
+                                        [ngClass]="{ 'is-invalid': f.submitted && fightingRecord.invalid }" required
+                                        name="fightingRecord" class="form-control">
+                                         </textarea>
+                                    <div *ngIf="f.submitted && fightingRecord.invalid" class="invalid-feedback">
+                                        <div *ngIf="fightingRecord.errors?.['required']" style="color:red">
+                                            FightingRecord is
+                                            required</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group"
+                                            *ngIf="this.dataservice.getMemberType() == '2171' && breeds.length == 0">
+                                            <label> Breed </label>
+                                            <!-- <input type="text" [(ngModel)]="formsell.breed" #breed="ngModel"
+                                                name="breed" class="form-control" /> -->
+
+                                            <select [(ngModel)]="formsell.breed" #breed="ngModel" name="breed"
+                                                class="form-control" [ngClass]="{ 'is-invalid': f.submitted && breed.invalid }" required>
+                                                <option value="">Select Bread </option>
+                                                <option value="{{p.breedId}}" *ngFor="let p of breeds">
+                                                    {{p.breedName}} </option>
+                                            </select>
+                                            <div *ngIf="f.submitted && breed.invalid" class="invalid-feedback">
+                                                <div *ngIf="breed.errors?.['required']" style="color:red">
+                                                    Breed is
+                                                    required</div>
+                                            </div>
+
+                                        </div>
+                                       
+                                    </div>
+                                    <!-- <div class="col-sm-6">
+                              <div class="form-group">
+                                  <label> Product Code </label>
+                                  <input type="text" [(ngModel)]="formsell.productCode"
+                                      #productCode="ngModel" name="productCode" class="form-control" />
+  
+                              </div>
+  
+                          </div> -->
+                                </div>
+
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label> Additional Information </label>
+                                    <textarea [(ngModel)]="formsell.remarks" #remarks="ngModel" name="remarks"
+                                        [ngClass]="{ 'is-invalid': f.submitted && remarks.invalid }" required
+                                        class="form-control">  </textarea>
+                                    <div *ngIf="f.submitted && remarks.invalid" class="invalid-feedback">
+                                        <div *ngIf="remarks.errors?.['required']" style="color:red">
+                                            Remarks is
+                                            required</div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label> Age</label>
+                                            <input type="text" [(ngModel)]="formsell.age" #age="ngModel" name="age"
+                                                [ngClass]="{ 'is-invalid': f.submitted && age.invalid }" required
+                                                class="form-control" />
+                                            <div *ngIf="f.submitted && age.invalid" class="invalid-feedback">
+                                                <div *ngIf="age.errors?.['required']" style="color:red">
+                                                    Age is
+                                                    required</div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label> </label>
+                                            <select style="margin-top:6px;" [(ngModel)]="formsell.ageType"
+                                                [ngClass]="{ 'is-invalid': f.submitted && ageType.invalid }" required
+                                                #ageType="ngModel" name="ageType" class="form-control">
+                                                <option value="">Select Age Type</option>
+                                                <option value="{{p.lookupId}}" *ngFor="let p of ageList">
+                                                    {{p.lookupDescription}} </option>
+                                            </select>
+                                            <div *ngIf="f.submitted && ageType.invalid" class="invalid-feedback">
+                                                <div *ngIf="ageType.errors?.['required']" style="color:red">
+                                                    AgeType is
+                                                    required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label> Weight</label>
+                                            <input type="text" [(ngModel)]="formsell.weight" #weight="ngModel"
+                                                name="weight" class="form-control"
+                                                [ngClass]="{ 'is-invalid': f.submitted && weight.invalid }" required />
+                                            <div *ngIf="f.submitted && weight.invalid" class="invalid-feedback">
+                                                <div *ngIf="weight.errors?.['required']" style="color:red">
+                                                    Weight is
+                                                    required</div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label> </label>
+                                            <select class="form-control" style="margin-top:6px;"
+                                                [ngClass]="{ 'is-invalid': f.submitted && uom.invalid }" required
+                                                [(ngModel)]="formsell.uom" #uom="ngModel" name="uom">
+                                                <option value="">Select Weight</option>
+                                                <option value="{{p.lookupId}}" *ngFor="let p of weightList">
+                                                    {{p.lookupDescription}} </option>
+                                            </select>
+                                            <div *ngIf="f.submitted && uom.invalid" class="invalid-feedback">
+                                                <div *ngIf="uom.errors?.['required']" style="color:red">
+                                                    UOM is
+                                                    required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label> Price</label>
+                                    <input type="text" [(ngModel)]="formsell.standardPrice" #standardPrice="ngModel"
+                                        [ngClass]="{ 'is-invalid': f.submitted && standardPrice.invalid }" required
+                                        name="standardPrice" class="form-control" />
+                                    <div *ngIf="f.submitted && standardPrice.invalid" class="invalid-feedback">
+                                        <div *ngIf="standardPrice.errors?.['required']" style="color:red">
+                                            StandardPrice is
+                                            required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label> Currency</label>
+                                    <select [(ngModel)]="formsell.currency" #currency="ngModel" name="currency"
+                                        [ngClass]="{ 'is-invalid': f.submitted && currency.invalid }" required
+                                        class="form-control">
+                                        <option value="">Select Currency</option>
+                                        <option value="{{p.lookupCode}}" *ngFor="let p of currencyList">
+                                            {{p.lookupDescription}}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="f.submitted && currency.invalid" class="invalid-feedback">
+                                        <div *ngIf="currency.errors?.['required']" style="color:red">
+                                            Currency is
+                                            required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label> Stock Quantity</label>
+                                    <input type="text" [(ngModel)]="formsell.stockQty" #stockQty="ngModel"
+                                        [ngClass]="{ 'is-invalid': f.submitted && stockQty.invalid }" required
+                                        name="stockQty" class="form-control" />
+                                    <div *ngIf="f.submitted && stockQty.invalid" class="invalid-feedback">
+                                        <div *ngIf="stockQty.errors?.['required']" style="color:red">
+                                            StockQuantity is
+                                            required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label> Province</label>
+                                    <input type="text" [(ngModel)]="formsell.province" #province="ngModel"
+                                    [ngClass]="{ 'is-invalid': f.submitted && province.invalid }" required
+                                        name="province" class="form-control" />
+                                    <div *ngIf="f.submitted && province.invalid" class="invalid-feedback">
+                                        <div *ngIf="province.errors?.['required']" style="color:red">
+                                            Province is
+                                            required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label> Discount / Offers</label>
+                                    <input type="text" [(ngModel)]="formsell.discount" #discount="ngModel"
+                                    [ngClass]="{ 'is-invalid': f.submitted && discount.invalid }" required
+                                        name="discount" class="form-control" />
+                                        <div *ngIf="f.submitted && discount.invalid" class="invalid-feedback">
+                                            <div *ngIf="discount.errors?.['required']" style="color:red">
+                                                Discount is
+                                                required</div>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label> Payment Option</label>
+                                    <select [(ngModel)]="formsell.paymentOption" #paymentOption="ngModel"
+                                    [ngClass]="{ 'is-invalid': f.submitted && paymentOption.invalid }" required
+                                        name="paymentOption" class="form-control">
+                                        <option value="">Select Payment Opt</option>
+                                        <option value="{{p.lookupId}}" *ngFor="let p of paymentList">
+                                            {{p.lookupCode}}
+                                    </select>
+                                    <div *ngIf="f.submitted && paymentOption.invalid" class="invalid-feedback">
+                                        <div *ngIf="paymentOption.errors?.['required']" style="color:red">
+                                            PaymentOption is
+                                            required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label> Video Link</label>
+                                    <div class="upload-btn-wrapper">
+                                        <button class="btn1">
+                                            <i class="icon-cloud-upload f-20"
+                                                style="margin-right:15px; vertical-align: middle;"></i> Choose a
+                                            File...</button>
+                                        <video [src]="url" *ngIf="format==='video' && url" height="200"
+                                            controls></video> <br />
+                                        <input type='file' (change)="onSelectFile($event)" />
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label> Upload Images </label>
+                                    <div class="upload-btn-wrapper">
+                                        <button class="btn1">
+                                            <i class="icon-cloud-upload f-20"
+                                                style="margin-right:15px; vertical-align: middle;"></i> Choose a
+                                            File...</button>
+                                        <input type="file" name="myfile" multiple (change)="onFileSelect($event)" 
+                                        [(ngModel)]="formsell.myfile" #myfile="ngModel"
+                                        [ngClass]="{ 'is-invalid': f.submitted && myfile.invalid }" required/>
+                                        <div *ngIf="f.submitted && myfile.invalid" class="invalid-feedback">
+                                            <div *ngIf="myfile.errors?.['required']" style="color:red">
+                                                Image is
+                                                required</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="test col-md-3" (click)="test(i)"
+                                        *ngFor='let preview of previews;let i=index'>
+                                        <p> x</p>
+                                        <img [src]="preview" width="100px" height="100px" class="preview">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 text-right m-t-10">
+                                <!-- <a href="" class="btn btn-primary">Confirm And Proceed</a> -->
+
+                                <button class="btn btn-primary" (click)="createsell()">Confirm And Proceed</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

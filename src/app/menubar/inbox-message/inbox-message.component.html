@@ -1,0 +1,32 @@
+<div class="main">
+    <div class="row">
+        <app-left-nav></app-left-nav>
+        <div class="col-md-9">
+            <div class="card ">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="title-bar">
+                            <h2 class="title">Inbox </h2><span class="title-border"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12" *ngFor="let p of inboxlst?.messageHeader">
+                        <p><b>{{p.messageSubject}}:</b>{{p.productName}}</p>
+                        <p><b>{{p.senderName}}</b>({{p.senderEmail}})</p>
+                        <p *ngFor="let cmt of p.messageDetails">{{cmt?.comment}}</p>
+                        <p>{{p.createdOn | date:'dd-mm-yy hh:mm '}}</p>
+                        <hr>
+
+                    </div>
+                    <!-- <div class="col-sm-6" *ngFor="let p of inboxlst.messageHeader;">
+                        <p>{{p.createdOn | date:'dd-mm-yy hh:mm '}}</p>
+                        
+                    </div> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ngx-spinner size="medium" color="orange" backgroundcolor="white" type="ball-fussion"></ngx-spinner>

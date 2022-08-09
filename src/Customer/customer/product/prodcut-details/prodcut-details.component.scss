@@ -1,0 +1,87 @@
+.table-striped>tbody>tr:nth-of-type(odd) {
+  background-color: #fff;
+}
+
+.table-striped>tbody>tr>td:nth-child(1), .table-striped>tbody>tr>td:nth-child(3) {
+  color: #f15502;
+}
+
+.carousel-indicators {
+  left: 0%;
+  top: 429px;
+
+}
+
+.consulting-section #consulting-carousel .carousel-indicators {
+  width: 80px;
+  bottom: 10px;
+  margin: 0;
+  left: 0;
+
+  display: -webkit-inline-box;
+  @media only screen and (max-width: 479px){
+    // bottom: -57px;
+     width: 100%;
+    // top: 240px;
+    position: initial;
+    margin-top: 10px;
+
+}
+}
+
+.mat-chip.mat-standard-chip {
+  background-color: rgb(236, 14, 14);
+  color: white;
+}
+.example-chip-list {
+  width: 100%;
+}
+.full-width {
+  width: 100%;
+}
+​
+.chip-list-wrapper {
+  min-height: 3em;
+}
+/* popup */
+button.close.message-to-sellar {
+  background: #f05603;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  color: #fff;
+  opacity: 1;
+  margin-top: 0;
+}
+.message-sellar-submit{
+  background: #f05603;
+  color: #fff;
+}
+.facbook-icon{
+  width: 100%;
+.thumbs-facebook-icon{
+  float: right;
+  a{
+    margin-right: 5px;
+  }
+}
+}
+@media only screen and (max-width: 479px){
+  .add-cart-buy-it-now{
+       display: flex;
+       justify-content: center;
+       .addcart-btn{
+         font-size: 14px;
+       }
+     .add-to-cart,.buy-it-now{
+        width: fit-content;
+     }
+   }
+}
+@media only screen and (max-width: 479px) {
+  .consulting-section #consulting-carousel .carousel-indicators {
+      bottom: -57px !important;
+      width: 100% !important;
+      top: 300px;
+  }
+}

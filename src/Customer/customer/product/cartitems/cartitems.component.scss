@@ -1,0 +1,12 @@
+table tr th{
+    background: #eaeaea;
+    color: #3f3f3f;
+    
+}
+
+/*cartitems product list responsive */
+@media only screen and (max-width: 479px){
+ .cartItems-productsList{
+     overflow-x: auto;
+ }
+}

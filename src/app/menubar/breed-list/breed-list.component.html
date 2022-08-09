@@ -1,0 +1,94 @@
+<div class="main">
+    <div class="row">
+        <app-left-nav></app-left-nav>
+        <div class="col-md-9">
+            <div class="card ">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="title-bar">
+                            <h2 class="title">Breed List </h2><span class="title-border"></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <button  class="btn btn-primary" data-toggle="modal" data-target="#BreedModal" (click)="addBread(breedtemplate)"> Add New
+                            Breed</button>
+                    </div>
+                </div>
+
+                <table id="e-product-list" class="table table-responsive table-striped" role="grid"
+                    style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <!-- <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 125px;">Image</th> -->
+                            <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 1023px;">Bread Name</th>
+                            <!-- <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 153px;">Amount</th> -->
+                            <!-- <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 100px;">Edit</th> -->
+                            <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 134px;text-align:center">
+                                Action
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="odd" *ngFor="let p of breedLst;let i = index">
+                            <!-- <td class="pro-list-img" tabindex="0">
+                    <img src="assets/images/img1.jpg" width="70" class="img-fluid" alt="tbl">
+                </td> -->
+                            <td class="pro-name">
+                                <h6>{{p.breedName}} </h6>
+                            </td>
+                            <td>
+                                <button (click)="editBread(p,breedtemplate)"
+                                    class="btn btn-primary address-btn"><i class="icon-pencil"></i></button>
+
+                            </td>
+                            <!-- <td class="action-icon text-center">
+                                <button class="btn btn-primary address-btn" (click)="deletebread(p,i)"><i
+                                        class="icon-trash"></i></button>
+                            </td> -->
+                        </tr>
+
+                    </tbody>
+                </table>
+
+
+                <ng-template #breedtemplate>
+                    <div>
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" (click)="breeddialogRef.close()">×</button>
+                                <h4 class="modal-title center-block">
+                                    Breed Details
+                                </h4>
+                            </div>
+                            <div class="modal-body" id="breedDetail">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <input class="form-control" [(ngModel)]="breadName" name="breadName"
+                                                placeholder="Breed Name" type="text" >
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <div class="popup-btns-save-cncl pull-right">
+                                                <button type="button" (click)="SaveBreed()" id="btnSave"
+                                                    class="btn btn-default forum-header-btn"
+                                                    >Save</button>
+                                                <button type="button"  (click)="breeddialogRef.close()"
+                                                    class="btn btn-default forum-header-btn">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

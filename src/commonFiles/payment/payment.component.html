@@ -1,0 +1,117 @@
+<div class="main">
+
+
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            <div class="card ">
+                <div class="card-header">
+                    <div class="title-bar">
+                        <h2 class="title text-left border-bottom top-35 m-0"> Payment </h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-7 m-b-50" style="float:none;margin:auto;">
+                            <div class="bg-white payment-list shadow-sm pt-4 pl-2 pr-2 pb-2 m-t-30 ">
+
+
+                                <!-- Credit card form tabs -->
+                                <ul role="tablist" class="nav bg-light nav-pills rounded nav-fill mb-3">
+                                    <!-- <li class="nav-item"> <a data-toggle="pill" href="#credit-card"
+                                            class="nav-link active "> <i class="fa fa-credit-card m-r-5"></i> Credit /
+                                            Debit card </a> </li> -->
+
+                                    <!-- <li class="nav-item"> <a data-toggle="pill" href="#net-banking" class="nav-link ">
+                                            <i class="fa fa-mobile f-20 m-r-5"></i> Net Banking </a> </li> -->
+                                    <li class="nav-item"> <a data-toggle="pill" href="#paypal" class="nav-link "> <i
+                                                class="fa fa-file m-r-5"></i> Upload Receipt </a> </li>
+                                </ul>
+                            </div> <!-- End -->
+                            <!-- Credit card form content -->
+                            <div class="tab-content">
+                                <!-- credit card info-->
+                                <!-- <div id="credit-card" class="tab-pane  active pt-3">
+
+                                    <div class="form-group"> <label for="username">
+                                            <h6>Card Holder Name</h6>
+                                        </label> <input type="text" name="username" placeholder="Card Holder Name"
+                                            required class="form-control "> </div>
+                                    <div class="form-group"> <label for="cardNumber">
+                                            <h6>Card number</h6>
+                                        </label>
+                                        <div class="input-group"> <input type="text" name="cardNumber"
+                                                placeholder="Valid card number" class="form-control " required>
+                                            <div class="input-group-append"> <span class="input-group-text text-muted">
+                                                    <i class="fa fa-cc-visa f-15 m-l-5"></i> <i
+                                                        class="fa fa-cc-mastercard f-15 m-l-5"></i> <i
+                                                        class="fa fa-cc-amex f-15 m-l-5"></i> </span> </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <div class="form-group"> <label><span class="hidden-xs">
+                                                        <h6>Expiration Date</h6>
+                                                    </span></label>
+                                                <div class="input-group"> <input type="number" placeholder="MM" name=""
+                                                        class="form-control" required> <input type="number"
+                                                        placeholder="YY" name="" class="form-control" required> </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group mb-4"> <label data-toggle="tooltip"
+                                                    title="Three digit CV code on the back of your card">
+                                                    <h6>CVV <i class="fa fa-question-circle d-inline"></i></h6>
+                                                </label> <input type="text" required class="form-control"> </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer"> <button type="button"
+                                            class="subscribe btn btn-primary m-t-20 btn-block shadow-sm border-radius6 ">
+                                            Confirm Order </button>
+
+                                    </div>
+                                </div> End -->
+                                <!-- Paypal info -->
+                                <!-- <div id="net-banking" class="tab-pane  pt-3">
+                                    <h6 class="pb-2">Select your netbanking account type</h6>
+                                    <div class="form-group "> <label class="radio-inline"> <input type="radio"
+                                                name="optradio" checked> Siam Commercial Bank </label> <label
+                                            class="radio-inline"> <input type="radio" name="optradio"
+                                                class="ml-5">Krungthai Bank </label>
+                                        <label class="radio-inline"> <input type="radio" name="optradio" checked>
+                                            Krungsri Bank </label> <label class="radio-inline"> <input type="radio"
+                                                name="optradio" class="ml-5">Bangkok Bank</label>
+
+                                    </div>
+                                    <p> <button type="button" class="btn btn-primary  border-radius6"><i
+                                                class="fa fa-mobile f-15 m-r-5 mr-2"></i> Proceed to Payment</button>
+                                    </p>
+                                    <p class="text-muted"> Note: online payment is not available now, please make
+                                        payment and upload payslip "Upload Receipt" section </p>
+                                </div> End -->
+                                <!-- bank transfer info -->
+                                <div id="paypal" class="tab-pane active  pt-3">
+                                    <div class="form-group "> <label for="Select Your Bank">
+
+
+                                            <div class="upload-btn-wrapper">
+                                                <button class="btn2">
+                                                    <i class="icon-cloud-upload f-25 dis-block"></i>
+                                                    <span class="dis-block m-t-5"> Click to Browse </span></button>
+                                                <input type="file" name="myfile" />
+                                            </div>
+
+                                            
+                                        </label>  </div>
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-primary border-radius6 m-t-10  "
+                                            (click)="confirmOrder()"><i class="fa fa-file f-15 m-r-5"></i> Confirm
+                                            Order</button>
+                                    </div>
+
+                                </div> <!-- End -->
+                                <!-- End -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>

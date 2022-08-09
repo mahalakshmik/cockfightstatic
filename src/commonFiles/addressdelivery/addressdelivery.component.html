@@ -1,0 +1,51 @@
+<div class="main">
+    <div class="card">
+        <div class="row">
+
+            <div class="col-sm-6">
+                <div class="title-bar">
+                    <h2 class="title text-left  m-0    "> Delivery Address </h2>
+                </div>
+            </div>
+            <div class="col-sm-6 text-right">
+                <a  (click)="openaddressDialog()" class=" btn btn-warning" data-toggle="modal" data-target="#AddAddress"> <i
+                        class="icon-plus m-r-5"></i> Add Address</a>
+            </div>
+            <div class="col-sm-12">
+                <div class="border-bottom "></div>
+            </div>
+
+        </div>
+        <div class="row" *ngFor="let p of addresslist ;let i=index">
+            <div class="col-sm-12 m-t-30">
+                <div class="panel address-panel">
+                    <div class="row ">
+                        <div class="col-sm-1 address-radio">
+                            <input type="radio" (click)="getaddress(i)" [value]="i">
+                        </div>
+                        <div class="col-sm-9">
+                            <h3 class="m-b-10">Home Address</h3>
+                            <p>
+                                Home :{{p.addressName}} - {{p.mobileNo}}, <br>
+                                {{p.memberAddress}} ,<br>
+                                {{p.landmark}},<br>
+                                {{p.locality}} - {{p.zipCode}}, {{p.state}}, {{p.country}}.
+                            </p>
+
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="address-delivery">
+                                <button class="btn btn-primary address-btn" (click)="edit(addresslist,i)"><i
+                                    class="icon-pencil"></i></button>
+                                    <button class="btn btn-primary address-btn" (click)="delete(addresslist,i)"><i
+                                        class="icon-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary"  (click)="continue()">Continue</button>
+       
+    </div>
+</div>

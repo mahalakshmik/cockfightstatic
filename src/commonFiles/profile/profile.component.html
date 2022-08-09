@@ -1,0 +1,595 @@
+<div class="main">
+    <div class="row">
+        <div class="col-sm-3 col-xs-12 col-md-3">
+            <div class="card profile m-b-20">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="Pro-pic">
+                            <img src="{{profilePicUrl}}{{forms.profilePhoto}}" width="80" height="80" />
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <h5>Welcome,</h5>
+                        <h6>{{forms.userName}}</h6>
+                    </div>
+                </div>
+
+            </div>
+            <div class="left-navbar">
+                <nav class="navbar navbar-default navbar-static-top">
+
+                    <div class="navbar-header">
+
+                        <button class="navbar-toggle" data-toggle="collapse" data-target=".menubar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse menubar">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a (click)="myDir='profile'"> Profile </a></li>
+                            <li><a (click)="myDir='address'">Address</a></li>
+                            <li><a (click)="myDir='notification'">Notification</a></li>
+                            <li><a (click)="myDir='inbox'">Message (Inbox)</a></li>
+                            <li><a (click)="myDir='verify'">Verify Yourself</a></li>
+                            <li><a (click)="myDir='followers'">Followers</a></li>
+                            <li><a (click)="myDir='following'">Following</a></li>
+                            <li><a (click)="myDir='breedList'">Breed List</a></li>
+                            <li><a (click)="myDir='orderHistory'">Order History</a></li>
+                            <!-- <li><a routerLink="/customer/orderHistory">Order History</a></li> -->
+
+                            <li>
+                                <mat-accordion class="example-headers-align">
+
+                                    <!-- <a (click)="myDir='selling'">Selling</a> -->
+                                    <mat-expansion-panel hideToggle>
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                Selling <span class="caret"></span>
+                                            </mat-panel-title>
+
+                                        </mat-expansion-panel-header>
+
+
+                                        <ul class="m-l-10">
+                                            <li> <a (click)="myDir='sellyourprodcut'"> Sell Your Product</a></li>
+                                            <li> <a (click)="myDir='sellinglist'"> Selling List</a></li>
+                                            <li> <a (click)="myDir='soldoutlist'"> Sold Out List</a></li>
+                                            <li> <a (click)="myDir='purchaselist'"> Purchase List</a></li>
+                                        </ul>
+                                    </mat-expansion-panel>
+
+                                </mat-accordion>
+                            </li>
+                            <li><a (click)="myDir='trsnporterbookingList'">Transporter Booking List</a></li>
+                            <li><a (click)="myDir='logout'">Logout</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="col-sm-9" [ngSwitch]="myDir">
+            <ng-template [ngSwitchCase]="'profile'" name="forms" (ngSubmit)="f.forms.valid ">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="title-bar">
+                                <h2 class="title">Profile Information </h2><span class="title-border"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <a href="#" class="text-underline"> Change Password</a>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <select [(ngModel)]="forms.memberType" #memberType="ngModel" name="memberType"
+                                    class="form-control">
+                                    <option value="{{p.value}}" *ngFor="let p of listItemskeys">{{p.text}} </option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="forms.userName" #userName="ngModel" name="userName"
+                                    class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label> Email ID</label>
+                                <input type="email" [(ngModel)]="forms.emailId" #emailId="ngModel" name="emailId"
+                                    class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="upload-btn-wrapper">
+                                <button class="btn2">
+                                    <i class="icon-cloud-upload f-25 dis-block"></i>
+                                    <span class="dis-block m-t-5"> Click to Browse </span></button>
+                                <input type="file" name="myfile" (change)="onImageFileSelect($event)"  />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <div class="form-group">
+                                <label> Blog</label>
+                                <input type="text" [(ngModel)]="forms.website" #website="ngModel" name="website" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> Mobile No</label>
+                                <input type="text" [(ngModel)]="forms.mobileNo" #mobileNo="ngModel" name="mobileNo"
+                                    class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <div class="form-group">
+                                <label> First Name</label>
+                                <input type="text" [(ngModel)]="forms.firstName" #firstName="ngModel" name="firstName"
+                                    class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> Last Name</label>
+                                <input type="text" [(ngModel)]="forms.lastName" #lastName="ngModel" name="lastName"
+                                    class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right m-t-10">
+                            <a (click)="onSubmit()" class="btn btn-primary">Confirm All Changes</a>
+                            <!-- <button  class="btn btn-primary"> Confirm All Changes</button> -->
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template [ngSwitchCase]="'address'">
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="title-bar">
+                            <h2 class="title">Address </h2><span class="title-border"></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <!-- <a href="#" class="text-underline"> Add Address</a>   -->
+                        <button class="btn btn-primary" (click)="openDialog()">Add Address</button>
+                    </div>
+                </div>
+
+                <div class="row" *ngFor="let p of addresslist;let i=index;">
+                    <div class="col-sm-12 m-t-30">
+                        <div class="panel address-panel">
+                            <div class="row ">
+                                <div class="col-sm-1 address-radio">
+                                    <input type="radio">
+                                </div>
+                                <div class="col-sm-9">
+                                    <h3 class="m-b-10">Home Address</h3>
+                                    <p>
+                                        Home :{{p.addressName}} - {{p.mobileNo}}, <br>
+                                        {{p.memberAddress}} ,<br>
+                                        {{p.landmark}},<br>
+                                        {{p.locality}} - {{p.zipCode}}, {{p.state}}, {{p.country}}.
+                                    </p>
+
+                                </div>
+
+
+                                <div class="col-sm-2">
+                                    <div style="position: absolute;right: -30px;">
+
+                                        <button class="btn btn-primary address-btn" (click)="edit(addresslist,i)"><i
+                                                class="icon-pencil"></i></button>
+                                        <!-- <a href="#" class="btn btn-primary address-btn"> <i class="icon-pencil"></i>  </a> -->
+                                        <a href="#"> </a>
+                                        <button class="btn btn-primary address-btn" (click)="delete(addresslist,i)"><i
+                                                class="icon-trash"></i></button>
+                                        <!-- <a href="#" class="btn btn-primary address-btn">  <i class="icon-trash"></i> </a> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template [ngSwitchCase]="'notification'">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="title-bar">
+                                <h2 class="title">Notifications </h2><span class="title-border"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <a href="#" class="text-underline"> Mark All As Read</a>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template [ngSwitchCase]="'inbox'">
+
+                <div class="card">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="title-bar">
+                                <h2 class="title">Inbox </h2><span class="title-border"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 text-right">
+
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template [ngSwitchCase]="'verify'">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="title-bar">
+                                <h2 class="title">Verify </h2><span class="title-border"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 text-right">
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Upload Document 1</label>
+
+                                <div class="upload-btn-wrapper">
+                                    <button class="btn1">
+                                        <i class="icon-cloud-upload f-20"
+                                            style="margin-right:15px; vertical-align: middle;"></i> Choose a
+                                        File...</button>
+                                    <input type="file" name="myfile" (change)="onFileSelect($event,1)"/>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Upload Document 2</label>
+                                <div class="upload-btn-wrapper">
+                                    <button class="btn1">
+                                        <i class="icon-cloud-upload f-20"
+                                            style="margin-right:15px; vertical-align: middle;"></i> Choose a
+                                        File...</button>
+                                    <input type="file" name="myfile" (change)="onFileSelect($event,2)"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Upload Other Documents</label>
+                                <div class="upload-btn-wrapper">
+                                    <button class="btn1">
+                                        <i class="icon-cloud-upload f-20"
+                                            style="margin-right:15px; vertical-align: middle;"></i> Choose a
+                                        File...</button>
+                                    <input type="file" name="myfile" (change)="onFileSelect($event,3)"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 text-right m-t-20">
+                            <!-- <a href="#" class="btn btn-primary">Upload</a> -->
+                            <button class="btn btn-primary" (click)="verifyUpload()">Upload</button>
+
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template [ngSwitchCase]="'followers'">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="title-bar">
+                                <h2 class="title">Followers List </h2><span class="title-border"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 text-right">
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> Follower Name </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> Follower Type </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template [ngSwitchCase]="'following'">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="title-bar">
+                                <h2 class="title">Following List </h2><span class="title-border"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 text-right">
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> Follwing Name </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> Following Type </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template [ngSwitchCase]="'breedList'">
+                <div class="card ">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="title-bar">
+                                <h2 class="title">Breed List </h2><span class="title-border"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <a href="" class="text-underline" data-toggle="modal" data-target="#BreedModal"> Add New
+                                Breed</a>
+                        </div>
+                    </div>
+
+                    <table id="e-product-list" class="table table-responsive table-striped" role="grid" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <!-- <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 125px;">Image</th> -->
+                                <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 1023px;">Bread Name</th>
+                                <!-- <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 153px;">Amount</th> -->
+                                <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 100px;">Edit</th>
+                                <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 134px;text-align:center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="odd" *ngFor="let p of breedLst;let i = index">
+                                <!-- <td class="pro-list-img" tabindex="0">
+                                    <img src="assets/images/img1.jpg" width="70" class="img-fluid" alt="tbl">
+                                </td> -->
+                                <td class="pro-name">
+                                    <h6>{{p.breedName}} </h6>
+                                </td>
+                                <td>
+                                <button  (click)="editBread(p.breedId,breedtemplate)"  class="btn btn-primary address-btn"><i  class="icon-pencil"></i></button>
+
+                                </td>
+                                <td class="action-icon text-center">
+                                    <button class="btn btn-primary address-btn" (click)="deletebread(p,i)"><i  class="icon-trash"></i></button>
+                                </td>
+                            </tr>
+                          
+                        </tbody>
+                    </table>
+                   
+
+                </div>
+            </ng-template>
+            <ng-template [ngSwitchCase]="'orderHistory'">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="title-bar">
+                                <h2 class="title">Order History </h2><span class="title-border"></span>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-sm-6" *ngFor="let p of orderHistory">
+                            <li>Order No.:{{p.orderNo}}</li>
+                            <li>Order Date:{{p.orderDate | date:'dd/mm/yyyy'}}</li>
+                            <li>Order Status:{{p.orderStatusDesc}}</li>
+                            <li>totalAmount:{{p.totalAmount}}</li>
+                            <li>totalAmount:{{p.totalAmount}}</li>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-sm-12 text-right m-t-10">
+                            <a (click)="onSubmit()" class="btn btn-primary">Confirm All Changes</a>
+                            <!-- <button  class="btn btn-primary"> Confirm All Changes</button> -->
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template [ngSwitchCase]="'selling'">
+                <div class="card ">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="title-bar">
+                                <h2 class="title">Ready To Sell List </h2><span class="title-border"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <a href="" class="text-underline" data-toggle="modal" data-target="BreedModal"> Sell Your
+                                Product</a>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-sm-12">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th> Image </th>
+                                        <th> Product Name </th>
+                                        <th> Price </th>
+                                        <th> Actions </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </ng-template>
+           
+            <ng-template [ngSwitchCase]="'sellinglist'">
+                <div class="card ">
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <div class="title-bar">
+                                <h2 class="title">Selling List </h2><span class="title-border"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 text-right">
+                            <select class="form-control">
+                                <option value="2180">ORDER PLACED</option>
+                                <option value="2181">ORDER CONFIRMED</option>
+                                <option selected="selected" value="2182">ORDER DELIVERED</option>
+                                <option value="2183">ORDER CANCELED</option>
+                                <option value="2184">ORDER CLOSED</option>
+                                <option value="0">All Orders</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="title-bar">
+                                <h2 class="title">Transporter Routes </h2><span class="title-border"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 form-group">
+                            <label> From </label>
+                            <input type="text" class="form-control" />
+                        </div>
+                        <div class="col-sm-4 form-group">
+                            <label> To </label>
+                            <input type="text" class="form-control" />
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="row">
+                                <div class="col-sm-7 form-group">
+                                    <label> Price </label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="col-sm-5 m-t-30">
+                                    <a href="#" class="btn btn-primary"> Add </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template [ngSwitchCase]="'soldoutlist'">
+                <div class="card ">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="title-bar">
+                                <h2 class="title">Sold Out List </h2><span class="title-border"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template [ngSwitchCase]="'purchaselist'">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="title-bar">
+                                <h2 class="title">Sold Out List </h2><span class="title-border"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template [ngSwitchCase]="'trsnporterbookingList'">
+                <div class="card ]">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="title-bar">
+                                <h2 class="title">Order History</h2><span class="title-border"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template [ngSwitchCase]="'logout'">
+
+
+
+                <div class="card">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="title-bar">
+                                <h2 class="title">Transporter Booking List</h2><span class="title-border"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+
+        </div>
+    </div>
+</div>
+<!-- modelpoup without -->
+<ng-template #breedtemplate>
+    <div >
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" (click)="breeddialogRef.close()">×</button>
+                <h4 class="modal-title center-block">
+                    Breed Details
+                </h4>
+            </div>
+            <div class="modal-body" id="breedDetail">
+                <div class="row">
+                    <div class="col-md-12">
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <input class="form-control" id="BreedName" name="BreedName"  placeholder="Breed Name" type="text" value="Indian Kadaknath">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <div class="pull-right">
+                                        <button type="button" onclick="SaveBreed()" id="btnSave" class="btn btn-default forum-header-btn" disabled="disabled">Save</button>
+                                        <button type="button" data-dismiss="modal" id="btnCancel" class="btn btn-default forum-header-btn">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

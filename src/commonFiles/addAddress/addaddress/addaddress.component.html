@@ -1,0 +1,120 @@
+<!-- <div>
+    <app-left-navbar></app-left-navbar>
+</div> -->
+<form  name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+    <div class="card ">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="title-bar">
+                    <h2 class="title">Address </h2><span class="title-border"></span>
+                </div>
+            </div>
+            <!-- <div class="col-sm-6 text-right">
+                <a href="#" class="text-underline"> Add Address</a>
+            </div> -->
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Name </label>
+                    <input type="text" class="form-control" [(ngModel)]="form.addressName" #addressName="ngModel" name="addressName" required/>
+                    <div *ngIf="f.submitted && addressName.invalid"  >
+                        <div *ngIf="addressName.errors" style="color: red;">AddressName is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>MobileNo </label>
+                    <input type="text" class="form-control" [(ngModel)]="form.mobileNo" #mobileNo="ngModel" name="mobileNo" required/>
+                    <div *ngIf="f.submitted && mobileNo.invalid"  >
+                        <div *ngIf="mobileNo.errors" style="color: red;">MobileNo is required</div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Zip Code </label>
+                    <input type="text" class="form-control" [(ngModel)]="form.zipCode" #zipCode="ngModel" name="zipCode"/>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Locality </label>
+                    <input type="text" class="form-control"  [(ngModel)]="form.locality" #locality="ngModel" name="locality"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>State / Province </label>
+                    <input type="text" class="form-control" [(ngModel)]="form.state" #state="ngModel" name="state"/>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Country </label>
+                    <input type="text" class="form-control" [(ngModel)]="form.country" #country="ngModel" name="country" required/>
+                    <div *ngIf="f.submitted && country.invalid" >
+                        <div *ngIf="country.errors" style="color: red;">Country is required</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label>Address </label>
+                    <textarea class="form-control" [(ngModel)]="form.memberAddress" #memberAddress="ngModel" name="memberAddress">
+
+            </textarea>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>LandMark </label>
+                    <input type="text" class="form-control" [(ngModel)]="form.landmark" #landmark="ngModel" name="landmark"/>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Alternate No. </label>
+                    <input type="text" class="form-control" [(ngModel)]="form.alternateNo" #alternateNo="ngModel" name="alternateNo"/>
+                    <div *ngIf="f.submitted && alternateNo.invalid" >
+                        <div *ngIf="alternateNo.errors" style="color: red;">AlternateNo is required</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Address Type </label>
+                    <select class="form-control" [(ngModel)]="form.addressType" #addressType="ngModel" name="addressType">
+                        
+                        <option value="{{p.value}}" *ngFor="let p of listItemskey">{{p.text}}</option>
+                    </select>
+                </div>
+                <!-- <ul *ngFor="let p of listItemskey">
+                    <li>    {{p.text}}</li>
+                </ul> -->
+            </div>
+            <div class="col-sm-6 text-right m-t-20">
+                <button  type="submit" class="btn btn-primary">save</button>
+                <button  type="button" (click)="onNoClick()" class="btn btn-primary">Cancel</button>
+                <!-- <a href="#" (click)="saveaddress()" class="btn btn-primary">Save</a> -->
+                <!-- <a routerLink="/profile" class="btn btn-default">Cancel</a> -->
+            </div>
+        </div>
+
+</form>

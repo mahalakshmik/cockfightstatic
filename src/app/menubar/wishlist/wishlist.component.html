@@ -1,0 +1,35 @@
+<div class="main">
+    <div class="row">
+        <app-left-nav></app-left-nav>
+        <div class="col-md-9">
+            <div class="card">
+                <div class="row">
+                    <div class="col-sm-12 m-b-20">
+                        <div class="title-bar">
+                            <h2 class="title text-left border-bottom top-35"> Wish List </h2>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4" *ngFor="let p of wishlist">
+                            <p style="font-weight: bold;color: red;font-size: medium;">ProductName:{{p.productName}}</p>
+                            <p>SellerName:{{p.sellerName}}</p>
+
+                        </div>
+                        <div class="col-md-4" *ngFor="let p of wishlist">
+                            <button class="btn btn-primary"> <i class="icon-basket" aria-hidden="true">Add to
+                                    Cart</i></button>
+                            <button class="btn btn-primary"> <i class="icon-trash"
+                                    aria-hidden="true">delete</i></button>
+                            <!-- <p>StandardPrice:{{selectedProdut.standardPrice | number: '1.2-2'}}</p>
+                    <p>Discount:{{selectedProdut.discount}}</p> -->
+                        </div>
+                    </div>
+                    <!-- <button (click)="confirmOrder()" class="btn btn-primary" style="float: right;">Confirm Order</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

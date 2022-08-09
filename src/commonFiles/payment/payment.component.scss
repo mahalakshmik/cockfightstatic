@@ -1,0 +1,112 @@
+ .rounded{border-radius: 1rem}
+ 
+ .nav-pills
+  .nav-link{color: #555}.nav-pills
+   .nav-link.active{color: white}input[type="radio"]{margin-right: 5px}.bold{font-weight:bold}
+
+   .payment-list{
+    margin-bottom:20px;
+   }
+   .payment-list .nav>li>a{
+       padding:10px 45px; margin-right: 15px;
+       background-color: #eee;
+       color:#333;
+   }
+   .payment-list .nav-pills .nav-link.active {
+    background-color: #337ab7;
+    color:#fff;
+   }
+   .payment-list   .nav-pills>li a:focus{
+       background-color: #eee;
+       color:#333;
+   }
+   .payment-list   .nav-pills>li a:hover {
+    background-color: #337ab7;
+    color:#fff;
+}
+  h6{
+    margin-bottom: 0px;
+}
+.m-l-5{
+    margin-left:5px;
+}
+
+ 
+.input-group {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    width: 100%;
+}
+.input-group>.form-control {
+    position: relative;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    width: 1%;
+    margin-bottom: 0;}
+.input-group-append {
+    margin-left: -1px;
+}
+
+.input-group-append, .input-group-prepend {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+.input-group-text {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0.375rem 0.75rem;
+    margin-bottom: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+}
+.f-15{
+    font-size: 15px;
+}
+.border-radius6{
+    border-radius: 6px;
+}
+.m-b-50{
+    margin-bottom: 50px;
+}
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+}
+.btn2 {
+    border: 3px dashed #ccc;
+    color: #f15502;
+    padding: 50px;
+    font-size: 14px;
+    background-color: transparent;
+    width: 100%;
+    display: block;
+}
+.upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}   

@@ -1,0 +1,80 @@
+.title-bar .title-border {
+    right: 0;
+}
+.item-list .title1 {
+
+    color: red;
+
+}
+@media (min-width: 768px) {
+    .modal-dialog {
+        width: 500px;
+        margin: 30px auto;
+    }
+}
+
+.title-bar .title {
+    text-align: center;
+}
+
+.mat-expansion-panel {
+    box-shadow: none;
+    border: 1px solid #eee;
+}
+
+.mat-expansion-panel-header {
+    padding: 0px 4px !important;
+    height: 35px !important;
+}
+
+.f-10 {
+    font-size: 10px;
+}
+
+.mat-expansion-panel-header-title,
+.mat-expansion-panel-header-description {
+    margin-right: 0px !important;
+}
+
+.mat-expansion-panel {
+    box-shadow: none !important;
+    border: 1px solid #ddd !important
+}
+
+
+.mat-action-row {
+    border-top-color: transparent !important;
+}
+
+@media only screen and (max-width: 479px) {
+    .glyphicon-menu-down.menu-dropdown-accordion {
+        font-size: 10px;
+        float: right;
+        width: 100%;
+        padding-right: 1px;
+    }
+}
+.img {
+    height: 200px;
+    line-height: 200px;
+    width: 100%;
+    display: block;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgb(0 0 0 / 10%), 0 0 5px rgb(0 0 0 / 10%), 0 1px 3px rgb(0 0 0 / 30%), 0 3px 5px rgb(0 0 0 / 20%), 0 5px 10px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 20%), 0 20px 20px rgb(0 0 0 / 15%);
+}
+.item-list .ytube-icon {
+    color: red;
+    margin-left: 10px;
+    font-size: 18px;
+
+    margin-top: 21px !important;
+}
+.item-list .thum-icon {
+    color: green;
+    margin-left: 10px;
+    font-size: 18px;
+    margin-top: 21px !important;
+}

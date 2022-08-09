@@ -1,0 +1,64 @@
+<div class="main">
+    <div class="row">
+        <app-left-nav></app-left-nav>
+        <div class="col-md-9">
+            <div class="card ">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="title-bar">
+                            <h2 class="title">Selling List </h2><span class="title-border"></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 text-right">
+                        <select class="form-control" [(ngModel)]="selectedOrder" (click)="onChange($event)" name="selectedOrder">
+                            <!-- <option value="0">All Orders</option> -->
+                            <option  *ngFor="let drp of sellerType" [value]="drp.lookupId">{{drp.lookupDescription}}</option>
+                            <!-- <option value="2181">ORDER CONFIRMED</option>
+                            <option selected="selected" value="2182">ORDER DELIVERED</option>
+                            <option value="2183">ORDER CANCELED</option>
+                            <option value="2184">ORDER CLOSED</option>
+                            <option value="0">All Orders</option> -->
+                        </select>
+                    </div>
+                </div>
+                <div class="card" *ngFor="let p of sellerlst?.orderHeader">
+                    <div class="row" >
+                        <div class="col-sm-8" >
+                            <p><b>Order No.:</b> {{p.orderNo}}</p>
+                            <p><b>Order Date:</b> {{p.orderDate | date:'dd/mm/yyyy'}}</p>
+                            <p><b>Buyer Name:</b> {{p.userName}}</p>
+                            <p><b>Order Status:</b> {{p.orderStatusDesc}}</p>
+                            <hr>
+
+                        </div>
+                        <div class="col-sm-2">
+                            <p><b>Total Amount:</b></p>
+                            <button class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true">Payment
+                                    slip</i></button>
+
+                        </div>
+
+                    </div>
+                    <div class="row" *ngFor="let q of sellerlst?.orderDetail">
+                        <div class="col-sm-3">
+                            <img src={{q.productImage}} width="100" />
+                        </div>
+                        <div class="col-sm-6">
+                            <p><b>Product Name:</b> {{q.productName}}</p>
+                            <p><b>Payment Type:</b> {{q.paymentOptionDescription}}</p>
+                            <p><b>Quantity:</b> {{q.quantity}}</p>
+                        </div>
+                        <div class="col-sm-3">
+                            <p><b>Price:</b> {{q.standardPrice}}</p>
+                            <p><b>Discount:</b> {{q.discountAmount}}</p>
+
+                        </div>
+                        <hr>
+                        <button class="btn btn-primary">Cancel Order</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

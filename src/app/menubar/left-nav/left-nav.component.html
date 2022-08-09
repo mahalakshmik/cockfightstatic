@@ -1,0 +1,82 @@
+
+
+<!-- extra -->
+<!-- <div class="main">
+    <div class="row"> -->
+        <div class="col-sm-3 col-xs-12 col-md-3">
+            <div class="card profile m-b-20">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="Pro-pic">
+                          
+                            <img [src]="this.as.getPhoto()" width="80" height="80" />
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <h5>Welcome</h5>
+                        <h6>{{username |titlecase}}</h6>
+                    </div>
+                </div>
+
+            </div>
+            <div class="left-navbar">
+                <nav class="navbar navbar-default navbar-static-top">
+
+                    <div class="navbar-header">
+
+                        <button class="navbar-toggle" data-toggle="collapse" data-target=".menubar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse menubar">
+                        <ul class="nav navbar-nav">
+                            <li ><a (click)="pageNavigate('profile')"> <i class="icon-user"></i> &nbsp;&nbsp;Profile </a></li>
+                            <!-- <li><a (click)="myDir='address'">Address</a></li> -->
+                            <li ><a  (click)="pageNavigate('address')"><i class="fa fa-map-marker"></i> &nbsp;&nbsp;Address</a></li>
+                            <li><a *ngIf="userType=='2170' && '2173' " (click)="pageNavigate('WishList')"><i class="icon-heart"></i> &nbsp;&nbsp;wishList</a></li>
+                            <li><a (click)="pageNavigate('notification')"><i class="icon-bell"></i> &nbsp;Notification</a></li>
+                            <li><a (click)="pageNavigate('inbox')"><i class="icon-envelope" aria-hidden="true"></i>&nbsp;&nbsp;Message (Inbox)</a></li>
+                            <li><a (click)="pageNavigate('Verify')"><i class="icon-check"></i> &nbsp;Verify Yourself</a></li>
+                            <li><a (click)="pageNavigate('followers')"  *ngIf="userType=='2171' && '2173'"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;&nbsp;Followers</a></li>
+                            <li><a (click)="pageNavigate('following')"><li><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;&nbsp;Following</a></li>
+                            <li><a (click)="pageNavigate('breedList')" *ngIf="userType=='2171' && '2173'"><i class="fa fa-snowflake-o" aria-hidden="true"></i>&nbsp;&nbsp;Breed List</a></li>
+                            <li><a (click)="pageNavigate('orderhistory')" *ngIf="userType=='2170'"> <i class="icon-basket"></i> &nbsp;&nbsp;PurchaseList</a></li>
+                            <!-- <li><a (click)="pageNavigate('orderhistory')">Order History</a></li> -->
+                            <!-- <li><a routerLink="/customer/orderHistory">Order History</a></li> -->
+
+                            <li *ngIf="userType == '2171' && '2173' ">
+                                <mat-accordion class="example-headers-align">
+
+                                    <!-- <a (click)="myDir='selling'">Selling</a> -->
+                                    <mat-expansion-panel hideToggle>
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title><i class="fa fa-usd" aria-hidden="true"></i> &nbsp;&nbsp;
+                                                Selling <span class="caret"></span>
+                                            </mat-panel-title>
+
+                                        </mat-expansion-panel-header>
+
+
+                                        <ul class="m-l-10">
+                                            <li> <a (click)="pageNavigate('readytosell')"> Sell Your Product</a></li><br>
+                                            <li> <a (click)="pageNavigate('SellingList')"> Selling List</a></li><br>
+                                            <li> <a (click)="pageNavigate('SoldOutList')"> Sold Out List</a></li><br>
+                                            <li> <a (click)="pageNavigate('orderhistory')"> Purchase List</a></li>
+                                        </ul>
+                                    </mat-expansion-panel>
+
+                                </mat-accordion>
+                            </li>
+                            <li><a (click)="pageNavigate('TransporterBookingList')"  *ngIf="userType!='2170' && '2172'"><i class="fa fa-truck" aria-hidden="true"></i>Transporter Booking List</a></li>
+                            <li><a (click)="myDir='logout'"><i class="icon-power"></i> &nbsp;&nbsp;Logout</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <ngx-spinner size="medium" color="orange" backgroundcolor="white" type="ball-fussion"></ngx-spinner>
+    <!-- </div>
+</div> -->
+

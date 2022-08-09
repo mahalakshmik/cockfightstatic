@@ -1,0 +1,277 @@
+<!-- /svc validation -->
+<!-- <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate> -->
+<form *ngIf="!isSuccessful && isregister"  name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+  <div class="" role="dialog">
+    <div class=" login register">
+
+
+      <div>
+        <div class="modal-header">
+          <button type="button" class="close" (click)="onNoClick()">&times;</button>
+          <h4 class="modal-title">Register</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <select class="form-control" [(ngModel)]="form.memberType" #memberType="ngModel" name="memberType"
+              [ngClass]="{'is-invalid':f.submitted && memberType.invalid} " required>
+              <option value="" selected>Please Select</option>
+              <option value="{{p.value}}" *ngFor="let p of listItemskey">{{p.text}} </option>
+
+            </select>
+            <div style="color: red;" *ngIf="memberType.errors && f.submitted">
+              <div *ngIf="memberType.errors['required']">Member Type is required</div>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 form-group">
+              <label>First Name</label>
+              <input type="text" class="form-control" name="firstName" [(ngModel)]="form.firstName" #firstName="ngModel"
+                [ngClass]="{'is-invalid':f.submitted && firstName.invalid} "   required />
+              <div style="color: red;" *ngIf="firstName.errors && f.submitted">
+                <div *ngIf="firstName.errors['required']">First Name is required</div>
+              </div>
+            </div>
+            <div class="col-sm-6 form-group">
+              <label>Last Name</label>
+              <input type="text" class="form-control" name="lastName" [(ngModel)]="form.lastName" #lastName="ngModel" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label> User Name </label>
+            <input type="text" class="form-control" name="userName" [(ngModel)]="form.userName" #userName="ngModel"
+              [ngClass]="{'is-invalid':f.submitted && userName.invalid} "  required />
+            <div style="color: red;" *ngIf="userName.errors && f.submitted">
+              <div *ngIf="userName.errors['required']">User Name is required</div>
+              
+            </div>
+
+          </div>
+          <div class="form-group">
+            <label> Email ID </label>
+
+            <input type="email" class="form-control" name="emailId" [(ngModel)]="form.emailId"
+              [ngClass]="{ 'is-invalid': f.submitted && emailId.invalid }" #emailId="ngModel" email />
+            <div style="color: red;" *ngIf="emailId.errors && f.submitted">
+              <!-- <div *ngIf="emailId.errors['required']">emailId is required</div> -->
+              <div *ngIf="emailId.errors['email']">
+                Email must be a valid email address
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label> Mobile No. </label>
+            <div class="row">
+              <div class="col-sm-4">
+                <select class="form-control" [(ngModel)]="form.countrycode" #countrycode="ngModel" name="countrycode"
+                  [ngClass]="{'is-invalid':f.submitted && countrycode.invalid} " required>
+                  <option value="{{p.value}}" *ngFor="let p of countryCode">{{p.text}} {{p.value}}</option>
+                </select>
+              </div>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="mobileNo" [(ngModel)]="form.mobileNo" minLength="10"
+                  #mobileNo="ngModel" [ngClass]="{ 'is-invalid': f.submitted && mobileNo.invalid }" required />
+                <div style="color: red;" *ngIf="mobileNo.errors && f.submitted">
+                  <div *ngIf="mobileNo.errors['required']">mobile No. is required</div>
+                  <div *ngIf="mobileNo.errors['minLength']">
+                    Mobile No. must be of 10 characters
+                  </div>
+                  <!-- <span *ngIf="proper else notProper">{{ proper }}</span> 
+              <ng-template #notProper>Not Proper</ng-template> -->
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required
+              minlength="6" #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" />
+            <div style="color: red;" *ngIf="password.errors && f.submitted">
+              <div *ngIf="password.errors['required']">Password is required</div>
+              <div *ngIf="password.errors['minlength']">
+                Password must be at least 6 characters
+              </div>
+            </div>
+          </div>
+
+          <input type="checkbox" name="isAcceptedTermsConditions" [(ngModel)]="form.isAcceptedTermsConditions" required
+            #isAcceptedTermsConditions="ngModel"
+            [ngClass]="{ 'is-invalid': f.submitted && isAcceptedTermsConditions.invalid }"> I Accept Terms &amp;
+            Conditions
+          <div style="color: red;" *ngIf="isAcceptedTermsConditions.errors && f.submitted">
+            <div *ngIf="isAcceptedTermsConditions.errors['required']">Please tick the Terms &amp; Conditions</div>
+          </div>
+          <button type="submit" class="btn btn-default width100 m-t-20 m-b-20" data-dismiss="modal">Register</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="BreedModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title title" id="exampleModalLabel">BREED DETAILS</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="from-group">
+                <label>Breed Name </label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+
+            <div class="col-sm-12 text-right m-t-50">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="AddAddress" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title title" id="exampleModalLabel">Add Address</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>Name </label>
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>Mobile No </label>
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>Zip Code </label>
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>Locality </label>
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label>Address </label>
+                <textarea class="form-control">
+
+                      </textarea>
+
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>State / Province </label>
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>Country </label>
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>LandMark </label>
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>Alternate No. </label>
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>Address Type </label>
+                <select class="form-control">
+                  <option> Address Type</option>
+                </select>
+              </div>
+            </div>
+
+
+
+
+            <div class="col-sm-12 text-right m-t-50">
+
+              <button type="button" class="btn btn-primary">Save </button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</form>
+
+
+
+<div class="login register "*ngIf="isverifyOtp" >
+  <div class="modal-header">
+    <button type="button" class="close" (click)="onNoClick()">&times;</button>
+    <br>
+    <h4 class="forgotpwd" >Verify OTP</h4>
+    <!-- <p class="m-t-30 p-l-20 p-r-20 p-b-0"> Key in your new password</p> -->
+  </div>
+
+  
+  <div class="form-group">
+    <div class="row" style="margin: 30px;">
+      <input type="text" name="verifyOTP" [(ngModel)]="verifyOTP" placeholder="Verify OTP"
+        class="form-control" required />
+    </div>
+    <div class="text-center m-t-20">
+      <button class="btn btn-primary"  (click)="verifyOtp()"> Submit </button>
+    </div>
+  </div>
+      
+  </div>
+  <!-- Login Modal content-->
+
+
+
+<!-- ForgotPassword Page -->
+<ngx-spinner size="medium" color="orange" backgroundcolor="white" type="ball-fussion"></ngx-spinner>

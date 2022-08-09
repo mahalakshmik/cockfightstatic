@@ -1,0 +1,48 @@
+<div class="main">
+    <div class="card">
+        <div class="row" >
+            <div class="col-sm-12 m-b-20">
+                <div class="title-bar">
+                    <h2 class="title text-left border-bottom top-35"> Order Placed Successfully</h2>
+                </div>
+            </div>
+            <div *ngFor="let p of orderdetails">
+            <div class="row">
+                <div class="col-md-2">
+                    <p class=" text-left border-bottom top-35">Order NO:{{p.orderNo}}</p>
+                 </div>
+                <div class="col-md-8">
+
+                </div>
+                <div class="col-md-2">
+                   <p class=" text-left border-bottom top-35">Total Amount:{{p.totalAmount}}</p>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="{{productPicUrl}}/{{productID}}/{{images}}"
+                    width="200" height="200" onerror="this.src='./assets/images/download.png';"  
+                    class="d-block w-100" alt="image" >
+                </div>
+                <div class="col-md-4">
+                    <p>ProductName:{{this.selectedProdut.productName}}</p>
+                    <p>SellerID:{{this.selectedProdut.sellerId}}</p>
+                    <p>Quantity:1</p>
+                    <p>Address:{{p.address}}</p>
+                      
+                </div>
+                <div class="col-md-2">
+                   
+                </div>
+                <div class="col-md-2">
+                    <p>StandardPrice:{{p.orderAmount}}</p>
+                    <p>Discount:{{p.discountAmount}}</p>
+                </div>
+
+            </div>
+        </div>
+            <!-- <button (click)="confirmOrder()" class="btn btn-primary" style="float: right;">Confirm Payment</button> -->
+        </div>
+    </div>
+</div>

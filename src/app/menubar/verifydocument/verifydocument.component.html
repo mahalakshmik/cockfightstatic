@@ -1,0 +1,66 @@
+<div class="main">
+    <div class="row">
+        <app-left-nav></app-left-nav>
+        <div class="col-md-9">
+            <div class="card">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="title-bar">
+                            <h2 class="title">Verify </h2><span class="title-border"></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 text-right">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Upload Document 1</label>
+
+                            <div class="upload-btn-wrapper">
+                                <button class="btn1">
+                                    <i class="icon-cloud-upload f-20"
+                                        style="margin-right:15px; vertical-align: middle;"></i> Choose a
+                                    File...</button>
+                                <input type="file" name="myfile" (change)="onFileSelect($event,1)" />
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Upload Document 2</label>
+                            <div class="upload-btn-wrapper">
+                                <button class="btn1">
+                                    <i class="icon-cloud-upload f-20"
+                                        style="margin-right:15px; vertical-align: middle;"></i> Choose a
+                                    File...</button>
+                                <input type="file" name="myfile" (change)="onFileSelect($event,2)" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Upload Other Documents</label>
+                            <div class="upload-btn-wrapper">
+                                <button class="btn1">
+                                    <i class="icon-cloud-upload f-20"
+                                        style="margin-right:15px; vertical-align: middle;"></i> Choose a
+                                    File...</button>
+                                <input type="file" name="myfile" (change)="onFileSelect($event,3)" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 text-right m-t-20">
+                        <!-- <a href="#" class="btn btn-primary">Upload</a> -->
+                        <button class="btn btn-primary" (click)="verifyUpload()">Upload</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

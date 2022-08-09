@@ -1,0 +1,64 @@
+<div class="main">
+    <div class="row">
+        <app-left-nav></app-left-nav>
+        <div class="col-md-9">
+            <div class="row">
+
+                <div class="col-sm-6">
+                    <div class="title-bar">
+                        <h2 class="title">Address </h2><span class="title-border"></span>
+                    </div>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <!-- <a href="#" class="text-underline"> Add Address</a>   -->
+                    <button class="btn btn-primary" (click)="openDialog()">Add Address</button>
+                </div>
+            </div>
+            <div class="row" *ngFor="let p of addresslist;let i=index;">
+                <div class="col-sm-12 m-t-30">
+                    <div class="panel address-panel">
+                        <div class="row ">
+                            <div class="col-sm-1 address-radio">
+                                <input type="radio">
+                            </div>
+                            <div class="col-sm-9">
+                                <h3 class="m-b-10">Home Address</h3>
+                                <p><b>Name</b> :{{p.addressName}}</p>
+                                <p><b>Mobile</b>:{{p.mobileNo}} </p>
+                                <p><b>Address</b>:{{p.memberAddress}} </p>
+                                <p><b>LandMark</b>:{{p.landmark}} </p>
+                                <p><b>Locality</b>:{{p.locality}} </p>
+                                <p><b>Zip Code </b>:{{p.zipCode}} </p>
+                                <p><b>State / Province</b> :{{p.state}},<b>Country</b>:{{p.country}} </p>
+                                <p><b>AddressType</b> :Home</p>
+                                <!-- <p>
+                        Name :{{p.addressName}}  <br>
+                        Mobile:{{p.mobileNo}},
+
+                        {{p.memberAddress}} ,<br>
+                        {{p.landmark}},<br>
+                        {{p.locality}} - {{p.zipCode}}, {{p.state}}, {{p.country}}.
+                    </p> -->
+
+                            </div>
+
+
+                            <div class="col-sm-2">
+                                <div style="position: absolute;right: -30px;">
+
+                                    <button class="btn btn-primary address-btn" (click)="edit(addresslist,i)"><i
+                                            class="icon-pencil"></i></button>
+                                    <!-- <a href="#" class="btn btn-primary address-btn"> <i class="icon-pencil"></i>  </a> -->
+                                    <a href="#"> </a>
+                                    <button class="btn btn-primary address-btn" (click)="delete(addresslist,i)"><i
+                                            class="icon-trash"></i></button>
+                                    <!-- <a href="#" class="btn btn-primary address-btn">  <i class="icon-trash"></i> </a> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

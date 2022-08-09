@@ -1,0 +1,79 @@
+<div class="main">
+    <div class="row">
+        <div class="col-sm-3 col-xs-12 col-md-3">
+            <div class="card profile m-b-20">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="Pro-pic">
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <h5>Welcome,</h5>
+                        <h6>Lorem Ipsum</h6>
+                    </div>
+                </div>
+
+            </div>
+            <div class="left-navbar">
+                <nav class="navbar navbar-default navbar-static-top">
+
+                    <div class="navbar-header">
+
+                        <button class="navbar-toggle" data-toggle="collapse" data-target=".menubar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse menubar">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a (click)="pageNavigate('profile')"> Profile </a></li>
+                            <li><a (click)="pageNavigate('address')">Address</a></li>
+                            <li><a (click)="pageNavigate('notification')">Notification</a></li>
+                            <li><a (click)="pageNavigate('inbox')">Message (Inbox)</a></li>
+                            <li><a (click)="pageNavigate('verify')">Verify Yourself</a></li>
+                            <li><a (click)="pageNavigate('followers')">Followers</a></li>
+                            <li><a (click)="pageNavigate('following')">Following</a></li>
+                            <li><a (click)="pageNavigate('breadList')">Breed List</a></li>
+                            <!-- <li><a (click)="pageNavigate('orderHistory')">Order History</a></li> -->
+                            <!-- <li><a routerLink="/customer/orderHistory">Order History</a></li> -->
+
+                            <li>
+                                <mat-accordion class="example-headers-align">
+
+                                    <!-- <a (click)="myDir='selling'">Selling</a> -->
+                                    <mat-expansion-panel hideToggle>
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                Selling <span class="caret"></span>
+                                            </mat-panel-title>
+
+                                        </mat-expansion-panel-header>
+
+
+                                        <ul class="m-l-10">
+                                            <li> <a (click)="pageNavigate('readyToSellList')"> Sell Your Product</a>
+                                            </li>
+                                            <!-- <li id="profileupdate" [ngClass]="{'active': activePage==='profileupdate'}" (click) = "pageNavigate('profileupdate')"> -->
+
+                                            <li> <a (click)="pageNavigate('sellerlist')"> Selling List</a></li>
+                                            <li> <a (click)="pageNavigate('soldlist')"> Sold Out List</a></li>
+                                            <li> <a (click)="pageNavigate('orderHistory')"> Purchase List</a></li>
+                                        </ul>
+                                    </mat-expansion-panel>
+
+                                </mat-accordion>
+                            </li>
+                            <li><a (click)="pageNavigate('bookinglist')">Transporter Booking List</a></li>
+                            <li><a (click)="pageNavigate('sellinglist')">Logout</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="col-sm-9">
+
+
+        </div>
+    </div>
+</div>

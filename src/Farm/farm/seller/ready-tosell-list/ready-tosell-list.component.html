@@ -1,0 +1,307 @@
+<div>
+  <app-left-navbar></app-left-navbar>
+  
+</div>
+<div class="card" style="margin-top: 125px;">
+    <div *ngIf="!isShowAddseller">
+
+        <div class="row">
+            <div class="col-sm-7">
+                <div class="title-bar">
+                    <h2 class="title text-left m-0">Ready To Sell List </h2>
+                </div>
+            </div>
+
+            <div class="col-sm-5 text-right">
+
+                <a class="btn btn-primary" (click)="showtemp()"> Sell Your Product</a>
+            </div>
+            <div class="col-sm-12">
+                <div class="border-bottom"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 m-t-20">
+                <table class="table table-responsive table-striped sell-table">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th> Product Name</th>
+                            <th> Price</th>
+                            <th>Actions </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of sellerList;">
+                            <td> <img src="assets/images/img1.jpg" width="100"> </td>
+                            <td> {{p.productName}} </td>
+                            <td> {{p.standardPrice}} </td>
+
+                            <td> <a (click)="editseller(p)"> <i class="icon-note f-18"></i> </a> <a
+                                    href="#"> <i class="icon-trash f-18 m-l-10"></i></a> </td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="isShowAddseller">
+        <form name="formsell" (ngSubmit)="formsell.valid ">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="title-bar">
+                        <h2 class="title">Ready to Sell Information </h2><span
+                            class="title-border"></span>
+                    </div>
+                </div>
+                <div class="col-sm-6 text-right">
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label> Product Name </label>
+                        <input type="text" [(ngModel)]="formsell.productName" #productName="ngModel"
+                            name="productName" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label> Talent </label>
+                        <textarea [(ngModel)]="formsell.talents" #talents="ngModel" name="talents"
+                            class="form-control">
+                  </textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> Gender </label>
+                                <select [(ngModel)]="formsell.gender" #gender="ngModel" name="gender"
+                                    class="form-control">
+                                    <option value="">Select Gender Type</option>
+                                    <option value="{{p.lookupId}}" *ngFor="let p of genderList">
+                                        {{p.lookupCode}} </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> Sire/Breeder </label>
+                                <select [(ngModel)]="formsell.breedType" #breedType="ngModel"
+                                    name="breedType" class="form-control">
+                                    <option value="">Select Bread Type</option>
+                                    <option value="{{p.lookupId}}" *ngFor="let p of breedList">
+                                        {{p.lookupCode}} </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label> Fighting Record </label>
+                        <textarea [(ngModel)]="formsell.fightingRecord" #fightingRecord="ngModel"
+                            name="fightingRecord" class="form-control">
+                </textarea>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> Breed </label>
+                                <input type="text" [(ngModel)]="formsell.breed" #breed="ngModel"
+                                    name="breed" class="form-control" />
+
+
+                            </div>
+                        </div>
+                        <!-- <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> Product Code </label>
+                                <input type="text" [(ngModel)]="formsell.productCode"
+                                    #productCode="ngModel" name="productCode" class="form-control" />
+
+                            </div>
+
+                        </div> -->
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label> Additional Information </label>
+                        <textarea  [(ngModel)]="formsell.remarks" #remarks="ngModel"
+                        name="remarks" class="form-control">  </textarea>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> Age</label>
+                                <input type="text" [(ngModel)]="formsell.age" #age="ngModel" name="age"
+                                    class="form-control" />
+
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> </label>
+                                <select style="margin-top:6px;" [(ngModel)]="formsell.ageType"
+                                    #ageType="ngModel" name="ageType" class="form-control">
+                                    <option value="">Select Age Type</option>
+                                    <option value="{{p.lookupId}}" *ngFor="let p of ageList">
+                                        {{p.lookupDescription}} </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-sm-3">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> Weight</label>
+                                <input type="text" [(ngModel)]="formsell.weight" #weight="ngModel"
+                                    name="weight" class="form-control" />
+
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> </label>
+                                <select class="form-control" style="margin-top:6px;"
+                                    [(ngModel)]="formsell.uom" #uom="ngModel" name="uom">
+                                    <option value="">Select Weight</option>
+                                    <option value="{{p.lookupId}}" *ngFor="let p of weightList">
+                                        {{p.lookupDescription}} </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label> Price</label>
+                        <input type="text" [(ngModel)]="formsell.standardPrice" #standardPrice="ngModel"
+                            name="standardPrice" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label> Currency</label>
+                        <select [(ngModel)]="formsell.currency" #currency="ngModel" name="currency"
+                            class="form-control">
+                            <option value="">Select Currency</option>
+                            <option value="{{p.lookupCode}}" *ngFor="let p of currencyList">
+                                {{p.lookupDescription}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label> Stock Quantity</label>
+                        <input type="text" [(ngModel)]="formsell.stockQty" #stockQty="ngModel"
+                            name="stockQty" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label> Province</label>
+                        <input type="text" [(ngModel)]="formsell.province" #province="ngModel"
+                            name="province" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label> Discount / Offers</label>
+                        <input type="text" [(ngModel)]="formsell.discount" #discount="ngModel"
+                            name="discount" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label> Payment Option</label>
+                        <select [(ngModel)]="formsell.paymentOption" #paymentOption="ngModel"
+                            name="paymentOption" class="form-control">
+                            <option value="">Select Payment Opt</option>
+                            <option value="{{p.lookupId}}" *ngFor="let p of paymentList">
+                                {{p.lookupCode}}
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label> Video Link</label>
+                        <div class="upload-btn-wrapper" >
+                            <button class="btn1" >
+                                <i class="icon-cloud-upload f-20"
+                                    style="margin-right:15px; vertical-align: middle;"></i> Choose a
+                                File...</button>
+                                <video [src]="url" *ngIf="format==='video' && url" height="200"
+                                controls></video> <br />
+                            <input type='file' (change)="onSelectFile($event)" />
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label> Upload Images </label>
+                        <div class="upload-btn-wrapper">
+                            <button class="btn1">
+                                <i class="icon-cloud-upload f-20"
+                                    style="margin-right:15px; vertical-align: middle;"></i> Choose a
+                                File...</button>
+                            <input type="file" name="myfile" multiple (change)="onFileSelect($event)" />
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="test col-md-3" (click)="test(i)" *ngFor='let preview of previews;let i=index'><p> x</p>
+                        <img  [src]="preview" width="100px" height="100px" class="preview">
+                      </div>
+                      </div>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-sm-12 text-right m-t-10">
+                    <!-- <a href="" class="btn btn-primary">Confirm And Proceed</a> -->
+
+                    <button class="btn btn-primary" (click)="createsell()">Confirm And Proceed</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
