@@ -23,9 +23,9 @@ export class SellingComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   videoFile: any=[];
   sas =
-    'sp=r&st=2022-08-03T19:40:38Z&se=2022-08-04T03:40:38Z&spr=https&sv=2021-06-08&sr=c&sig=0%2FCosr%2BcZKsAqkp7lL3ieunRX8jJVVSMS8Lmb2arHtY%3D',
+    'sp=r&st=2022-08-03T19:40:38Z&se=2022-08-04T03:40:38Z&spr=https&sv=2021-06-08&sr=c&sig=0%2FCosr%2BcZKsAqkp7lL3ieunRX8jJVVSMS8Lmb2arHtY%3D';
   videosas =
-    'sp=racwdl&st=2022-05-31T16:40:31Z&se=2023-01-03T00:40:31Z&spr=https&sv=2020-08-04&sr=c&sig=GL2giHB4GndIybklT1P6tuIAvI7%2B%2BcUD9799sHnBVHQ%3D',
+    'sp=racwdl&st=2022-05-31T16:40:31Z&se=2023-01-03T00:40:31Z&spr=https&sv=2020-08-04&sr=c&sig=GL2giHB4GndIybklT1P6tuIAvI7%2B%2BcUD9799sHnBVHQ%3D';
   /* Local host URL end points  */
   productPicUrl = environment.ProductUrl;
   isShowAddseller: boolean = false;
