@@ -8,11 +8,11 @@ import { AzureBlobStorageService } from 'src/azure-blob-storage.service';
 import { AddaddressComponent } from 'src/commonFiles/addAddress/addaddress/addaddress.component';
 import { ProductMaster } from 'src/commonFiles/profile/profile.modal';
 import { Address, Member } from 'src/commonFiles/register/register.model';
-import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-selling',
@@ -22,8 +22,11 @@ import { MatChipInputEvent } from '@angular/material/chips';
 export class SellingComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   videoFile: any=[];
-  sas=environment.sas;
-  videosas=environment.videosas;
+  sas =
+    'sp=r&st=2022-08-03T19:40:38Z&se=2022-08-04T03:40:38Z&spr=https&sv=2021-06-08&sr=c&sig=0%2FCosr%2BcZKsAqkp7lL3ieunRX8jJVVSMS8Lmb2arHtY%3D',
+  videosas =
+    'sp=racwdl&st=2022-05-31T16:40:31Z&se=2023-01-03T00:40:31Z&spr=https&sv=2020-08-04&sr=c&sig=GL2giHB4GndIybklT1P6tuIAvI7%2B%2BcUD9799sHnBVHQ%3D',
+  /* Local host URL end points  */
   productPicUrl = environment.ProductUrl;
   isShowAddseller: boolean = false;
   myDir: any = 'profile';
