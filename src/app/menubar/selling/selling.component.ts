@@ -27,7 +27,7 @@ export class SellingComponent implements OnInit {
   videosas =
     'sp=racwdl&st=2022-05-31T16:40:31Z&se=2023-01-03T00:40:31Z&spr=https&sv=2020-08-04&sr=c&sig=GL2giHB4GndIybklT1P6tuIAvI7%2B%2BcUD9799sHnBVHQ%3D';
   /* Local host URL end points  */
-  productPicUrl = environment.ProductUrl;
+ productPicUrl = environment.ProductUrl;
   isShowAddseller: boolean = false;
   myDir: any = 'profile';
   address: any;
