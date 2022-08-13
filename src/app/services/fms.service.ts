@@ -114,6 +114,9 @@ export class FmsService {
     payload.SellerId=this.userdetails.userId;
     return this.http.post(`${this.baseURL}Seller`, payload)
   }
+  saveImagename(id: any) {debugger
+    return this.http.get(`${this.baseURL}Seller/saveImgName/${id}`)
+  }
   postcomment(payload: any) {
     return this.http.post(`${this.baseURL}MessageDetails`, payload)
   }

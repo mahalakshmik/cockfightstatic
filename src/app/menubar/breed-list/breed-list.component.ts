@@ -44,7 +44,6 @@ export class BreedListComponent implements OnInit {
     })
   }
   SaveBreed() {
-    alert(this.breadName)
     var payload = {
 
       "farmId": 0,

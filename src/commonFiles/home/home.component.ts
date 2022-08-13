@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   matDialogRef!: MatDialogRef<RegisterComponent>;
   form = new productsearch();
   product: any;
-  productPicUrl = environment.ProductUrl;
+  productPicUrl = environment.azureblobImgUrl;
   prd: any;
   quantity: any;
   likeCount: any = null;

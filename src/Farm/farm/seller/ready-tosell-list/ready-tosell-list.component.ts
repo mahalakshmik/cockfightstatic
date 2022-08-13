@@ -49,7 +49,6 @@ export class ReadyTosellListComponent implements OnInit {
   constructor(private fms: FmsService, private gs: LoginService,private blobService: AzureBlobStorageService, private as: AuthService, private dialog: MatDialog, public router: Router) {
     this.adform = new Address;
     console.log(this.adform)
-    alert('test')
   }
   openDialog() {
     this.dialog.open(AddaddressComponent, {
@@ -68,7 +67,6 @@ export class ReadyTosellListComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    alert('test')
 this.vedio=false;
 //this.getvideoList();
     this.getSellerList();

@@ -74,22 +74,8 @@ export class SellingComponent implements OnInit {
     this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
 
   }
-  openDialog() {
-    this.dialog.open(AddaddressComponent, {
-      width: '800px',
-      height: '700px',
-      //data: rowdata
-    });
-  }
-  edit(rowdata: any, i: number) {
-    //console.log(rowdata)
-
-    this.dialog.open(AddaddressComponent, {
-      width: '800px',
-      height: '700px',
-      data: rowdata[i],
-    });
-  }
+ 
+  
   ngOnInit() {
     this.getbread();
    // this.getvideoList();
@@ -117,11 +103,8 @@ export class SellingComponent implements OnInit {
     this.isShowAddseller = true;
   }
   editseller(sellerList: any) {
-    this.isShowAddseller = true;
-    //this.formsell.index=i;
-    // data:rowdata;
+    this.isShowAddseller = true;   
     this.formsell = sellerList;
-    //  console.log('edit',rowdata)
     console.log('edit', sellerList);
   }
   public listItemskeys: Array<{ text: string; value: number }> = [
@@ -218,8 +201,8 @@ console.log(this.uploadFiles)
     });
   }
 
-  createsell() {
-    debugger;
+  createsell() {debugger
+    
     console.log(this.formsell);
     var formdata = new FormData();
     formdata.append('ProductId', '0');
@@ -266,7 +249,13 @@ console.log(this.uploadFiles)
           icon: 'success',
           timer: 700,
         });
-        this.getSellerList();
+        this.fms.saveImagename(res).subscribe(resp=>{
+          console.log(resp)
+if(resp){
+
+  this.getSellerList();
+}
+        })
       }
       this.isShowAddseller = false;
     });
@@ -281,11 +270,11 @@ console.log(this.uploadFiles)
       cancelButtonText: 'No, let me think',
     }).then((result) => {
       if (result.value) {
-        alert(rowdata.productID);
         this.fms.DeleteProduct(rowdata.productID).subscribe((res) => {
           console.log(res);
           if (res) {
             this.ngOnInit();
+        
           }
         });
       } else if (result.dismiss === Swal.DismissReason.cancel) {
@@ -315,13 +304,7 @@ console.log(this.uploadFiles)
       console.log(this.addresslist);
     });
   }
-  onSubmitad() {
-    console.log(this.adform);
-    this.fms.saveAddress(this.adform).subscribe((res) => {
-      this.address = res;
-      console.log(this.address);
-    });
-  }
+ 
 
   onSelectFile(event: any) {
     debugger;

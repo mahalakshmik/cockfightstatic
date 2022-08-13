@@ -236,7 +236,6 @@ export class ProdcutDetailsComponent implements OnInit {
   }
 
   facebookUI(e: any) {
-    alert();
     var url = encodeURIComponent(window.location.href);
 
     var fbpopup = window.open(
