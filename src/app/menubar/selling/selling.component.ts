@@ -21,7 +21,7 @@ import { environment } from 'src/environments/environment';
 })
 export class SellingComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  videoFile: any=[];
+  videoFile: any = [];
   sas =
     'sp=r&st=2022-08-03T19:40:38Z&se=2022-08-04T03:40:38Z&spr=https&sv=2021-06-08&sr=c&sig=0%2FCosr%2BcZKsAqkp7lL3ieunRX8jJVVSMS8Lmb2arHtY%3D';
   videosas =
@@ -55,7 +55,7 @@ export class SellingComponent implements OnInit {
   vedio: boolean = true;
   previews: string[] = [];
   videoList: any;
-  breeds: any=[];
+  breeds: any = [];
   breadval: any;
   isbread: boolean = true;
   userdetails: any;
@@ -74,11 +74,11 @@ export class SellingComponent implements OnInit {
     this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
 
   }
- 
-  
+
+
   ngOnInit() {
     this.getbread();
-   // this.getvideoList();
+    // this.getvideoList();
     this.vedio = true;
     this.getSellerList();
     // this.getProfile();
@@ -103,7 +103,7 @@ export class SellingComponent implements OnInit {
     this.isShowAddseller = true;
   }
   editseller(sellerList: any) {
-    this.isShowAddseller = true;   
+    this.isShowAddseller = true;
     this.formsell = sellerList;
     console.log('edit', sellerList);
   }
@@ -121,12 +121,13 @@ export class SellingComponent implements OnInit {
   //     this.forms = res;
   //   })
   // }
-  onFileSelect(event: any) {debugger
+  onFileSelect(event: any) {
+    debugger
     this.message = [];
     this.progressInfos = [];
     this.selectedFiles = event.target.files;
-    this.uploadFiles=this.selectedFiles;
-console.log(this.uploadFiles)
+    this.uploadFiles = this.selectedFiles;
+    console.log(this.uploadFiles)
     this.previews = [];
     if (this.selectedFiles && this.selectedFiles[0]) {
       const numberOfFiles = this.selectedFiles.length;
@@ -135,7 +136,7 @@ console.log(this.uploadFiles)
 
         reader.onload = (e: any) => {
           this.previews.push(e.target.result);
-    // this.uploadFiles.push(event.target.files[i]);
+          // this.uploadFiles.push(event.target.files[i]);
 
         };
 
@@ -201,8 +202,9 @@ console.log(this.uploadFiles)
     });
   }
 
-  createsell() {debugger
-    
+  createsell() {
+    debugger
+
     console.log(this.formsell);
     var formdata = new FormData();
     formdata.append('ProductId', '0');
@@ -236,10 +238,10 @@ console.log(this.uploadFiles)
     for (var i = 0; i < this.uploadFiles.length; i++) {
       formdata.append('uploadProductImages', this.uploadFiles[i]);
     }
-   
-      formdata.append('productVideos', this.videoFile);
-    
-    
+
+    formdata.append('productVideos', this.videoFile);
+
+
     console.log(formdata);
     this.fms.saveSeller(formdata).subscribe((res) => {
       console.log(res);
@@ -249,12 +251,12 @@ console.log(this.uploadFiles)
           icon: 'success',
           timer: 700,
         });
-        this.fms.saveImagename(res).subscribe(resp=>{
+        this.fms.saveImagename(res).subscribe(resp => {
           console.log(resp)
-if(resp){
+          if (resp) {
 
-  this.getSellerList();
-}
+            this.getSellerList();
+          }
         })
       }
       this.isShowAddseller = false;
@@ -274,7 +276,7 @@ if(resp){
           console.log(res);
           if (res) {
             this.ngOnInit();
-        
+
           }
         });
       } else if (result.dismiss === Swal.DismissReason.cancel) {
@@ -304,7 +306,7 @@ if(resp){
       console.log(this.addresslist);
     });
   }
- 
+
 
   onSelectFile(event: any) {
     debugger;
@@ -320,7 +322,7 @@ if(resp){
       reader.onload = (event) => {
         this.url = (<FileReader>event.target).result;
       };
-      this.videoFile=file;
+      this.videoFile = file;
     }
   }
   public videoSelected(e: any) {
@@ -332,7 +334,7 @@ if(resp){
   reloadVideos() {
     this.blobService.listVideos;
   }
- 
+
   getvideoList() {
     debugger;
     this.videoList = this.blobService
@@ -365,8 +367,8 @@ if(resp){
     debugger
     if (event.isUserInput) {
       console.log(event.source.value, event.source.selected);
-       this.test1 =  p.breedName
-       
+      this.test1 = p.breedName
+
       //alert(this.test1)
       for (let i = p.breedName; i <= p.breedName; i++) {
         this.test1 = i
