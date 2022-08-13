@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   /* Production/Beta URL End points */
   api:'https://cockfightkaichon.azurewebsites.net/api/',
-  ProductUrl:"https://cockfightkaichon.azurewebsites.net/Uploads/Products",
+  ProductUrl:"https://lgistorage.blob.core.windows.net/fmsimages",
   imgUrl:"https://lgistorage.blob.core.windows.net/fmsimages/",
   videoUrl:"https://lgistorage.blob.core.windows.net/fmsvideos/",
   //imgUrl:"https://cockfightkaichon.azurewebsites.net/Images/",
