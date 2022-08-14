@@ -31,7 +31,8 @@
                                         <li data-target="#consulting-carousel"
                                             *ngFor="let item of images;let index = index;let isFirst = first"
                                             [ngClass]="{active:isFirst}">
-                                            <img src="{{productPicUrl}}/{{prdId}}/{{item.imageName}}" alt="image">
+                                            <img src="{{productPicUrl}}/{{item.imageName}}" alt="image">
+                                            <!-- <img src="{{productPicUrl}}/{{prdId}}/{{item.imageName}}" alt="image"> -->
                                         </li>
 
 
