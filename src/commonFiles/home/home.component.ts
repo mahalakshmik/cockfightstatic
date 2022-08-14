@@ -94,6 +94,7 @@ export class HomeComponent implements OnInit {
         // type: "success",
         timer: 500
       });
+      this.ngOnInit()
     })
   }
   reset(form:any){
