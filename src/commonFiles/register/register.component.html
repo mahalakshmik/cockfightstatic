@@ -20,17 +20,17 @@
 
             </select>
             <div style="color: red;" *ngIf="memberType.errors && f.submitted">
-              <div *ngIf="memberType.errors['required']">Member Type is required</div>
+              <!-- <div *ngIf="memberType.errors['required']">Member Type is required</div> -->
 
             </div>
           </div>
           <div class="row">
             <div class="col-sm-6 form-group">
-              <label>First Name</label>
+              <label class="is-invalid" [ngClass]="{'is-invalid':f.submitted && firstName.invalid} ">First Name</label>
               <input type="text" class="form-control" name="firstName" [(ngModel)]="form.firstName" #firstName="ngModel"
                 [ngClass]="{'is-invalid':f.submitted && firstName.invalid} "   required />
               <div style="color: red;" *ngIf="firstName.errors && f.submitted">
-                <div *ngIf="firstName.errors['required']">First Name is required</div>
+                <!-- <div *ngIf="firstName.errors['required']">First Name is required</div> -->
               </div>
             </div>
             <div class="col-sm-6 form-group">
@@ -39,11 +39,11 @@
             </div>
           </div>
           <div class="form-group">
-            <label> User Name </label>
+            <label class="is-invalid" [ngClass]="{'is-invalid':f.submitted && userName.invalid} "> User Name </label>
             <input type="text" class="form-control" name="userName" [(ngModel)]="form.userName" #userName="ngModel"
               [ngClass]="{'is-invalid':f.submitted && userName.invalid} "  required />
             <div style="color: red;" *ngIf="userName.errors && f.submitted">
-              <div *ngIf="userName.errors['required']">User Name is required</div>
+              <!-- <div *ngIf="userName.errors['required']">User Name is required</div> -->
               
             </div>
 
@@ -62,7 +62,7 @@
           </div>
 
           <div class="form-group">
-            <label> Mobile No. </label>
+            <label class="is-invalid" [ngClass]="{'is-invalid':f.submitted && mobileNo.invalid} "> Mobile No. </label>
             <div class="row">
               <div class="col-sm-4">
                 <select class="form-control" [(ngModel)]="form.countrycode" #countrycode="ngModel" name="countrycode"
@@ -74,10 +74,10 @@
                 <input type="text" class="form-control" name="mobileNo" [(ngModel)]="form.mobileNo" minLength="10"
                   #mobileNo="ngModel" [ngClass]="{ 'is-invalid': f.submitted && mobileNo.invalid }" required />
                 <div style="color: red;" *ngIf="mobileNo.errors && f.submitted">
-                  <div *ngIf="mobileNo.errors['required']">mobile No. is required</div>
+                  <!-- <div *ngIf="mobileNo.errors['required']">mobile No. is required</div>
                   <div *ngIf="mobileNo.errors['minLength']">
                     Mobile No. must be of 10 characters
-                  </div>
+                  </div> -->
                   <!-- <span *ngIf="proper else notProper">{{ proper }}</span> 
               <ng-template #notProper>Not Proper</ng-template> -->
                 </div>
@@ -86,14 +86,14 @@
 
           </div>
           <div class="form-group">
-            <label for="password">Password</label>
+            <label for="password" class="is-invalid" [ngClass]="{'is-invalid':f.submitted && password.invalid} ">Password</label>
             <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required
               minlength="6" #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" />
             <div style="color: red;" *ngIf="password.errors && f.submitted">
-              <div *ngIf="password.errors['required']">Password is required</div>
+              <!-- <div *ngIf="password.errors['required']">Password is required</div>
               <div *ngIf="password.errors['minlength']">
                 Password must be at least 6 characters
-              </div>
+              </div> -->
             </div>
           </div>
 
@@ -102,7 +102,7 @@
             [ngClass]="{ 'is-invalid': f.submitted && isAcceptedTermsConditions.invalid }"> I Accept Terms &amp;
             Conditions
           <div style="color: red;" *ngIf="isAcceptedTermsConditions.errors && f.submitted">
-            <div *ngIf="isAcceptedTermsConditions.errors['required']">Please tick the Terms &amp; Conditions</div>
+            <!-- <div *ngIf="isAcceptedTermsConditions.errors['required']">Please tick the Terms &amp; Conditions</div> -->
           </div>
           <button type="submit" class="btn btn-default width100 m-t-20 m-b-20" data-dismiss="modal">Register</button>
         </div>

@@ -1,6 +1,6 @@
 .custom-select.is-invalid, .form-control.is-invalid, .was-validated .custom-select:invalid, .was-validated .form-control:invalid {
-    border-color: #dc3545;
+    border-color: #dc3545 !important;
 }
 .is-invalid{
-    color: #dc3545;
+    color: #dc3545 !important;
 }
