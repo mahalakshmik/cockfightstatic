@@ -136,6 +136,12 @@ export class FmsService {
     return this.http.get(`${this.baseURL}Seller/SellingList/11020/2180/en`)
    // return this.http.get(`${this.baseURL}Seller/SellingList/` + this.userdetails.userId + '/' + 'en')
   }
+  getimgListbyProductId(productId:number) {
+    // let queryParams = new HttpParams();
+    // queryParams = queryParams.append("userID", this.userdetails.userId);
+    return this.http.get(`${this.baseURL}ProductImages/List/${productId}`)
+   // return this.http.get(`${this.baseURL}Seller/SellingList/` + this.userdetails.userId + '/' + 'en')
+  }
   getSellerListLatest(OrderStatusID :any) {
     return this.http.get(`${this.baseURL}Seller/SellingList/` + this.userdetails.userId +`/${OrderStatusID}/en` )
   }

@@ -31,7 +31,7 @@
                                 <tbody>
                                     <tr *ngFor="let p of sellerList;">
                                         <td>
-                                            <img src="{{productPicUrl}}/{{p.productImage}}" width="70"
+                                            <img src="{{productPicUrl}}{{p.productImage}}" width="70"
                                                 height="70" onerror="this.src='./assets/images/defaultImg.jpg';"
                                                 class="d-block w-100" alt="image">
                                         </td>
@@ -253,31 +253,31 @@
                                                 <option value="{{p.lookupId}}" *ngFor="let p of weightList">
                                                     {{p.lookupDescription}} </option>
                                             </select>
-                                            <div *ngIf="f.submitted && uom.invalid" class="invalid-feedback">
+                                            <!-- <div *ngIf="f.submitted && uom.invalid" class="invalid-feedback">
                                                 <div *ngIf="uom.errors?.['required']" style="color:red">
                                                     UOM is
                                                     required</div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label> Price</label>
+                                    <label  [ngClass]="{ 'is-invalid': f.submitted && standardPrice.invalid }"> Price</label>
                                     <input type="text" [(ngModel)]="formsell.standardPrice" #standardPrice="ngModel"
                                         [ngClass]="{ 'is-invalid': f.submitted && standardPrice.invalid }" required
                                         name="standardPrice" class="form-control" />
                                     <div *ngIf="f.submitted && standardPrice.invalid" class="invalid-feedback">
-                                        <div *ngIf="standardPrice.errors?.['required']" style="color:red">
+                                        <!-- <div *ngIf="standardPrice.errors?.['required']" style="color:red">
                                             StandardPrice is
-                                            required</div>
+                                            required</div> -->
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label> Currency</label>
+                                    <label > Currency</label>
                                     <select [(ngModel)]="formsell.currency" #currency="ngModel" name="currency"
                                         [ngClass]="{ 'is-invalid': f.submitted && currency.invalid }" required
                                         class="form-control">
@@ -297,7 +297,7 @@
                         <div class="row">
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label> Stock Quantity</label>
+                                    <label > Stock Quantity</label>
                                     <input type="text" [(ngModel)]="formsell.stockQty" #stockQty="ngModel"
                                         [ngClass]="{ 'is-invalid': f.submitted && stockQty.invalid }" required
                                         name="stockQty" class="form-control" />

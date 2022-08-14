@@ -19,7 +19,7 @@
                                             <span class="consulting-caption">
                                                 <div class="not_img" *ngIf="images == 'undefined'"
                                                     style="background-color: red;">370 x 440px</div>
-                                                <img src="{{productPicUrl}}/{{item.imageName}}"
+                                                <img src="{{productPicUrl}}{{item.imageName}}"
                                                     *ngIf="item.imageName" width="350" height="350"
                                                     class="d-block w-100" alt="image">
 
@@ -31,7 +31,7 @@
                                         <li data-target="#consulting-carousel"
                                             *ngFor="let item of images;let index = index;let isFirst = first"
                                             [ngClass]="{active:isFirst}">
-                                            <img src="{{productPicUrl}}/{{item.imageName}}" alt="image">
+                                            <img src="{{productPicUrl}}{{item.imageName}}" alt="image">
                                             <!-- <img src="{{productPicUrl}}/{{prdId}}/{{item.imageName}}" alt="image"> -->
                                         </li>
 
