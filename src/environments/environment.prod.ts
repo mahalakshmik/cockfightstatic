@@ -7,6 +7,6 @@ export const environment = {
   imgUrl:"https://cockfightkaichon.azurewebsites.net/Images/",
 
   videoUrl:"https://lgistorage.blob.core.windows.net/fmsvideos/",
-  azureblobImgUrl:'https://lgistorage.blob.core.windows.net/fmsimages',
+  azureblobImgUrl:'https://lgistorage.blob.core.windows.net/fmsimages/',
   
 };
