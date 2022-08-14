@@ -5,11 +5,11 @@
 export const environment = {
   production: false,
   /* Production/Beta URL End points */
-  api:'https://cockfightkaichon.azurewebsites.net/api/',
+  //api:'https://cockfightkaichon.azurewebsites.net/api/',
   ProductUrl:"https://lgistorage.blob.core.windows.net/fmsimages",
-  imgUrl:"https://lgistorage.blob.core.windows.net/fmsimages/",
+  azureimgUrl:"https://lgistorage.blob.core.windows.net/fmsimages/",
   videoUrl:"https://lgistorage.blob.core.windows.net/fmsvideos/",
-  //imgUrl:"https://cockfightkaichon.azurewebsites.net/Images/",
+  imgUrl:"https://cockfightkaichon.azurewebsites.net/Images/",
   azureblobImgUrl:'https://lgistorage.blob.core.windows.net/fmsimages',
   sas :
     'sp=r&st=2022-08-03T19:40:38Z&se=2022-08-04T03:40:38Z&spr=https&sv=2021-06-08&sr=c&sig=0%2FCosr%2BcZKsAqkp7lL3ieunRX8jJVVSMS8Lmb2arHtY%3D',
@@ -17,7 +17,7 @@ export const environment = {
     'sp=racwdl&st=2022-05-31T16:40:31Z&se=2023-01-03T00:40:31Z&spr=https&sv=2020-08-04&sr=c&sig=GL2giHB4GndIybklT1P6tuIAvI7%2B%2BcUD9799sHnBVHQ%3D',
   /* Local host URL end points  */
   
-   //api:'http://localhost:13866/api/',
+   api:'http://localhost:13866/api/',
   // ProductUrl:"http://localhost:13866/Uploads/Products",
   // imgUrl:"http://localhost:13866/Images/",
 // azureblobUrl:'https://audiencestreetcreatives.blob.core.windows.net/videos/'

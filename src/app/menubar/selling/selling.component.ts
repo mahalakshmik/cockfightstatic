@@ -92,11 +92,12 @@ export class SellingComponent implements OnInit {
     this.getWeight();
     this.formsell.gender = '';
     this.formsell.breedType = '';
-    this.formsell.ageType = '';
+    this.formsell.ageType = '2131';
     this.formsell.breed = '';
-    this.formsell.uom = '';
-    this.formsell.currency = '';
-    this.formsell.paymentOption = '';
+    this.formsell.uom = '2151';
+    this.formsell.stockQty = 1;
+    this.formsell.currency = 'THB';
+    this.formsell.paymentOption = '2177';
     this.forms.memberType = 0;
   }
   showtemp() {
@@ -225,14 +226,14 @@ export class SellingComponent implements OnInit {
     formdata.append('Currency', this.formsell.currency);
     formdata.append('PaymentOption', this.formsell.paymentOption);
     formdata.append('ProductImage', 'NULL');
-    formdata.append('Remarks', 'fugiat');
+    formdata.append('Remarks', 'dummy');
     formdata.append('IsActive', 'false');
     formdata.append('IsAvailable', 'false');
     formdata.append('StockQty', this.formsell.stockQty);
     formdata.append('CreatedOn', '1944-05-31T06:21:21.373Z');
     formdata.append('ModifiedOn', '1974-05-13T00:14:37.989Z');
     formdata.append('Age', this.formsell.age);
-    formdata.append('Breed', "42,44");
+    formdata.append('Breed',this.formsell.breed);
     formdata.append('Province', this.formsell.province);
     formdata.append('AgeType', this.formsell.ageType);
     for (var i = 0; i < this.uploadFiles.length; i++) {

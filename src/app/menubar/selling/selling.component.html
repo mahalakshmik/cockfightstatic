@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div *ngIf="isShowAddseller">
-                    <form name="form" (ngSubmit)="f.form.valid  " #f="ngForm">
+                    <form name="form" (ngSubmit)="f.form.valid  " #f="ngForm" (ngSubmit)="f.form.valid && createsell()" novalidate>
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="title-bar">
@@ -80,7 +80,7 @@
                                     <label> Talent </label>
                                     <textarea [(ngModel)]="formsell.talents" #talents="ngModel" name="talents"
                                         class="form-control"
-                                        [ngClass]="{ 'is-invalid': f.submitted && talents.invalid }" required>
+                                        [ngClass]="{ 'is-invalid': f.submitted && talents.invalid }">
                                      </textarea>
                                     <div *ngIf="f.submitted && talents.invalid" class="invalid-feedback">
                                         <div *ngIf="talents.errors?.['required']" style="color:red">Talents is required
@@ -131,7 +131,7 @@
                                 <div class="form-group">
                                     <label> Fighting Record </label>
                                     <textarea [(ngModel)]="formsell.fightingRecord" #fightingRecord="ngModel"
-                                        [ngClass]="{ 'is-invalid': f.submitted && fightingRecord.invalid }" required
+                                        [ngClass]="{ 'is-invalid': f.submitted && fightingRecord.invalid }" 
                                         name="fightingRecord" class="form-control">
                                          </textarea>
                                     <div *ngIf="f.submitted && fightingRecord.invalid" class="invalid-feedback">
@@ -147,37 +147,28 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-12">
                                         <div class="form-group"
-                                            *ngIf="this.dataservice.getMemberType() == '2171' && breeds.length == 0">
+                                            *ngIf="this.dataservice.getMemberType() == '2171' ">
                                             <label> Breed </label>
-                                            <!-- <input type="text" [(ngModel)]="formsell.breed" #breed="ngModel"
-                                                name="breed" class="form-control" /> -->
+                                            <input type="text" [(ngModel)]="formsell.breed" #breed="ngModel"
+                                                name="breed" class="form-control" required/>
 
-                                            <select [(ngModel)]="formsell.breed" #breed="ngModel" name="breed"
+                                            <!-- <select [(ngModel)]="formsell.breed" #breed="ngModel" name="breed"
                                                 class="form-control" [ngClass]="{ 'is-invalid': f.submitted && breed.invalid }" required>
                                                 <option value="">Select Bread </option>
                                                 <option value="{{p.breedId}}" *ngFor="let p of breeds">
                                                     {{p.breedName}} </option>
-                                            </select>
+                                            </select> -->
                                             <div *ngIf="f.submitted && breed.invalid" class="invalid-feedback">
                                                 <div *ngIf="breed.errors?.['required']" style="color:red">
-                                                    Breed is
-                                                    required</div>
+                                                    Breed is required</div>
                                             </div>
 
                                         </div>
                                        
                                     </div>
-                                    <!-- <div class="col-sm-6">
-                              <div class="form-group">
-                                  <label> Product Code </label>
-                                  <input type="text" [(ngModel)]="formsell.productCode"
-                                      #productCode="ngModel" name="productCode" class="form-control" />
-  
-                              </div>
-  
-                          </div> -->
+                                
                                 </div>
 
                             </div>
@@ -185,7 +176,7 @@
                                 <div class="form-group">
                                     <label> Additional Information </label>
                                     <textarea [(ngModel)]="formsell.remarks" #remarks="ngModel" name="remarks"
-                                        [ngClass]="{ 'is-invalid': f.submitted && remarks.invalid }" required
+                                        [ngClass]="{ 'is-invalid': f.submitted && remarks.invalid }" 
                                         class="form-control">  </textarea>
                                     <div *ngIf="f.submitted && remarks.invalid" class="invalid-feedback">
                                         <div *ngIf="remarks.errors?.['required']" style="color:red">
@@ -243,7 +234,7 @@
                                             <label> Weight</label>
                                             <input type="text" [(ngModel)]="formsell.weight" #weight="ngModel"
                                                 name="weight" class="form-control"
-                                                [ngClass]="{ 'is-invalid': f.submitted && weight.invalid }" required />
+                                                [ngClass]="{ 'is-invalid': f.submitted && weight.invalid }"  />
                                             <div *ngIf="f.submitted && weight.invalid" class="invalid-feedback">
                                                 <div *ngIf="weight.errors?.['required']" style="color:red">
                                                     Weight is
@@ -334,7 +325,7 @@
                                 <div class="form-group">
                                     <label> Discount / Offers</label>
                                     <input type="text" [(ngModel)]="formsell.discount" #discount="ngModel"
-                                    [ngClass]="{ 'is-invalid': f.submitted && discount.invalid }" required
+                                    [ngClass]="{ 'is-invalid': f.submitted && discount.invalid }" 
                                         name="discount" class="form-control" />
                                         <div *ngIf="f.submitted && discount.invalid" class="invalid-feedback">
                                             <div *ngIf="discount.errors?.['required']" style="color:red">
@@ -411,7 +402,7 @@
                             <div class="col-sm-12 text-right m-t-10">
                                 <!-- <a href="" class="btn btn-primary">Confirm And Proceed</a> -->
 
-                                <button class="btn btn-primary" (click)="createsell()">Confirm And Proceed</button>
+                                <button class="btn btn-primary" type="submit">Confirm And Proceed</button>
                             </div>
                         </div>
                     </form>
