@@ -65,7 +65,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label class="is-invalid" [ngClass]="{ 'is-invalid': f.submitted && productName.invalid }"> Product Name </label>
+                                    <label class="is-invalid" [ngClass]="{ 'is-invalid': f.submitted && productName.invalid }"> Product Name *</label>
                                     <input type="text" [(ngModel)]="formsell.productName" #productName="ngModel"
                                         [ngClass]="{ 'is-invalid': f.submitted && productName.invalid }"
                                         name="productName" class="form-control" required />
@@ -94,7 +94,7 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label class="is-invalid" [ngClass]="{ 'is-invalid': f.submitted && gender.invalid }"> Gender </label>
+                                            <label class="is-invalid" [ngClass]="{ 'is-invalid': f.submitted && gender.invalid }"> Gender *</label>
                                             <select [(ngModel)]="formsell.gender" #gender="ngModel" name="gender"
                                                 class="form-control"
                                                 [ngClass]="{ 'is-invalid': f.submitted && gender.invalid }" required>
@@ -110,7 +110,7 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label class="is-invalid" [ngClass]="{ 'is-invalid': f.submitted && breedType.invalid }"> Sire/Breeder </label>
+                                            <label class="is-invalid" [ngClass]="{ 'is-invalid': f.submitted && breedType.invalid }"> Sire/Breeder *</label>
                                             <select [(ngModel)]="formsell.breedType" #breedType="ngModel"
                                                 [ngClass]="{ 'is-invalid': f.submitted && breedType.invalid }" required
                                                 name="breedType" class="form-control">
@@ -150,7 +150,7 @@
                                     <div class="col-sm-12">
                                         <div class="form-group"
                                             *ngIf="this.dataservice.getMemberType() == '2171' ">
-                                            <label class="is-invalid" [ngClass]="{ 'is-invalid': f.submitted && breed.invalid }"> Breed </label>
+                                            <label class="is-invalid" [ngClass]="{ 'is-invalid': f.submitted && breed.invalid }"> Breed *</label>
                                             <input type="text" [(ngModel)]="formsell.breed" #breed="ngModel" 
                                             [ngClass]="{ 'is-invalid': f.submitted && breed.invalid }" 
                                                 name="breed" class="form-control" required/>
@@ -195,7 +195,7 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label class="is-invalid" [ngClass]="{ 'is-invalid': f.submitted && age.invalid }"> Age</label>
+                                            <label class="is-invalid" [ngClass]="{ 'is-invalid': f.submitted && age.invalid }"> Age *</label>
                                             <input type="text" [(ngModel)]="formsell.age" #age="ngModel" name="age"
                                                 [ngClass]="{ 'is-invalid': f.submitted && age.invalid }" required
                                                 class="form-control" />
@@ -265,7 +265,7 @@
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label  [ngClass]="{ 'is-invalid': f.submitted && standardPrice.invalid }"> Price</label>
+                                    <label  [ngClass]="{ 'is-invalid': f.submitted && standardPrice.invalid }"> Price *</label>
                                     <input type="text" [(ngModel)]="formsell.standardPrice" #standardPrice="ngModel"
                                         [ngClass]="{ 'is-invalid': f.submitted && standardPrice.invalid }" required
                                         name="standardPrice" class="form-control" />
@@ -278,7 +278,7 @@
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label > Currency</label>
+                                    <label > Currency *</label>
                                     <select [(ngModel)]="formsell.currency" #currency="ngModel" name="currency"
                                         [ngClass]="{ 'is-invalid': f.submitted && currency.invalid }" required
                                         class="form-control">
@@ -298,7 +298,7 @@
                         <div class="row">
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label > Stock Quantity</label>
+                                    <label > Stock Quantity *</label>
                                     <input type="text" [(ngModel)]="formsell.stockQty" #stockQty="ngModel"
                                         [ngClass]="{ 'is-invalid': f.submitted && stockQty.invalid }" required
                                         name="stockQty" class="form-control" />
@@ -311,7 +311,7 @@
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label class="is-invalid" [ngClass]="{ 'is-invalid': f.submitted && province.invalid }"> Province</label>
+                                    <label class="is-invalid" [ngClass]="{ 'is-invalid': f.submitted && province.invalid }"> Province *</label>
                                     <input type="text" [(ngModel)]="formsell.province" #province="ngModel"
                                     [ngClass]="{ 'is-invalid': f.submitted && province.invalid }" required
                                         name="province" class="form-control" />
@@ -337,7 +337,7 @@
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label> Payment Option</label>
+                                    <label> Payment Option*</label>
                                     <select [(ngModel)]="formsell.paymentOption" #paymentOption="ngModel"
                                     [ngClass]="{ 'is-invalid': f.submitted && paymentOption.invalid }" required
                                         name="paymentOption" class="form-control">
@@ -372,7 +372,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label class="is-invalid" [ngClass]="{ 'is-invalid': f.submitted && myfile.invalid }"> Upload Images </label>
+                                    <label class="is-invalid" [ngClass]="{ 'is-invalid': f.submitted && myfile.invalid }"> Upload Images *</label>
                                     <div class="upload-btn-wrapper">
                                         <button class="btn1">
                                             <i class="icon-cloud-upload f-20"
