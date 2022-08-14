@@ -5,5 +5,6 @@ export const environment = {
    ProductUrl:"https://lgistorage.blob.core.windows.net/fmsimages/",
   imgUrl:"https://lgistorage.blob.core.windows.net/fmsimages/",
   videoUrl:"https://lgistorage.blob.core.windows.net/fmsvideos/",
+  azureblobImgUrl:'https://lgistorage.blob.core.windows.net/fmsimages',
   
 };
