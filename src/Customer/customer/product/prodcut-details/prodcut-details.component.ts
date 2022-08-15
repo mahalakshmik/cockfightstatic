@@ -35,6 +35,8 @@ export class ProdcutDetailsComponent implements OnInit {
   members: any;
   message: any;
   selectedFiles: any;
+  fileToUpload: any;
+  imageUrl: any;
   constructor(
     private fms: FmsService,
     private ls: LoginService,
@@ -268,25 +270,36 @@ export class ProdcutDetailsComponent implements OnInit {
   }
 
 
-  uploadFile(event:any) {
-    let reader = new FileReader(); // HTML5 FileReader API
+  uploadFile(event: any) {
+   // this.fileToUpload = file.item(0);
+
+    //Show image preview
+    let reader = new FileReader();
     let file = event.target.files[0];
+    reader.onload = (event: any) => {
+      this.imageUrl = event.target.result;
+    }
     reader.readAsDataURL(file);
-    console.log(file)
+
+    // let reader = new FileReader(); // HTML5 FileReader API
+    // let file = event.target.files[0];
+    // reader.readAsDataURL(file);
+    // console.log(file)
+    
     // if (event.target.files && event.target.files[0]) {
     //   reader.readAsDataURL(file);
 
     //   // When file uploads set it to file formcontrol
-    //   reader.onload = () => {
-    //     this.imageUrl = reader.result;
-    //     this.registrationForm.patchValue({
-    //       file: reader.result
-    //     });
-    //     this.editFile = false;
-    //     this.removeUpload = true;
-    //   }
-    //   // ChangeDetectorRef since file is loading outside the zone
-    //   this.cd.markForCheck();        
+    //   // reader.onload = () => {
+    //   //   this.imageUrl = reader.result;
+    //   //   this.registrationForm.patchValue({
+    //   //     file: reader.result
+    //   //   });
+    //   //   this.editFile = false;
+    //   //   this.removeUpload = true;
+    //   // }
+    //   // // ChangeDetectorRef since file is loading outside the zone
+    //   // this.cd.markForCheck();        
     // }
   }
 }

@@ -6,6 +6,7 @@ import { FmsService } from 'src/app/services/fms.service';
 import { LoginService } from 'src/app/services/login.service';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
+import { LoginComponent } from '../login/login.component';
 import { RegisterComponent } from '../register/register.component';
 import { productsearch } from './productsearch.model';
 
@@ -15,6 +16,7 @@ import { productsearch } from './productsearch.model';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  matDialogRefL!: MatDialogRef<LoginComponent>;
   matDialogRef!: MatDialogRef<RegisterComponent>;
   form = new productsearch();
   product: any;
@@ -23,11 +25,16 @@ export class HomeComponent implements OnInit {
   quantity: any;
   likeCount: any = null;
   stocklst: any;
-  isWishicon :boolean = true 
-  constructor(private matDialog: MatDialog, private fms: LoginService, public gs: AuthService, private fmss: FmsService,
-    public spinnerService: NgxSpinnerService) {
-      
-     }
+  isWishicon: boolean = true;
+  userid: any;
+  constructor(
+    private matDialog: MatDialog,
+    private fms: LoginService,
+    public gs: AuthService,
+    private fmss: FmsService,
+    public spinnerService: NgxSpinnerService,
+    private as: AuthService
+  ) {}
 
   img_list = [
     'https://picsum.photos/600/400/?image=0',
@@ -44,7 +51,8 @@ export class HomeComponent implements OnInit {
   //dynamic images added in style.css(1480 line)
   current = 0;
   ngOnInit(): void {
-    console.log(this.form)
+    this.userid = this.as.getToken();
+    console.log(this.form);
     this.getStock();
     this.productList();
     //  this.form.productType=
@@ -54,7 +62,7 @@ export class HomeComponent implements OnInit {
     setInterval(() => {
       this.current = ++this.current % this.img_list.length;
     }, 2000);
-   // this.spinnerService.hide();
+    // this.spinnerService.hide();
   }
   onChange(e: any) {
     console.log(e.target.value);
@@ -65,55 +73,71 @@ export class HomeComponent implements OnInit {
     });
     this.productPicUrl.concat();
   }
-  addwish(p:any,index:any) {
-    console.log(p)
-    p.select = !p.select;
-    // p.forEach((element:any) => {
-    //   console.log(element);
-    //   icon:"fa fa-thumbs-o-up thum-icon"
-      
-    // });
-    // console.log(this.product[0].productId)
-    if (this.product) {
-      
-      for (let i = 0; i < this.product.length; i++) {
-        this.prd = this.product[i];
-        
+  Login() {
+    this.matDialogRefL = this.matDialog.open(LoginComponent, {
+      // data: { name: this.name },
+      disableClose: true,
+      width: '400px',
+      height: '550px',
+    });
+
+    this.matDialogRef.afterClosed().subscribe((res) => {
+      if (res == true) {
+        // this.name = "";
       }
-    }
-    console.log(this.prd)
-    localStorage.setItem('prodList', JSON.stringify(this.prd));
-    // this.quantity = this.prd.stockQty
-    // this.prd.push(this.quantity)
-    this.fmss.saveWishList(p).subscribe(res => {
-      console.log(res);
-      Swal.fire({
-        icon: 'success',
-        title: "Added to wishList!",
-        // text: "You clicked the button!",
-        // type: "success",
-        timer: 500
-      });
-      this.ngOnInit()
-    })
+    });
   }
-  reset(form:any){
+  addwish(p: any, index: any) {
+    if (!this.userid) {
+      this.Login()
+      //alert('please login!');
+    } else {
+      console.log(p);
+      p.select = !p.select;
+      // p.forEach((element:any) => {
+      //   console.log(element);
+      //   icon:"fa fa-thumbs-o-up thum-icon"
+
+      // });
+      // console.log(this.product[0].productId)
+      if (this.product) {
+        for (let i = 0; i < this.product.length; i++) {
+          this.prd = this.product[i];
+        }
+      }
+      console.log(this.prd);
+      localStorage.setItem('prodList', JSON.stringify(this.prd));
+      // this.quantity = this.prd.stockQty
+      // this.prd.push(this.quantity)
+      this.fmss.saveWishList(p).subscribe((res) => {
+        console.log(res);
+        Swal.fire({
+          icon: 'success',
+          title: 'Added to wishList!',
+          // text: "You clicked the button!",
+          // type: "success",
+          timer: 500,
+        });
+        this.ngOnInit();
+      });
+    }
+  }
+  reset(form: any) {
     form.reset();
-    this.form.priceFrom = "";
-    this.form.priceTo = "";
-    this.form.province = "";
-    this.form.promotion = "";
-    this.form.productName = "";
-    this.form.productBrand = "";
-    this.form.age = "";
-    this.productList()
+    this.form.priceFrom = '';
+    this.form.priceTo = '';
+    this.form.province = '';
+    this.form.promotion = '';
+    this.form.productName = '';
+    this.form.productBrand = '';
+    this.form.age = '';
+    this.productList();
   }
   onSubmit() {
     console.log(this.form);
     this.productList();
   }
   getStock() {
-
     this.fmss.getStockList().subscribe((res) => {
       console.log(res);
       this.stocklst = res;
