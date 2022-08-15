@@ -271,16 +271,25 @@ export class ProdcutDetailsComponent implements OnInit {
 
 
   uploadFile(event: any) {
+
+    let reader = new FileReader();
+    reader.onload = function(){
+      let output: any = document.getElementById('blah');
+      output.src = reader.result;
+    }
+    if(event.target.files[0]){
+      reader.readAsDataURL(event.target.files[0]);
+    }
    // this.fileToUpload = file.item(0);
 
     //Show image preview
-    let reader = new FileReader();
-    let file = event.target.files[0];
-    reader.onload = (event: any) => {
-      this.imageUrl = event.target.result;
-    }
-    reader.readAsDataURL(file);
-
+    //let reader = new FileReader();
+    // let file = event.target.files[0];
+    // reader.onload = (event: any) => {
+    //   this.imageUrl = event.target.result;
+    // }
+   // reader.readAsDataURL(file);
+//main
     // let reader = new FileReader(); // HTML5 FileReader API
     // let file = event.target.files[0];
     // reader.readAsDataURL(file);
