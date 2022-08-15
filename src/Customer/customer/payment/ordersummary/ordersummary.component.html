@@ -17,13 +17,14 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <img src="{{productPicUrl}}/{{productID}}/{{images}}"
+                    <img src="{{productPicUrl}}{{images}}"
                     width="200" height="200" onerror="this.src='./assets/images/download.png';"  
                     class="d-block w-100" alt="image" style="margin-top: -50px;">
                 </div>
                 <div class="col-md-4">
-                    <p>ProductName:{{selectedProdut.productName}}</p>
-                    <p>SellerID:{{sellerName?.userName}}</p>
+                    <p><b>ProductName</b>: {{selectedProdut.productName}}</p>
+                    <p><b>SellerID</b>: {{sellerName?.userName}}</p>
+                    <p><b>Quantity </b>: {{selectedProdut?.stockQty}}</p>
                       <div class="col-sm-10">
                          <label> <div class="number-input">
                             <button [disabled]="disable" (click)="decrement()"></button>
@@ -31,9 +32,11 @@
                             <button (click)="increment()" class="plus"></button>
                             
                             <!-- <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button> -->
-                          </div> </label>
                         </div>
-                </div>
+                        <p style="color: red;">{{this.errormessage}}</p>
+                     </label>
+                        </div>
+                    </div>
                 <div class="col-md-2">
                    
                 </div>
