@@ -18,8 +18,10 @@
                 </thead>
                 <tbody>
                     <tr class="odd" *ngFor="let p of cartLst">
-                        <td class="pro-list-img" tabindex="0">
-                            <img src="assets/images/img1.jpg" width="70" class="img-fluid" alt="tbl">
+                        <td  class="consulting-caption" tabindex="0">
+                            <div class="not_img" *ngIf="p.productImage == 'undefined' || p.productImage == 'null'"
+                                                    style="background-color: red;">370 x 440px</div>
+                            <img *ngIf="p.productImage" src="{{productPicUrl}}{{p.productImage}}" width="70" class="d-block w-100" alt="image">
                         </td>
                         <td class="pro-name">
                             <h6>{{p.productName}} </h6>
@@ -46,7 +48,7 @@
         </div>
         <div class="col-sm-12 text-right m-t-20 m-b-20">
             <a class="btn btn-default" routerLink="/"> Continue Shopping </a>
-            <a class="btn btn-primary" routerLink="/payment"> Proceed to Payment </a>
+            <a class="btn btn-primary"  (click)="proceedToPayment()"> Proceed to Payment </a>
         </div>
     </div>
 </div>
