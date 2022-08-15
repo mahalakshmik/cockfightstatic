@@ -177,8 +177,8 @@
                                         <span class="qty" style="display: flex;">
                                             <div class="price price1">฿{{p.standardPrice}}</div>
                                             <i class="fa fa-youtube-play ytube-icon"></i>
-                                            <i (click)="addwish(p,i)"
-                                                [ngClass]="p.productLikesCount > 0 ? 'fa fa-thumbs-up thum-icon' : 'fa fa-thumbs-o-up thum-icon' ">{{p.productLikesCount}}</i>
+                                           <a> <i (click)="addwish(p,i)"
+                                                [ngClass]="p.productLikesCount > 0 ? 'fa fa-thumbs-up thum-icon' : 'fa fa-thumbs-o-up thum-icon' ">{{p.productLikesCount}}</i></a>
                                             <!-- <i (click)="addwish(p,i)" *ngIf="!isWishicon" class="fa fa-thumbs-up thum-icon">{{likeCount}}</i> -->
                                         </span>
 

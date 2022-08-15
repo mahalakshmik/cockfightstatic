@@ -65,7 +65,7 @@ export class HomeComponent implements OnInit {
     });
     this.productPicUrl.concat();
   }
-  addwish(p:any,index:any) {
+  addwish(p:any,index:any) {debugger
     console.log(p)
     p.select = !p.select;
     // p.forEach((element:any) => {
@@ -87,6 +87,7 @@ export class HomeComponent implements OnInit {
     // this.prd.push(this.quantity)
     this.fmss.saveWishList(p).subscribe(res => {
       console.log(res);
+      this.productList();
       Swal.fire({
         icon: 'success',
         title: "Added to wishList!",
@@ -94,9 +95,10 @@ export class HomeComponent implements OnInit {
         // type: "success",
         timer: 500
       });
+
     })
   }
-  reset(form:any){
+  reset(form:any){debugger
     form.reset();
     this.form.priceFrom = "";
     this.form.priceTo = "";
