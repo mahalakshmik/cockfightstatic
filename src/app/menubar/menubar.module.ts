@@ -55,6 +55,9 @@ import { MatSelectModule } from '@angular/material/select';
     MenubarRoutingModule, MatChipsModule,  MatAutocompleteModule, MatSelectModule,
     FormsModule,HttpClientModule,ReactiveFormsModule,SharedModule,
     CustomerModule,
+  ],
+  exports:[
+    LeftNavComponent
   ]
 })
 export class MenubarModule { }

@@ -229,4 +229,7 @@ export class FmsService {
     //api/MessageDetails/saveMessageDetails
     return this.http.post(`${this.baseURL}MessageDetails/saveMessageDetails`,payload)
   }
+  viewOrderByNumber(orderno:string) {
+    return this.http.get(`${this.baseURL}OrderDetails/viewOrder/` + orderno )
+  }
 }

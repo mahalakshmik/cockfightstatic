@@ -33,7 +33,7 @@
                             <tbody>
                                 <tr class="odd" *ngFor="let p of notifications">
                                     <td class="pro-name">
-                                        <h6>{{p.message}} </h6>
+                                        <h6><a (click)="vieworder(p.orderNo)"> {{p.message}} </a></h6>
                                     </td>
                                     <td>
                                         <!-- <h6>Read:{{p.isRead}}</h6> -->
