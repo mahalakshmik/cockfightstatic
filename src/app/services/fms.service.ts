@@ -80,6 +80,9 @@ export class FmsService {
   NotificationList() {
     return this.http.get(`${this.baseURL}Notifications`)
   }
+  updateNotification(notyid:number) {
+    return this.http.get(`${this.baseURL}NotificationListSP/UpdateNotificationstatus/`+notyid)
+  }
   //filter by memberID
 
   cartList() {

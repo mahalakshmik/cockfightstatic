@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FmsService } from 'src/app/services/fms.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-sellinglist',
@@ -11,6 +12,8 @@ export class SellinglistComponent implements OnInit {
   sellerType: any;
   selectedOrder: number | undefined;
   selectedValue: any;
+  productPicUrl = environment.azureblobImgUrl;
+
   constructor(private fms: FmsService) {
 
   }
