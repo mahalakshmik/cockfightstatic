@@ -24,6 +24,7 @@ export class OrdersummaryComponent implements OnInit {
   totalamount: any;
   orderID: any;
   userdetails: any;
+  errormessage: string='';
 
   constructor(private route: Router, private fms: FmsService) {
     this.selectedProdut = JSON.parse(localStorage.getItem('selectedProdut') || '{}')
@@ -43,12 +44,17 @@ export class OrdersummaryComponent implements OnInit {
 
   increment() {
     // this.productCount = this.productCount++
-    this.productCount++
-    if (this.productCount == 2) {
-      this.disable = false;
+    if(this.selectedProdut.stockQty==this.productCount){
+      this.errormessage=`We are sorry! Only ${this.selectedProdut.stockQty} item(s) are available`;
+    }else{
+this.errormessage=''
+      this.productCount++
+      if (this.productCount == 2) {
+        this.disable = false;
+      }
+      this.totalAmount = this.selectedProdut.standardPrice * this.productCount;
+      this.totalAmount = this.totalAmount - this.selectedProdut.discount;
     }
-    this.totalAmount = this.selectedProdut.standardPrice * this.productCount;
-    this.totalAmount = this.totalAmount - this.selectedProdut.discount;
   }
 
   confirmOrder() {
@@ -95,6 +101,8 @@ export class OrdersummaryComponent implements OnInit {
 
   }
   decrement() {
+this.errormessage=''
+
     this.productCount--
     if (this.productCount == 1) {
       this.disable = true;

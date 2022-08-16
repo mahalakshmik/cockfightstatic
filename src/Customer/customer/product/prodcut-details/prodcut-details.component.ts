@@ -108,7 +108,7 @@ export class ProdcutDetailsComponent implements OnInit {
       console.log(data);
       this.prdId = this.product.productId;
       console.log('prdID', this.prdId);
-      localStorage.setItem('selectedProdut', JSON.stringify(this.product));
+      // localStorage.setItem('selectedProdut', JSON.stringify(this.product));
       this.getgender();
       this.getBreadType();
       this.getPaymentType();
@@ -120,6 +120,7 @@ export class ProdcutDetailsComponent implements OnInit {
       console.log(res);
       this.images = res;
       console.log(this.images[0].imageName);
+      localStorage.removeItem('images')
       localStorage.setItem('images', JSON.stringify(this.images[0].imageName));
       //this.fst = this.images[0].imageName;
       //console.log('st', this.fst)
@@ -172,6 +173,8 @@ export class ProdcutDetailsComponent implements OnInit {
     if (!this.as.isLoggedIn()) {
       this.Login();
     } else {
+      localStorage.removeItem('selectedProdut')
+            localStorage.setItem('selectedProdut', JSON.stringify(this.product));
       this.route.navigate(['Addressdelivery']);
     }
   }
