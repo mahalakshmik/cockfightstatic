@@ -55,7 +55,7 @@
                                         <li><a routerLink="menu/readytosell" *ngIf="this.dataService.getuserType() == '2171' && '2173' " (click)="this.showlist = !this.showlist;"> <i class="icon-list"></i> &nbsp;&nbsp; Selling List</a></li>
                                         <li><a routerLink="menu/notification"  (click)="this.showlist = !this.showlist;"> <i class="icon-bell"></i> &nbsp;&nbsp; Notifications</a></li>
                                         <li><a routerLink="menu/Verify"  (click)="this.showlist = !this.showlist;"> <i class="icon-check"></i> &nbsp;&nbsp; Verify Yourself</a></li>
-                                        <li><a (click)="dataService.logoutUser()" routerLink="/"  (click)="this.showlist = !this.showlist;"> <i class="icon-power"></i> &nbsp;&nbsp; Logout</a></li>
+                                        <li><a (click)="dataService.logoutUser()"  (click)="this.showlist = !this.showlist;"> <i class="icon-power"></i> &nbsp;&nbsp; Logout</a></li>
                                     </ul>
                                 </li>
 
@@ -68,7 +68,7 @@
                                 </a>
                             </div>
                             <div class="bell-icon inline-block text-center" *ngIf="dataService.isLoggedIn()">
-                                <a href="customer/notication">
+                                <a routerLink="menu/notification">
                                     <i class="icon-bell" aria-hidden="true"></i>
                                     <span class="badge bg-c-red bell-badge">{{this.notifcount}}</span>
 

@@ -13,6 +13,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { environment } from 'src/environments/environment';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-selling',
@@ -69,7 +70,8 @@ export class SellingComponent implements OnInit {
     private gs: LoginService,
     public dataservice: AuthService,
     private dialog: MatDialog,
-    public router: Router
+    public router: Router,
+    public spinnerService: NgxSpinnerService
   ) {
     this.adform = new Address();
     console.log(this.adform);
@@ -100,6 +102,7 @@ export class SellingComponent implements OnInit {
     this.formsell.stockQty = 1;
     this.formsell.currency = 'THB';
     this.formsell.paymentOption = '2177';
+  
     this.forms.memberType = 0;
   }
   showtemp() {
@@ -224,8 +227,14 @@ console.log(this.url)
   }
 
   createsell() {
-    debugger
-
+    
+    this.spinnerService.show();
+    if(this.formsell.discount ==undefined){
+      this.formsell.discount=0;
+    }
+    if(  this.formsell.weight ==undefined){
+      this.formsell.weight=0;
+    }
     console.log(this.formsell);
     var formdata = new FormData();
     formdata.append('ProductId', '0');
@@ -266,6 +275,7 @@ console.log(this.url)
     console.log(formdata);
     this.fms.saveSeller(formdata).subscribe((res) => {
       console.log(res);
+      this.spinnerService.hide();
       if (res) {
         Swal.fire({
           title: 'Saved Successfully',

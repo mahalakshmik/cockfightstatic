@@ -44,7 +44,8 @@ export class AppComponent {
     }
   }
   logout() {
-    window.localStorage.clear();
+   // alert('test')
+    localStorage.clear();
   }
   OpenModal() {
     this.matDialogRef = this.matDialog.open(LoginComponent, {

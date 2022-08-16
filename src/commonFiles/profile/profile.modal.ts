@@ -35,7 +35,7 @@ export class MessageHeader {
     productId: any | null;
     createdOn: any ;
     messageSubject: any;
-    isPrivate: boolean = true ;
+    isPrivate: boolean = false ;
     fileName: any='';
     comment: any;
 }

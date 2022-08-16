@@ -31,8 +31,11 @@
                                 <tbody>
                                     <tr *ngFor="let p of sellerList;">
                                         <td>
-                                            <img src="{{productPicUrl}}{{p.productImage}}" width="70"
+                                            <!-- <img src="{{productPicUrl}}{{p.productImage}}" width="70"
                                                 height="70" onerror="this.src='./assets/images/defaultImg.jpg';"
+                                                class="d-block w-100" alt="image"> -->
+                                            <img src="{{productPicUrl}}{{p.productImage}}" width="70"
+                                                height="70" 
                                                 class="d-block w-100" alt="image">
                                         </td>
                                         <td> {{p.productName}} </td>
@@ -65,13 +68,13 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label> Product Name </label>
+                                    <label class="is-invalid" [ngClass]="{ 'is-invalid': f.submitted && productName.invalid }"> Product Name *</label>
                                     <input type="text" [(ngModel)]="formsell.productName" #productName="ngModel"
                                         [ngClass]="{ 'is-invalid': f.submitted && productName.invalid }"
                                         name="productName" class="form-control" required />
                                     <div *ngIf="f.submitted && productName.invalid" class="invalid-feedback">
-                                        <div *ngIf="productName.errors?.['required']" style="color:red">ProductName is
-                                            required</div>
+                                        <!-- <div *ngIf="productName.errors?.['required']" style="color:red">ProductName is
+                                            required</div> -->
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +97,7 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label> Gender </label>
+                                            <label class="is-invalid" [ngClass]="{ 'is-invalid': f.submitted && gender.invalid }"> Gender *</label>
                                             <select [(ngModel)]="formsell.gender" #gender="ngModel" name="gender"
                                                 class="form-control"
                                                 [ngClass]="{ 'is-invalid': f.submitted && gender.invalid }" required>
@@ -103,14 +106,14 @@
                                                     {{p.lookupCode}} </option>
                                             </select>
                                             <div *ngIf="f.submitted && gender.invalid" class="invalid-feedback">
-                                                <div *ngIf="gender.errors?.['required']" style="color:red">Gender is
-                                                    required</div>
+                                                <!-- <div *ngIf="gender.errors?.['required']" style="color:red">Gender is
+                                                    required</div> -->
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label> Sire/Breeder </label>
+                                            <label class="is-invalid" [ngClass]="{ 'is-invalid': f.submitted && breedType.invalid }"> Sire/Breeder *</label>
                                             <select [(ngModel)]="formsell.breedType" #breedType="ngModel"
                                                 [ngClass]="{ 'is-invalid': f.submitted && breedType.invalid }" required
                                                 name="breedType" class="form-control">
@@ -119,8 +122,8 @@
                                                     {{p.lookupDescription}} </option>
                                             </select>
                                             <div *ngIf="f.submitted && breedType.invalid" class="invalid-feedback">
-                                                <div *ngIf="breedType.errors?.['required']" style="color:red">BreedType
-                                                    is required</div>
+                                                <!-- <div *ngIf="breedType.errors?.['required']" style="color:red">BreedType
+                                                    is required</div> -->
                                             </div>
                                         </div>
                                     </div>
@@ -150,8 +153,9 @@
                                     <div class="col-sm-12">
                                         <div class="form-group"
                                             *ngIf="this.dataservice.getMemberType() == '2171' ">
-                                            <label> Breed </label>
-                                            <input type="text" [(ngModel)]="formsell.breed" #breed="ngModel"
+                                            <label class="is-invalid" [ngClass]="{ 'is-invalid': f.submitted && breed.invalid }"> Breed *</label>
+                                            <input type="text" [(ngModel)]="formsell.breed" #breed="ngModel" 
+                                            [ngClass]="{ 'is-invalid': f.submitted && breed.invalid }" 
                                                 name="breed" class="form-control" required/>
 
                                             <!-- <select [(ngModel)]="formsell.breed" #breed="ngModel" name="breed"
@@ -161,8 +165,8 @@
                                                     {{p.breedName}} </option>
                                             </select> -->
                                             <div *ngIf="f.submitted && breed.invalid" class="invalid-feedback">
-                                                <div *ngIf="breed.errors?.['required']" style="color:red">
-                                                    Breed is required</div>
+                                                <!-- <div *ngIf="breed.errors?.['required']" style="color:red">
+                                                    Breed is required</div> -->
                                             </div>
 
                                         </div>
@@ -194,14 +198,14 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label> Age</label>
+                                            <label class="is-invalid" [ngClass]="{ 'is-invalid': f.submitted && age.invalid }"> Age *</label>
                                             <input type="text" [(ngModel)]="formsell.age" #age="ngModel" name="age"
                                                 [ngClass]="{ 'is-invalid': f.submitted && age.invalid }" required
                                                 class="form-control" />
                                             <div *ngIf="f.submitted && age.invalid" class="invalid-feedback">
-                                                <div *ngIf="age.errors?.['required']" style="color:red">
+                                                <!-- <div *ngIf="age.errors?.['required']" style="color:red">
                                                     Age is
-                                                    required</div>
+                                                    required</div> -->
                                             </div>
 
                                         </div>
@@ -264,7 +268,7 @@
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label  [ngClass]="{ 'is-invalid': f.submitted && standardPrice.invalid }"> Price</label>
+                                    <label  [ngClass]="{ 'is-invalid': f.submitted && standardPrice.invalid }"> Price *</label>
                                     <input type="text" [(ngModel)]="formsell.standardPrice" #standardPrice="ngModel"
                                         [ngClass]="{ 'is-invalid': f.submitted && standardPrice.invalid }" required
                                         name="standardPrice" class="form-control" />
@@ -277,7 +281,7 @@
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label > Currency</label>
+                                    <label > Currency *</label>
                                     <select [(ngModel)]="formsell.currency" #currency="ngModel" name="currency"
                                         [ngClass]="{ 'is-invalid': f.submitted && currency.invalid }" required
                                         class="form-control">
@@ -297,7 +301,7 @@
                         <div class="row">
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label > Stock Quantity</label>
+                                    <label > Stock Quantity *</label>
                                     <input type="text" [(ngModel)]="formsell.stockQty" #stockQty="ngModel"
                                         [ngClass]="{ 'is-invalid': f.submitted && stockQty.invalid }" required
                                         name="stockQty" class="form-control" />
@@ -310,14 +314,14 @@
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label> Province</label>
+                                    <label class="is-invalid" [ngClass]="{ 'is-invalid': f.submitted && province.invalid }"> Province *</label>
                                     <input type="text" [(ngModel)]="formsell.province" #province="ngModel"
                                     [ngClass]="{ 'is-invalid': f.submitted && province.invalid }" required
                                         name="province" class="form-control" />
                                     <div *ngIf="f.submitted && province.invalid" class="invalid-feedback">
-                                        <div *ngIf="province.errors?.['required']" style="color:red">
+                                        <!-- <div *ngIf="province.errors?.['required']" style="color:red">
                                             Province is
-                                            required</div>
+                                            required</div> -->
                                     </div>
                                 </div>
                             </div>
@@ -336,7 +340,7 @@
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label> Payment Option</label>
+                                    <label> Payment Option*</label>
                                     <select [(ngModel)]="formsell.paymentOption" #paymentOption="ngModel"
                                     [ngClass]="{ 'is-invalid': f.submitted && paymentOption.invalid }" required
                                         name="paymentOption" class="form-control">
@@ -371,7 +375,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label> Upload Images </label>
+                                    <label class="is-invalid" [ngClass]="{ 'is-invalid': f.submitted && myfile.invalid }"> Upload Images *</label>
                                     <div class="upload-btn-wrapper">
                                         <button class="btn1">
                                             <i class="icon-cloud-upload f-20"
@@ -381,9 +385,9 @@
                                         [(ngModel)]="formsell.myfile" #myfile="ngModel"
                                         [ngClass]="{ 'is-invalid': f.submitted && myfile.invalid }" required/>
                                         <div *ngIf="f.submitted && myfile.invalid" class="invalid-feedback">
-                                            <div *ngIf="myfile.errors?.['required']" style="color:red">
+                                            <!-- <div *ngIf="myfile.errors?.['required']" style="color:red">
                                                 Image is
-                                                required</div>
+                                                required</div> -->
                                         </div>
                                     </div>
 
@@ -411,3 +415,5 @@
         </div>
     </div>
 </div>
+
+<ngx-spinner size="medium" color="orange" backgroundcolor="white" type="ball-fussion"></ngx-spinner>
