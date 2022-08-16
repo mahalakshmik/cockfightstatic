@@ -226,4 +226,8 @@ export class FmsService {
     //api/MessageDetails/saveMessageDetails
     return this.http.post(`${this.baseURL}MessageDetails/saveMessageDetails`,payload)
   }
+  sendMessageToseller(payload: any) {
+    //api/MessageDetails/sendMessageToseller
+    return this.http.post(`${this.baseURL}MessageDetails/sendMessageToseller`,payload)
+  }
 }

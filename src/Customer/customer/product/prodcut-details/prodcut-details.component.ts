@@ -39,6 +39,7 @@ export class ProdcutDetailsComponent implements OnInit {
   fileToUpload: any;
   imageUrl: any;
   messageId: any;
+  model: any = {};
   constructor(
     private fms: FmsService,
     private ls: LoginService,
@@ -199,12 +200,27 @@ export class ProdcutDetailsComponent implements OnInit {
   }
   SendMessageToSeller() {
     debugger;
+    console.log(this.model)
     //before send message check login
     // alert(this.userdetails.userid)
     // const userid= this.as.getToken();
     if (!this.userid) {
       this.Login();
     } else {
+      var payload ={
+        "messageId": 0,
+        "senderId":  this.userid,
+        "receiverId":  this.sellerID,
+        "productId":  this.productID,
+        "createdOn": "2022-08-16T06:38:00.037Z" ,
+        "messageSubject":this.model.senderMessage,
+        "isPrivate":  false ,
+        "fileName":this.model.file,
+        //"comment":this.model.senderMessage
+      }
+      this.fms.sendMessageToseller(payload).subscribe(res =>{
+        console.log(res)
+      })
       // console.log(this.form)
     }
   }
@@ -295,7 +311,7 @@ export class ProdcutDetailsComponent implements OnInit {
     //   }
     // }
   }
-
+ // sendMessageToseller
 
   uploadFile(event: any) {
 
