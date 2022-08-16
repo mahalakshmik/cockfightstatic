@@ -95,7 +95,8 @@
                                                 <button class="btn2">
                                                     <i class="icon-cloud-upload f-25 dis-block"></i>
                                                     <span class="dis-block m-t-5"> Click to Browse </span></button>
-                                                <input type="file" name="myfile" />
+                                                <input type="file" name="myfile" (click)="uploadFile($event)" />
+                                                <img width="60" *ngIf="imageUrl" [src]="imageUrl" class="image">
                                             </div>
 
                                             

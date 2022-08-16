@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import * as lookupStatic from 'src/assets/lookuplist.json';
 import { Lookup } from './lookuplist.model';
+import { NgxSpinnerService } from 'ngx-spinner';
 //to import json i added 2 lines code in tsconfig.json (compilerOptions)(line:21,22)
 declare var FB: any;
 @Component({
@@ -35,13 +36,18 @@ export class ProdcutDetailsComponent implements OnInit {
   members: any;
   message: any;
   selectedFiles: any;
+  fileToUpload: any;
+  imageUrl: any;
+  messageId: any;
   constructor(
     private fms: FmsService,
     private ls: LoginService,
     private route: Router,
     private router: ActivatedRoute,
     public as: AuthService,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    public spinnerService: NgxSpinnerService,
+
   ) {
     this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
     this.productID = this.router.snapshot.paramMap.get('productID');
@@ -66,7 +72,7 @@ export class ProdcutDetailsComponent implements OnInit {
     }, 1000);
   }
   getMember() {
-    this.ls.memberListbyId(this.sellerID).subscribe((res) => {
+    this.ls.memberListbyId(this.sellerID).subscribe((res: any) => {
       console.log('member' + res);
       this.members = res;
       localStorage.setItem('sellerName', JSON.stringify(this.members));
@@ -99,7 +105,7 @@ export class ProdcutDetailsComponent implements OnInit {
     });
   }
   productList() {
-    this.fms.produtListById(this.productID).subscribe((data) => {
+    this.fms.produtListById(this.productID).subscribe((data: any) => {
       this.product = data;
       //  this.product.isGuest = false;
 
@@ -114,7 +120,7 @@ export class ProdcutDetailsComponent implements OnInit {
   }
 
   getImages() {
-    this.fms.getProductImages(this.productID).subscribe((res) => {
+    this.fms.getProductImages(this.productID).subscribe((res: any) => {
       console.log(res);
       this.images = res;
       console.log(this.images[0].imageName);
@@ -146,7 +152,7 @@ export class ProdcutDetailsComponent implements OnInit {
       };
       console.log(payload);
       //this.route.navigate(['Cartitems'])
-      this.fms.saveCartList(payload).subscribe((res) => {
+      this.fms.saveCartList(payload).subscribe((res: any) => {
         console.log(res);
         if (res) {
           Swal.fire({
@@ -172,7 +178,7 @@ export class ProdcutDetailsComponent implements OnInit {
       this.Login();
     } else {
       localStorage.removeItem('selectedProdut')
-            localStorage.setItem('selectedProdut', JSON.stringify(this.product));
+      localStorage.setItem('selectedProdut', JSON.stringify(this.product));
       this.route.navigate(['Addressdelivery']);
     }
   }
@@ -185,7 +191,7 @@ export class ProdcutDetailsComponent implements OnInit {
       height: '550px',
     });
 
-    this.matDialogRef.afterClosed().subscribe((res) => {
+    this.matDialogRef.afterClosed().subscribe((res: any) => {
       if (res == true) {
         // this.name = "";
       }
@@ -203,7 +209,7 @@ export class ProdcutDetailsComponent implements OnInit {
     }
   }
   getComments() {
-    this.fms.getpostcomment(this.productID).subscribe((res) => {
+    this.fms.getpostcomment(this.productID).subscribe((res: any) => {
       console.log(res);
       this.message = res;
     });
@@ -217,8 +223,8 @@ export class ProdcutDetailsComponent implements OnInit {
     });
   }
   postComment() {
+    this.spinnerService.show();
     //before send message check login
-    //alert(this.userdetails.userid)
     if (!this.userid) {
       this.Login();
     } else {
@@ -229,11 +235,31 @@ export class ProdcutDetailsComponent implements OnInit {
         this.form.receiverId = this.sellerID;
 
         console.log(this.form);
-        this.fms.postcomment(this.form).subscribe((res) => {
-          console.log(res);
-          this.getComments();
+        this.fms.postcomment(this.form).subscribe((res: any) => {
+          console.log(res)
+          this.messageId = res
+          if (res) {
+            // this.form.messageId = res
+            var payload = {
+
+             "itemId": 0,
+              "messageId": res,
+              "memberId": this.userid,
+              "messageTo": this.sellerID,
+              "comment": this.form.comment,             
+              "createdOn": "2022-08-16T06:38:00.037Z",
+              "isRead": true
+
+            }
+            this.fms.postCommnets(payload).subscribe((data: any) => {
+    this.spinnerService.hide();
+    console.log(data)
+              this.getComments();
+            });
+          }
           //this.ngOnInit();
         });
+
       }
     }
   }
@@ -271,25 +297,45 @@ export class ProdcutDetailsComponent implements OnInit {
   }
 
 
-  uploadFile(event:any) {
-    let reader = new FileReader(); // HTML5 FileReader API
-    let file = event.target.files[0];
-    reader.readAsDataURL(file);
-    console.log(file)
+  uploadFile(event: any) {
+
+    let reader = new FileReader();
+    reader.onload = function () {
+      let output: any = document.getElementById('blah');
+      output.src = reader.result;
+    }
+    if (event.target.files[0]) {
+      reader.readAsDataURL(event.target.files[0]);
+    }
+    // this.fileToUpload = file.item(0);
+
+    //Show image preview
+    //let reader = new FileReader();
+    // let file = event.target.files[0];
+    // reader.onload = (event: any) => {
+    //   this.imageUrl = event.target.result;
+    // }
+    // reader.readAsDataURL(file);
+    //main
+    // let reader = new FileReader(); // HTML5 FileReader API
+    // let file = event.target.files[0];
+    // reader.readAsDataURL(file);
+    // console.log(file)
+
     // if (event.target.files && event.target.files[0]) {
     //   reader.readAsDataURL(file);
 
     //   // When file uploads set it to file formcontrol
-    //   reader.onload = () => {
-    //     this.imageUrl = reader.result;
-    //     this.registrationForm.patchValue({
-    //       file: reader.result
-    //     });
-    //     this.editFile = false;
-    //     this.removeUpload = true;
-    //   }
-    //   // ChangeDetectorRef since file is loading outside the zone
-    //   this.cd.markForCheck();        
+    //   // reader.onload = () => {
+    //   //   this.imageUrl = reader.result;
+    //   //   this.registrationForm.patchValue({
+    //   //     file: reader.result
+    //   //   });
+    //   //   this.editFile = false;
+    //   //   this.removeUpload = true;
+    //   // }
+    //   // // ChangeDetectorRef since file is loading outside the zone
+    //   // this.cd.markForCheck();        
     // }
   }
 }

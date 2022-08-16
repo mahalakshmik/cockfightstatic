@@ -251,7 +251,7 @@
         <div class="row">
 
             <div class="col-sm-12">
-                <form name="form" (ngSubmit)="f.form.valid && postComment()" #f="ngForm" novalidate>
+                <form name="form" (ngSubmit)="f.form.valid " #f="ngForm" novalidate>
                     <label class="lbl-detail"> Post your comment </label>
                     <textarea class="form-control" [(ngModel)]="form.messageSubject" #messageSubject="ngModel"
                         name="messageSubject" [ngClass]="{'is-invalid':f.submitted && messageSubject.invalid} "
@@ -332,7 +332,7 @@
                                 <div class="col-md-8">
                                 </div>
                                 <div class="col-md-4">
-                                    <button type="button" onclick="SendMessageToSeller()"
+                                    <button type="button" (click)="SendMessageToSeller()"
                                         class="custom-btn btn btn-default message-sellar-submit">Submit</button>
                                 </div>
                             </div>
@@ -346,3 +346,5 @@
     </div>
 </ng-template>
 <!-- send message popup -->
+
+<ngx-spinner size="medium" color="orange" backgroundcolor="white" type="ball-fussion"></ngx-spinner>
