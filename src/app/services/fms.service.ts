@@ -224,6 +224,6 @@ export class FmsService {
   }
   postCommnets(payload: any) {
     //api/MessageDetails/saveMessageDetails
-    return this.http.get(`${this.baseURL}MessageDetails/saveMessageDetails`,payload)
+    return this.http.post(`${this.baseURL}MessageDetails/saveMessageDetails`,payload)
   }
 }

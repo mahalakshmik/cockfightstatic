@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import * as lookupStatic from 'src/assets/lookuplist.json';
 import { Lookup } from './lookuplist.model';
+import { NgxSpinnerService } from 'ngx-spinner';
 //to import json i added 2 lines code in tsconfig.json (compilerOptions)(line:21,22)
 declare var FB: any;
 @Component({
@@ -44,7 +45,9 @@ export class ProdcutDetailsComponent implements OnInit {
     private route: Router,
     private router: ActivatedRoute,
     public as: AuthService,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    public spinnerService: NgxSpinnerService,
+
   ) {
     this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
     this.productID = this.router.snapshot.paramMap.get('productID');
@@ -220,8 +223,8 @@ export class ProdcutDetailsComponent implements OnInit {
     });
   }
   postComment() {
+    this.spinnerService.show();
     //before send message check login
-    //alert(this.userdetails.userid)
     if (!this.userid) {
       this.Login();
     } else {
@@ -233,31 +236,27 @@ export class ProdcutDetailsComponent implements OnInit {
 
         console.log(this.form);
         this.fms.postcomment(this.form).subscribe((res: any) => {
-          console.log(res);debugger
+          console.log(res)
           this.messageId = res
           if (res) {
             // this.form.messageId = res
             var payload = {
 
              "itemId": 0,
-              "messageId": this.messageId,
-              "memberId": 0,
-              "messageTo": 0,
-              "comment": this.form.comment,
-              "receiverId":this.sellerID,
-              "senderId":this.userid,
-              //"productId":this.productID,
+              "messageId": res,
+              "memberId": this.userid,
+              "messageTo": this.sellerID,
+              "comment": this.form.comment,             
               "createdOn": "2022-08-16T06:38:00.037Z",
               "isRead": true
 
             }
             this.fms.postCommnets(payload).subscribe((data: any) => {
-              console.log(data)
+    this.spinnerService.hide();
+    console.log(data)
+              this.getComments();
             });
-            this.getComments();
           }
-
-
           //this.ngOnInit();
         });
 

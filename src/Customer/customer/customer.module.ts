@@ -22,6 +22,7 @@ import { VerifyComponent } from './profile/verify/verify.component';
 import { CustomerAddressComponent } from './address/customer-address/customer-address.component';
 import { MaterialExampleModule } from 'src/material.module';
 import { FormsModule } from '@angular/forms';
+import { SharedModule } from 'src/shared/shared.module';
 @NgModule({
   declarations: [
     CustomerAddressComponent,
@@ -46,7 +47,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     CustomerRoutingModule,
-    MaterialExampleModule,FormsModule
+    MaterialExampleModule,FormsModule,SharedModule
   ],
   exports: [
   NotificationsComponent
