@@ -37,6 +37,7 @@ export class ProdcutDetailsComponent implements OnInit {
   selectedFiles: any;
   fileToUpload: any;
   imageUrl: any;
+  messageId: any;
   constructor(
     private fms: FmsService,
     private ls: LoginService,
@@ -68,7 +69,7 @@ export class ProdcutDetailsComponent implements OnInit {
     }, 1000);
   }
   getMember() {
-    this.ls.memberListbyId(this.sellerID).subscribe((res) => {
+    this.ls.memberListbyId(this.sellerID).subscribe((res: any) => {
       console.log('member' + res);
       this.members = res;
       localStorage.setItem('sellerName', JSON.stringify(this.members));
@@ -101,7 +102,7 @@ export class ProdcutDetailsComponent implements OnInit {
     });
   }
   productList() {
-    this.fms.produtListById(this.productID).subscribe((data) => {
+    this.fms.produtListById(this.productID).subscribe((data: any) => {
       this.product = data;
       //  this.product.isGuest = false;
 
@@ -116,7 +117,7 @@ export class ProdcutDetailsComponent implements OnInit {
   }
 
   getImages() {
-    this.fms.getProductImages(this.productID).subscribe((res) => {
+    this.fms.getProductImages(this.productID).subscribe((res: any) => {
       console.log(res);
       this.images = res;
       console.log(this.images[0].imageName);
@@ -148,7 +149,7 @@ export class ProdcutDetailsComponent implements OnInit {
       };
       console.log(payload);
       //this.route.navigate(['Cartitems'])
-      this.fms.saveCartList(payload).subscribe((res) => {
+      this.fms.saveCartList(payload).subscribe((res: any) => {
         console.log(res);
         if (res) {
           Swal.fire({
@@ -174,7 +175,7 @@ export class ProdcutDetailsComponent implements OnInit {
       this.Login();
     } else {
       localStorage.removeItem('selectedProdut')
-            localStorage.setItem('selectedProdut', JSON.stringify(this.product));
+      localStorage.setItem('selectedProdut', JSON.stringify(this.product));
       this.route.navigate(['Addressdelivery']);
     }
   }
@@ -187,7 +188,7 @@ export class ProdcutDetailsComponent implements OnInit {
       height: '550px',
     });
 
-    this.matDialogRef.afterClosed().subscribe((res) => {
+    this.matDialogRef.afterClosed().subscribe((res: any) => {
       if (res == true) {
         // this.name = "";
       }
@@ -205,7 +206,7 @@ export class ProdcutDetailsComponent implements OnInit {
     }
   }
   getComments() {
-    this.fms.getpostcomment(this.productID).subscribe((res) => {
+    this.fms.getpostcomment(this.productID).subscribe((res: any) => {
       console.log(res);
       this.message = res;
     });
@@ -231,11 +232,35 @@ export class ProdcutDetailsComponent implements OnInit {
         this.form.receiverId = this.sellerID;
 
         console.log(this.form);
-        this.fms.postcomment(this.form).subscribe((res) => {
-          console.log(res);
-          this.getComments();
+        this.fms.postcomment(this.form).subscribe((res: any) => {
+          console.log(res);debugger
+          this.messageId = res
+          if (res) {
+            // this.form.messageId = res
+            var payload = {
+
+             "itemId": 0,
+              "messageId": this.messageId,
+              "memberId": 0,
+              "messageTo": 0,
+              "comment": this.form.comment,
+              "receiverId":this.sellerID,
+              "senderId":this.userid,
+              //"productId":this.productID,
+              "createdOn": "2022-08-16T06:38:00.037Z",
+              "isRead": true
+
+            }
+            this.fms.postCommnets(payload).subscribe((data: any) => {
+              console.log(data)
+            });
+            this.getComments();
+          }
+
+
           //this.ngOnInit();
         });
+
       }
     }
   }
@@ -276,14 +301,14 @@ export class ProdcutDetailsComponent implements OnInit {
   uploadFile(event: any) {
 
     let reader = new FileReader();
-    reader.onload = function(){
+    reader.onload = function () {
       let output: any = document.getElementById('blah');
       output.src = reader.result;
     }
-    if(event.target.files[0]){
+    if (event.target.files[0]) {
       reader.readAsDataURL(event.target.files[0]);
     }
-   // this.fileToUpload = file.item(0);
+    // this.fileToUpload = file.item(0);
 
     //Show image preview
     //let reader = new FileReader();
@@ -291,13 +316,13 @@ export class ProdcutDetailsComponent implements OnInit {
     // reader.onload = (event: any) => {
     //   this.imageUrl = event.target.result;
     // }
-   // reader.readAsDataURL(file);
-//main
+    // reader.readAsDataURL(file);
+    //main
     // let reader = new FileReader(); // HTML5 FileReader API
     // let file = event.target.files[0];
     // reader.readAsDataURL(file);
     // console.log(file)
-    
+
     // if (event.target.files && event.target.files[0]) {
     //   reader.readAsDataURL(file);
 

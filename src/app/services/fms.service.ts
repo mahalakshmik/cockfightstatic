@@ -15,7 +15,7 @@ export class FmsService {
   orderID: any;
   constructor(private http: HttpClient) {
     this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
-   // this.orderID = JSON.parse(localStorage.getItem('orderID') || '{}');
+    // this.orderID = JSON.parse(localStorage.getItem('orderID') || '{}');
     if (this.userdetails) {
       this.isGuest = true;
       this.prodList = JSON.parse(localStorage.getItem('prodList') || '{}');
@@ -31,7 +31,7 @@ export class FmsService {
   //   return this.http.get(`${this.baseURL}ProductMasters`)
   // }
   getBreeds() {
-    return this.http.get(`${this.baseURL}Breeds/`+this.userdetails.userId)
+    return this.http.get(`${this.baseURL}Breeds/` + this.userdetails.userId)
   }
 
   saveWishList(payload: any) {
@@ -55,7 +55,7 @@ export class FmsService {
     return this.http.post(`${this.baseURL}Notifications`, payload);
   }
 
-  getconformOrder(orderid:any) {
+  getconformOrder(orderid: any) {
     return this.http.get(`${this.baseURL}OrderDetails/orderHeader/` + orderid)
   }
   // produtList() {
@@ -65,8 +65,8 @@ export class FmsService {
   productSearch(payload: any) {
     return this.http.post(`${this.baseURL}productMasters/productSearch`, payload);
   }
-  getStockList(){
-  return this.http.get(`${this.baseURL}Lookups/StockType`)
+  getStockList() {
+    return this.http.get(`${this.baseURL}Lookups/StockType`)
   }
   getProductImages(productId: any) {
     return this.http.get(`${this.baseURL}ProductImages/List/` + productId)
@@ -110,18 +110,20 @@ export class FmsService {
     payload.linkId = this.userdetails.userId; //linkid as userid
     return this.http.post(`${this.baseURL}Addresses/api/DeleteAddress`, payload)
   }
-  saveSeller(payload: any) {debugger
-    payload.SellerId=this.userdetails.userId;
+  saveSeller(payload: any) {
+    debugger
+    payload.SellerId = this.userdetails.userId;
     return this.http.post(`${this.baseURL}Seller`, payload)
   }
-  saveImagename(id: any) {debugger
+  saveImagename(id: any) {
+    debugger
     return this.http.get(`${this.baseURL}Seller/saveImgName/${id}`)
   }
   postcomment(payload: any) {
     return this.http.post(`${this.baseURL}MessageDetails`, payload)
   }
   getpostcomment(productId: any) {
-    return this.http.get(`${this.baseURL}MessageDetails/ProductComments/${productId}` )
+    return this.http.get(`${this.baseURL}MessageDetails/ProductComments/${productId}`)
   }
   getFollowersList() {
     return this.http.get(`${this.baseURL}MemberFollowings/FollowedList/` + this.userdetails.userId)
@@ -134,19 +136,19 @@ export class FmsService {
     // let queryParams = new HttpParams();
     // queryParams = queryParams.append("userID", this.userdetails.userId);
     return this.http.get(`${this.baseURL}Seller/SellingList/11020/2180/en`)
-   // return this.http.get(`${this.baseURL}Seller/SellingList/` + this.userdetails.userId + '/' + 'en')
+    // return this.http.get(`${this.baseURL}Seller/SellingList/` + this.userdetails.userId + '/' + 'en')
   }
-  getimgListbyProductId(productId:number) {
+  getimgListbyProductId(productId: number) {
     // let queryParams = new HttpParams();
     // queryParams = queryParams.append("userID", this.userdetails.userId);
     return this.http.get(`${this.baseURL}ProductImages/List/${productId}`)
-   // return this.http.get(`${this.baseURL}Seller/SellingList/` + this.userdetails.userId + '/' + 'en')
+    // return this.http.get(`${this.baseURL}Seller/SellingList/` + this.userdetails.userId + '/' + 'en')
   }
-  getSellerListLatest(OrderStatusID :any) {
-    return this.http.get(`${this.baseURL}Seller/SellingList/` + this.userdetails.userId +`/${OrderStatusID}/en` )
+  getSellerListLatest(OrderStatusID: any) {
+    return this.http.get(`${this.baseURL}Seller/SellingList/` + this.userdetails.userId + `/${OrderStatusID}/en`)
   }
   getReadyToSellList() {
-   
+
     //return this.http.get(`${this.baseURL}Seller/List/en/userID`, { params: queryParams })
     return this.http.get(`${this.baseURL}Seller/RedytoSellList/` + this.userdetails.userId + '/' + 'en')
   }
@@ -154,7 +156,7 @@ export class FmsService {
     return this.http.get(`${this.baseURL}Lookups/OrderStatus`)
   }
   getNotifications() {
-    return this.http.get(`${this.baseURL}NotificationListSP/`+ this.userdetails.userId + '/50')
+    return this.http.get(`${this.baseURL}NotificationListSP/` + this.userdetails.userId + '/50')
   }
   getWishList() {
     return this.http.get(`${this.baseURL}WishListListSP/` + this.userdetails.memberType)
@@ -177,7 +179,7 @@ export class FmsService {
     return this.http.get(`${this.baseURL}Lookups/BreedType`)
   }
   getSellingBreed() {
-    return this.http.get(`${this.baseURL}Breeds/`+ this.userdetails.userId)
+    return this.http.get(`${this.baseURL}Breeds/` + this.userdetails.userId)
   }
   getSellAgeDropList() {
     return this.http.get(`${this.baseURL}Lookups/AgeFormat`)
@@ -201,8 +203,8 @@ export class FmsService {
   getShopList(memberTypeId: any) {
     return this.http.get(`${this.baseURL}Members/` + memberTypeId)
   }
-  getShopDetails(shopId:any) {
-    return this.http.get(`${this.baseURL}Seller/sellerDetails/${shopId}` )
+  getShopDetails(shopId: any) {
+    return this.http.get(`${this.baseURL}Seller/sellerDetails/${shopId}`)
   }
   // getShopDetails(){
   //  return this.http.get(`${this.baseURL}Seller/sellerDetails/`+this.userdetails.userId)
@@ -213,11 +215,15 @@ export class FmsService {
   getInboxList(usertype: number, memberTypeId: any) {
     return this.http.get(`${this.baseURL}Profile/Inbox/` + usertype + '/' + memberTypeId)
   }
-  saveBreadList(payload:any) {
-    payload.farmId=this.userdetails.userId;
-    return this.http.post(`${this.baseURL}Breeds`,payload)
+  saveBreadList(payload: any) {
+    payload.farmId = this.userdetails.userId;
+    return this.http.post(`${this.baseURL}Breeds`, payload)
   }
-  DeleteProduct(id:any){
+  DeleteProduct(id: any) {
     return this.http.get(`${this.baseURL}Seller/DeleteProduct/${id}`)
+  }
+  postCommnets(payload: any) {
+    //api/MessageDetails/saveMessageDetails
+    return this.http.get(`${this.baseURL}MessageDetails/saveMessageDetails`,payload)
   }
 }
