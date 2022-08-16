@@ -200,25 +200,30 @@ export class ProdcutDetailsComponent implements OnInit {
   }
   SendMessageToSeller() {
     debugger;
-    console.log(this.model)
     //before send message check login
     // alert(this.userdetails.userid)
     // const userid= this.as.getToken();
     if (!this.userid) {
       this.Login();
     } else {
-      var payload ={
+      var payload = {
         "messageId": 0,
-        "senderId":  this.userid,
-        "receiverId":  this.sellerID,
-        "productId":  this.productID,
-        "createdOn": "2022-08-16T06:38:00.037Z" ,
-        "messageSubject":this.model.senderMessage,
-        "isPrivate":  false ,
-        "fileName":this.model.file,
+        "senderId": this.userid,
+        "receiverId": this.sellerID,
+        "productId": this.productID,
+        "createdOn": "2022-08-16T06:38:00.037Z",
+        "messageSubject": this.model.senderMessage,
+        "isPrivate": false,
+        "fileName": this.model.file,
         //"comment":this.model.senderMessage
       }
-      this.fms.sendMessageToseller(payload).subscribe(res =>{
+      this.form.senderId = this.userid;
+      this.form.receiverId = this.sellerID;
+      this.form.productId = this.productID;
+      this.form.messageId = 0;
+      this.form.createdOn = "2022-08-16T06:38:00.037Z";
+      console.log(this.form)
+      this.fms.sendMessageToseller(this.form).subscribe(res => {
         console.log(res)
       })
       // console.log(this.form)
@@ -258,18 +263,18 @@ export class ProdcutDetailsComponent implements OnInit {
             // this.form.messageId = res
             var payload = {
 
-             "itemId": 0,
+              "itemId": 0,
               "messageId": res,
               "memberId": this.userid,
               "messageTo": this.sellerID,
-              "comment": this.form.comment,             
+              "comment": this.form.comment,
               "createdOn": "2022-08-16T06:38:00.037Z",
               "isRead": true
 
             }
             this.fms.postCommnets(payload).subscribe((data: any) => {
-    this.spinnerService.hide();
-    console.log(data)
+              this.spinnerService.hide();
+              console.log(data)
               this.getComments();
             });
           }
@@ -311,7 +316,7 @@ export class ProdcutDetailsComponent implements OnInit {
     //   }
     // }
   }
- // sendMessageToseller
+  // sendMessageToseller
 
   uploadFile(event: any) {
 
