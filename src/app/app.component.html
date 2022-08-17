@@ -61,7 +61,7 @@
 
                             </ul>
                             <span class="test"> {{this.dataService.getUsername() |titlecase}} </span>
-                            <div *ngIf="dataService.isLoggedIn()">
+                            <span *ngIf="dataService.isLoggedIn()">
 
                             
                             <div class="bell-icon inline-block text-center" >
@@ -85,7 +85,9 @@
                                     <span> </span>
                                 </a>
                             </div>
-                        </div>
+
+                            
+                        </span>
                         </div>
 
                     </div>
