@@ -41,6 +41,7 @@ export class ProdcutDetailsComponent implements OnInit {
   messageId: any;
   model: any = {};
   uploadedFile: any;
+  isHide: any;
   constructor(
     private fms: FmsService,
     private ls: LoginService,
@@ -124,7 +125,7 @@ export class ProdcutDetailsComponent implements OnInit {
     this.fms.getProductImages(this.productID).subscribe((res: any) => {
       console.log(res);
       this.images = res;
-      console.log(this.images[0].imageName);
+     // console.log(this.images[0].imageName);
       localStorage.removeItem('images');
       localStorage.setItem('images', JSON.stringify(this.images[0].imageName));
       //this.fst = this.images[0].imageName;
@@ -216,8 +217,19 @@ export class ProdcutDetailsComponent implements OnInit {
       formdata.append('fileName', this.form.fileName);
       formdata.append('messageSubject', this.form.messageSubject);
 
-      this.fms.sendMessageToseller(formdata).subscribe((res) => {
+      this.fms.sendMessageToseller(formdata).subscribe((res:any) => {
         console.log(res);
+       // this.isHide = res.success
+        if (res) {
+          this.breeddialogRef.close();
+          Swal.fire({
+            icon: 'success',
+            title: 'Message Sent',
+            text: 'Message To Seller Successfully',
+            // type: "success",
+            timer: 500,
+          });
+        }
       });
       // console.log(this.form)
     }
@@ -228,13 +240,20 @@ export class ProdcutDetailsComponent implements OnInit {
       this.message = res;
     });
   }
-  dialogbox(templateRef: any) {
+  dialogbox(breedtemplate: any) {
     if (!this.userid) {
       this.Login();
     } else {
-      this.breeddialogRef = this.matDialog.open(templateRef, {
+      this.breeddialogRef = this.matDialog.open(breedtemplate, {
         width: '300px',
+        disableClose: true,
       });
+      
+      // this.breeddialogRef.afterClosed().subscribe((res: any) => {
+      //   if (res == true) {
+      //     // this.name = "";
+      //   }
+      // });
     }
 
   }
