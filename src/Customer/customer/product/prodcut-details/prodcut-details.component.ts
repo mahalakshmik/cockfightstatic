@@ -23,7 +23,7 @@ export class ProdcutDetailsComponent implements OnInit {
   matDialogRef!: MatDialogRef<LoginComponent>;
   product: any;
   userdetails: any;
-  productID: string | null;
+  productID: any;
   productPicUrl = environment.ProductUrl;
   images: any;
   fst: any;
@@ -40,6 +40,7 @@ export class ProdcutDetailsComponent implements OnInit {
   imageUrl: any;
   messageId: any;
   model: any = {};
+  uploadedFile: any;
   constructor(
     private fms: FmsService,
     private ls: LoginService,
@@ -47,8 +48,7 @@ export class ProdcutDetailsComponent implements OnInit {
     private router: ActivatedRoute,
     public as: AuthService,
     private matDialog: MatDialog,
-    public spinnerService: NgxSpinnerService,
-
+    public spinnerService: NgxSpinnerService
   ) {
     this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
     this.productID = this.router.snapshot.paramMap.get('productID');
@@ -70,7 +70,7 @@ export class ProdcutDetailsComponent implements OnInit {
     this.getMember();
     setInterval(() => {
       this.current = ++this.current % this.images.length;
-    }, 1000);
+    }, 100);
   }
   getMember() {
     this.ls.memberListbyId(this.sellerID).subscribe((res: any) => {
@@ -125,7 +125,7 @@ export class ProdcutDetailsComponent implements OnInit {
       console.log(res);
       this.images = res;
       console.log(this.images[0].imageName);
-      localStorage.removeItem('images')
+      localStorage.removeItem('images');
       localStorage.setItem('images', JSON.stringify(this.images[0].imageName));
       //this.fst = this.images[0].imageName;
       //console.log('st', this.fst)
@@ -178,7 +178,7 @@ export class ProdcutDetailsComponent implements OnInit {
     if (!this.as.isLoggedIn()) {
       this.Login();
     } else {
-      localStorage.removeItem('selectedProdut')
+      localStorage.removeItem('selectedProdut');
       localStorage.setItem('selectedProdut', JSON.stringify(this.product));
       this.route.navigate(['Addressdelivery']);
     }
@@ -206,26 +206,19 @@ export class ProdcutDetailsComponent implements OnInit {
     if (!this.userid) {
       this.Login();
     } else {
-      var payload = {
-        "messageId": 0,
-        "senderId": this.userid,
-        "receiverId": this.sellerID,
-        "productId": this.productID,
-        "createdOn": "2022-08-16T06:38:00.037Z",
-        "messageSubject": this.model.senderMessage,
-        "isPrivate": false,
-        "fileName": this.model.file,
-        //"comment":this.model.senderMessage
-      }
-      this.form.senderId = this.userid;
-      this.form.receiverId = this.sellerID;
-      this.form.productId = this.productID;
-      this.form.messageId = 0;
-      this.form.createdOn = "2022-08-16T06:38:00.037Z";
-      console.log(this.form)
-      this.fms.sendMessageToseller(this.form).subscribe(res => {
-        console.log(res)
-      })
+
+      var formdata = new FormData();
+      formdata.append('messageId', '0');
+      formdata.append('senderId', this.userid);
+      formdata.append('receiverId', this.sellerID);
+      formdata.append('productId', this.productID);
+      formdata.append('createdOn', '2022-08-16T06:38:00.037Z');
+      formdata.append('fileName', this.form.fileName);
+      formdata.append('messageSubject', this.form.messageSubject);
+
+      this.fms.sendMessageToseller(formdata).subscribe((res) => {
+        console.log(res);
+      });
       // console.log(this.form)
     }
   }
@@ -238,10 +231,12 @@ export class ProdcutDetailsComponent implements OnInit {
   dialogbox(templateRef: any) {
     if (!this.userid) {
       this.Login();
+    } else {
+      this.breeddialogRef = this.matDialog.open(templateRef, {
+        width: '300px',
+      });
     }
-    this.breeddialogRef = this.matDialog.open(templateRef, {
-      width: '300px',
-    });
+
   }
   postComment() {
     this.spinnerService.show();
@@ -257,30 +252,27 @@ export class ProdcutDetailsComponent implements OnInit {
 
         console.log(this.form);
         this.fms.postcomment(this.form).subscribe((res: any) => {
-          console.log(res)
-          this.messageId = res
+          console.log(res);
+          this.messageId = res;
           if (res) {
             // this.form.messageId = res
             var payload = {
-
-              "itemId": 0,
-              "messageId": res,
-              "memberId": this.userid,
-              "messageTo": this.sellerID,
-              "comment": this.form.comment,
-              "createdOn": "2022-08-16T06:38:00.037Z",
-              "isRead": true
-
-            }
+              itemId: 0,
+              messageId: res,
+              memberId: this.userid,
+              messageTo: this.sellerID,
+              comment: this.form.comment,
+              createdOn: '2022-08-16T06:38:00.037Z',
+              isRead: true,
+            };
             this.fms.postCommnets(payload).subscribe((data: any) => {
               this.spinnerService.hide();
-              console.log(data)
+              console.log(data);
               this.getComments();
             });
           }
           //this.ngOnInit();
         });
-
       }
     }
   }
@@ -319,14 +311,14 @@ export class ProdcutDetailsComponent implements OnInit {
   // sendMessageToseller
 
   uploadFile(event: any) {
-
     let reader = new FileReader();
     reader.onload = function () {
       let output: any = document.getElementById('blah');
       output.src = reader.result;
-    }
+    };
     if (event.target.files[0]) {
       reader.readAsDataURL(event.target.files[0]);
+      this.uploadedFile = event.target.files[0]
     }
     // this.fileToUpload = file.item(0);
 
@@ -356,7 +348,7 @@ export class ProdcutDetailsComponent implements OnInit {
     //   //   this.removeUpload = true;
     //   // }
     //   // // ChangeDetectorRef since file is loading outside the zone
-    //   // this.cd.markForCheck();        
+    //   // this.cd.markForCheck();
     // }
   }
 }
