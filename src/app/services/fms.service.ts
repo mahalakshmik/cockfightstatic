@@ -80,6 +80,9 @@ export class FmsService {
   NotificationList() {
     return this.http.get(`${this.baseURL}Notifications`)
   }
+  updateNotification(notyid:number) {
+    return this.http.get(`${this.baseURL}NotificationListSP/UpdateNotificationstatus/`+notyid)
+  }
   //filter by memberID
 
   cartList() {
@@ -225,5 +228,12 @@ export class FmsService {
   postCommnets(payload: any) {
     //api/MessageDetails/saveMessageDetails
     return this.http.post(`${this.baseURL}MessageDetails/saveMessageDetails`,payload)
+  }
+  sendMessageToseller(payload: any) {
+    //api/MessageDetails/sendMessageToseller
+    return this.http.post(`${this.baseURL}MessageDetails/sendMessageToseller`,payload)
+  }
+  viewOrderByNumber(orderno:string) {
+    return this.http.get(`${this.baseURL}OrderDetails/viewOrder/` + orderno )
   }
 }
