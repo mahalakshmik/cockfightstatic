@@ -23,7 +23,7 @@ export class ProdcutDetailsComponent implements OnInit {
   matDialogRef!: MatDialogRef<LoginComponent>;
   product: any;
   userdetails: any;
-  productID: string | null;
+  productID: any;
   productPicUrl = environment.ProductUrl;
   images: any;
   fst: any;
@@ -40,6 +40,7 @@ export class ProdcutDetailsComponent implements OnInit {
   imageUrl: any;
   messageId: any;
   model: any = {};
+  uploadedFile: any;
   constructor(
     private fms: FmsService,
     private ls: LoginService,
@@ -205,24 +206,17 @@ export class ProdcutDetailsComponent implements OnInit {
     if (!this.userid) {
       this.Login();
     } else {
-      var payload = {
-        messageId: 0,
-        senderId: this.userid,
-        receiverId: this.sellerID,
-        productId: this.productID,
-        createdOn: '2022-08-16T06:38:00.037Z',
-        messageSubject: this.model.senderMessage,
-        isPrivate: false,
-        fileName: this.model.file,
-        //"comment":this.model.senderMessage
-      };
-      this.form.senderId = this.userid;
-      this.form.receiverId = this.sellerID;
-      this.form.productId = this.productID;
-      this.form.messageId = 0;
-      this.form.createdOn = '2022-08-16T06:38:00.037Z';
-      console.log(this.form);
-      this.fms.sendMessageToseller(this.form).subscribe((res) => {
+
+      var formdata = new FormData();
+      formdata.append('messageId', '0');
+      formdata.append('senderId', this.userid);
+      formdata.append('receiverId', this.sellerID);
+      formdata.append('productId', this.productID);
+      formdata.append('createdOn', '2022-08-16T06:38:00.037Z');
+      formdata.append('fileName', this.form.fileName);
+      formdata.append('messageSubject', this.form.messageSubject);
+
+      this.fms.sendMessageToseller(formdata).subscribe((res) => {
         console.log(res);
       });
       // console.log(this.form)
@@ -237,12 +231,12 @@ export class ProdcutDetailsComponent implements OnInit {
   dialogbox(templateRef: any) {
     if (!this.userid) {
       this.Login();
-    }else{
+    } else {
       this.breeddialogRef = this.matDialog.open(templateRef, {
         width: '300px',
       });
     }
-   
+
   }
   postComment() {
     this.spinnerService.show();
@@ -324,6 +318,7 @@ export class ProdcutDetailsComponent implements OnInit {
     };
     if (event.target.files[0]) {
       reader.readAsDataURL(event.target.files[0]);
+      this.uploadedFile = event.target.files[0]
     }
     // this.fileToUpload = file.item(0);
 
