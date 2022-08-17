@@ -125,7 +125,7 @@ export class ProdcutDetailsComponent implements OnInit {
     this.fms.getProductImages(this.productID).subscribe((res: any) => {
       console.log(res);
       this.images = res;
-     // console.log(this.images[0].imageName);
+      // console.log(this.images[0].imageName);
       localStorage.removeItem('images');
       localStorage.setItem('images', JSON.stringify(this.images[0].imageName));
       //this.fst = this.images[0].imageName;
@@ -217,9 +217,9 @@ export class ProdcutDetailsComponent implements OnInit {
       formdata.append('fileName', this.form.fileName);
       formdata.append('messageSubject', this.form.messageSubject);
 
-      this.fms.sendMessageToseller(formdata).subscribe((res:any) => {
+      this.fms.sendMessageToseller(formdata).subscribe((res: any) => {
         console.log(res);
-       // this.isHide = res.success
+        // this.isHide = res.success
         if (res) {
           this.breeddialogRef.close();
           Swal.fire({
@@ -248,7 +248,7 @@ export class ProdcutDetailsComponent implements OnInit {
         width: '300px',
         disableClose: true,
       });
-      
+
       // this.breeddialogRef.afterClosed().subscribe((res: any) => {
       //   if (res == true) {
       //     // this.name = "";
@@ -275,16 +275,24 @@ export class ProdcutDetailsComponent implements OnInit {
           this.messageId = res;
           if (res) {
             // this.form.messageId = res
-            var payload = {
-              itemId: 0,
-              messageId: res,
-              memberId: this.userid,
-              messageTo: this.sellerID,
-              comment: this.form.comment,
-              createdOn: '2022-08-16T06:38:00.037Z',
-              isRead: true,
-            };
-            this.fms.postCommnets(payload).subscribe((data: any) => {
+            // var payload = {
+            //   itemId: 0,
+            //   messageId: res,
+            //   memberId: this.userid,
+            //   messageTo: this.sellerID,
+            //   comment: this.form.comment,
+            //   createdOn: '2022-08-16T06:38:00.037Z',
+            //   isRead: true,
+            // };
+            var formdata = new FormData();
+            formdata.append('itemId', '0');
+            formdata.append('messageId', res);
+            formdata.append('isRead', 'true');
+            formdata.append('memberId', this.userid);
+            formdata.append('messageTo', this.sellerID);
+            formdata.append('comment', this.form.comment);
+            formdata.append('createdOn', '2022-08-16T06:38:00.037Z');
+            this.fms.postCommnets(formdata).subscribe((data: any) => {
               this.spinnerService.hide();
               console.log(data);
               this.getComments();
