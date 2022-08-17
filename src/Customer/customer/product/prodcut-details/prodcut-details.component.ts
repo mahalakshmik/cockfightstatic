@@ -229,6 +229,17 @@ export class ProdcutDetailsComponent implements OnInit {
             // type: "success",
             timer: 500,
           });
+          var payload = {
+            itemId: 0,
+            messageId: res,
+            memberId: this.userid,
+            messageTo: this.sellerID,
+            comment: this.form.comment,
+            createdOn: '2022-08-16T06:38:00.037Z',
+            isRead: true,
+          };
+          this.sendMessage(payload);
+
         }
       });
       // console.log(this.form)
@@ -284,11 +295,9 @@ export class ProdcutDetailsComponent implements OnInit {
               createdOn: '2022-08-16T06:38:00.037Z',
               isRead: true,
             };
-            this.fms.postCommnets(payload).subscribe((data: any) => {
-              this.spinnerService.hide();
-              console.log(data);
+            this.sendMessage(payload);
               this.getComments();
-            });
+            //});
           }
           //this.ngOnInit();
         });
@@ -369,5 +378,14 @@ export class ProdcutDetailsComponent implements OnInit {
     //   // // ChangeDetectorRef since file is loading outside the zone
     //   // this.cd.markForCheck();
     // }
+  }
+
+  sendMessage(payload:any){
+    this.spinnerService.show();
+
+    this.fms.postCommnets(payload).subscribe((data: any) => {
+      this.spinnerService.hide();
+      console.log(data);
+    });
   }
 }

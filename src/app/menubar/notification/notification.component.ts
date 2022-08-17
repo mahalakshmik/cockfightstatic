@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthService } from 'src/app/services/auth.service';
 import { FmsService } from 'src/app/services/fms.service';
 
 @Component({
@@ -10,16 +11,20 @@ import { FmsService } from 'src/app/services/fms.service';
 })
 export class NotificationComponent implements OnInit {
   notifications: any;
+  userID: any;
 
-  constructor(private fms: FmsService,
+  constructor(private fms: FmsService,private as: AuthService,
     public spinnerService: NgxSpinnerService,private router:Router
-    ) { }
+    ) {
+      const userDetails = this.as.getLoggedUserDetails();
+      this.userID = userDetails.userId;
+     }
 
   ngOnInit(): void {
     this.getNotification()
   }
   getNotification() {
-    this.fms.getNotifications().subscribe(res => { console.log(res) ;
+    this.fms.getNotifications(this.userID).subscribe(res => { console.log(res) ;
     this.notifications  = res;
   })
   }

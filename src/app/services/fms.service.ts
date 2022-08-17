@@ -158,17 +158,20 @@ export class FmsService {
   getSellerListType() {
     return this.http.get(`${this.baseURL}Lookups/OrderStatus`)
   }
-  getNotifications() {
-    return this.http.get(`${this.baseURL}NotificationListSP/` + this.userdetails.userId + '/50')
+  getNotifications(userid:any) {
+    return this.http.get(`${this.baseURL}NotificationListSP/` + userid + '/50')
   }
   getWishList() {
     return this.http.get(`${this.baseURL}WishListListSP/` + this.userdetails.memberType)
   }
   ///senderID/memberType
-  // getInbox(){
-  //   return this.http.get(`${this.baseURL}Profile/Inbox/`+this.userdetails.userId+'/'+2172)
-  // }
+  getInboxCount(){
+    this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
+
+    return this.http.get(`${this.baseURL}Profile/Inbox/`+this.userdetails.userId)
+  }
   getInbox() {
+
     return this.http.get(`${this.baseURL}Profile/Inbox/` + this.userdetails.userId + '/' + this.userdetails.memberType)
   }
   ////LookUps
