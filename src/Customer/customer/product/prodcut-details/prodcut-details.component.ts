@@ -70,7 +70,7 @@ export class ProdcutDetailsComponent implements OnInit {
     this.getMember();
     setInterval(() => {
       this.current = ++this.current % this.images.length;
-    }, 1000);
+    }, 100);
   }
   getMember() {
     this.ls.memberListbyId(this.sellerID).subscribe((res: any) => {
