@@ -24,6 +24,7 @@ export class AppComponent {
   inbox: any;
   userID: any;
   memberType: any;
+  inboxcount: number=0;
   //userType: any;
   constructor(
     private matDialog: MatDialog,private as: AuthService,
@@ -39,7 +40,9 @@ export class AppComponent {
     if (this.user) {
      this.getCartList();
      this.getNotification();
-     this.getInbox();
+    // this.getInbox();
+    this.getInboxCount();
+
       this.userName = this.user.userName;
     }
   }
@@ -80,8 +83,16 @@ export class AppComponent {
       this.inbox = res;
     });
   }
+
+  getInboxCount(){
+ this.fms.getInboxCount().subscribe((res:any)=>{
+    this.inboxcount=res[0].count;
+    alert(this.inboxcount)
+   });
+   console.log(this.inboxcount)
+  }
   getNotification() {
-    this.fms.getNotifications().subscribe((res) => {
+    this.fms.getNotifications(this.userID).subscribe((res) => {
       this.notifications = res;
       this.notifcount = this.notifications.length;
       console.log(this.notifcount.messageHeader);
@@ -89,6 +100,7 @@ export class AppComponent {
   }
 
   ngOnInit() {
+    //this.getInboxCount();
     // this.getCartList();
     //  this.getNotification();
   }

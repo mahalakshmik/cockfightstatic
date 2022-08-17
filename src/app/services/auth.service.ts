@@ -114,6 +114,12 @@ export class AuthService {
       return res;
     });
   }
+  inboxCount() {
+   
+    this.fms.getInboxCount().subscribe((res) => {
+      return res;
+    });
+  }
 
   getCartList() {
     this.fms.cartList().subscribe((res) => {
@@ -121,7 +127,8 @@ export class AuthService {
     });
   }
   getNotification() {
-    this.fms.getNotifications().subscribe((res:any) => {
+    const id=this.getToken();
+    this.fms.getNotifications(id).subscribe((res:any) => {
      return res.length;
       
     });
