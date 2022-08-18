@@ -110,7 +110,10 @@ export class SellingComponent implements OnInit {
   }
   editseller(sellerList: any) {
     this.isShowAddseller = true;
+
     this.formsell = sellerList;
+   // this.formsell.myfile=sellerList.productImage;
+    console.log(this.formsell)
  
     console.log('edit', sellerList);
 this.url= this.productVideoUrl+sellerList.productID+'_0.mp4';
@@ -122,7 +125,6 @@ console.log(this.url)
   getImgListByProductId(id:number){
     this.fms.getimgListbyProductId(id).subscribe((res:any)=>{
       if(res.length >0 ){
-
         res.forEach((e:any) => {
           const imgs=this.productPicUrl+e.imageName;
           
@@ -226,8 +228,8 @@ console.log(this.url)
     });
   }
 
-  createsell() {
-    
+  createsell() {debugger
+
     this.spinnerService.show();
     if(this.formsell.discount ==undefined){
       this.formsell.discount=0;
@@ -237,8 +239,8 @@ console.log(this.url)
     }
     console.log(this.formsell);
     var formdata = new FormData();
-    formdata.append('ProductId', '0');
-    formdata.append('ProductCode', '0');
+    formdata.append('ProductId', this.formsell.productID);
+    formdata.append('ProductCode', this.formsell.productCode);
     formdata.append('ProductName', this.formsell.productName);
     formdata.append('ProductType', '2165');
     formdata.append('Gender', this.formsell.gender);
@@ -256,8 +258,8 @@ console.log(this.url)
     formdata.append('PaymentOption', this.formsell.paymentOption);
     formdata.append('ProductImage', 'NULL');
     formdata.append('Remarks', 'dummy');
-    formdata.append('IsActive', 'false');
-    formdata.append('IsAvailable', 'false');
+    formdata.append('IsActive', 'true');
+    formdata.append('IsAvailable', 'true');
     formdata.append('StockQty', this.formsell.stockQty);
     formdata.append('CreatedOn', '1944-05-31T06:21:21.373Z');
     formdata.append('ModifiedOn', '1974-05-13T00:14:37.989Z');

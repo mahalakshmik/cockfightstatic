@@ -1,6 +1,6 @@
 export class ProductMaster {
-    productId: any;
-    productCode: any;
+    productID: any=0;
+    productCode: any=0;
     productName: any;
     productType: any | null;
     gender: any | null;

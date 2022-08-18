@@ -86,8 +86,11 @@ export class AppComponent {
 
   getInboxCount(){
  this.fms.getInboxCount().subscribe((res:any)=>{
+  console.log(res)
+  if(res != -1){
+
     this.inboxcount=res[0].count;
-    alert(this.inboxcount)
+  }
    });
    console.log(this.inboxcount)
   }
