@@ -23,7 +23,7 @@ export class ProdcutDetailsComponent implements OnInit {
   matDialogRef!: MatDialogRef<LoginComponent>;
   product: any;
   userdetails: any;
-  productID: string | null;
+  productID: any;
   productPicUrl = environment.ProductUrl;
   images: any;
   fst: any;
@@ -40,6 +40,8 @@ export class ProdcutDetailsComponent implements OnInit {
   imageUrl: any;
   messageId: any;
   model: any = {};
+  uploadedFile: any;
+  isHide: any;
   constructor(
     private fms: FmsService,
     private ls: LoginService,
@@ -69,7 +71,7 @@ export class ProdcutDetailsComponent implements OnInit {
     this.getMember();
     setInterval(() => {
       this.current = ++this.current % this.images.length;
-    }, 1000);
+    }, 100);
   }
   getMember() {
     this.ls.memberListbyId(this.sellerID).subscribe((res: any) => {
@@ -123,7 +125,7 @@ export class ProdcutDetailsComponent implements OnInit {
     this.fms.getProductImages(this.productID).subscribe((res: any) => {
       console.log(res);
       this.images = res;
-      console.log(this.images[0].imageName);
+      // console.log(this.images[0].imageName);
       localStorage.removeItem('images');
       localStorage.setItem('images', JSON.stringify(this.images[0].imageName));
       //this.fst = this.images[0].imageName;
@@ -205,25 +207,28 @@ export class ProdcutDetailsComponent implements OnInit {
     if (!this.userid) {
       this.Login();
     } else {
-      var payload = {
-        messageId: 0,
-        senderId: this.userid,
-        receiverId: this.sellerID,
-        productId: this.productID,
-        createdOn: '2022-08-16T06:38:00.037Z',
-        messageSubject: this.model.senderMessage,
-        isPrivate: false,
-        fileName: this.model.file,
-        //"comment":this.model.senderMessage
-      };
-      this.form.senderId = this.userid;
-      this.form.receiverId = this.sellerID;
-      this.form.productId = this.productID;
-      this.form.messageId = 0;
-      this.form.createdOn = '2022-08-16T06:38:00.037Z';
-      console.log(this.form);
-      this.fms.sendMessageToseller(this.form).subscribe((res) => {
+      var formdata = new FormData();
+      formdata.append('messageId', '0');
+      formdata.append('senderId', this.userid);
+      formdata.append('receiverId', this.sellerID);
+      formdata.append('productId', this.productID);
+      formdata.append('createdOn', '2022-08-16T06:38:00.037Z');
+      formdata.append('fileName', this.form.fileName);
+      formdata.append('messageSubject', this.form.messageSubject);
+
+      this.fms.sendMessageToseller(formdata).subscribe((res: any) => {
         console.log(res);
+        // this.isHide = res.success
+        if (res) {
+          this.breeddialogRef.close();
+          Swal.fire({
+            icon: 'success',
+            title: 'Message Sent',
+            text: 'Message To Seller Successfully',
+            // type: "success",
+            timer: 500,
+          });
+        }
       });
       // console.log(this.form)
     }
@@ -234,15 +239,21 @@ export class ProdcutDetailsComponent implements OnInit {
       this.message = res;
     });
   }
-  dialogbox(templateRef: any) {
+  dialogbox(breedtemplate: any) {
     if (!this.userid) {
       this.Login();
-    }else{
-      this.breeddialogRef = this.matDialog.open(templateRef, {
+    } else {
+      this.breeddialogRef = this.matDialog.open(breedtemplate, {
         width: '300px',
+        disableClose: true,
       });
+
+      // this.breeddialogRef.afterClosed().subscribe((res: any) => {
+      //   if (res == true) {
+      //     // this.name = "";
+      //   }
+      // });
     }
-   
   }
   postComment() {
     this.spinnerService.show();
@@ -262,16 +273,24 @@ export class ProdcutDetailsComponent implements OnInit {
           this.messageId = res;
           if (res) {
             // this.form.messageId = res
-            var payload = {
-              itemId: 0,
-              messageId: res,
-              memberId: this.userid,
-              messageTo: this.sellerID,
-              comment: this.form.comment,
-              createdOn: '2022-08-16T06:38:00.037Z',
-              isRead: true,
-            };
-            this.fms.postCommnets(payload).subscribe((data: any) => {
+            // var payload = {
+            //   itemId: 0,
+            //   messageId: res,
+            //   memberId: this.userid,
+            //   messageTo: this.sellerID,
+            //   comment: this.form.comment,
+            //   createdOn: '2022-08-16T06:38:00.037Z',
+            //   isRead: true,
+            // };
+            var formdata = new FormData();
+            formdata.append('itemId', '0');
+            formdata.append('messageId', res);
+            formdata.append('isRead', 'true');
+            formdata.append('memberId', this.userid);
+            formdata.append('messageTo', this.sellerID);
+            formdata.append('comment', this.form.comment);
+            formdata.append('createdOn', '2022-08-16T06:38:00.037Z');
+            this.fms.postCommnets(formdata).subscribe((data: any) => {
               this.spinnerService.hide();
               console.log(data);
               this.getComments();
@@ -324,7 +343,9 @@ export class ProdcutDetailsComponent implements OnInit {
     };
     if (event.target.files[0]) {
       reader.readAsDataURL(event.target.files[0]);
+
       this.selectedFiles = event.target.files[0];
+      this.uploadedFile = event.target.files[0];
     }
     // this.fileToUpload = file.item(0);
 
