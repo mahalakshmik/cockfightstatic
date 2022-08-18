@@ -324,6 +324,7 @@ export class ProdcutDetailsComponent implements OnInit {
     };
     if (event.target.files[0]) {
       reader.readAsDataURL(event.target.files[0]);
+      this.selectedFiles = event.target.files[0];
     }
     // this.fileToUpload = file.item(0);
 
