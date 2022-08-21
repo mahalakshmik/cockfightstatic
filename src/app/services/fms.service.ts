@@ -222,6 +222,15 @@ export class FmsService {
   DeleteProduct(id: any) {
     return this.http.get(`${this.baseURL}Seller/DeleteProduct/${id}`)
   }
+  updateStock() {
+    //api/OrderPayments/updateStock
+    let queryParams = new HttpParams();
+     queryParams = queryParams.append("productID", 21169);
+     queryParams = queryParams.append("quantity", 1);
+     queryParams = queryParams.append("stockFlag", 1);
+   // return this.http.get(`${this.baseURL}OrderPayments/updateStock/${payload.productID}/${payload.quantity}/${payload.stockFlag}`)
+    return this.http.get(`${this.baseURL}OrderPayments/updateStock`,{ params: queryParams })
+  }
   postCommnets(payload: any) {
     //api/MessageDetails/saveMessageDetails
     return this.http.post(`${this.baseURL}MessageDetails/saveMessageDetails`,payload)
