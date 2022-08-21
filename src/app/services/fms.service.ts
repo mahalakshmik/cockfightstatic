@@ -47,6 +47,15 @@ export class FmsService {
 
     return this.http.post(`${this.baseURL}OrderPayments/confirmOrder`, payload);
   }
+  saveDeliveryAddress(payload:any){
+    return this.http.post(`${this.baseURL}DeliveryAddress`,payload)
+  }
+  SavePayment(payload: any) {
+    payload.memberId = this.userdetails.userId
+    payload.addressID = this.userdetails.userId
+
+    return this.http.post(`${this.baseURL}OrderPayments/SaveOrderPayment`, payload);
+  }
   verifyUpload(payload: any) {
     return this.http.post(`${this.baseURL}Profile/verfiyDocument`, payload);
   }

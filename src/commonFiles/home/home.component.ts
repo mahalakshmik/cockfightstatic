@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/services/auth.service';
 import { FmsService } from 'src/app/services/fms.service';
@@ -16,6 +17,7 @@ import { productsearch } from './productsearch.model';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+
   matDialogRefL!: MatDialogRef<LoginComponent>;
   matDialogRef!: MatDialogRef<RegisterComponent>;
   form = new productsearch();
@@ -33,7 +35,8 @@ export class HomeComponent implements OnInit {
     public gs: AuthService,
     private fmss: FmsService,
     public spinnerService: NgxSpinnerService,
-    private as: AuthService
+    private as: AuthService,
+    private rout:Router,
   ) {}
 
   img_list = [
@@ -162,5 +165,11 @@ export class HomeComponent implements OnInit {
       if (res == true) {
       }
     });
+  }
+  gotodetails(p:any){
+
+  localStorage.setItem('selectedProdutList', JSON.stringify(p));
+    this.rout.navigate(['customer/ProdcutDetails/',p.productID, p.sellerID])
+
   }
 }

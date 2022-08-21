@@ -180,7 +180,7 @@ export class ProdcutDetailsComponent implements OnInit {
       this.Login();
     } else {
       localStorage.removeItem('selectedProdut');
-      localStorage.setItem('selectedProdut', JSON.stringify(this.product));
+     localStorage.setItem('selectedProdut', JSON.stringify(this.product));
       this.route.navigate(['Addressdelivery']);
     }
   }

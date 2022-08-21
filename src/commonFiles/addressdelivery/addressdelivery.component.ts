@@ -20,8 +20,9 @@ export class AddressdeliveryComponent implements OnInit {
    this.getaddressesList();
   }
   getaddressesList(){
-    this.fms.addressList().subscribe(res => {
+    this.fms.addressList().subscribe((res:any) => {
       this.addresslist = res;
+      localStorage.setItem('deliveryaddress',JSON.stringify(res[0]))
       console.log(this.addresslist)
     })
   }

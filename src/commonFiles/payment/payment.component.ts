@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { deliveryaddress } from 'src/app/menubar/models/deliveryaddress.model';
+import { OrderPayment } from 'src/app/menubar/models/orderpayment.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { FmsService } from 'src/app/services/fms.service';
 import Swal from 'sweetalert2';
@@ -15,96 +17,64 @@ export class PaymentComponent implements OnInit {
   selectedProdut: any;
   forms: any = new OrderSave();
   notification = new Notificationvm();
+  address = new deliveryaddress();
+  savePayment=new OrderPayment();
   orderID: any;
   imageUrl: any;
   fileToUpload: any;
   constructor(private fms: FmsService, private route: Router) {
     this.totalamount = JSON.parse(localStorage.getItem('totalamount') || '{}');
-    this.selectedProdut = JSON.parse(
-      localStorage.getItem('selectedProdut') || '{}'
-    );
+    this.selectedProdut = JSON.parse(localStorage.getItem('selectedProdut') || '{}');
+    this.address = JSON.parse(localStorage.getItem('deliveryaddress') || '{}');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.address)
+  }
   confirmOrder() {
+    //save orderheader2.save orderdetails.3.save deliveryaddrs.4.update stock
     console.log(this.forms);
     this.forms.orderAmount = this.selectedProdut.standardPrice;
     this.forms.discountAmount = this.selectedProdut.discount;
     this.forms.totalAmount = this.totalamount;
+    var formdata = new FormData();
+    // formdata.append('PaymentAmount', this.forms.orderAmount);
+    // formdata.append('PaymentAmount', this.forms.discountAmount);
+    // formdata.append('OrderId', this.forms.OrderId);
+    // formdata.append('ReferenceNo', '2165');
+    // formdata.append('PaymentMode', '2165');
+    // formdata.append('file', this.fileToUpload);
     this.fms.Payment(this.forms).subscribe((res) => {
       this.orderID = res;
       console.log(res);
-      if (res) {
-        Swal.fire({
-          icon: 'success',
-          title: 'Order Confirmed!',
-          text: 'You clicked the button!',
-          // type: "success",
-          timer: 500,
-        });
-        localStorage.setItem('orderID', JSON.stringify(this.orderID));
+
+      localStorage.setItem('orderID', JSON.stringify(this.orderID));
+      this.address.orderID = this.orderID;
+      this.fms.saveDeliveryAddress(this.address).subscribe(res => {
+        alert(res)
+        if (res) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Order Confirmed!',
+            text: '',
+            // type: "success",
+            timer: 500,
+          });
+        }
         this.route.navigate(['/customer/confirmorder']);
-      }
+      })
+
     });
   }
   uploadFile(e: any) {
-    debugger;
-    this.fileToUpload = e.target.files.item(0);
+    this.fileToUpload = e.target.files[0];
 
     //Show image preview
     let reader = new FileReader();
+    reader.readAsDataURL(this.fileToUpload);
     reader.onload = (event: any) => {
       this.imageUrl = event.target.result;
     };
-   // reader.readAsDataURL(this.fileToUpload);
-    if (e.target.files.item(0)) {
-      reader.readAsDataURL(this.fileToUpload);
-    }
-    ///////
-    // let reader = new FileReader();
-    // reader.onload = (event: any) => {
-    //   this.imageUrl = event.target.result;
-    //   console.log(this.imageUrl);
-    // };
-    // reader.onload = function(){
-    //   let output: any = document.getElementById('blah');
-    //   output.src = reader.result;
-    // }
 
-    // if (event.target.files[0]) {
-    //   reader.readAsDataURL(event.target.files[0]);
-    // }
-
-    //////////////
-    // this.fileToUpload = file.item(0);
-
-    //Show image preview
-    //let reader = new FileReader();
-    // let file = event.target.files[0];
-    // reader.onload = (event: any) => {
-    //   this.imageUrl = event.target.result;
-    // }
-    // reader.readAsDataURL(file);
-    //main
-    // let reader = new FileReader(); // HTML5 FileReader API
-    // let file = event.target.files[0];
-    // reader.readAsDataURL(file);
-    // console.log(file)
-
-    // if (event.target.files && event.target.files[0]) {
-    //   reader.readAsDataURL(file);
-
-    //   // When file uploads set it to file formcontrol
-    //   // reader.onload = () => {
-    //   //   this.imageUrl = reader.result;
-    //   //   this.registrationForm.patchValue({
-    //   //     file: reader.result
-    //   //   });
-    //   //   this.editFile = false;
-    //   //   this.removeUpload = true;
-    //   // }
-    //   // // ChangeDetectorRef since file is loading outside the zone
-    //   // this.cd.markForCheck();
-    // }
   }
 }
