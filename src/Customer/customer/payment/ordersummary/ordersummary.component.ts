@@ -63,6 +63,7 @@ export class OrdersummaryComponent implements OnInit {
   }
 
   confirmOrder() {
+    localStorage.setItem('quantity',JSON.stringify(this.productCount))
     if (this.selectedProdut.paymentOption == 2177) {
       this.confirmOrderforCOD();
       //this.saveNotificaton()
@@ -74,7 +75,7 @@ export class OrdersummaryComponent implements OnInit {
   saveNotificaton() {
     this.notification.senderId = this.selectedProdut.sellerId;
     this.notification.message =
-      'New Order Received: FarmPraveen' +
+      'New Order Received: Farm Praveen' +
       '(' +
       this.orderID +
       ') from' +

@@ -168,7 +168,7 @@ export class HomeComponent implements OnInit {
   }
   gotodetails(p:any){
 
-  localStorage.setItem('selectedProdutList', JSON.stringify(p));
+  //localStorage.setItem('selectedProdutList', JSON.stringify(p));
     this.rout.navigate(['customer/ProdcutDetails/',p.productID, p.sellerID])
 
   }

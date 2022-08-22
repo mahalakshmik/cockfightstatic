@@ -91,8 +91,8 @@ export class ProdcutDetailsComponent implements OnInit {
       }, 100);
     this.productPicUrl.concat();
     this.members = data.member;
-    localStorage.setItem('sellerName', JSON.stringify(this.members));
-
+   // localStorage.setItem('sellerName', JSON.stringify(this.members));
+    localStorage.setItem('selectedProdutList', JSON.stringify(this.product));
       //console.log('prdID', this.prdId);
       // localStorage.setItem('selectedProdut', JSON.stringify(this.product));
       // this.getgender();

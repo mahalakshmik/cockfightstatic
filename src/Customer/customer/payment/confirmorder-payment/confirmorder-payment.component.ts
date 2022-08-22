@@ -19,13 +19,17 @@ export class ConfirmorderPaymentComponent implements OnInit {
   productPicUrl = environment.ProductUrl;
   images: any;
   orderID: any;
+  selectedquntity:number=1;
+  deliveryaddress: any;
   constructor(private fms: FmsService) {
     this.selectedProdut = JSON.parse(localStorage.getItem('selectedProdutList') || '{}')
     this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
     this.productID = JSON.parse(localStorage.getItem('productID') || '{}')
     this.images = JSON.parse(localStorage.getItem('images') || '{}')
     this.orderID = JSON.parse(localStorage.getItem('orderID') || '{}');
-console.log('orderid',this.orderID)
+    this.selectedquntity = JSON.parse(localStorage.getItem('quantity') || '{}');
+    this.deliveryaddress = JSON.parse(localStorage.getItem('deliveryaddress') || '{}');
+console.log('orderid',this.selectedProdut)
   }
 
   ngOnInit(): void {
@@ -48,12 +52,12 @@ console.log('orderid',this.orderID)
   saveNotificaton() {
     this.notification.senderId = this.selectedProdut.sellerId;
     this.notification.message = "New Order Received: " + '(' + this.orderdetails[0].orderNo + ') from'
-      + this.userdetails.userName + 'for product' + this.selectedProdut.productName;
+      + this.userdetails.userName + ' for product ' + this.selectedProdut.productName;
     console.log(this.notification)
     this.fms.saveNotifications(this.notification).subscribe(res => {
       console.log(res)
       if(res){
-        this.fms.updateStock(this.selectedProdut.productID,this.selectedProdut.stockQty).subscribe(data => {
+        this.fms.updateStock(this.selectedProdut.productID,this.selectedquntity).subscribe(data => {
           console.log(data)
         })
       }
