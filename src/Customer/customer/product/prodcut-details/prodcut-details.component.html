@@ -54,20 +54,20 @@
                     <h3> <b>{{members?.userName}} </b></h3>
                     <!-- <h4> Special priceends in less than </h4> -->
 
-                    <div>
+                    <!-- <div>
                         <span class="fa fa-star checked m-r-5"></span>
                         <span class="fa fa-star m-r-5 checked"></span>
                         <span class="fa fa-star m-r-5 checked"></span>
                         <span class="fa fa-star m-r-5 checkbox"></span>
                         <span class="fa fa-star m-r-5"></span>
                         (3) 
-                        <!-- <a href="#"> 17679 Ratings </a> | <a href="#"> 933 Reviews </a> -->
-                    </div>
+                         <a href="#"> 17679 Ratings </a> | <a href="#"> 933 Reviews </a> 
+                    </div> -->
 
                     <hr>
-                    <div> MRP {{product?.standardPrice | number: '1.2-2'}} (Inclusive of all
-                        taxes)Rs.{{product?.discount}}% OFF </div>
-                    <h1> Rs{{product?.standardPrice | number: '1.2-2'}} <span class="price-off"> {{product?.discount}} %
+                    <!-- <div> MRP {{product?.standardPrice | number: '1.2-2'}} (Inclusive of all
+                        taxes)Rs.{{product?.discount}}% OFF </div> -->
+                    <h1>฿ {{product?.standardPrice | number: '1.2-2'}} <span class="price-off"> {{product?.discount}} %
                             OFF </span></h1>
 
                     <div class="row m-t-20">
@@ -84,7 +84,7 @@
                                 <label> Size: </label>
                             </div>
                             <div class="col-sm-10">
-                                <label class="orange-txt"> 2Kg </label>
+                                <label class="orange-txt">{{product?.weight}}  {{product?.uomDesc}} </label>
                             </div>
                         </div>
                         <div class="form-group">
@@ -93,12 +93,12 @@
                                 </label>
                             </div>
                             <div class="col-sm-10">
-                                <label class="orange-txt">{{product?.paymentOption}} </label>
+                                <label class="orange-txt">{{product?.paymentOptionDesc}} </label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-4">
-                                <label *ngIf="product?.stockQty != 0"> Quantity: {{product?.stockQty}}</label>
+                                <label *ngIf="product?.stockQty != 0"> Quantity:  <b>{{product?.stockQty}}</b></label>
                                 <div class="example-chip-list" *ngIf="product?.stockQty == 0">
 
                                     <label class="orange-txt">
@@ -217,19 +217,19 @@
                             <td width="400" class="first"> Product Name: </td>
                             <td> {{product?.productName | uppercase}}</td>
                             <td> Age: </td>
-                            <td> {{product?.age}}</td>
+                            <td> {{product?.age}} {{product?.ageTypeDescription}}</td>
                         </tr>
                         <tr>
                             <td> Gender: </td>
-                            <td>{{product?.gender}} </td>
+                            <td>{{product?.genderDesc}} </td>
                             <td> Fighting Record: </td>
                             <td>{{product?.fightingRecord | uppercase}} </td>
                         </tr>
                         <tr>
                             <td> Sire/Breeder: </td>
-                            <td>{{product?.breedType}} </td>
+                            <td>{{product?.breedTypeDesc}} </td>
                             <td> Weight: </td>
-                            <td>{{product?.weight}} </td>
+                            <td>{{product?.weight}}  {{product?.uomDesc}} </td>
                         </tr>
                         <tr>
                             <td>Breed: </td>

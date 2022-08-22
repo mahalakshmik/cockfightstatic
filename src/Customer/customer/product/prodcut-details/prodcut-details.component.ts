@@ -64,75 +64,44 @@ export class ProdcutDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.spinnerService.show();
+
     this.userid = this.as.getToken();
     this.getComments();
     this.productList();
-    this.getImages();
-    this.getMember();
-    setInterval(() => {
-      this.current = ++this.current % this.images.length;
-    }, 100);
+    // this.getImages();
+    // this.getMember();
+  
   }
-  getMember() {
-    this.ls.memberListbyId(this.sellerID).subscribe((res: any) => {
-      console.log('member' + res);
-      this.members = res;
-      localStorage.setItem('sellerName', JSON.stringify(this.members));
-    });
-  }
-  getBreadType() {
-    this.ls.breadLookup().subscribe((res: any) => {
-      console.log(res);
-      if (this.product.breedType != null) {
-        let data = res.filter((i: any) => i.lookupId == this.product.breedType);
-        this.product.breedType = data[0].lookupDescription;
-      }
-    });
-  }
-  getPaymentType() {
-    this.ls.paymentTypeLookup().subscribe((res: any) => {
-      console.log(res);
-      const data = res.filter(
-        (i: any) => i.lookupId == this.product.paymentOption
-      );
-      this.product.paymentOption = data[0].lookupDescription;
-    });
-  }
-  getgender() {
-    this.ls.genderLookup().subscribe((res: any) => {
-      console.log(res);
-      let genderdata = [];
-      genderdata = res.filter((i: any) => i.lookupId == this.product.gender);
-      this.product.gender = genderdata[0].lookupDescription;
-    });
-  }
+ 
   productList() {
-    this.fms.produtListById(this.productID).subscribe((data: any) => {
-      this.product = data;
+    this.fms.produtListById(this.productID,this.sellerID).subscribe((data: any) => {
+      this.product = data.productMaster;
       //  this.product.isGuest = false;
 
       console.log(data);
       this.prdId = this.product.productId;
-      console.log('prdID', this.prdId);
+      this.images=data.productImages;
+      this.spinnerService.hide();
+      console.log(this.images)
+      localStorage.removeItem('images');
+      localStorage.setItem('images', JSON.stringify(this.images[0].imageName));
+      setInterval(() => {
+        this.current = ++this.current % this.images.length;
+      }, 100);
+    this.productPicUrl.concat();
+    this.members = data.member;
+    localStorage.setItem('sellerName', JSON.stringify(this.members));
+
+      //console.log('prdID', this.prdId);
       // localStorage.setItem('selectedProdut', JSON.stringify(this.product));
-      this.getgender();
-      this.getBreadType();
-      this.getPaymentType();
+      // this.getgender();
+      // this.getBreadType();
+      // this.getPaymentType();
     });
   }
 
-  getImages() {
-    this.fms.getProductImages(this.productID).subscribe((res: any) => {
-      console.log(res);
-      this.images = res;
-     // console.log(this.images[0].imageName);
-      localStorage.removeItem('images');
-      localStorage.setItem('images', JSON.stringify(this.images[0].imageName));
-      //this.fst = this.images[0].imageName;
-      //console.log('st', this.fst)
-    });
-    this.productPicUrl.concat();
-  }
+
   addCart() {
     if (!this.as.isLoggedIn()) {
       this.Login();
@@ -152,10 +121,10 @@ export class ProdcutDetailsComponent implements OnInit {
         stockQty: this.product.stockQty,
         // "IsGuest":false
       };
-      console.log(payload);
+      //console.log(payload);
       //this.route.navigate(['Cartitems'])
       this.fms.saveCartList(payload).subscribe((res: any) => {
-        console.log(res);
+        //console.log(res);
         if (res) {
           Swal.fire({
             icon: 'success',
@@ -218,7 +187,7 @@ export class ProdcutDetailsComponent implements OnInit {
       formdata.append('messageSubject', this.form.messageSubject);
 
       this.fms.sendMessageToseller(formdata).subscribe((res:any) => {
-        console.log(res);
+        //console.log(res);
        // this.isHide = res.success
         if (res) {
           this.breeddialogRef.close();
@@ -242,12 +211,12 @@ export class ProdcutDetailsComponent implements OnInit {
 
         }
       });
-      // console.log(this.form)
+      // //console.log(this.form)
     }
   }
   getComments() {
     this.fms.getpostcomment(this.productID).subscribe((res: any) => {
-      console.log(res);
+      //console.log(res);
       this.message = res;
     });
   }
@@ -280,9 +249,9 @@ export class ProdcutDetailsComponent implements OnInit {
         this.form.senderId = this.userid;
         this.form.receiverId = this.sellerID;
 
-        console.log(this.form);
+        //console.log(this.form);
         this.fms.postcomment(this.form).subscribe((res: any) => {
-          console.log(res);
+          //console.log(res);
           this.messageId = res;
           if (res) {
             // this.form.messageId = res
@@ -320,7 +289,7 @@ export class ProdcutDetailsComponent implements OnInit {
     this.selectedFiles = event.target.files;
     const reader = new FileReader();
     reader.readAsDataURL(this.selectedFiles);
-    console.log(this.selectedFiles);
+    //console.log(this.selectedFiles);
     // this.previews = [];
     // if (this.selectedFiles && this.selectedFiles[0]) {
     //   const numberOfFiles = this.selectedFiles.length;
@@ -329,7 +298,7 @@ export class ProdcutDetailsComponent implements OnInit {
 
     //     reader.onload = (e: any) => {
     //       this.previews.push(e.target.result);
-    //       console.log(this.previews);
+    //       //console.log(this.previews);
     //     };
 
     //     reader.readAsDataURL(this.selectedFiles[i]);
@@ -361,7 +330,7 @@ export class ProdcutDetailsComponent implements OnInit {
     // let reader = new FileReader(); // HTML5 FileReader API
     // let file = event.target.files[0];
     // reader.readAsDataURL(file);
-    // console.log(file)
+    // //console.log(file)
 
     // if (event.target.files && event.target.files[0]) {
     //   reader.readAsDataURL(file);
@@ -385,7 +354,56 @@ export class ProdcutDetailsComponent implements OnInit {
 
     this.fms.postCommnets(payload).subscribe((data: any) => {
       this.spinnerService.hide();
-      console.log(data);
+      //console.log(data);
     });
   }
+
+  //#oldcode 
+  
+  getMember() {
+    this.ls.memberListbyId(this.sellerID).subscribe((res: any) => {
+      //console.log('member' + res);
+      this.members = res;
+      localStorage.setItem('sellerName', JSON.stringify(this.members));
+    });
+  }
+  getBreadType() {
+    this.ls.breadLookup().subscribe((res: any) => {
+      //console.log(res);
+      if (this.product.breedType != null) {
+        let data = res.filter((i: any) => i.lookupId == this.product.breedType);
+        this.product.breedType = data[0].lookupDescription;
+      }
+    });
+  }
+  getPaymentType() {
+    this.ls.paymentTypeLookup().subscribe((res: any) => {
+      //console.log(res);
+      const data = res.filter(
+        (i: any) => i.lookupId == this.product.paymentOption
+      );
+      this.product.paymentOption = data[0].lookupDescription;
+    });
+  }
+  getgender() {
+    this.ls.genderLookup().subscribe((res: any) => {
+      //console.log(res);
+      let genderdata = [];
+      genderdata = res.filter((i: any) => i.lookupId == this.product.gender);
+      this.product.gender = genderdata[0].lookupDescription;
+    });
+  }
+  getImages() {
+    this.fms.getProductImages(this.productID).subscribe((res: any) => {
+      //console.log(res);
+      this.images = res;
+     // //console.log(this.images[0].imageName);
+      localStorage.removeItem('images');
+      localStorage.setItem('images', JSON.stringify(this.images[0].imageName));
+      //this.fst = this.images[0].imageName;
+      ////console.log('st', this.fst)
+    });
+    this.productPicUrl.concat();
+  }
+//#endoldcode
 }

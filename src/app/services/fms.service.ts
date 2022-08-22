@@ -80,8 +80,8 @@ export class FmsService {
   getProductImages(productId: any) {
     return this.http.get(`${this.baseURL}ProductImages/List/` + productId)
   }
-  produtListById(productId: any) {
-    return this.http.get(`${this.baseURL}ProductMasters/` + productId)
+  produtListById(productId: any,formid:any) {
+    return this.http.get(`${this.baseURL}ProductMasters/${productId}/${formid}`)
   }
   userAddressList() {
     return this.http.get(`${this.baseURL}uspAddresses/` + this.userdetails.userId)
