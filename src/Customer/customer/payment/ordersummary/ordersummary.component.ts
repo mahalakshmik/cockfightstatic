@@ -69,6 +69,7 @@ export class OrdersummaryComponent implements OnInit {
       //this.saveNotificaton()
     } else {
       this.route.navigate(['payment']);
+      console.log(this.totalAmount)
       localStorage.setItem('totalamount', JSON.stringify(this.totalAmount));
     }
   }

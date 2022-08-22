@@ -20,6 +20,7 @@ export class ConfirmorderPaymentComponent implements OnInit {
   orderID: any;
   selectedquntity: number = 1;
   deliveryaddress: any;
+  total: any;
   constructor(private fms: FmsService) {
     this.selectedProdut = JSON.parse(
       localStorage.getItem('selectedProdutList') || '{}'
@@ -43,6 +44,7 @@ export class ConfirmorderPaymentComponent implements OnInit {
     this.fms.getconformOrder(this.orderID).subscribe((res: any) => {
       console.log(res);
       this.orderdetails = res;
+      this.total = this.orderdetails[0].orderAmount - this.orderdetails[0].discountAmount
       console.log(this.orderdetails[0].orderNo);
       if (res) {
         this.saveNotificaton();
