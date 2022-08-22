@@ -176,7 +176,6 @@ export class ProdcutDetailsComponent implements OnInit {
     if (!this.userid) {
       this.Login();
     } else {
-
       var formdata = new FormData();
       formdata.append('messageId', '0');
       formdata.append('senderId', this.userid);
@@ -228,14 +227,13 @@ export class ProdcutDetailsComponent implements OnInit {
         width: '300px',
         disableClose: true,
       });
-      
+
       // this.breeddialogRef.afterClosed().subscribe((res: any) => {
       //   if (res == true) {
       //     // this.name = "";
       //   }
       // });
     }
-
   }
   postComment() {
     this.spinnerService.show();
@@ -315,7 +313,9 @@ export class ProdcutDetailsComponent implements OnInit {
     };
     if (event.target.files[0]) {
       reader.readAsDataURL(event.target.files[0]);
-      this.uploadedFile = event.target.files[0]
+
+      this.selectedFiles = event.target.files[0];
+      this.uploadedFile = event.target.files[0];
     }
     // this.fileToUpload = file.item(0);
 

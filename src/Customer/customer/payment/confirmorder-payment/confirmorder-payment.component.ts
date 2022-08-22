@@ -52,6 +52,16 @@ console.log('orderid',this.orderID)
     console.log(this.notification)
     this.fms.saveNotifications(this.notification).subscribe(res => {
       console.log(res)
+      if(res){debugger
+        var payload ={
+          "productId" : this.selectedProdut.productId, 
+          "stockQty" : this.selectedProdut.stockQty, 
+          "stockFlag" : 1, 
+        }
+        this.fms.updateStock().subscribe(data => {
+          console.log(data)
+        })
+      }
     })
   }
 
