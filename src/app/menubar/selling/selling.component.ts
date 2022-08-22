@@ -228,8 +228,8 @@ console.log(this.url)
     });
   }
 
-  createsell() {debugger
-    
+  createsell() {
+
     this.spinnerService.show();
     if(this.formsell.discount ==undefined){
       this.formsell.discount=0;
