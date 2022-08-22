@@ -51,7 +51,7 @@ console.log('orderid',this.selectedProdut)
   }
   saveNotificaton() {
     this.notification.senderId = this.selectedProdut.sellerId;
-    this.notification.message = "New Order Received: " + '(' + this.orderdetails[0].orderNo + ') from'
+    this.notification.message = "New Order Received: " + '(' + this.orderdetails[0].orderNo + ') from '
       + this.userdetails.userName + ' for product ' + this.selectedProdut.productName;
     console.log(this.notification)
     this.fms.saveNotifications(this.notification).subscribe(res => {
