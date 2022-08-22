@@ -13,7 +13,7 @@ import { AddaddressComponent } from '../addAddress/addaddress/addaddress.compone
 export class AddressdeliveryComponent implements OnInit {
   addresslist: any;
   selectAddres:number=0;
-  addresselect: number | undefined;
+  addresselect: any | undefined;
   constructor(private fms: FmsService,private dialog:MatDialog,private route:Router) { }
 
   ngOnInit() {
@@ -22,7 +22,6 @@ export class AddressdeliveryComponent implements OnInit {
   getaddressesList(){
     this.fms.addressList().subscribe((res:any) => {
       this.addresslist = res;
-      localStorage.setItem('deliveryaddress',JSON.stringify(res[0]))
       console.log(this.addresslist)
     })
   }
@@ -39,6 +38,8 @@ export class AddressdeliveryComponent implements OnInit {
   getaddress(i:any){
   //  alert(i)
     this.addresselect = i;
+    localStorage.setItem('deliveryaddress',JSON.stringify(i))
+
   }
   edit(rowdata: any, i: number) {debugger
     console.log(rowdata)
