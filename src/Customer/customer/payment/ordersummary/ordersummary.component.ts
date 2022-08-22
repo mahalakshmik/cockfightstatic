@@ -72,8 +72,8 @@ export class OrdersummaryComponent implements OnInit {
       localStorage.setItem('totalamount', JSON.stringify(this.totalAmount));
     }
   }
-  saveNotificaton() {
-    this.notification.senderId = this.selectedProdut.sellerId;
+  saveNotificaton() {debugger
+    this.notification.senderId = this.selectedProdut.sellerID;
     this.notification.message =
       'New Order Received: Farm Praveen' +
       '(' +
@@ -88,7 +88,7 @@ export class OrdersummaryComponent implements OnInit {
      
     });
   }
-  confirmOrderforCOD() {
+  confirmOrderforCOD() {debugger
     console.log(this.forms);
     this.forms.orderAmount = this.selectedProdut.standardPrice;
     this.forms.discountAmount = this.selectedProdut.discount;
