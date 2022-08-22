@@ -54,7 +54,7 @@
                 </div>
                 <div *ngIf="isShowAddseller">
 
-                    <form name="form" (ngSubmit)="f.form.valid  " #f="ngForm"  novalidate>
+                    <form name="form" (ngSubmit)="f.form.valid && createsell() " #f="ngForm"  novalidate>
 
                       
 
@@ -406,7 +406,7 @@
                             <div class="col-sm-12 text-right m-t-10">
                                 <!-- <a href="" class="btn btn-primary">Confirm And Proceed</a> -->
 
-                                <button class="btn btn-primary" (click)="createsell()">Confirm And Proceed</button>
+                                <button class="btn btn-primary" type="submit">Confirm And Proceed</button>
                             </div>
                         </div>
                     </form>
