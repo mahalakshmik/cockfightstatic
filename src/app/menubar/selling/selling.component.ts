@@ -237,8 +237,8 @@ console.log(this.url)
     }
     console.log(this.formsell);
     var formdata = new FormData();
-    formdata.append('ProductId', '0');
-    formdata.append('ProductCode', '0');
+    formdata.append('ProductId', this.formsell.productID);
+    formdata.append('ProductCode', this.formsell.productCode);
     formdata.append('ProductName', this.formsell.productName);
     formdata.append('ProductType', '2165');
     formdata.append('Gender', this.formsell.gender);
