@@ -20,7 +20,7 @@ export class ConfirmorderPaymentComponent implements OnInit {
   images: any;
   orderID: any;
   constructor(private fms: FmsService) {
-    this.selectedProdut = JSON.parse(localStorage.getItem('selectedProdut') || '{}')
+    this.selectedProdut = JSON.parse(localStorage.getItem('selectedProdutList') || '{}')
     this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
     this.productID = JSON.parse(localStorage.getItem('productID') || '{}')
     this.images = JSON.parse(localStorage.getItem('images') || '{}')
@@ -52,13 +52,8 @@ console.log('orderid',this.orderID)
     console.log(this.notification)
     this.fms.saveNotifications(this.notification).subscribe(res => {
       console.log(res)
-      if(res){debugger
-        var payload ={
-          "productId" : this.selectedProdut.productId, 
-          "stockQty" : this.selectedProdut.stockQty, 
-          "stockFlag" : 1, 
-        }
-        this.fms.updateStock().subscribe(data => {
+      if(res){
+        this.fms.updateStock(this.selectedProdut.productID,this.selectedProdut.stockQty).subscribe(data => {
           console.log(data)
         })
       }
