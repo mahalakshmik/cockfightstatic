@@ -61,13 +61,13 @@
 
                             </ul>
                             <span class="test"> {{this.dataService.getUsername() |titlecase}} </span>
-                            <div *ngIf="dataService.isLoggedIn()">
+                            <span *ngIf="dataService.isLoggedIn()">
 
                             
                             <div class="bell-icon inline-block text-center" >
                                 <a routerLink="menu/inbox/{{userID}}/{{memberType}}">
                                     <i class="icon-envelope" aria-hidden="true"></i>
-                                    <span class="badge bg-c-red envalope-badge"></span>
+                                    <span class="badge bg-c-red envalope-badge">{{inboxcount}}</span>
                                 </a>
                             </div>
                             <div class="bell-icon inline-block text-center" >
@@ -85,7 +85,9 @@
                                     <span> </span>
                                 </a>
                             </div>
-                        </div>
+
+                            
+                        </span>
                         </div>
 
                     </div>

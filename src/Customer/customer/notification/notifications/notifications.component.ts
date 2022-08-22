@@ -12,10 +12,10 @@ export class NotificationsComponent implements OnInit {
   constructor(private fms: FmsService) { }
 
   ngOnInit(): void {
-    this.getNotification()
+   // this.getNotification()
   }
-  getNotification() {
-    this.fms.getNotifications().subscribe(res => { console.log(res) ;
-    this.notifications  = res;})
-  }
+  // getNotification() {
+  //   this.fms.getNotifications().subscribe(res => { console.log(res) ;
+  //   this.notifications  = res;})
+  // }
 }

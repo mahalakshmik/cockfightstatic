@@ -47,6 +47,15 @@ export class FmsService {
 
     return this.http.post(`${this.baseURL}OrderPayments/confirmOrder`, payload);
   }
+  saveDeliveryAddress(payload:any){
+    return this.http.post(`${this.baseURL}DeliveryAddress`,payload)
+  }
+  SavePayment(payload: any) {
+    payload.memberId = this.userdetails.userId
+    payload.addressID = this.userdetails.userId
+
+    return this.http.post(`${this.baseURL}OrderPayments/SaveOrderPayment`, payload);
+  }
   verifyUpload(payload: any) {
     return this.http.post(`${this.baseURL}Profile/verfiyDocument`, payload);
   }
@@ -71,14 +80,17 @@ export class FmsService {
   getProductImages(productId: any) {
     return this.http.get(`${this.baseURL}ProductImages/List/` + productId)
   }
-  produtListById(productId: any) {
-    return this.http.get(`${this.baseURL}ProductMasters/` + productId)
+  produtListById(productId: any,formid:any) {
+    return this.http.get(`${this.baseURL}ProductMasters/${productId}/${formid}`)
   }
   userAddressList() {
     return this.http.get(`${this.baseURL}uspAddresses/` + this.userdetails.userId)
   }
   NotificationList() {
     return this.http.get(`${this.baseURL}Notifications`)
+  }
+  updateNotification(notyid:number) {
+    return this.http.get(`${this.baseURL}NotificationListSP/UpdateNotificationstatus/`+notyid)
   }
   //filter by memberID
 
@@ -155,17 +167,20 @@ export class FmsService {
   getSellerListType() {
     return this.http.get(`${this.baseURL}Lookups/OrderStatus`)
   }
-  getNotifications() {
-    return this.http.get(`${this.baseURL}NotificationListSP/` + this.userdetails.userId + '/50')
+  getNotifications(userid:any) {
+    return this.http.get(`${this.baseURL}NotificationListSP/` + userid + '/50')
   }
   getWishList() {
     return this.http.get(`${this.baseURL}WishListListSP/` + this.userdetails.memberType)
   }
   ///senderID/memberType
-  // getInbox(){
-  //   return this.http.get(`${this.baseURL}Profile/Inbox/`+this.userdetails.userId+'/'+2172)
-  // }
+  getInboxCount(){
+    this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
+
+    return this.http.get(`${this.baseURL}Profile/Inbox/`+this.userdetails.userId)
+  }
   getInbox() {
+
     return this.http.get(`${this.baseURL}Profile/Inbox/` + this.userdetails.userId + '/' + this.userdetails.memberType)
   }
   ////LookUps
@@ -238,5 +253,8 @@ export class FmsService {
   sendMessageToseller(payload: any) {
     //api/MessageDetails/sendMessageToseller
     return this.http.post(`${this.baseURL}MessageDetails/sendMessageToseller`,payload)
+  }
+  viewOrderByNumber(orderno:string) {
+    return this.http.get(`${this.baseURL}OrderDetails/viewOrder/` + orderno )
   }
 }

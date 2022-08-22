@@ -15,6 +15,7 @@ import { VieworderComponent } from './seller/vieworder/vieworder.component';
 import { FormsModule } from '@angular/forms';
 import { AppModule } from 'src/app.module';
 import { SharedModule } from 'src/shared/shared.module';
+import { MenubarModule } from 'src/app/menubar/menubar.module';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { SharedModule } from 'src/shared/shared.module';
     CommonModule,
     FarmRoutingModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    MenubarModule,
   ]
 })
 export class FarmModule { }

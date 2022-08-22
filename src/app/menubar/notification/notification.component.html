@@ -33,11 +33,11 @@
                             <tbody>
                                 <tr class="odd" *ngFor="let p of notifications">
                                     <td class="pro-name">
-                                        <h6>{{p.message}} </h6>
+                                        <h6><a (click)="vieworder(p.orderNo)"> {{p.message}} </a></h6>
                                     </td>
                                     <td>
                                         <!-- <h6>Read:{{p.isRead}}</h6> -->
-                                       <a> <i class="fa fa-circle" style="color:green" *ngIf="!p.isRead" aria-hidden="true" title="mark as Read"></i></a>
+                                       <a> <i class="fa fa-circle" (click)="changeStatus(p.notificationID)" style="color:green" *ngIf="!p.isRead" aria-hidden="true" title="mark as Read"></i></a>
                                       <a>  <i class="fa fa-circle" style="color:darkgray" *ngIf="p.isRead" aria-hidden="true" title="mark as Read"></i></a>
                                     </td>
                                     <!-- <td class="pro-list-img" tabindex="0">
@@ -66,9 +66,13 @@
                     <!-- <div class="col-sm-12 text-right m-t-20 m-b-20">
                 <a class="btn btn-default"> Continue Shopping </a>
                 <a class="btn btn-primary"> Proceed to Payment </a>
+
+
             </div> -->
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<ngx-spinner size="medium" color="orange" backgroundcolor="white" type="ball-fussion"></ngx-spinner>
