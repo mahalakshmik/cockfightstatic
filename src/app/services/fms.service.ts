@@ -60,7 +60,8 @@ export class FmsService {
     return this.http.post(`${this.baseURL}Profile/verfiyDocument`, payload);
   }
   saveNotifications(payload: any) {
-    payload.memberId = this.userdetails.userId
+   // payload.memberId = this.userdetails.userId
+    payload.senderId = this.userdetails.userId
     return this.http.post(`${this.baseURL}Notifications`, payload);
   }
 
