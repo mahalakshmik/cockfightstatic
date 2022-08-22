@@ -226,7 +226,7 @@ console.log(this.url)
     });
   }
 
-  createsell() {
+  createsell() {debugger
     
     this.spinnerService.show();
     if(this.formsell.discount ==undefined){
@@ -250,7 +250,7 @@ console.log(this.url)
     formdata.append('DateOfBirth', '1964-12-16T01:00:34.149Z');
     formdata.append('Uom', this.formsell.uom);
     formdata.append('Weight', this.formsell.weight);
-    formdata.append('StandardPrice', '20');
+    formdata.append('StandardPrice', this.formsell.standardPrice);
     formdata.append('Discount', this.formsell.discount);
     formdata.append('Currency', this.formsell.currency);
     formdata.append('PaymentOption', this.formsell.paymentOption);
