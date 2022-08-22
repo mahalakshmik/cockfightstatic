@@ -64,6 +64,7 @@ export class SellingComponent implements OnInit {
   userdetails: any;
   test1: any;
   result: any;
+  isvideo: boolean=false;
   constructor(
     private fms: FmsService,
     private blobService: AzureBlobStorageService,
@@ -113,10 +114,8 @@ export class SellingComponent implements OnInit {
 
     this.formsell = sellerList;
    // this.formsell.myfile=sellerList.productImage;
-    console.log(this.formsell)
  
     console.log('edit', sellerList);
-this.url= this.productVideoUrl+sellerList.productID+'_0.mp4';
 console.log(this.url)
     
     
@@ -125,10 +124,16 @@ console.log(this.url)
   getImgListByProductId(id:number){
     this.fms.getimgListbyProductId(id).subscribe((res:any)=>{
       if(res.length >0 ){
-        res.forEach((e:any) => {
+        res.forEach((e:any) => {debugger
           const imgs=this.productPicUrl+e.imageName;
-          
-          this.previews.push(imgs)
+          if(e.contentType =="video/mp4"){
+             this.isvideo=true;
+             this.url= this.productVideoUrl+e.imageName;
+
+           }else {
+
+             this.previews.push(imgs)
+           }
         });
       }
     })
@@ -191,26 +196,22 @@ console.log(this.url)
   }
   getBreadType() {
     this.fms.getSellBreedTypeDropList().subscribe((ress) => {
-      console.log(ress);
       this.breedList = ress;
     });
   }
 
   getbread() {
     this.fms.getSellingBreed().subscribe((ress) => {
-      console.log(ress);
       this.breeds = ress;
     });
   }
   getAgeList() {
     this.fms.getSellAgeDropList().subscribe((ress) => {
-      console.log(ress);
       this.ageList = ress;
     });
   }
   getPaymentTypeList() {
     this.fms.getSellPaymentTypeDropList().subscribe((ress) => {
-      console.log(ress);
       this.paymentList = ress;
     });
   }
@@ -222,9 +223,7 @@ console.log(this.url)
   }
   getSellerList() {
     this.fms.getReadyToSellList().subscribe((res) => {
-      console.log(res);
       this.sellerList = res;
-      console.log('seller', this.sellerList.result);
     });
   }
 
@@ -274,9 +273,7 @@ console.log(this.url)
     formdata.append('productVideos', this.videoFile);
 
 
-    console.log(formdata);
     this.fms.saveSeller(formdata).subscribe((res) => {
-      console.log(res);
       this.spinnerService.hide();
       if (res) {
         Swal.fire({
