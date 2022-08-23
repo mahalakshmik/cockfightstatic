@@ -4,10 +4,9 @@ import { Address } from 'src/commonFiles/register/register.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FmsService {
-
   baseURL = environment.api;
   userdetails: any;
   isGuest: boolean = false;
@@ -24,92 +23,106 @@ export class FmsService {
 
   //double
   userLogin(object: any) {
-    return this.http.post(`${this.baseURL}UserLogin`, object)
+    return this.http.post(`${this.baseURL}UserLogin`, object);
   }
   //old one remove
   // saveaddress(form: Address) {
   //   return this.http.get(`${this.baseURL}ProductMasters`)
   // }
   getBreeds() {
-    return this.http.get(`${this.baseURL}Breeds/` + this.userdetails.userId)
+    return this.http.get(`${this.baseURL}Breeds/` + this.userdetails.userId);
   }
 
   saveWishList(payload: any) {
-    payload.memberId = this.userdetails.userId
-    payload.isGuest = this.isGuest
+    payload.memberId = this.userdetails.userId;
+    payload.isGuest = this.isGuest;
     //payload.quantity = this.prodList.stockQty;
     payload.quantity = 1;
-    return this.http.post(`${this.baseURL}WishLists/saveWishItem`, payload)
+    return this.http.post(`${this.baseURL}WishLists/saveWishItem`, payload);
   }
   Payment(payload: any) {
-    payload.memberId = this.userdetails.userId
-    payload.addressID = this.userdetails.userId
+    payload.memberId = this.userdetails.userId;
+    payload.addressID = this.userdetails.userId;
 
     return this.http.post(`${this.baseURL}OrderPayments/confirmOrder`, payload);
   }
-  saveDeliveryAddress(payload:any){
-    return this.http.post(`${this.baseURL}DeliveryAddress`,payload)
+  saveDeliveryAddress(payload: any) {
+    return this.http.post(`${this.baseURL}DeliveryAddress`, payload);
   }
   SavePayment(payload: any) {
-    payload.memberId = this.userdetails.userId
-    payload.addressID = this.userdetails.userId
+    payload.memberId = this.userdetails.userId;
+    payload.addressID = this.userdetails.userId;
 
-    return this.http.post(`${this.baseURL}OrderPayments/SaveOrderPayment`, payload);
+    return this.http.post(
+      `${this.baseURL}OrderPayments/SaveOrderPayment`,
+      payload
+    );
   }
   verifyUpload(payload: any) {
     return this.http.post(`${this.baseURL}Profile/verfiyDocument`, payload);
   }
   saveNotifications(payload: any) {
-   // payload.memberId = this.userdetails.userId
-    payload.senderId = this.userdetails.userId
+    // payload.memberId = this.userdetails.userId
+    payload.senderId = this.userdetails.userId;
     return this.http.post(`${this.baseURL}Notifications`, payload);
   }
 
   getconformOrder(orderid: any) {
-    return this.http.get(`${this.baseURL}OrderDetails/orderHeader/` + orderid)
+    return this.http.get(`${this.baseURL}OrderDetails/orderHeader/` + orderid);
   }
   // produtList() {
   //   return this.http.get(`${this.baseURL}productMasters/productSearch`)
   // }
 
   productSearch(payload: any) {
-    return this.http.post(`${this.baseURL}productMasters/productSearch`, payload);
+    return this.http.post(
+      `${this.baseURL}productMasters/productSearch`,
+      payload
+    );
   }
   getStockList() {
-    return this.http.get(`${this.baseURL}Lookups/StockType`)
+    return this.http.get(`${this.baseURL}Lookups/StockType`);
   }
   getProductImages(productId: any) {
-    return this.http.get(`${this.baseURL}ProductImages/List/` + productId)
+    return this.http.get(`${this.baseURL}ProductImages/List/` + productId);
   }
-  produtListById(productId: any,formid:any) {
-    return this.http.get(`${this.baseURL}ProductMasters/${productId}/${formid}`)
+  produtListById(productId: any, formid: any) {
+    return this.http.get(
+      `${this.baseURL}ProductMasters/${productId}/${formid}`
+    );
   }
   userAddressList() {
-    return this.http.get(`${this.baseURL}uspAddresses/` + this.userdetails.userId)
+    return this.http.get(
+      `${this.baseURL}uspAddresses/` + this.userdetails.userId
+    );
   }
   NotificationList() {
-    return this.http.get(`${this.baseURL}Notifications`)
+    return this.http.get(`${this.baseURL}Notifications`);
   }
-  updateNotification(notyid:number) {
-    return this.http.get(`${this.baseURL}NotificationListSP/UpdateNotificationstatus/`+notyid)
+  updateNotification(notyid: number) {
+    return this.http.get(
+      `${this.baseURL}NotificationListSP/UpdateNotificationstatus/` + notyid
+    );
   }
   //filter by memberID
 
   cartList() {
-    return this.http.get(`${this.baseURL}Carts/List/` + this.userdetails.userId)
+    return this.http.get(
+      `${this.baseURL}Carts/List/` + this.userdetails.userId
+    );
   }
   saveCartList(payload: any) {
-    payload.memberID = this.userdetails.userId
-    return this.http.post(`${this.baseURL}Carts`, payload)
+    payload.memberID = this.userdetails.userId;
+    return this.http.post(`${this.baseURL}Carts`, payload);
   }
   deleteCartList(cartId: number) {
-    return this.http.delete(`${this.baseURL}Carts/` + cartId)
+    return this.http.delete(`${this.baseURL}Carts/` + cartId);
   }
   addressList() {
-    return this.http.get(`${this.baseURL}Addresses/` + this.userdetails.userId)
+    return this.http.get(`${this.baseURL}Addresses/` + this.userdetails.userId);
   }
   addressByID() {
-    return this.http.get(`${this.baseURL}Addresses/` + this.userdetails.userId)
+    return this.http.get(`${this.baseURL}Addresses/` + this.userdetails.userId);
   }
 
   //formappend
@@ -117,151 +130,195 @@ export class FmsService {
 
   saveAddress(payload: any) {
     payload.linkId = this.userdetails.userId; //linkid as userid
-    return this.http.post(`${this.baseURL}Addresses`, payload)
+    return this.http.post(`${this.baseURL}Addresses`, payload);
   }
   deleteAddress(payload: any) {
     payload.linkId = this.userdetails.userId; //linkid as userid
-    return this.http.post(`${this.baseURL}Addresses/api/DeleteAddress`, payload)
+    return this.http.post(
+      `${this.baseURL}Addresses/api/DeleteAddress`,
+      payload
+    );
   }
   saveSeller(payload: any) {
-    debugger
+    debugger;
     payload.SellerId = this.userdetails.userId;
-    return this.http.post(`${this.baseURL}Seller`, payload)
+    return this.http.post(`${this.baseURL}Seller`, payload);
   }
   saveImagename(id: any) {
-    debugger
-    return this.http.get(`${this.baseURL}Seller/saveImgName/${id}`)
+    debugger;
+    return this.http.get(`${this.baseURL}Seller/saveImgName/${id}`);
   }
   postcomment(payload: any) {
-    return this.http.post(`${this.baseURL}MessageDetails`, payload)
+    return this.http.post(`${this.baseURL}MessageDetails`, payload);
   }
   getpostcomment(productId: any) {
-    return this.http.get(`${this.baseURL}MessageDetails/ProductComments/${productId}`)
+    return this.http.get(
+      `${this.baseURL}MessageDetails/ProductComments/${productId}`
+    );
   }
   getFollowersList() {
-    return this.http.get(`${this.baseURL}MemberFollowings/FollowedList/` + this.userdetails.userId)
+    return this.http.get(
+      `${this.baseURL}MemberFollowings/FollowedList/` + this.userdetails.userId
+    );
   }
   getOrderHistory() {
-    return this.http.get(`${this.baseURL}OrderDetails/orderHeaderList/` + this.userdetails.userId + '/' + 'en')
+    return this.http.get(
+      `${this.baseURL}OrderDetails/orderHeaderList/` +
+        this.userdetails.userId +
+        '/' +
+        'en'
+    );
   }
   //USERID?USERID=11020
   getSellerList() {
     // let queryParams = new HttpParams();
     // queryParams = queryParams.append("userID", this.userdetails.userId);
-    return this.http.get(`${this.baseURL}Seller/SellingList/11020/2180/en`)
+    return this.http.get(`${this.baseURL}Seller/SellingList/11020/2180/en`);
     // return this.http.get(`${this.baseURL}Seller/SellingList/` + this.userdetails.userId + '/' + 'en')
   }
   getimgListbyProductId(productId: number) {
     // let queryParams = new HttpParams();
     // queryParams = queryParams.append("userID", this.userdetails.userId);
-    return this.http.get(`${this.baseURL}ProductImages/List/${productId}`)
+    return this.http.get(`${this.baseURL}ProductImages/List/${productId}`);
     // return this.http.get(`${this.baseURL}Seller/SellingList/` + this.userdetails.userId + '/' + 'en')
   }
   getSellerListLatest(OrderStatusID: any) {
-    return this.http.get(`${this.baseURL}Seller/SellingList/` + this.userdetails.userId + `/${OrderStatusID}/en`)
+    return this.http.get(
+      `${this.baseURL}Seller/SellingList/` +
+        this.userdetails.userId +
+        `/${OrderStatusID}/en`
+    );
   }
   getReadyToSellList() {
-
     //return this.http.get(`${this.baseURL}Seller/List/en/userID`, { params: queryParams })
-    return this.http.get(`${this.baseURL}Seller/RedytoSellList/` + this.userdetails.userId + '/' + 'en')
+    return this.http.get(
+      `${this.baseURL}Seller/RedytoSellList/` +
+        this.userdetails.userId +
+        '/' +
+        'en'
+    );
   }
   getSellerListType() {
-    return this.http.get(`${this.baseURL}Lookups/OrderStatus`)
+    return this.http.get(`${this.baseURL}Lookups/OrderStatus`);
   }
-  getNotifications(userid:any) {
-    return this.http.get(`${this.baseURL}NotificationListSP/` + userid + '/50')
+  getNotifications(userid: any) {
+    return this.http.get(`${this.baseURL}NotificationListSP/` + userid + '/50');
   }
   getWishList() {
-    return this.http.get(`${this.baseURL}WishListListSP/` + this.userdetails.memberType)
+    return this.http.get(
+      `${this.baseURL}WishListListSP/` + this.userdetails.memberType
+    );
   }
   ///senderID/memberType
-  getInboxCount(){
+  getInboxCount() {
     this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
 
-    return this.http.get(`${this.baseURL}Profile/Inbox/`+this.userdetails.userId)
+    return this.http.get(
+      `${this.baseURL}Profile/Inbox/` + this.userdetails.userId
+    );
   }
   getInbox() {
-
-    return this.http.get(`${this.baseURL}Profile/Inbox/` + this.userdetails.userId + '/' + this.userdetails.memberType)
+    return this.http.get(
+      `${this.baseURL}Profile/Inbox/` +
+        this.userdetails.userId +
+        '/' +
+        this.userdetails.memberType
+    );
   }
   ////LookUps
   getSellCurrencyDropList() {
-    return this.http.get(`${this.baseURL}Lookups/Currency`)
+    return this.http.get(`${this.baseURL}Lookups/Currency`);
   }
   getSellGenderDropList() {
-    return this.http.get(`${this.baseURL}Lookups/Gender`)
+    return this.http.get(`${this.baseURL}Lookups/Gender`);
   }
   getSellBreedTypeDropList() {
-    return this.http.get(`${this.baseURL}Lookups/BreedType`)
+    return this.http.get(`${this.baseURL}Lookups/BreedType`);
   }
   getSellingBreed() {
-    return this.http.get(`${this.baseURL}Breeds/` + this.userdetails.userId)
+    return this.http.get(`${this.baseURL}Breeds/` + this.userdetails.userId);
   }
   getSellAgeDropList() {
-    return this.http.get(`${this.baseURL}Lookups/AgeFormat`)
+    return this.http.get(`${this.baseURL}Lookups/AgeFormat`);
   }
   getSellStockTypeDropList() {
-    return this.http.get(`${this.baseURL}Lookups/StockType`)
+    return this.http.get(`${this.baseURL}Lookups/StockType`);
   }
   getSellAddressTypeDropList() {
-    return this.http.get(`${this.baseURL}Lookups/AddressType`)
+    return this.http.get(`${this.baseURL}Lookups/AddressType`);
   }
   getSellPaymentTypeDropList() {
-    return this.http.get(`${this.baseURL}Lookups/PaymentType`)
+    return this.http.get(`${this.baseURL}Lookups/PaymentType`);
   }
   getSellOrderStatusDropList() {
-    return this.http.get(`${this.baseURL}Lookups/OrderStatus`)
+    return this.http.get(`${this.baseURL}Lookups/OrderStatus`);
   }
   getSellWeightDropList() {
-    return this.http.get(`${this.baseURL}Lookups/UnitType`)
+    return this.http.get(`${this.baseURL}Lookups/UnitType`);
   }
 
   getShopList(memberTypeId: any) {
-    return this.http.get(`${this.baseURL}Members/` + memberTypeId)
+    return this.http.get(`${this.baseURL}Members/` + memberTypeId);
   }
   getShopDetails(shopId: any) {
-    return this.http.get(`${this.baseURL}Seller/sellerDetails/${shopId}`)
+    return this.http.get(`${this.baseURL}Seller/sellerDetails/${shopId}`);
   }
   // getShopDetails(){
   //  return this.http.get(`${this.baseURL}Seller/sellerDetails/`+this.userdetails.userId)
   // }
   getTransportList(memberTypeId: any) {
-    return this.http.get(`${this.baseURL}Members/` + memberTypeId)
+    return this.http.get(`${this.baseURL}Members/` + memberTypeId);
   }
   getInboxList(usertype: number, memberTypeId: any) {
-    return this.http.get(`${this.baseURL}Profile/Inbox/` + usertype + '/' + memberTypeId)
+    return this.http.get(
+      `${this.baseURL}Profile/Inbox/` + usertype + '/' + memberTypeId
+    );
   }
   saveBreadList(payload: any) {
     payload.farmId = this.userdetails.userId;
-    return this.http.post(`${this.baseURL}Breeds`, payload)
+    return this.http.post(`${this.baseURL}Breeds`, payload);
   }
   DeleteProduct(id: any) {
-    return this.http.get(`${this.baseURL}Seller/DeleteProduct/${id}`)
+    return this.http.get(`${this.baseURL}Seller/DeleteProduct/${id}`);
   }
-  updateStock(productID:any,quantity:number) {
-   const stockFlag=-1;
-  
-   return this.http.get(`${this.baseURL}OrderPayments/updateStock/${productID}/${quantity}/${stockFlag}`)
+  updateStock(productID: any, quantity: number) {
+    const stockFlag = -1;
+
+    return this.http.get(
+      `${this.baseURL}OrderPayments/updateStock/${productID}/${quantity}/${stockFlag}`
+    );
   }
   postCommnets(payload: any) {
     //api/MessageDetails/saveMessageDetails
-    return this.http.post(`${this.baseURL}MessageDetails/saveMessageDetails`,payload)
+    return this.http.post(
+      `${this.baseURL}MessageDetails/saveMessageDetails`,
+      payload
+    );
   }
   sendMessageToseller(payload: any) {
     //api/MessageDetails/sendMessageToseller
-    return this.http.post(`${this.baseURL}MessageDetails/sendMessageToseller`,payload)
+    return this.http.post(
+      `${this.baseURL}MessageDetails/sendMessageToseller`,
+      payload
+    );
   }
   orderConfirmDelivery(orderId: any) {
     ///api/OrderDetails/orderConfirmDelivery/{orderId}
-    return this.http.get(`${this.baseURL}OrderDetails/orderConfirmDelivery/${orderId}`)
+    return this.http.get(
+      `${this.baseURL}OrderDetails/orderConfirmDelivery/${orderId}`
+    );
   }
-  orderCancel(orderId: any,cancelBy:any) {
+  orderCancel(orderId: any, cancelBy: any) {
     ///OrderDetails/orderCancel/{orderId}/{cancelBy}
-   //api/OrderDetails/orderCancel/11069/11030https://cockfightkaichon.azurewebsites.net/api/OrderDetails/orderCancel/11095/11020
-    //return this.http.get(`${this.baseURL}OrderDetails/orderCancel/11095/11020`)
-    return this.http.get(`${this.baseURL}OrderDetails/orderCancel/${orderId}/${cancelBy}`)
+    return this.http.get(
+      `${this.baseURL}OrderDetails/orderCancel/${orderId}/${cancelBy}`
+    );
   }
-  viewOrderByNumber(orderno:string) {
-    return this.http.get(`${this.baseURL}OrderDetails/viewOrder/` + orderno )
+  saveOrderCOD(payload: any) {
+    //api/OrderPayments/saveOrderCOD
+    return this.http.post(`${this.baseURL}OrderPayments/saveOrderCOD`, payload);
+  }
+  viewOrderByNumber(orderno: string) {
+    return this.http.get(`${this.baseURL}OrderDetails/viewOrder/` + orderno);
   }
 }
