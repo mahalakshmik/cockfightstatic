@@ -257,7 +257,8 @@ export class FmsService {
   }
   orderCancel(orderId: any,cancelBy:any) {
     ///OrderDetails/orderCancel/{orderId}/{cancelBy}
-   //api/OrderDetails/orderCancel/11069/11030
+   //api/OrderDetails/orderCancel/11069/11030https://cockfightkaichon.azurewebsites.net/api/OrderDetails/orderCancel/11095/11020
+    //return this.http.get(`${this.baseURL}OrderDetails/orderCancel/11095/11020`)
     return this.http.get(`${this.baseURL}OrderDetails/orderCancel/${orderId}/${cancelBy}`)
   }
   viewOrderByNumber(orderno:string) {

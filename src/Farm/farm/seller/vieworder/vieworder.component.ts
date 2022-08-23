@@ -16,27 +16,28 @@ export class VieworderComponent implements OnInit {
   selectedProdut: any;
   userdetails: any;
   orderID: any;
-  constructor(private fms: FmsService, private route: ActivatedRoute,private router:Router) {
+  constructor(private fms: FmsService, private route: ActivatedRoute, private router: Router) {
     this.orderNumber = this.route.snapshot.paramMap.get('id');
     this.selectedProdut = JSON.parse(
       localStorage.getItem('selectedProdutList') || '{}'
     );
     this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
-   // this.orderID = JSON.parse(localStorage.getItem('orderID') || '{}');
+    console.log(this.userdetails.userId)
+    // this.orderID = JSON.parse(localStorage.getItem('orderID') || '{}');
   }
 
   ngOnInit() {
     this.fms.viewOrderByNumber(this.orderNumber).subscribe(res => {
       console.log(res)
       this.orderHistory = res;
-     this.orderID = this.orderHistory.orderHeader[0]?.orderID
-     console.log(this.orderID)
+      this.orderID = this.orderHistory.orderHeader[0]?.orderID
+      console.log(this.orderID)
     })
   }
   confirmDelivered() {
     this.fms.orderConfirmDelivery(this.orderID).subscribe(res => {
       console.log(res)
-      if(res){
+      if (res) {
         Swal.fire({
           icon: 'success',
           title: "Order Confrimed to Delivery !",
@@ -48,8 +49,13 @@ export class VieworderComponent implements OnInit {
       }
     })
   }
-  cancelOrder() {
-
+  cancelOrder() {debugger
+    this.fms.orderCancel(this.orderID,this.userdetails.userId).subscribe(res =>{
+      console.log(res)
+      if(res){
+        alert('test')
+      }
+    })
   }
   saveNotificaton() {
     this.notification.memberId = this.selectedProdut.sellerID;
