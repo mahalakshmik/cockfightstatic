@@ -55,7 +55,7 @@ export class ConfirmorderPaymentComponent implements OnInit {
       //console.log(this.orderdetails[0].orderAmount)
     });
   }
-  saveNotificaton() {debugger
+  saveNotificaton() {
     this.notification.memberId = this.selectedProdut.sellerID;
     this.notification.message =
       'New Order Received: ' +

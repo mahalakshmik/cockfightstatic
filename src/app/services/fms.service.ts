@@ -251,6 +251,15 @@ export class FmsService {
     //api/MessageDetails/sendMessageToseller
     return this.http.post(`${this.baseURL}MessageDetails/sendMessageToseller`,payload)
   }
+  orderConfirmDelivery(orderId: any) {
+    ///api/OrderDetails/orderConfirmDelivery/{orderId}
+    return this.http.get(`${this.baseURL}OrderDetails/orderConfirmDelivery/${orderId}`)
+  }
+  orderCancel(orderId: any,cancelBy:any) {
+    ///OrderDetails/orderCancel/{orderId}/{cancelBy}
+   //api/OrderDetails/orderCancel/11069/11030
+    return this.http.get(`${this.baseURL}OrderDetails/orderCancel/${orderId}/${cancelBy}`)
+  }
   viewOrderByNumber(orderno:string) {
     return this.http.get(`${this.baseURL}OrderDetails/viewOrder/` + orderno )
   }
