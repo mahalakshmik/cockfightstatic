@@ -124,11 +124,11 @@
                     <div class="row m-t-20 add-cart-buy-it-now">
                         <div class="col-sm-4 add-to-cart">
                             <!-- <a routerLink="/Cartitems" class="btn btn-primary addcart-btn"> Add to Cart</a> -->
-                            <button [disabled]="product?.stockQty ==0" (click)="addCart()"
+                            <button [disabled]="product?.stockQty <=0" (click)="addCart()"
                                 class="btn btn-primary addcart-btn">Add to Cart</button>
                         </div>
                         <div class="col-sm-4 buy-it-now">
-                            <button [disabled]="product?.stockQty ==0" (click)="byNow()"
+                            <button [disabled]="product?.stockQty <=0" (click)="byNow()"
                                 class="btn btn-primary addcart-btn buy-btn" style="width:100%">
                                 Buy Now
                             </button>

@@ -51,7 +51,6 @@ export class PaymentComponent implements OnInit {
       localStorage.setItem('orderID', JSON.stringify(this.orderID));
       this.address.orderID = this.orderID;
       this.fms.saveDeliveryAddress(this.address).subscribe(res => {
-        alert(res)
         if (res) {
           Swal.fire({
             icon: 'success',

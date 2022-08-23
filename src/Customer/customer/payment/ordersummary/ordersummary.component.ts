@@ -73,6 +73,7 @@ export class OrdersummaryComponent implements OnInit {
       localStorage.setItem('totalamount', JSON.stringify(this.totalAmount));
     }
   }
+  //notusing
   saveNotificaton() {debugger
     this.notification.senderId = this.selectedProdut.sellerID;
     this.notification.message =
