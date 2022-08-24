@@ -61,6 +61,9 @@ export class VieworderComponent implements OnInit {
     })
     this.spinnerService.hide()
   }
+  CloseOrder(id:any){
+
+  }
   cancelOrder() {
     //need to check orderid for list pages it may b not corect
     this.fms.orderCancel(this.orderID,this.userdetails.userId,this.orderNumber).subscribe(res =>{

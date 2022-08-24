@@ -46,6 +46,23 @@
                         </div>
                         <hr>
                         <div class="pull-right">
+                            <!-- @if (Model.orderHeader[i].OrderStatus == Utility.ORDERPLACED)
+                            {
+                                <button class="btn btn-default btn-custom btn-custom" onclick="CancelOrder(@Model.orderHeader[i].OrderID)">@AppResource.CancelOrder</button>
+                            }
+                            @if (paymentslip != null && paymentslip.PaymentMode == Utility.ONLINE && paymentslip.ReferenceNo != null && Model.orderHeader[i].OrderStatus == Utility.ORDERPLACED)
+                            {
+                                <button class="btn btn-default btn-custom btn-custom" onclick="ConfirmPayment(@Model.orderHeader[i].OrderID)">@AppResource.ConfirmPayment</button>
+                            }
+                            @if (Model.orderHeader[i].OrderStatus == Utility.ORDERCONFIRMED || paymentslip.PaymentMode == Utility.CASHONDELIVERY)
+                            {
+                                <button class="btn btn-default btn-custom btn-custom" onclick="ConfirmDelivery(@Model.orderHeader[i].OrderID)">@AppResource.ConfirmDelivered</button>
+                            }
+                            @if (Model.orderHeader[i].OrderStatus == Utility.ORDERDELIVERED || Model.orderHeader[i].OrderStatus == Utility.ORDERCANCELED)
+                            {
+                                <button class="btn btn-default btn-custom" onclick="CloseOrder(@Model.orderHeader[i].OrderID)">@AppResource.CloseOrder</button>
+                            } -->
+                            <button class="btn btn-default btn-custom" (click)="CloseOrder(p.OrderID)" *ngIf="p.orderStatus=='2183'">Close Order</button>
                             <button class="custom-btn btn btn-default" 
                                 (click)="confirmDelivered()">Confirm Delivered</button>
                             <button class="btn btn-default btn-custom" (click)="cancelOrder()">Cancel Order</button>
