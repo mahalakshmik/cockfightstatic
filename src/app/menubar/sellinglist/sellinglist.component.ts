@@ -38,12 +38,19 @@ export class SellinglistComponent implements OnInit {
   }
   getSellerList() {
     this.spinnerService.show();
-    this.fms.getSellerListLatest(this.selectedOrder).subscribe(res => {
-      console.log(res)
-      this.sellerlst = res;
+    this.fms.getSellerListLatest(this.selectedOrder).subscribe((res:any) => {  
+      for (let i = 0; i < res.orderHeader.length; i++) {
+        res.orderHeader[i].orderDetails=[]
+        res.orderHeader[i].orderPayment=[]
+        var resu = res.orderDetail.filter((j: { orderID: any; })=>j.orderID==res.orderHeader[i].orderID);
+        var payment = res.orderPayment.filter((j: { orderID: any; })=>j.orderID==res.orderHeader[i].orderID);
+        res.orderHeader[i].orderDetails=resu
+        res.orderHeader[i].orderPayment=payment
+      }
       this.spinnerService.hide();
       console.log(this.sellerlst)
     })
   }
 
 }
+
