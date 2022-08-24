@@ -14,6 +14,7 @@ export class SellinglistComponent implements OnInit {
   selectedOrder: number | undefined;
   selectedValue: any;
   productPicUrl = environment.azureblobImgUrl;
+  orderData: any;
 
   constructor(private fms: FmsService,public spinnerService: NgxSpinnerService) {
 
@@ -48,7 +49,9 @@ export class SellinglistComponent implements OnInit {
         res.orderHeader[i].orderPayment=payment
       }
       this.spinnerService.hide();
-      console.log(this.sellerlst)
+      console.log(res.orderHeader)
+      this.orderData = res.orderHeader;
+      console.log(this.orderData)
     })
   }
 
