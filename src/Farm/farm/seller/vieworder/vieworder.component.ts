@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { FmsService } from 'src/app/services/fms.service';
 import { Notificationvm } from 'src/commonFiles/payment/ordersave.model';
 import Swal from 'sweetalert2';
@@ -16,7 +17,7 @@ export class VieworderComponent implements OnInit {
   selectedProdut: any;
   userdetails: any;
   orderID: any;
-  constructor(private fms: FmsService, private route: ActivatedRoute, private router: Router) {
+  constructor(private fms: FmsService, private route: ActivatedRoute, private router: Router,public spinnerService: NgxSpinnerService) {
     this.orderNumber = this.route.snapshot.paramMap.get('id');
     this.selectedProdut = JSON.parse(
       localStorage.getItem('selectedProdutList') || '{}'
@@ -35,9 +36,11 @@ export class VieworderComponent implements OnInit {
     })
   }
   confirmDelivered() {
+    this.spinnerService.show()
     this.fms.orderConfirmDelivery(this.orderID).subscribe(res => {
       console.log(res)
       if (res) {
+        this.spinnerService.hide()
         Swal.fire({
           icon: 'success',
           title: "Order Confrimed to Delivery !",
@@ -48,14 +51,18 @@ export class VieworderComponent implements OnInit {
         this.router.navigateByUrl('/')
       }
     })
+    this.spinnerService.hide()
   }
-  cancelOrder() {debugger
+  cancelOrder() {
+    this.spinnerService.show()
     this.fms.orderCancel(this.orderID,this.userdetails.userId).subscribe(res =>{
       console.log(res)
       if(res){
-        alert('test')
+        this.spinnerService.hide()
+        alert('orderCanceled')
       }
     })
+    this.spinnerService.hide()
   }
   saveNotificaton() {
     this.notification.memberId = this.selectedProdut.sellerID;

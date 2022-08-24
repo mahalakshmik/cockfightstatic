@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { FmsService } from 'src/app/services/fms.service';
 import {
   Notificationvm,
@@ -33,7 +34,7 @@ export class OrdersummaryComponent implements OnInit {
   orderDetail: any;
   orderPayment: any;
 
-  constructor(private route: Router, private fms: FmsService) {
+  constructor(private route: Router, private fms: FmsService, public spinnerService: NgxSpinnerService) {
     this.selectedProdut = JSON.parse(
       localStorage.getItem('selectedProdut') || '{}'
     );
@@ -101,6 +102,7 @@ export class OrdersummaryComponent implements OnInit {
   }
   confirmOrderforCOD() {
     debugger;
+    this.spinnerService.show();
     // console.log(this.forms);
     // this.forms.orderAmount = this.selectedProdut.standardPrice;
     // this.forms.discountAmount = this.selectedProdut.discount;
@@ -131,11 +133,11 @@ export class OrdersummaryComponent implements OnInit {
       stockQty: this.selectedProdut.stockQty,
       "itemID": 0,
       "orderID": 0,
-      
+
       "quantity": this.productCount,
       "unitPrice": 0,
       "discountType": 0,
-      
+
       "isCancel": false,
       "cancelBy": 0,
       "isDelivered": false,
@@ -145,7 +147,7 @@ export class OrdersummaryComponent implements OnInit {
       paymentID: 0,
       paymentDate: '2022-08-24T02:39:36.104Z',
       orderID: 0,
-      paymentAmount:0,
+      paymentAmount: 0,
       referenceNo: '',
       paymentMode: '2177',
       createdOn: '2022-08-24T02:39:36.104Z',
@@ -159,14 +161,14 @@ export class OrdersummaryComponent implements OnInit {
     // "stockQty" :this.selectedProdut.stockQty,
 
     //this.orderDetail = payload
-   // console.log(this.orderDetail);
-  //  this.orderVM = this.selectedProdut;
-    this.orderVM.memberID=this.selectedProdut.memberID;
-  this.orderVM.addressID=this.selectedProdut.addressID;
-  this.orderVM.orderAmount=this.selectedProdut.standardPrice;
-  this.orderVM.discountAmount=this.selectedProdut.discountAmount;
-  this.orderVM.currency=this.selectedProdut.currency;
-  this.orderVM.paidAmount=this.selectedProdut.paidAmount;
+    // console.log(this.orderDetail);
+    //  this.orderVM = this.selectedProdut;
+    this.orderVM.memberID = this.selectedProdut.memberID;
+    this.orderVM.addressID = this.selectedProdut.addressID;
+    this.orderVM.orderAmount = this.selectedProdut.standardPrice;
+    this.orderVM.discountAmount = this.selectedProdut.discountAmount;
+    this.orderVM.currency = this.selectedProdut.currency;
+    this.orderVM.paidAmount = this.selectedProdut.paidAmount;
 
     this.orderVM.orderDetail = [];
     this.orderVM.orderDetail.push(payload);
@@ -175,8 +177,9 @@ export class OrdersummaryComponent implements OnInit {
     console.log(this.orderVM);
     this.fms.saveOrderCOD(this.orderVM).subscribe((res) => {
       console.log(res);
-      if(res){
-              Swal.fire({
+      if (res) {
+        this.spinnerService.hide();
+        Swal.fire({
           icon: 'success',
           title: 'Order Confirmed!',
           text: 'You clicked the button!',
@@ -188,6 +191,7 @@ export class OrdersummaryComponent implements OnInit {
         this.route.navigate(['/customer/confirmorder']);
       }
     });
+    this.spinnerService.hide()
   }
   decrement() {
     this.errormessage = '';

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { FmsService } from 'src/app/services/fms.service';
 import { Notificationvm } from 'src/commonFiles/payment/ordersave.model';
 import { environment } from 'src/environments/environment';
@@ -21,7 +22,7 @@ export class ConfirmorderPaymentComponent implements OnInit {
   selectedquntity: number = 1;
   deliveryaddress: any;
   total: any;
-  constructor(private fms: FmsService) {
+  constructor(private fms: FmsService,public spinnerService: NgxSpinnerService) {
     this.selectedProdut = JSON.parse(
       localStorage.getItem('selectedProdutList') || '{}'
     );
@@ -41,17 +42,20 @@ export class ConfirmorderPaymentComponent implements OnInit {
   }
 
   getOrderConform() {
+    this.spinnerService.show()
     this.fms.getconformOrder(this.orderID).subscribe((res: any) => {
       console.log(res);
       this.orderdetails = res;
       this.total = this.orderdetails[0].orderAmount - this.orderdetails[0].discountAmount
       console.log(this.orderdetails[0].orderNo);
       if (res) {
+        this.spinnerService.hide()
         this.saveNotificaton();
       }
       this.quatity =
         this.orderdetails.totalAmount / this.orderdetails.orderAmount;
       console.log('qty', this.quatity);
+      this.spinnerService.hide()
       //console.log(this.orderdetails[0].orderAmount)
     });
   }

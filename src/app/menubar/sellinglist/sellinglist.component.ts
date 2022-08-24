@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { FmsService } from 'src/app/services/fms.service';
 import { environment } from 'src/environments/environment';
 
@@ -14,7 +15,7 @@ export class SellinglistComponent implements OnInit {
   selectedValue: any;
   productPicUrl = environment.azureblobImgUrl;
 
-  constructor(private fms: FmsService) {
+  constructor(private fms: FmsService,public spinnerService: NgxSpinnerService) {
 
   }
 
@@ -36,9 +37,11 @@ export class SellinglistComponent implements OnInit {
     })
   }
   getSellerList() {
+    this.spinnerService.show();
     this.fms.getSellerListLatest(this.selectedOrder).subscribe(res => {
       console.log(res)
       this.sellerlst = res;
+      this.spinnerService.hide();
       console.log(this.sellerlst)
     })
   }
