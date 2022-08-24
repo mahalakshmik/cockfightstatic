@@ -308,10 +308,10 @@ export class FmsService {
       `${this.baseURL}OrderDetails/orderConfirmDelivery/${orderId}`
     );
   }
-  orderCancel(orderId: any, cancelBy: any) {
+  orderCancel(orderId: any, cancelBy: any,orderno:string) {
     ///OrderDetails/orderCancel/{orderId}/{cancelBy}
     return this.http.get(
-      `${this.baseURL}OrderDetails/orderCancel/${orderId}/${cancelBy}`
+      `${this.baseURL}OrderDetails/orderCancel/${orderId}/${cancelBy}/${orderno}`
     );
   }
   saveOrderCOD(payload: any) {

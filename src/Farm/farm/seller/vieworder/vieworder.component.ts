@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FmsService } from 'src/app/services/fms.service';
 import { Notificationvm } from 'src/commonFiles/payment/ordersave.model';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -16,6 +17,9 @@ export class VieworderComponent implements OnInit {
   selectedProdut: any;
   userdetails: any;
   orderID: any;
+  productPicUrl = environment.ProductUrl;
+  images:any;
+
   constructor(private fms: FmsService, private route: ActivatedRoute, private router: Router) {
     this.orderNumber = this.route.snapshot.paramMap.get('id');
     this.selectedProdut = JSON.parse(
@@ -30,6 +34,7 @@ export class VieworderComponent implements OnInit {
     this.fms.viewOrderByNumber(this.orderNumber).subscribe(res => {
       console.log(res)
       this.orderHistory = res;
+      this.images
       this.orderID = this.orderHistory.orderHeader[0]?.orderID
       console.log(this.orderID)
     })
@@ -49,11 +54,18 @@ export class VieworderComponent implements OnInit {
       }
     })
   }
-  cancelOrder() {debugger
-    this.fms.orderCancel(this.orderID,this.userdetails.userId).subscribe(res =>{
+  cancelOrder() {
+    //need to check orderid for list pages it may b not corect
+    this.fms.orderCancel(this.orderID,this.userdetails.userId,this.orderNumber).subscribe(res =>{
       console.log(res)
-      if(res){
-        alert('test')
+      if (res) {
+        Swal.fire({
+          icon: 'success',
+          title: "Order Cancelled !",         
+          // type: "success",
+          timer: 700
+        });
+        this.router.navigateByUrl('/')
       }
     })
   }
@@ -69,7 +81,7 @@ export class VieworderComponent implements OnInit {
       this.selectedProdut.productName;
     console.log(this.notification);
     this.fms.saveNotifications(this.notification).subscribe((res) => {
-      debugger
+     
       console.log(res);
       if (res) {
         // this.fms

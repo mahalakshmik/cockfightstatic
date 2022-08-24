@@ -174,6 +174,7 @@ export class OrdersummaryComponent implements OnInit {
 
     console.log(this.orderVM);
     this.fms.saveOrderCOD(this.orderVM).subscribe((res) => {
+      this.orderID=res;
       console.log(res);
       if(res){
               Swal.fire({

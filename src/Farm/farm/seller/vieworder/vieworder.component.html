@@ -12,93 +12,45 @@
 
                 </div>               
 
-                <div class="panel-body " *ngFor="let p of orderHistory?.orderHeader">
-                    <div class="col-md-12 border ">
-                        <div class="col-md-8 col-xs-12">
-                            <div class="order-id " >
-                                <p><strong>Order No.: </strong>
-                                    {{p.orderNo}}</p>
-                                <p><strong>Order Date: </strong>
-                                    {{p.orderDate | date:'dd/mm/yyyy'}}</p>
-                                <p><strong>Order Status: </strong>{{p.orderStatusDesc}}</p>
-                                
-                            </div>
+                <div class="card" *ngFor="let p of orderHistory?.orderHeader">
+                    <div class="row" >
+                        <div class="col-sm-8" >
+                            <p><b>Order No.:</b> {{p.orderNo}}</p>
+                            <p><b>Order Date:</b> {{p.orderDate | date:'dd/mm/yyyy'}}</p>
+                            <p><b>Buyer Name:</b> {{p.userName}}</p>
+                            <p><b>Order Status:</b> {{p.orderStatusDesc}}</p>
+                            <hr>
+
                         </div>
-                        <div class="col-md-4 col-xs-12">
-                            <div class="order-id pull-right-lg">
-                                <p>
-                                    <strong>Total Amount : </strong>
-                                    {{p.totalAmount| number: '1.2-2'}}
-                                </p>
-                            </div>
+                        <div class="col-sm-2">
+                            <p><b>Total Amount:</b></p>
+                            <!-- <button class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true">Payment
+                                    slip</i></button> -->
+
                         </div>
+
                     </div>
-
-                    <div class="col-md-12 border">
-                        <div class="col-md-3">
-                            <div class="order-image">
-                                <img src="/Uploads/Product/21067/" class="img-responsive">
-                            </div>
+                    <div class="row" *ngFor="let q of orderHistory?.orderDetail">
+                        <div class="col-sm-3">
+                            <img src={{productPicUrl}}{{q.productImage}} width="100" />
                         </div>
-                        <div class="col-md-9">
-                            <div class="col-md-7">
-                                <div class="order-detailes">
-                                    <div>
-                                        <span>
-                                            <b>Product Name : </b>
-                                            {{p.userName}}
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <span>
-                                            <b>Seller : </b>
-                                            {{p.seller}}
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <span>
-                                            <b>Quantity : </b>
-                                            1
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <span>
-                                            <b>Province : </b>
-                                            {{p.locality}}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <div class="order-detailes pull-right">
-                                    <div>
-                                        <span>
-                                            <b>Price : </b>
-                                            {{p.orderAmount | number: '1.2-2'}}
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <span>
-                                            <b>Discount : </b>
-                                           {{p.discountAmount | number: '1.2-2'}}
-                                        </span>
-                                    </div>
-
-                                </div>
-                            </div>
+                        <div class="col-sm-6">
+                            <p><b>Product Name:</b> {{q.productName}}</p>
+                            <p><b>Payment Type:</b> {{q.paymentOptionDescription}}</p>
+                            <p><b>Quantity:</b> {{q.quantity}}</p>
                         </div>
-                    </div>
-
-
-                    <div class="col-md-12 border">
-                        <div class="col-md-6">
+                        <div class="col-sm-3">
+                            <p><b>Price:</b> {{q.standardPrice}}</p>
+                            <p><b>Discount:</b> {{q.discountAmount}}</p>
 
                         </div>
+                        <hr>
                         <div class="pull-right">
                             <button class="custom-btn btn btn-default" 
                                 (click)="confirmDelivered()">Confirm Delivered</button>
                             <button class="btn btn-default btn-custom" (click)="cancelOrder()">Cancel Order</button>
                         </div>
+
                     </div>
                 </div>
             </div>
