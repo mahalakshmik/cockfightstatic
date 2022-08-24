@@ -41,7 +41,7 @@ export class OrdersummaryComponent implements OnInit {
     this.images = JSON.parse(localStorage.getItem('images') || '{}');
     this.sellerName = JSON.parse(localStorage.getItem('sellerName') || '{}');
     this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
-    this.orderVM = this.selectedProdut;
+    //this.orderVM = this.selectedProdut;
     this.orderVM.deliveryAddress = JSON.parse(
       localStorage.getItem('deliveryaddress') || '{}'
     );
@@ -132,23 +132,23 @@ export class OrdersummaryComponent implements OnInit {
       "itemID": 0,
       "orderID": 0,
       
-      "quantity": 0,
+      "quantity": this.productCount,
       "unitPrice": 0,
       "discountType": 0,
       
-      "isCancel": true,
+      "isCancel": false,
       "cancelBy": 0,
-      "isDelivered": true,
+      "isDelivered": false,
     };
     //  this.orderPayment.paymentAmount = this.totalAmount;
     const payment = {
       paymentID: 0,
-      paymentDate: '',
+      paymentDate: '2022-08-24T02:39:36.104Z',
       orderID: 0,
-      paymentAmount: this.totalAmount,
+      paymentAmount:0,
       referenceNo: '',
-      paymentMode: '2175',
-      createdOn: '',
+      paymentMode: '2177',
+      createdOn: '2022-08-24T02:39:36.104Z',
       paymentModeDesc: '',
     };
     //console.log(this.orderPayment);
@@ -160,7 +160,14 @@ export class OrdersummaryComponent implements OnInit {
 
     //this.orderDetail = payload
    // console.log(this.orderDetail);
-    this.orderVM = this.selectedProdut;
+  //  this.orderVM = this.selectedProdut;
+    this.orderVM.memberID=this.selectedProdut.memberID;
+  this.orderVM.addressID=this.selectedProdut.addressID;
+  this.orderVM.orderAmount=this.selectedProdut.standardPrice;
+  this.orderVM.discountAmount=this.selectedProdut.discountAmount;
+  this.orderVM.currency=this.selectedProdut.currency;
+  this.orderVM.paidAmount=this.selectedProdut.paidAmount;
+
     this.orderVM.orderDetail = [];
     this.orderVM.orderDetail.push(payload);
     this.orderVM.orderPayment = payment;
@@ -168,6 +175,18 @@ export class OrdersummaryComponent implements OnInit {
     console.log(this.orderVM);
     this.fms.saveOrderCOD(this.orderVM).subscribe((res) => {
       console.log(res);
+      if(res){
+              Swal.fire({
+          icon: 'success',
+          title: 'Order Confirmed!',
+          text: 'You clicked the button!',
+          // type: "success",
+          timer: 500,
+        });
+        //later change to router id
+        localStorage.setItem('orderID', JSON.stringify(this.orderID));
+        this.route.navigate(['/customer/confirmorder']);
+      }
     });
   }
   decrement() {

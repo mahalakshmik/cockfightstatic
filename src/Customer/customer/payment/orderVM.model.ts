@@ -1,6 +1,6 @@
 export class OrderVM {
-  orderID: any;
-  orderNo: any;
+  orderID: any=0;
+  orderNo: any='0';
   orderDate: any;
   memberID: any;
   orderStatus: any;
@@ -43,8 +43,8 @@ export class orderdetails {
   isDelivered: boolean = false;
   deliveryID: any;
   deliverDate: string = '';
-  createdOn: string = '';
-  modifiedOn: string = '';
+  createdOn: string = '2022-08-24T02:39:36.104Z';
+  modifiedOn: string = '2022-08-24T02:39:36.104Z';
   sellerName: string = '';
   productCode: string = '';
   productName: string = '';
@@ -71,11 +71,11 @@ export class usp_DeliveryAddressList_Result {
 }
 export class orderPayment {
   paymentID: any=0;
-  paymentDate: string = '';
+  paymentDate: string = '2022-08-24T02:39:36.104Z';
   orderID: any=0;
   paymentAmount: any;
   referenceNo: string = '';
   paymentMode: any;
-  createdOn: string = '';
+  createdOn: string = '2022-08-24T02:39:36.104Z';
   paymentModeDesc: string = '';
 }
