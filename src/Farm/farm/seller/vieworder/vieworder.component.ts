@@ -32,10 +32,13 @@ export class VieworderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.spinnerService.show()
     this.fms.viewOrderByNumber(this.orderNumber).subscribe(res => {
+
       console.log(res)
       this.orderHistory = res;
-      this.images
+      this.spinnerService.hide()
+
       this.orderID = this.orderHistory.orderHeader[0]?.orderID
       console.log(this.orderID)
     })
