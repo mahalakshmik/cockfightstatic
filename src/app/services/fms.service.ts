@@ -50,8 +50,8 @@ export class FmsService {
     return this.http.post(`${this.baseURL}DeliveryAddress`, payload);
   }
   SavePayment(payload: any) {
-    payload.memberId = this.userdetails.userId;
-    payload.addressID = this.userdetails.userId;
+    // payload.memberId = this.userdetails.userId;
+    // payload.addressID = this.userdetails.userId;
 
     return this.http.post(
       `${this.baseURL}OrderPayments/SaveOrderPayment`,
@@ -314,9 +314,19 @@ export class FmsService {
       `${this.baseURL}OrderDetails/orderCancel/${orderId}/${cancelBy}/${orderno}`
     );
   }
+  orderClose(orderId: any, USERID: any) {
+    ///OrderDetails/orderCancel/{orderId}/{cancelBy}
+    return this.http.get(
+      `${this.baseURL}OrderDetails/orderClose/${orderId}/${USERID}`
+    );
+  }
   saveOrderCOD(payload: any) {
     //api/OrderPayments/saveOrderCOD
     return this.http.post(`${this.baseURL}OrderPayments/saveOrderCOD`, payload);
+  }
+  saveOrderOnline(payload: any) {
+    //api/OrderPayments/saveOrderCOD
+    return this.http.post(`${this.baseURL}OrderPayments/confirmOrder`, payload);
   }
   viewOrderByNumber(orderno: string) {
     return this.http.get(`${this.baseURL}OrderDetails/viewOrder/` + orderno);

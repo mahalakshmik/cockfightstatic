@@ -62,7 +62,7 @@
                             {
                                 <button class="btn btn-default btn-custom" onclick="CloseOrder(@Model.orderHeader[i].OrderID)">@AppResource.CloseOrder</button>
                             } -->
-                            <button class="btn btn-default btn-custom" (click)="CloseOrder(p.OrderID)" *ngIf="p.orderStatus=='2183'">Close Order</button>
+                            <button class="btn btn-default btn-custom" (click)="CloseOrder(p.orderID)" *ngIf="p.orderStatus=='2183'">Close Order</button>
                             <button class="custom-btn btn btn-default" 
                                 (click)="confirmDelivered()">Confirm Delivered</button>
                             <button class="btn btn-default btn-custom" (click)="cancelOrder()">Cancel Order</button>

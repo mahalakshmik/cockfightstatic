@@ -61,13 +61,28 @@ export class VieworderComponent implements OnInit {
     })
     this.spinnerService.hide()
   }
-  CloseOrder(id:any){
 
+  CloseOrder(id:any) {
+    //need to check orderid for list pages it may b not corect
+    this.fms.orderClose(id,this.userdetails.userId).subscribe(res =>{
+      console.log(res)
+      this.spinnerService.hide();
+      if (res) {
+        Swal.fire({
+          icon: 'success',
+          title: "Order Closed !",         
+          // type: "success",
+          timer: 700
+        });
+        this.router.navigateByUrl('/')
+      }
+    })
   }
   cancelOrder() {
     //need to check orderid for list pages it may b not corect
     this.fms.orderCancel(this.orderID,this.userdetails.userId,this.orderNumber).subscribe(res =>{
       console.log(res)
+      this.spinnerService.hide()
       if (res) {
         Swal.fire({
           icon: 'success',
@@ -78,7 +93,6 @@ export class VieworderComponent implements OnInit {
         this.router.navigateByUrl('/')
       }
     })
-    this.spinnerService.hide()
   }
   saveNotificaton() {
     this.notification.memberId = this.selectedProdut.sellerID;

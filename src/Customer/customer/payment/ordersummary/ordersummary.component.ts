@@ -34,6 +34,10 @@ export class OrdersummaryComponent implements OnInit {
   orderDetail: any;
   orderPayment: any;
 
+  imageUrl: any;
+  fileToUpload: any;
+
+  isCOD:boolean=true;
   constructor(private route: Router, private fms: FmsService, public spinnerService: NgxSpinnerService) {
     this.selectedProdut = JSON.parse(
       localStorage.getItem('selectedProdut') || '{}'
@@ -78,8 +82,10 @@ export class OrdersummaryComponent implements OnInit {
       this.confirmOrderforCOD();
       //this.saveNotificaton()
     } else {
-      this.route.navigate(['payment']);
-      console.log(this.totalAmount);
+     // this.route.navigate(['payment']);
+     this.isCOD=false;
+   this.confirmPayment();
+      //check y saving
       localStorage.setItem('totalamount', JSON.stringify(this.totalAmount));
     }
   }
@@ -103,27 +109,23 @@ export class OrdersummaryComponent implements OnInit {
   confirmOrderforCOD() {
     debugger;
     this.spinnerService.show();
-    // console.log(this.forms);
-    // this.forms.orderAmount = this.selectedProdut.standardPrice;
-    // this.forms.discountAmount = this.selectedProdut.discount;
-    // this.forms.totalAmount = this.totalamount;
-    // this.fms.Payment(this.forms).subscribe((res) => {
-    //   this.orderID = res;
-    //   console.log(res);
-    //   if (res) {
-    //     ///this method called in confrom order payment
-    //     // this.saveNotificaton()
-    //     Swal.fire({
-    //       icon: 'success',
-    //       title: 'Order Confirmed!',
-    //       text: 'You clicked the button!',
-    //       // type: "success",
-    //       timer: 500,
-    //     });
-    //     localStorage.setItem('orderID', JSON.stringify(this.orderID));
-    //     this.route.navigate(['/customer/confirmorder']);
-    //   }
-    // });
+    
+    //#payment options are two types  vvvimp
+    //type1  >> online
+// // If PaymentOption = CASHONDELIVERY (2177), then add a default order payment object with PaymentAMount = 0;
+    // ReferenceNo = PaymentOptionDescripton,
+    //                 OrderID = order.OrderID,
+    //                 PaymentMode = PaymentOption,
+    //                 PaymentDate = DateTime.Now,
+    //                 PaymentAmount = 0
+    //type2  >> cod and others
+    // ReferenceNo = filename,
+    // OrderID = order.OrderID,
+    // PaymentMode = PaymentOption,
+    // PaymentDate = DateTime.Now,
+    // PaymentAmount = order.TotalAmount
+    ////#endregion type1
+    
 
     const payload = {
       sellingPrice: this.selectedProdut.standardPrice,
@@ -133,16 +135,13 @@ export class OrdersummaryComponent implements OnInit {
       stockQty: this.selectedProdut.stockQty,
       "itemID": 0,
       "orderID": 0,
-
       "quantity": this.productCount,
       "unitPrice": 0,
       "discountType": 0,
-
       "isCancel": false,
       "cancelBy": 0,
       "isDelivered": false,
     };
-    //  this.orderPayment.paymentAmount = this.totalAmount;
     const payment = {
       paymentID: 0,
       paymentDate: '2022-08-24T02:39:36.104Z',
@@ -153,16 +152,7 @@ export class OrdersummaryComponent implements OnInit {
       createdOn: '2022-08-24T02:39:36.104Z',
       paymentModeDesc: '',
     };
-    //console.log(this.orderPayment);
-
-    // "discountAmount" :this.selectedProdut.discount,
-    // "productID" :this.selectedProdut.productID,
-    // "sellerID" :this.selectedProdut.sellerID,
-    // "stockQty" :this.selectedProdut.stockQty,
-
-    //this.orderDetail = payload
-    // console.log(this.orderDetail);
-    //  this.orderVM = this.selectedProdut;
+   
     this.orderVM.memberID = this.selectedProdut.memberID;
     this.orderVM.addressID = this.selectedProdut.addressID;
     this.orderVM.orderAmount = this.selectedProdut.standardPrice;
@@ -194,6 +184,68 @@ export class OrdersummaryComponent implements OnInit {
     });
     this.spinnerService.hide()
   }
+
+  confirmPayment(){
+    
+    const payload = {
+      sellingPrice: this.selectedProdut.standardPrice,
+      discountAmount: this.selectedProdut.discount,
+      productID: this.selectedProdut.productID,
+      sellerID: this.selectedProdut.sellerID,
+      stockQty: this.selectedProdut.stockQty,
+      "itemID": 0,
+      "orderID": 0,
+      "quantity": this.productCount,
+      "unitPrice": 0,
+      "discountType": 0,
+      "isCancel": false,
+      "cancelBy": 0,
+      "isDelivered": false,
+    };
+
+   
+    this.orderVM.memberID = this.selectedProdut.memberID;
+    this.orderVM.addressID = this.selectedProdut.addressID;
+    this.orderVM.orderAmount = this.selectedProdut.standardPrice;
+    this.orderVM.discountAmount = this.selectedProdut.discountAmount;
+    this.orderVM.currency = this.selectedProdut.currency;
+    this.orderVM.paidAmount = this.selectedProdut.paidAmount;
+
+    this.orderVM.orderDetail = [];
+    this.orderVM.orderDetail.push(payload);
+   // this.orderVM.orderPayment = payment;
+
+    this.fms.saveOrderOnline(this.orderVM).subscribe((res) => {
+      this.orderID=res;
+      console.log(res);
+      localStorage.setItem('orderID', JSON.stringify(this.orderID));
+     
+    });
+  }
+  savePayment(){debugger
+
+    var formdata = new FormData();
+    formdata.append('PaymentAmount', this.totalAmount,);
+    formdata.append('OrderId', this.orderID);
+    formdata.append('ReferenceNo', this.fileToUpload.name);
+    formdata.append('PaymentMode', '2178');
+    formdata.append('paymentID', '0');
+    formdata.append('paymentDate', '2022-08-24T02:39:36.104Z');
+    formdata.append('createdOn', '2022-08-24T02:39:36.104Z');
+    formdata.append('file', this.fileToUpload);
+    this.fms.SavePayment(formdata).subscribe((res) => {     
+        if (res) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Order Confirmed!',
+            text: '',
+            timer: 700,
+          });
+        
+        this.route.navigate(['/customer/confirmorder']);
+      }
+    });
+  }
   decrement() {
     this.errormessage = '';
 
@@ -203,5 +255,17 @@ export class OrdersummaryComponent implements OnInit {
     }
     this.totalAmount = this.selectedProdut.standardPrice * this.productCount;
     this.totalAmount = this.totalAmount - this.selectedProdut.discount;
+  }
+
+  uploadFile(e: any) {
+    this.fileToUpload = e.target.files[0];
+console.log(this.fileToUpload.name)
+    //Show image preview
+    let reader = new FileReader();
+    reader.readAsDataURL(this.fileToUpload);
+    reader.onload = (event: any) => {
+      this.imageUrl = event.target.result;
+    };
+
   }
 }
