@@ -10,7 +10,7 @@
                         </div>
                     </div>
                     <div class="col-sm-3 text-right">
-                        <select class="form-control" [(ngModel)]="selectedOrder" (click)="onChange($event)" name="selectedOrder">
+                        <select class="form-control" [(ngModel)]="selectedOrder" (change)="onChange($event)" name="selectedOrder">
                             <!-- <option value="0">All Orders</option> -->
                             <option  *ngFor="let drp of sellerType" [value]="drp.lookupId">{{drp.lookupDescription}}</option>
                             <!-- <option value="2181">ORDER CONFIRMED</option>
