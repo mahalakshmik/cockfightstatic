@@ -189,6 +189,11 @@ export class FmsService {
         `/${OrderStatusID}/en`
     );
   }
+  soldOutList() {
+    return this.http.get(
+      `${this.baseURL}Seller/SoldOutList/` +this.userdetails.userId +`/en`
+    );
+  }
   getReadyToSellList() {
     //return this.http.get(`${this.baseURL}Seller/List/en/userID`, { params: queryParams })
     return this.http.get(

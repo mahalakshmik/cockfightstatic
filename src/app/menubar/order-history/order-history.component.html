@@ -41,7 +41,7 @@
                                 <p><strong>Order No.: </strong>
                                     {{p.orderNo}}</p>
                                 <p><strong>Order Date: </strong>
-                                    {{p.orderDate | date:'dd/mm/yyyy'}}</p>
+                                    {{p.orderDate | date:'dd/MM/yyyy'}}</p>
                                 <p><strong>Order Status: </strong>{{p.orderStatusDesc}}</p>
                                 
                             </div>
@@ -118,8 +118,8 @@
                         </div>
                         <div class="pull-right">
                             <button class="custom-btn btn btn-default" style="display:none"
-                                onclick="trackOrder(1018)">Track Your Order</button>
-                            <button class="btn btn-default btn-custom" onclick="CancelOrder(1018)">Cancel Order</button>
+                                onclick="trackOrder(p.orderID)">Track Your Order</button>
+                            <button class="btn btn-default btn-custom" onclick="CancelOrder(p.orderID)">Cancel Order</button>
                         </div>
                     </div>
                 </div>

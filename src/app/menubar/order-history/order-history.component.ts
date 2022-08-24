@@ -22,4 +22,9 @@ export class OrderHistoryComponent implements OnInit {
       this.orderHistory = res;
     })
   }
+
+
+  CancelOrder(id:any){
+    
+  }
 }
