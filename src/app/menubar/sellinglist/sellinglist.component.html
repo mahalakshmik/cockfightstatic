@@ -40,6 +40,8 @@
 
                     </div>
                     <div class="row" *ngFor="let q of sellerlst?.orderDetail">
+                        <div *ngIf="p.orderID ==q.orderID">
+
                         <div class="col-sm-3">
                             <img src={{productPicUrl}}{{q.productImage}} width="100" />
                         </div>
@@ -57,6 +59,8 @@
                         <button class="btn btn-primary">Cancel Order</button>
 
                     </div>
+                </div>
+
                 </div>
             </div>
         </div>
