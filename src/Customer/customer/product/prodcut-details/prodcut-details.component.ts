@@ -108,8 +108,8 @@ export class ProdcutDetailsComponent implements OnInit {
     } else {
       var payload = {
         CartId : 0,
-        ProductId : this.product.productId,
-        SellerId : this.product.sellerId,
+        ProductId : this.product.productID,
+        SellerId : this.product.sellerID,
         MemberId : this.userdetails.userId,
         Quantity : 1,
         UnitPrice : this.product.standardPrice,
