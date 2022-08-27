@@ -107,17 +107,17 @@ export class ProdcutDetailsComponent implements OnInit {
       this.Login();
     } else {
       var payload = {
-        cartID: 0,
-        productID: this.product.productId,
-        sellerID: this.product.sellerId,
-        memberID: this.userdetails.userId,
-        quantity: 1,
-        unitPrice: this.product.standardPrice,
-        currency: this.product.currency,
-        discountAmount: this.product.discount,
-        discountType: 0,
-        totalAmount: 65,
-        isGuest: false,
+        CartId : 0,
+        ProductId : this.product.productId,
+        SellerId : this.product.sellerId,
+        MemberId : this.userdetails.userId,
+        Quantity : 1,
+        UnitPrice : this.product.standardPrice,
+        Currency : this.product.currency,
+        DiscountAmount : this.product.discount,
+        DiscountType : 0,
+        TotalAmount : 65,
+        IsGuest : false,
         stockQty: this.product.stockQty,
         // "IsGuest":false
       };
