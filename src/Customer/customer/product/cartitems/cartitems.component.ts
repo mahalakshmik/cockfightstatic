@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Route, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { FmsService } from 'src/app/services/fms.service';
+import { LoginComponent } from 'src/commonFiles/login/login.component';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 
@@ -14,7 +16,9 @@ export class CartitemsComponent implements OnInit {
   cartLst: any =[];
   productPicUrl = environment.ProductUrl;
   userId: any=0;
-  constructor(private fms: FmsService, private route: Router, public as: AuthService,) {}
+  matDialogRef!: MatDialogRef<LoginComponent>;
+
+  constructor(private fms: FmsService, private matDialog: MatDialog, private route: Router, public as: AuthService,) {}
 
   ngOnInit(): void {
     this.userId = this.as.getToken();
@@ -67,6 +71,28 @@ export class CartitemsComponent implements OnInit {
     });
   }
   proceedToPayment() {
-    this.route.navigate(['/Addressdelivery']);
+    if (!this.as.isLoggedIn()) {
+      this.Login();
+     
+    } else {
+
+      this.route.navigate(['/Addressdelivery']);
+    }
+  }
+
+  Login() {
+    this.matDialogRef = this.matDialog.open(LoginComponent, {
+      // data: { name: this.name },
+      disableClose: true,
+      width: '400px',
+      height: '550px',
+    });
+
+    this.matDialogRef.afterClosed().subscribe((res: any) => {
+      if (res == true) {
+        // this.name = "";
+        this.getCartList();
+      }
+    });
   }
 }

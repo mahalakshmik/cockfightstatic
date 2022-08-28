@@ -105,7 +105,14 @@ export class ProdcutDetailsComponent implements OnInit {
 
   addCart() {
     if (!this.as.isLoggedIn()) {debugger
-      //this.Login();
+      console.log(localStorage.getItem('localCartLst') )
+
+      if(localStorage.getItem('localCartLst')){
+        const localdata = JSON.parse(localStorage.getItem('localCartLst') || '{}');
+        this.cartLst.map(localdata)
+        console.log(this.cartLst)
+      }
+    
       var payload1 = {
         CartId : 0,
         ProductId : this.product.productID,
