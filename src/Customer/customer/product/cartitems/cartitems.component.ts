@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { FmsService } from 'src/app/services/fms.service';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
@@ -10,18 +11,30 @@ import Swal from 'sweetalert2';
   styleUrls: ['./cartitems.component.scss'],
 })
 export class CartitemsComponent implements OnInit {
-  cartLst: any;
+  cartLst: any =[];
   productPicUrl = environment.ProductUrl;
-  constructor(private fms: FmsService, private route: Router) {}
+  userId: any=0;
+  constructor(private fms: FmsService, private route: Router, public as: AuthService,) {}
 
   ngOnInit(): void {
+    this.userId = this.as.getToken();
     this.getCartList();
   }
   getCartList() {
-    this.fms.cartList().subscribe((res) => {
-      console.log(res);
-      this.cartLst = res;
-    });
+    if(!this.userId){
+      this.cartLst = JSON.parse(localStorage.getItem('localCartLst') || '{}');
+      console.log(this.cartLst)
+      // this.fms.cartList().subscribe((res) => {
+      //   console.log(res);
+      //   this.cartLst = res;
+      // });
+    }else{
+      this.fms.cartList().subscribe((res) => {
+        console.log(res);
+        this.cartLst = res;
+      });
+    }
+   
   }
   delete(cartID: number) {
     Swal.fire({

@@ -42,6 +42,7 @@ export class ProdcutDetailsComponent implements OnInit {
   model: any = {};
   uploadedFile: any;
   isHide: any;
+  cartLst: any =[];
   constructor(
     private fms: FmsService,
     private ls: LoginService,
@@ -103,8 +104,42 @@ export class ProdcutDetailsComponent implements OnInit {
 
 
   addCart() {
-    if (!this.as.isLoggedIn()) {
-      this.Login();
+    if (!this.as.isLoggedIn()) {debugger
+      //this.Login();
+      var payload1 = {
+        CartId : 0,
+        ProductId : this.product.productID,
+        productName : this.product.productName,
+        SellerId : this.product.sellerID,
+        sellerName : this.product.sellerName,
+        MemberId : 0,
+        Quantity : 1,
+        UnitPrice : this.product.standardPrice,
+        Currency : this.product.currency,
+        DiscountAmount : this.product.discount,
+        DiscountType : 0,
+        TotalAmount : 65,
+        IsGuest : true,
+        stockQty: this.product.stockQty,
+        // "IsGuest":false
+      };
+      this.cartLst.push(payload1)
+
+      localStorage.setItem('localCartLst', JSON.stringify(this.cartLst));
+      console.log(payload1)
+      console.log(this.cartLst)
+      // this.fms.saveCartList(payload1).subscribe((res: any) => {debugger
+      //   //console.log(res);
+      //   if (res) {
+      //     Swal.fire({
+      //       icon: 'success',
+      //       title: 'Added to cart!',
+      //       text: 'You clicked the button!',
+      //       // type: "success",
+      //       timer: 500,
+      //     });
+      //   }
+      // });
     } else {
       var payload = {
         CartId : 0,
