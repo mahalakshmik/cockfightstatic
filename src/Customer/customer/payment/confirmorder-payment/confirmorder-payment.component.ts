@@ -50,7 +50,7 @@ export class ConfirmorderPaymentComponent implements OnInit {
       console.log(this.orderdetails[0].orderNo);
       if (res) {
         this.spinnerService.hide()
-        this.saveNotificaton();
+      //  this.saveNotificaton();
       }
       this.quatity =
         this.orderdetails.totalAmount / this.orderdetails.orderAmount;

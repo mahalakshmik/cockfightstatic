@@ -54,6 +54,6 @@ export class CartitemsComponent implements OnInit {
     });
   }
   proceedToPayment() {
-    this.route.navigate(['/payment']);
+    this.route.navigate(['/Addressdelivery']);
   }
 }
