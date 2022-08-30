@@ -4,7 +4,7 @@ export class OrderVM {
   orderDate: any;
   memberID: any;
   orderStatus: any;
-  addressID: any;
+  addressId: any;
   orderAmount: any;
   discountAmount: any;
   taxAmount: any;

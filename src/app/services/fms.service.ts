@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class FmsService {
+ 
   baseURL = environment.api;
   userdetails: any;
   isGuest: boolean = false;
@@ -335,5 +336,10 @@ export class FmsService {
   }
   viewOrderByNumber(orderno: string) {
     return this.http.get(`${this.baseURL}OrderDetails/viewOrder/` + orderno);
+  }
+  cartOrderList() {
+    this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
+
+   return this.http.get(`${this.baseURL}Carts/cartOrderDetails/`+this.userdetails.userId)
   }
 }

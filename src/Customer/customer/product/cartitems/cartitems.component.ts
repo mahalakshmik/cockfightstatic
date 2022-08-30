@@ -70,7 +70,12 @@ export class CartitemsComponent implements OnInit {
       timer: 300,
     });
   }
-  proceedToPayment() {
+  proceedToPayment() {debugger
+    //it will not work without login
+    //need to check iscart save for now localstorage
+    
+    localStorage.setItem('CartOrder',JSON.stringify(this.cartLst))
+    localStorage.setItem('isCart','true')
     if (!this.as.isLoggedIn()) {
       this.Login();
      
