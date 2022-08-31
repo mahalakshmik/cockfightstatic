@@ -1,4 +1,4 @@
-<div class="main" *ngIf="isCOD">
+<div class="main" *ngIf="showPaymentPage">
     <div class="card">
         <div class="row">
             <div class="col-sm-12 m-b-20">
@@ -58,7 +58,7 @@
 
 <!-- OnlinePayment -->
 
-<div class="main" *ngIf="!isCOD">
+<div class="main" *ngIf="!showPaymentPage">
 
 
     <div class="row">

@@ -328,6 +328,7 @@ export class FmsService {
   }
   saveOrderCOD(payload: any) {
     //api/OrderPayments/saveOrderCOD
+    payload.userId=this.userdetails.userId;
     return this.http.post(`${this.baseURL}OrderPayments/saveOrderCOD`, payload);
   }
   saveOrderOnline(payload: any) {
