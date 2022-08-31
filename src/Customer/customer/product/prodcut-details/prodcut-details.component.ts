@@ -187,6 +187,8 @@ export class ProdcutDetailsComponent implements OnInit {
     });
   }
   byNow() {
+    localStorage.setItem('isCart','false')
+
     if (!this.as.isLoggedIn()) {
       this.Login();
     } else {
