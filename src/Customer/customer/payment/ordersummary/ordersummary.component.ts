@@ -44,7 +44,7 @@ export class OrdersummaryComponent implements OnInit {
       localStorage.getItem('selectedProdut') || '{}'
     );
     this.productID = JSON.parse(localStorage.getItem('productID') || '{}');
-   // this.images = JSON.parse(localStorage.getItem('images') || '{}');
+    this.images = JSON.parse(localStorage.getItem('images') || '{}');
     this.sellerName = JSON.parse(localStorage.getItem('sellerName') || '{}');
     this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
     //this.orderVM = this.selectedProdut;
