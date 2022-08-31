@@ -13,32 +13,51 @@ import Swal from 'sweetalert2';
   styleUrls: ['./cartitems.component.scss'],
 })
 export class CartitemsComponent implements OnInit {
-  cartLst: any =[];
+  cartLst: any = [];
   productPicUrl = environment.ProductUrl;
-  userId: any=0;
+  userId: any = 0;
   matDialogRef!: MatDialogRef<LoginComponent>;
+  test: any;
+  isOnline: boolean = false;
+  COD: boolean = false;
 
-  constructor(private fms: FmsService, private matDialog: MatDialog, private route: Router, public as: AuthService,) {}
+  constructor(private fms: FmsService, private matDialog: MatDialog, private route: Router, public as: AuthService,) { }
 
   ngOnInit(): void {
     this.userId = this.as.getToken();
     this.getCartList();
   }
   getCartList() {
-    if(!this.userId){
+    if (!this.userId) {
       this.cartLst = JSON.parse(localStorage.getItem('localCartLst') || '{}');
       console.log(this.cartLst)
       // this.fms.cartList().subscribe((res) => {
       //   console.log(res);
       //   this.cartLst = res;
       // });
-    }else{
+    } else {
       this.fms.cartList().subscribe((res) => {
         console.log(res);
         this.cartLst = res;
+        this.forEach()
       });
+
     }
-   
+
+  }
+  forEach() {
+    debugger
+    this.cartLst.forEach((data: any) => {
+      if (data.paymentOptionDesc == 'ONLINE') {
+        ////alert('aasas') ;
+        this.isOnline = true;
+      } else if (data.paymentOptionDesc == 'CASH ON DELIVERY') {
+        //  alert('COD')
+        this.COD = true;
+      }
+      // this.test = data.paymentOptionDesc
+      console.log(this.test)
+    });
   }
   delete(cartID: number) {
     Swal.fire({
@@ -70,18 +89,23 @@ export class CartitemsComponent implements OnInit {
       timer: 300,
     });
   }
-  proceedToPayment() {debugger
+  proceedToPayment() {
+    debugger
     //it will not work without login
     //need to check iscart save for now localstorage
-    
-    localStorage.setItem('CartOrder',JSON.stringify(this.cartLst))
-    localStorage.setItem('isCart','true')
+
+    localStorage.setItem('CartOrder', JSON.stringify(this.cartLst))
+    localStorage.setItem('isCart', 'true')
     if (!this.as.isLoggedIn()) {
       this.Login();
-     
-    } else {
 
-      this.route.navigate(['/Addressdelivery']);
+    } else {
+      if(this.isOnline && this.COD){
+        alert('Order can not accept multiple payment types')
+      }else{
+        this.route.navigate(['/Addressdelivery']);
+      }
+
     }
   }
 

@@ -10,8 +10,9 @@
                     <tr>
                         <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 125px;">Image</th>
                         <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 1023px;">Product Name</th>
-                        <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 1023px;">Seller </th>
+                        <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 723px;">Seller </th>
                         <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 153px;">Amount</th>
+                        <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 553px;">Payment Type</th>
                         <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 100px;">Qty</th>
                         <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 134px;text-align:center">Action</th>
                     </tr>
@@ -30,6 +31,7 @@
                             <h6>{{p.sellerName}}</h6>
                         </td>
                         <td>${{p.unitPrice}}</td>
+                        <td>{{p.paymentOptionDesc}}</td>
                         <td>
                             <label> <div class="number-input">
                                 <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>

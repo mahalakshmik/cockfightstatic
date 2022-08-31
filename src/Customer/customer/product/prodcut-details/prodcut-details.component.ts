@@ -128,13 +128,14 @@ export class ProdcutDetailsComponent implements OnInit {
         TotalAmount : 65,
         IsGuest : true,
         stockQty: this.product.stockQty,
-        // "IsGuest":false
+        PaymentOptionDesc: this.product.paymentOptionDesc,
       };
       this.cartLst.push(payload1)
 
       localStorage.setItem('localCartLst', JSON.stringify(this.cartLst));
       console.log(payload1)
       console.log(this.cartLst)
+      this.route.navigateByUrl('/Cartitems')
       // this.fms.saveCartList(payload1).subscribe((res: any) => {debugger
       //   //console.log(res);
       //   if (res) {
@@ -161,6 +162,7 @@ export class ProdcutDetailsComponent implements OnInit {
         TotalAmount : 65,
         IsGuest : false,
         stockQty: this.product.stockQty,
+        PaymentOptionDesc: this.product.paymentOptionDesc,
         // "IsGuest":false
       };
       //console.log(payload);
@@ -175,6 +177,7 @@ export class ProdcutDetailsComponent implements OnInit {
             // type: "success",
             timer: 500,
           });
+          this.route.navigateByUrl('/Cartitems')
         }
       });
     }
