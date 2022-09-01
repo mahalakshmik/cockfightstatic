@@ -96,6 +96,8 @@ export class CartitemsComponent implements OnInit {
 
     localStorage.setItem('CartOrder', JSON.stringify(this.cartLst))
     localStorage.setItem('isCart', 'true')
+    localStorage.removeItem('selectedProdutList');
+    localStorage.removeItem('selectedProdut');
     if (!this.as.isLoggedIn()) {
       this.Login();
 

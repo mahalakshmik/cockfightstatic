@@ -37,7 +37,7 @@ export class OrdersummaryComponent implements OnInit {
   imageUrl: any;
   fileToUpload: any;
 
-  showPaymentPage:boolean=true;
+  showPaymentPage: boolean = true;
   deliveryaddress: any;
   isCart: boolean;
   constructor(private route: Router, private fms: FmsService, public spinnerService: NgxSpinnerService) {
@@ -49,34 +49,34 @@ export class OrdersummaryComponent implements OnInit {
     this.sellerName = JSON.parse(localStorage.getItem('sellerName') || '{}');
     this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
     //this.orderVM = this.selectedProdut;
-    this.deliveryaddress= JSON.parse(localStorage.getItem('deliveryaddress') || '{}');
-    this.isCart=JSON.parse(localStorage.getItem('isCart') || '')
+    this.deliveryaddress = JSON.parse(localStorage.getItem('deliveryaddress') || '{}');
+    this.isCart = JSON.parse(localStorage.getItem('isCart') || '')
 
 
     console.log(this.selectedProdut);
   }
 
-  ngOnInit(): void {debugger
+  ngOnInit(): void {
+    debugger
     //userid mandatory for delete cart
-    this.orderVM.deliveryAddress =this.deliveryaddress;
-    this.isCart=JSON.parse(localStorage.getItem('isCart') || '')
-    if( this.isCart){
-     // getting orderdetails from the api based on userid
+    this.orderVM.deliveryAddress = this.deliveryaddress;
+    this.isCart = JSON.parse(localStorage.getItem('isCart') || '')
+    if (this.isCart) {
+      // getting orderdetails from the api based on userid
       let cartdata: any;
       this.cartlistorder();
       //cartdata = JSON.parse(localStorage.getItem('CartOrder')|| '{}')
-      //console.log(cartdata[0].paymentOptionDesc)
       console.log(cartdata)
-     
-                    }else{
 
-                      //this.totalAmount = this.selectedProdut.standardPrice;
-                      //this.selectedProdut.discount;
-                      this.totalAmount = this.selectedProdut.standardPrice - this.selectedProdut.discount;
-                    }
+    } else {
+
+      //this.totalAmount = this.selectedProdut.standardPrice;
+      //this.selectedProdut.discount;
+      this.totalAmount = this.selectedProdut.standardPrice - this.selectedProdut.discount;
+    }
     console.log(this.orderVM);
   }
- 
+
 
   increment() {
     // this.productCount = this.productCount++
@@ -93,31 +93,32 @@ export class OrdersummaryComponent implements OnInit {
     }
   }
 
-  confirmOrder() {debugger
+  confirmOrder() {
+    debugger
 
     localStorage.setItem('quantity', JSON.stringify(this.productCount));
- 
-    if( this.isCart){
-this.cartOrderSave();
 
-    }else{
+    if (this.isCart) {
+      this.cartOrderSave();
+
+    } else {
 
       if (this.selectedProdut.paymentOption == 2177) {
-         this.confirmOrderforCOD();
-         //this.saveNotificaton()
-       } 
-       else {
+        this.confirmOrderforCOD();
+        //this.saveNotificaton()
+      }
+      else {
         // this.route.navigate(['payment']);
-        this.showPaymentPage=false;
-      this.confirmPayment();
-         //check y saving
-         localStorage.setItem('totalamount', JSON.stringify(this.totalAmount));
-       }
+        this.showPaymentPage = false;
+        this.confirmPayment();
+        //check y saving
+        localStorage.setItem('totalamount', JSON.stringify(this.totalAmount));
+      }
     }
   }
   //notusing
   saveNotificaton() {
-    
+
     this.notification.senderId = this.selectedProdut.sellerID;
     this.notification.message =
       'New Order Received: Farm Praveen' +
@@ -135,10 +136,10 @@ this.cartOrderSave();
   confirmOrderforCOD() {
     debugger;
     this.spinnerService.show();
-    
+
     //#payment options are two types  vvvimp
     //type1  >> online
-// // If PaymentOption = CASHONDELIVERY (2177), then add a default order payment object with PaymentAMount = 0;
+    // // If PaymentOption = CASHONDELIVERY (2177), then add a default order payment object with PaymentAMount = 0;
     // ReferenceNo = PaymentOptionDescripton,
     //                 OrderID = order.OrderID,
     //                 PaymentMode = PaymentOption,
@@ -151,7 +152,7 @@ this.cartOrderSave();
     // PaymentDate = DateTime.Now,
     // PaymentAmount = order.TotalAmount
     ////#endregion type1
-    
+
 
     const payload = {
       sellingPrice: this.selectedProdut.standardPrice,
@@ -178,7 +179,7 @@ this.cartOrderSave();
       createdOn: '2022-08-24T02:39:36.104Z',
       paymentModeDesc: '',
     };
-   
+
     this.orderVM.memberID = this.selectedProdut.memberID;
     this.orderVM.addressId = this.selectedProdut.addressID;
     this.orderVM.orderAmount = this.selectedProdut.standardPrice;
@@ -192,7 +193,7 @@ this.cartOrderSave();
 
     console.log(this.orderVM);
     this.fms.saveOrderCOD(this.orderVM).subscribe((res) => {
-      this.orderID=res;
+      this.orderID = res;
       console.log(res);
       if (res) {
         this.spinnerService.hide();
@@ -224,13 +225,13 @@ this.cartOrderSave();
       createdOn: '2022-08-24T02:39:36.104Z',
       paymentModeDesc: '',
     };
-    this.orderVM.orderPayment=payment;
+    this.orderVM.orderPayment = payment;
     if (this.orderVM.orderDetail[0].paymentOption == 2177) {
-  
+
       this.fms.saveOrderCOD(this.orderVM).subscribe((res) => {
-       // this.spinnerService.hide();
-        this.orderID=res;
-    console.log(res);
+        // this.spinnerService.hide();
+        this.orderID = res;
+        console.log(res);
         if (res) {
           this.spinnerService.hide();
           Swal.fire({
@@ -241,33 +242,23 @@ this.cartOrderSave();
           });
           //later change to router id
           localStorage.setItem('orderID', JSON.stringify(this.orderID));
-         
+
           this.route.navigate(['/customer/confirmorder']);
         }
       });
-    } else{
-      this.showPaymentPage=true;
+    } else {
+
+      this.showPaymentPage = false;
+      this.fms.saveOrderOnline(this.orderVM).subscribe((res) => {
+        this.orderID = res;
+        console.log(res);
+        localStorage.setItem('orderID', JSON.stringify(this.orderID));
+  
+      });
     }
   }
-  CartconfirmOrderforCOD() {
-    this.spinnerService.show();
-    
-    //#payment options are two types  vvvimp
-    //type1  >> online
-// // If PaymentOption = CASHONDELIVERY (2177), then add a default order payment object with PaymentAMount = 0;
-    // ReferenceNo = PaymentOptionDescripton,
-    //                 OrderID = order.OrderID,
-    //                 PaymentMode = PaymentOption,
-    //                 PaymentDate = DateTime.Now,
-    //                 PaymentAmount = 0
-    //type2  >> cod and others
-    // ReferenceNo = filename,
-    // OrderID = order.OrderID,
-    // PaymentMode = PaymentOption,
-    // PaymentDate = DateTime.Now,
-    // PaymentAmount = order.TotalAmount
-    ////#endregion type1
-    
+ 
+  confirmPayment() {
 
     const payload = {
       sellingPrice: this.selectedProdut.standardPrice,
@@ -284,66 +275,8 @@ this.cartOrderSave();
       "cancelBy": 0,
       "isDelivered": false,
     };
-    const payment = {
-      paymentID: 0,
-      paymentDate: '2022-08-24T02:39:36.104Z',
-      orderID: 0,
-      paymentAmount: 0,
-      referenceNo: '',
-      paymentMode: '2177',
-      createdOn: '2022-08-24T02:39:36.104Z',
-      paymentModeDesc: '',
-    };
-   
-    this.orderVM.memberID = this.selectedProdut.memberID;
-    this.orderVM.addressId = this.selectedProdut.addressID;
-    this.orderVM.orderAmount = this.selectedProdut.standardPrice;
-    this.orderVM.discountAmount = this.selectedProdut.discountAmount;
-    this.orderVM.currency = this.selectedProdut.currency;
-    this.orderVM.paidAmount = this.selectedProdut.paidAmount;//check this
 
-    this.orderVM.orderDetail = [];
-    this.orderVM.orderDetail.push(payload);
-    this.orderVM.orderPayment = payment;
 
-    console.log(this.orderVM);
-    this.fms.saveOrderCOD(this.orderVM).subscribe((res) => {
-      this.orderID=res;
-      console.log(res);
-      if (res) {
-        this.spinnerService.hide();
-        Swal.fire({
-          icon: 'success',
-          title: 'Order Confirmed!',
-          text: 'You clicked the button!',
-          timer: 500,
-        });
-        //later change to router id
-        localStorage.setItem('orderID', JSON.stringify(this.orderID));
-        this.route.navigate(['/customer/confirmorder']);
-      }
-    });
-    this.spinnerService.hide()
-  }
-  confirmPayment(){
-    
-    const payload = {
-      sellingPrice: this.selectedProdut.standardPrice,
-      discountAmount: this.selectedProdut.discount,
-      productID: this.selectedProdut.productID,
-      sellerID: this.selectedProdut.sellerID,
-      stockQty: this.selectedProdut.stockQty,
-      "itemID": 0,
-      "orderID": 0,
-      "quantity": this.productCount,
-      "unitPrice": 0,
-      "discountType": 0,
-      "isCancel": false,
-      "cancelBy": 0,
-      "isDelivered": false,
-    };
-
-   
     this.orderVM.memberID = this.selectedProdut.memberID;
     this.orderVM.addressId = this.selectedProdut.addressID;
     this.orderVM.orderAmount = this.selectedProdut.standardPrice;
@@ -353,17 +286,20 @@ this.cartOrderSave();
 
     this.orderVM.orderDetail = [];
     this.orderVM.orderDetail.push(payload);
-   // this.orderVM.orderPayment = payment;
+    // this.orderVM.orderPayment = payment;
 
     this.fms.saveOrderOnline(this.orderVM).subscribe((res) => {
-      this.orderID=res;
+      this.orderID = res;
       console.log(res);
       localStorage.setItem('orderID', JSON.stringify(this.orderID));
-     
+
     });
   }
-  savePayment(){
-
+  savePayment() {
+if(this.isCart){
+  this.totalAmount=this.orderVM.orderAmount;
+  //need to check total amount 
+}
     var formdata = new FormData();
     formdata.append('PaymentAmount', this.totalAmount,);
     formdata.append('OrderId', this.orderID);
@@ -373,28 +309,29 @@ this.cartOrderSave();
     formdata.append('paymentDate', '2022-08-24T02:39:36.104Z');
     formdata.append('createdOn', '2022-08-24T02:39:36.104Z');
     formdata.append('file', this.fileToUpload);
-    this.fms.SavePayment(formdata).subscribe((res) => {     
-        if (res) {
-          Swal.fire({
-            icon: 'success',
-            title: 'Order Confirmed!',
-            text: '',
-            timer: 700,
-          });
-        
+    this.fms.SavePayment(formdata).subscribe((res) => {
+      if (res) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Order Confirmed!',
+          text: '',
+          timer: 700,
+        });
+
         this.route.navigate(['/customer/confirmorder']);
       }
     });
   }
-  cartlistorder(){debugger
-    this.fms.cartOrderList().subscribe((res:any)=>{
-      console.log('orderlist',res)
-      this.orderVM=res;
-      this.orderVM.deliveryAddress=this.deliveryaddress;
-      this.orderVM.addressId=this.deliveryaddress.addressId;
-      this.selectedProdut.paymentOption=this.orderVM.orderDetail[0].paymentOption;
-      this.orderVM.orderNo='0'
-      
+  cartlistorder() {
+    debugger
+    this.fms.cartOrderList().subscribe((res: any) => {
+      console.log('orderlist', res)
+      this.orderVM = res;
+      this.orderVM.deliveryAddress = this.deliveryaddress;
+      this.orderVM.addressId = this.deliveryaddress.addressId;
+      this.selectedProdut.paymentOption = this.orderVM.orderDetail[0].paymentOption;
+      this.orderVM.orderNo = '0'
+
     })
   }
   decrement() {
@@ -410,7 +347,7 @@ this.cartOrderSave();
 
   uploadFile(e: any) {
     this.fileToUpload = e.target.files[0];
-console.log(this.fileToUpload.name)
+    console.log(this.fileToUpload.name)
     //Show image preview
     let reader = new FileReader();
     reader.readAsDataURL(this.fileToUpload);
