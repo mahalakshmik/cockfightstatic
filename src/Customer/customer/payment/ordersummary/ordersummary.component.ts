@@ -331,7 +331,7 @@ if(this.isCart){
       this.orderVM.addressId = this.deliveryaddress.addressId;
       this.selectedProdut.paymentOption = this.orderVM.orderDetail[0].paymentOption;
       this.orderVM.orderNo = '0'
-
+      console.log(this.orderVM.orderDetail)
     })
   }
   decrement() {

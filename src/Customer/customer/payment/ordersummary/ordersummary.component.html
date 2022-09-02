@@ -1,5 +1,5 @@
 <div class="main" *ngIf="showPaymentPage">
-    <div class="card">
+    <div class="card"  *ngIf="!isCart">
         <div class="row">
             <div class="col-sm-12 m-b-20">
                 <div class="title-bar">
@@ -45,6 +45,61 @@
                 <div class="col-md-2">
                     <p>StandardPrice:{{selectedProdut.standardPrice | number: '1.2-2'}}</p>
                     <p>Discount:{{selectedProdut.discount}}</p>
+                </div>
+
+            </div>
+            <button *ngIf="selectedProdut.paymentOption == 2177" (click)="confirmOrder()" class="btn btn-primary"
+                style="float: right;">Confirm Order</button>
+            <button *ngIf="selectedProdut.paymentOption != 2177" (click)="confirmOrder()" class="btn btn-primary"
+                style="float: right;">Continue Payment</button>
+        </div>
+    </div>
+    <div class="card" *ngIf="isCart">
+        <div class="row">
+            <div class="col-sm-12 m-b-20">
+                <div class="title-bar">
+                    <h2 class="title text-left border-bottom top-35"> Order Summary </h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10">
+
+                </div>
+                <div class="col-md-2">
+                    <p class=" text-left border-bottom top-35">TotalAmount:{{totalAmount | number: '1.2-2'}}</p>
+                </div>
+
+            </div>
+            <div class="row" *ngFor="let p of orderVM.orderDetail">
+                <div class="col-md-4">
+                    <img src="{{productPicUrl}}{{p.productImage}}" width="200" height="200"
+                        onerror="this.src='./assets/images/download.png';" class="d-block w-100" alt="image"
+                        style="margin-top: -50px;">
+                </div>
+                <div class="col-md-4">
+                    <p><b>ProductName</b>: {{p.productName}}</p>
+                    <p><b>SellerID</b>: {{p.sellerName}}</p>
+                    <p><b>Quantity </b>: {{p.quantity}}</p>
+                    <div class="col-sm-10">
+                        <label>
+                            <div class="number-input">
+                                <button [disabled]="disable" (click)="decrement()"></button>
+                                <input class="quantity" min="1" name="productCount" [value]="productCount"
+                                    type="number">
+                                <button (click)="increment()" class="plus"></button>
+
+                                <!-- <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button> -->
+                            </div>
+                            <p style="color: red;">{{this.errormessage}}</p>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-2">
+
+                </div>
+                <div class="col-md-2">
+                    <p>StandardPrice:{{p.unitPrice | number: '1.2-2'}}</p>
+                    <p>Discount:{{p.discountAmount}}</p>
                 </div>
 
             </div>
