@@ -92,6 +92,7 @@ export class OrdersummaryComponent implements OnInit {
       this.totalAmount = this.totalAmount - this.selectedProdut.discount;
     }
   }
+  
 
   confirmOrder() {
     debugger
@@ -332,9 +333,36 @@ if(this.isCart){
       this.selectedProdut.paymentOption = this.orderVM.orderDetail[0].paymentOption;
       this.orderVM.orderNo = '0'
       console.log(this.orderVM.orderDetail)
+      this.orderVM.orderDetail.forEach((data:any) => {
+        var cartPrice = data.unitPrice;
+        console.log(cartPrice)
+      });
     })
   }
+  cartIncrement(p:any,i:any){debugger
+    if (this.orderVM.orderDetail[i].stockQty == this.productCount) {
+      this.errormessage = `We are sorry! Only ${this.selectedProdut.stockQty} item(s) are available`;
+    } else {
+      this.errormessage = '';
+      this.productCount++;
+      if (this.productCount == 2) {
+        this.disable = false;
+      }
+      this.totalAmount = this.selectedProdut.standardPrice * this.productCount;
+      this.totalAmount = this.totalAmount - this.selectedProdut.discount;
+    }
+  }
   decrement() {
+    this.errormessage = '';
+
+    this.productCount--;
+    if (this.productCount == 1) {
+      this.disable = true;
+    }
+    this.totalAmount = this.selectedProdut.standardPrice * this.productCount;
+    this.totalAmount = this.totalAmount - this.selectedProdut.discount;
+  }
+  cartDecrement(p:any,i:any){
     this.errormessage = '';
 
     this.productCount--;
