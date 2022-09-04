@@ -30,4 +30,6 @@ note:added Ngx spinner if we get any version we need to remove , it supports onl
 ##spinner code
   1.  public spinnerService: NgxSpinnerService,
    2. this.spinnerService.show();
+
+   #send message to seller without file upload filename default is 'nofile'
   

@@ -19,7 +19,6 @@ export class InboxMessageComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.memberid = +params['memberType']; // (+) converts string 'id' to a number
       this.userid = +params['senderID']; // (+) converts string 'id' to a number
-      this.spinnerService.show();
 
       // In a real app: dispatch action to load the details here.
     });
