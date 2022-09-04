@@ -40,13 +40,19 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label>Zip Code </label>
-                    <input type="text" class="form-control" [(ngModel)]="form.zipCode" #zipCode="ngModel" name="zipCode"/>
+                    <input type="text" class="form-control" [(ngModel)]="form.zipCode" #zipCode="ngModel" name="zipCode" required/>
+                    <div *ngIf="f.submitted && zipCode.invalid"  >
+                        <div *ngIf="zipCode.errors" style="color: red;">ZipCode is required</div>
+                    </div>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
                     <label>Locality </label>
-                    <input type="text" class="form-control"  [(ngModel)]="form.locality" #locality="ngModel" name="locality"/>
+                    <input type="text" class="form-control"  [(ngModel)]="form.locality" #locality="ngModel" name="locality" required/>
+                    <div *ngIf="f.submitted && locality.invalid"  >
+                        <div *ngIf="locality.errors" style="color: red;">Locality is required</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -54,7 +60,10 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label>State / Province </label>
-                    <input type="text" class="form-control" [(ngModel)]="form.state" #state="ngModel" name="state"/>
+                    <input type="text" class="form-control" [(ngModel)]="form.state" #state="ngModel" name="state" required/>
+                    <div *ngIf="f.submitted && state.invalid"  >
+                        <div *ngIf="state.errors" style="color: red;">State is required</div>
+                    </div>
                 </div>
             </div>
             <div class="col-sm-6">
@@ -71,9 +80,12 @@
             <div class="col-sm-12">
                 <div class="form-group">
                     <label>Address </label>
-                    <textarea class="form-control" [(ngModel)]="form.memberAddress" #memberAddress="ngModel" name="memberAddress">
+                    <textarea class="form-control" [(ngModel)]="form.memberAddress" #memberAddress="ngModel" name="memberAddress" required>
 
             </textarea>
+            <div *ngIf="f.submitted && memberAddress.invalid"  >
+                <div *ngIf="memberAddress.errors" style="color: red;">Address is required</div>
+            </div>
 
                 </div>
             </div>
@@ -83,13 +95,16 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label>LandMark </label>
-                    <input type="text" class="form-control" [(ngModel)]="form.landmark" #landmark="ngModel" name="landmark"/>
+                    <input type="text" class="form-control" [(ngModel)]="form.landmark" #landmark="ngModel" name="landmark" required/>
+                    <div *ngIf="f.submitted && landmark.invalid"  >
+                        <div *ngIf="landmark.errors" style="color: red;">Landmark is required</div>
+                    </div>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
                     <label>Alternate No. </label>
-                    <input type="text" class="form-control" [(ngModel)]="form.alternateNo" #alternateNo="ngModel" name="alternateNo"/>
+                    <input type="text" class="form-control" [(ngModel)]="form.alternateNo" #alternateNo="ngModel" name="alternateNo" required/>
                     <div *ngIf="f.submitted && alternateNo.invalid" >
                         <div *ngIf="alternateNo.errors" style="color: red;">AlternateNo is required</div>
                     </div>
@@ -100,10 +115,17 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label>Address Type </label>
-                    <select class="form-control" [(ngModel)]="form.addressType" #addressType="ngModel" name="addressType">
+                    <select class="form-control" [(ngModel)]="form.addressType" #addressType="ngModel" name="addressType" required>
                         
                         <option value="{{p.value}}" *ngFor="let p of listItemskey">{{p.text}}</option>
+                        <!-- <option value="0" >Select Value</option>
+                        <option value="2175" > Home</option>
+                        <option value="2176" >Office </option> -->
+
                     </select>
+                    <div *ngIf="f.submitted && addressType.invalid"  >
+                        <div *ngIf="addressType.errors" style="color: red;">AddressType is required</div>
+                    </div>
                 </div>
                 <!-- <ul *ngFor="let p of listItemskey">
                     <li>    {{p.text}}</li>
