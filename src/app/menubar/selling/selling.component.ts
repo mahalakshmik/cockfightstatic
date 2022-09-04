@@ -56,7 +56,7 @@ export class SellingComponent implements OnInit {
   progressInfos: any[] = [];
   message: string[] = [];
   vedio: boolean = true;
-  previews: string[] = [];
+  previews: any[] = [];
   videoList: any;
   breeds: any = [];
   breadval: any;
@@ -159,7 +159,7 @@ console.log(this.url)
     this.selectedFiles = event.target.files;
     this.uploadFiles = this.selectedFiles;
     console.log(this.uploadFiles)
-    this.previews = [];
+   // this.previews = [];
     if (this.selectedFiles && this.selectedFiles[0]) {
       const numberOfFiles = this.selectedFiles.length;
       for (let i = 0; i < numberOfFiles; i++) {
@@ -351,6 +351,7 @@ console.log(this.url)
       }
       reader.onload = (event) => {
         this.url = (<FileReader>event.target).result;
+        this.isvideo=true;
       };
       this.videoFile = file;
     }

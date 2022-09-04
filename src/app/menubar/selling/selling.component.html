@@ -374,7 +374,7 @@
                                             controls></video> <br /> -->
                                         <video [src]="url" *ngIf="isvideo" height="200"
                                             controls></video> <br />
-                                        <input type='file' (change)="onSelectFile($event)" />
+                                        <input type='file' accept="video/*" (change)="onSelectFile($event)" />
                                     </div>
 
                                 </div>
@@ -387,7 +387,7 @@
                                             <i class="icon-cloud-upload f-20"
                                                 style="margin-right:15px; vertical-align: middle;"></i> Choose a
                                             File...</button>
-                                        <input type="file" name="myfile" multiple (change)="onFileSelect($event)" 
+                                        <input  type="file" accept="image/*" name="myfile" multiple (change)="onFileSelect($event)" 
                                        
                                         />
                                       
