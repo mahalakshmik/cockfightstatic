@@ -13,7 +13,7 @@
                         <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 723px;">Seller </th>
                         <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 153px;">Amount</th>
                         <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 553px;">Payment Type</th>
-                        <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 100px;">Qty</th>
+                        <!-- <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 100px;">Qty</th> -->
                         <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 134px;text-align:center">Action</th>
                     </tr>
                 </thead>
@@ -32,13 +32,13 @@
                         </td>
                         <td>${{p.unitPrice}}</td>
                         <td>{{p.paymentOptionDesc}}</td>
-                        <td>
+                        <!-- <td>
                             <label> <div class="number-input">
                                 <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
                                 <input class="quantity" min="0" name="quantity" value="1" type="number">
                                 <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
                               </div> </label>
-                        </td>
+                        </td> -->
                         <td class="action-icon text-center">
                             <!-- <a   href="#" class="btn btn-primary address-btn"><i _ngcontent-hjg-c17="" class="icon-trash"></i></a> -->
                             <button class="btn btn-primary address-btn" (click)="delete(p.cartID)"><i  class="icon-trash"></i></button>
