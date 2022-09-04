@@ -20,7 +20,7 @@ export class AppComponent {
   userName: any;
   cartLst: any;
   notifications: any;
-  notifcount: any;
+  notifcount: any=0;
   inbox: any;
   userID: any;
   memberType: any;
@@ -95,9 +95,10 @@ export class AppComponent {
    console.log(this.inboxcount)
   }
   getNotification() {
-    this.fms.getNotifications(this.userID).subscribe((res) => {
+    this.fms.getNotifications(this.userID).subscribe((res:any) => {
       this.notifications = res;
-      this.notifcount = this.notifications.length;
+
+      this.notifcount =  this.notifications((x:any)=>x.isRead === false).length;
       console.log(this.notifcount.messageHeader);
     });
   }

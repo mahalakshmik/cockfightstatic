@@ -128,9 +128,11 @@ console.log(this.url)
           const imgs=this.productPicUrl+e.imageName;
           if(e.contentType =="video/mp4"){
              this.isvideo=true;
+             this.url='';
              this.url= this.productVideoUrl+e.imageName;
 
            }else {
+            this.previews=[]
 
              this.previews.push(imgs)
            }
@@ -157,7 +159,7 @@ console.log(this.url)
     this.message = [];
     this.progressInfos = [];
     this.selectedFiles = event.target.files;
-    this.uploadFiles = this.selectedFiles;
+   this.uploadFiles.push( event.target.files[0]);
     console.log(this.uploadFiles)
    // this.previews = [];
     if (this.selectedFiles && this.selectedFiles[0]) {
