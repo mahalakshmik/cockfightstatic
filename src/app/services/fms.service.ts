@@ -210,6 +210,9 @@ export class FmsService {
   getNotifications(userid: any) {
     return this.http.get(`${this.baseURL}NotificationListSP/` + userid + '/50');
   }
+  getNotificationCount(userid: any) {
+    return this.http.get(`${this.baseURL}NotificationListSP/NotificationsCount/userid?userid=` + userid);
+  }
   getWishList() {
     return this.http.get(
       `${this.baseURL}WishListListSP/` + this.userdetails.memberType
