@@ -31,6 +31,8 @@ export class CartitemsComponent implements OnInit {
     if (!this.userId) {
       this.cartLst = JSON.parse(localStorage.getItem('localCartLst') || '{}');
       console.log(this.cartLst)
+    localStorage.setItem('cartCount', JSON.stringify(this.cartLst.length))
+
       // this.fms.cartList().subscribe((res) => {
       //   console.log(res);
       //   this.cartLst = res;
@@ -39,7 +41,10 @@ export class CartitemsComponent implements OnInit {
       this.fms.cartList().subscribe((res) => {
         console.log(res);
         this.cartLst = res;
-        this.forEach()
+    localStorage.setItem('cartCount', JSON.stringify(this.cartLst.length))
+
+
+       // this.forEach()
       });
 
     }

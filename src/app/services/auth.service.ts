@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { map, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { FmsService } from './fms.service';
 
@@ -126,15 +126,28 @@ export class AuthService {
       return res;
     });
   }
+  getCartCount() {
+    let count=0;
+  count= JSON.parse(localStorage.getItem('cartCount') || '0');
+  return count
+  }
   getNotification() {
     const id=this.getToken();
     this.fms.getNotifications(id).subscribe((res:any) => {
-     return res.length;
+      res=res((x:any)=>x.isRead === false).length;
+     return res;
       
     });
   }
 
 
+
+  // private prodCount: number = 0;
+  // public prodCountCountChange: Subject<number> = new Subject();
+  // updateCount(count: number = 0): void {
+  //   this.prodCount = count;
+  //   this.prodCountCountChange.next(this.prodCount);
+  // }
   //KP08202020
   errorHandler
     (error: any) {
