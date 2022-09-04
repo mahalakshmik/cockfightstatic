@@ -25,7 +25,7 @@ export class OrderVM {
   orderDetail: any=[];
   deliveryAddress: usp_DeliveryAddressList_Result | undefined;
   orderPayment: orderPayment = new orderPayment;
-
+  userId:any;
   //orderPayment: orderPayment ;
 }
 export class orderdetails {

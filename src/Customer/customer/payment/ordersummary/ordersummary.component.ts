@@ -27,7 +27,6 @@ export class OrdersummaryComponent implements OnInit {
   images: any;
   sellerName: any;
   forms: any = new OrderSave();
-  totalamount: any;
   orderID: any;
   userdetails: any;
   errormessage: string = '';
@@ -52,7 +51,7 @@ export class OrdersummaryComponent implements OnInit {
     this.deliveryaddress = JSON.parse(localStorage.getItem('deliveryaddress') || '{}');
     this.isCart = JSON.parse(localStorage.getItem('isCart') || '')
 
-
+//save totalamount at increment and decrement
     console.log(this.selectedProdut);
   }
 
@@ -117,23 +116,7 @@ export class OrdersummaryComponent implements OnInit {
       }
     }
   }
-  //notusing
-  saveNotificaton() {
-
-    this.notification.senderId = this.selectedProdut.sellerID;
-    this.notification.message =
-      'New Order Received: Farm Praveen' +
-      '(' +
-      this.orderID +
-      ') from' +
-      this.userdetails.userName +
-      'for product' +
-      this.selectedProdut.productName;
-    console.log(this.notification);
-    this.fms.saveNotifications(this.notification).subscribe((res) => {
-      console.log(res);
-    });
-  }
+ 
   confirmOrderforCOD() {
     debugger;
     this.spinnerService.show();
@@ -174,7 +157,7 @@ export class OrdersummaryComponent implements OnInit {
       paymentID: 0,
       paymentDate: '2022-08-24T02:39:36.104Z',
       orderID: 0,
-      paymentAmount: 0,
+      paymentAmount: this.totalAmount,
       referenceNo: '',
       paymentMode: '2177',
       createdOn: '2022-08-24T02:39:36.104Z',
@@ -186,7 +169,10 @@ export class OrdersummaryComponent implements OnInit {
     this.orderVM.orderAmount = this.selectedProdut.standardPrice;
     this.orderVM.discountAmount = this.selectedProdut.discountAmount;
     this.orderVM.currency = this.selectedProdut.currency;
-    this.orderVM.paidAmount = this.selectedProdut.paidAmount;//check this
+    this.orderVM.paidAmount = this.totalAmount;
+    this.orderVM.totalAmount = this.totalAmount;
+    this.orderVM.orderAmount = this.totalAmount;
+    this.orderVM.userId=this.userdetails.userId;
 
     this.orderVM.orderDetail = [];
     this.orderVM.orderDetail.push(payload);
@@ -228,6 +214,7 @@ export class OrdersummaryComponent implements OnInit {
     };
     this.orderVM.orderPayment = payment;
     if (this.orderVM.orderDetail[0].paymentOption == 2177) {
+      localStorage.setItem('totalamount', JSON.stringify(this.totalAmount));
 
       this.fms.saveOrderCOD(this.orderVM).subscribe((res) => {
         // this.spinnerService.hide();
@@ -281,13 +268,17 @@ export class OrdersummaryComponent implements OnInit {
     this.orderVM.memberID = this.selectedProdut.memberID;
     this.orderVM.addressId = this.selectedProdut.addressID;
     this.orderVM.orderAmount = this.selectedProdut.standardPrice;
-    this.orderVM.discountAmount = this.selectedProdut.discountAmount;
+    this.orderVM.discountAmount = this.selectedProdut.discount;
     this.orderVM.currency = this.selectedProdut.currency;
-    this.orderVM.paidAmount = this.selectedProdut.paidAmount;
+    this.orderVM.paidAmount = this.totalAmount;
+    this.orderVM.totalAmount = this.totalAmount;
+    this.orderVM.orderAmount = this.totalAmount;
+    this.orderVM.userId=this.userdetails.userId;
 
     this.orderVM.orderDetail = [];
     this.orderVM.orderDetail.push(payload);
     // this.orderVM.orderPayment = payment;
+    localStorage.setItem('totalamount', JSON.stringify(this.totalAmount));
 
     this.fms.saveOrderOnline(this.orderVM).subscribe((res) => {
       this.orderID = res;
@@ -362,6 +353,7 @@ if(this.isCart){
     this.totalAmount = this.selectedProdut.standardPrice * this.productCount;
     this.totalAmount = this.totalAmount - this.selectedProdut.discount;
   }
+
   cartDecrement(p:any,i:any){
     this.errormessage = '';
 
@@ -383,5 +375,23 @@ if(this.isCart){
       this.imageUrl = event.target.result;
     };
 
+  }
+
+   //notusing
+   saveNotificaton() {
+
+    this.notification.senderId = this.selectedProdut.sellerID;
+    this.notification.message =
+      'New Order Received: Farm Praveen' +
+      '(' +
+      this.orderID +
+      ') from' +
+      this.userdetails.userName +
+      'for product' +
+      this.selectedProdut.productName;
+    console.log(this.notification);
+    this.fms.saveNotifications(this.notification).subscribe((res) => {
+      console.log(res);
+    });
   }
 }

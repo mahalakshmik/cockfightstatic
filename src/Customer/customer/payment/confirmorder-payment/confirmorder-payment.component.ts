@@ -46,11 +46,11 @@ export class ConfirmorderPaymentComponent implements OnInit {
     this.fms.getconformOrder(this.orderID).subscribe((res: any) => {
       console.log(res);
       this.orderdetails = res;
-      this.total = this.orderdetails[0].orderAmount - this.orderdetails[0].discountAmount
+    //  this.total = this.orderdetails[0].orderAmount - this.orderdetails[0].discountAmount
       console.log(this.orderdetails[0].orderNo);
       if (res) {
         this.spinnerService.hide()
-      //  this.saveNotificaton();
+        this.saveNotificaton();
       }
       this.quatity =
         this.orderdetails.totalAmount / this.orderdetails.orderAmount;
