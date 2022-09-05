@@ -111,6 +111,7 @@ export class SellingComponent implements OnInit {
   }
   editseller(sellerList: any) {
     this.isShowAddseller = true;
+    this.previews=[]
 
     this.formsell = sellerList;
    // this.formsell.myfile=sellerList.productImage;
@@ -132,7 +133,6 @@ console.log(this.url)
              this.url= this.productVideoUrl+e.imageName;
 
            }else {
-            this.previews=[]
 
              this.previews.push(imgs)
            }
@@ -229,7 +229,7 @@ console.log(this.url)
     });
   }
 
-  createsell() {
+  createsell() {debugger
 
     this.spinnerService.show();
     if(this.formsell.discount ==undefined){
