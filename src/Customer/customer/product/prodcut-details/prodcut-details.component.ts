@@ -43,6 +43,7 @@ export class ProdcutDetailsComponent implements OnInit {
   uploadedFile: any;
   isHide: any;
   cartLst: any =[];
+  comments:string='';
   constructor(
     private fms: FmsService,
     private ls: LoginService,
@@ -223,6 +224,10 @@ export class ProdcutDetailsComponent implements OnInit {
     if (!this.userid) {
       this.Login();
     } else {
+      if (this.form.fileName == "")
+      {
+        this.form.fileName= "nofile";
+      }
       var formdata = new FormData();
       formdata.append('messageId', '0');
       formdata.append('senderId', this.userid);
@@ -231,9 +236,9 @@ export class ProdcutDetailsComponent implements OnInit {
       formdata.append('createdOn', '2022-08-16T06:38:00.037Z');
       formdata.append('fileName', this.form.fileName);
       formdata.append('messageSubject', this.form.messageSubject);
-
-      this.fms.sendMessageToseller(formdata).subscribe((res:any) => {
-        //console.log(res);
+    // withour filename also updating the savecomments use name 'nofile' to validte
+      this.fms.sendMessageToseller(formdata).subscribe((res:any) => {debugger
+        console.log(res);
        // this.isHide = res.success
         if (res) {
           this.breeddialogRef.close();
@@ -244,16 +249,16 @@ export class ProdcutDetailsComponent implements OnInit {
             // type: "success",
             timer: 500,
           });
-          var payload = {
+          var comentspayload = {
             itemId: 0,
             messageId: res,
             memberId: this.userid,
             messageTo: this.sellerID,
-            comment: this.form.comment,
+            comment: this.comments,
             createdOn: '2022-08-16T06:38:00.037Z',
             isRead: true,
           };
-          this.sendMessage(payload);
+          this.sendMessage(comentspayload);
 
         }
       });
@@ -310,7 +315,6 @@ export class ProdcutDetailsComponent implements OnInit {
               isRead: true,
             };
             this.sendMessage(payload);
-              this.getComments();
             //});
           }
           //this.ngOnInit();
@@ -402,6 +406,10 @@ export class ProdcutDetailsComponent implements OnInit {
     this.fms.postCommnets(payload).subscribe((data: any) => {
       this.spinnerService.hide();
       //console.log(data);
+      if(data){
+        this.getComments();
+
+      }
     });
   }
 
