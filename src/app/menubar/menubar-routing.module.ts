@@ -13,6 +13,7 @@ import { LeftNavComponent } from './left-nav/left-nav.component';
 import { NotificationComponent } from './notification/notification.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AddsellerComponent } from './selling/addseller/addseller.component';
 import { SellingComponent } from './selling/selling.component';
 import { SellinglistComponent } from './sellinglist/sellinglist.component';
 import { SoldoutlistComponent } from './soldoutlist/soldoutlist.component';
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path:'TransporterBookingList',component:TrasnporterbookinglistComponent},
   { path:'ProductList',component:ProductlistComponent},
   { path:'SellingList',component:SellinglistComponent},
+  { path:'addseller/:id',component:AddsellerComponent},
   { path:'readytosell',component:SellingComponent},
   { path:'SoldOutList',component:SoldoutlistComponent},
   { path:'breedList',component:BreedListComponent},

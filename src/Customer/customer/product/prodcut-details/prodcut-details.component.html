@@ -13,12 +13,12 @@
                             <div class="col-sm-5">
                                 <div id="consulting-carousel" class="carousel slide" data-ride="carousel">
                                     <div class="carousel-inner" role="listbox">
-                                        <div class="item "
-                                            *ngFor="let item of images;let index = index;let isFirst = first"
+                                        <div class="item " *ngFor="let item of images;let index = index;let isFirst = first"
                                             [ngClass]="{active:isFirst}">
                                             <span class="consulting-caption">
                                                 <div class="not_img" *ngIf="images == 'undefined'"
                                                     style="background-color: red;">370 x 440px</div>
+                                                    <!-- <video src="{{productvideoUrl}}{{videoname}}" *ngIf="item.imageName" width="350" height="350"></video> -->
                                                 <img src="{{productPicUrl}}{{item.imageName}}"
                                                     *ngIf="item.imageName" width="350" height="350"
                                                     class="d-block w-100" alt="image">
@@ -89,7 +89,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-2">
-                                <label> Type:
+                                <label> Payment:
                                 </label>
                             </div>
                             <div class="col-sm-10">

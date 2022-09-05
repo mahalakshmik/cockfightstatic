@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { FmsService } from 'src/app/services/fms.service';
 import { LoginService } from 'src/app/services/login.service';
@@ -14,13 +14,18 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { environment } from 'src/environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
-
 @Component({
-  selector: 'app-selling',
-  templateUrl: './selling.component.html',
-  styleUrls: ['./selling.component.scss'],
+  selector: 'app-addseller',
+  templateUrl: './addseller.component.html',
+  styleUrls: ['./addseller.component.scss']
 })
-export class SellingComponent implements OnInit {
+export class AddsellerComponent implements OnInit {
+
+
+  // newone
+  pid: any = 0;
+
+  // newone
   separatorKeysCodes: number[] = [ENTER, COMMA];
   videoFile: any = [];
   sas =
@@ -28,8 +33,8 @@ export class SellingComponent implements OnInit {
   videosas =
     'sp=racwdl&st=2022-05-31T16:40:31Z&se=2023-01-03T00:40:31Z&spr=https&sv=2020-08-04&sr=c&sig=GL2giHB4GndIybklT1P6tuIAvI7%2B%2BcUD9799sHnBVHQ%3D';
   /* Local host URL end points  */
- productPicUrl = environment.ProductUrl;
- productVideoUrl = environment.videoUrl;
+  productPicUrl = environment.ProductUrl;
+  productVideoUrl = environment.videoUrl;
 
   isShowAddseller: boolean = false;
   myDir: any = 'profile';
@@ -64,10 +69,10 @@ export class SellingComponent implements OnInit {
   userdetails: any;
   test1: any;
   result: any;
-  isvideo: boolean=false;
-  edit: boolean=false;
-  editimages: boolean=false;
-  editvideos: boolean=false;
+  isvideo: boolean = false;
+  edit: boolean = false;
+  editimages: boolean = false;
+  editvideos: boolean = false;
   constructor(
     private fms: FmsService,
     private blobService: AzureBlobStorageService,
@@ -75,21 +80,23 @@ export class SellingComponent implements OnInit {
     public dataservice: AuthService,
     private dialog: MatDialog,
     public router: Router,
-    public spinnerService: NgxSpinnerService
+    public spinnerService: NgxSpinnerService,
+    private route: ActivatedRoute,
+
   ) {
     this.adform = new Address();
     console.log(this.adform);
     this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
-
+    this.pid = this.route.snapshot.paramMap.get('id');
   }
 
 
   ngOnInit() {
-    this.getbread();
-    // this.getvideoList();
-    this.vedio = true;
-    this.getSellerList();
-    // this.getProfile();
+    if (this.pid != 0) {
+      this.spinnerService.show();
+
+      this.getProductbyId();
+    }
     this.getAddressList();
     this.getOrderHistory();
     this.getCurrenyList();
@@ -98,6 +105,9 @@ export class SellingComponent implements OnInit {
     this.getBreadType();
     this.getPaymentTypeList();
     this.getWeight();
+    // this.getvideoList();
+    this.vedio = true;
+
     this.formsell.gender = '';
     this.formsell.breedType = '';
     this.formsell.ageType = '2131';
@@ -106,71 +116,70 @@ export class SellingComponent implements OnInit {
     this.formsell.stockQty = 1;
     this.formsell.currency = 'THB';
     this.formsell.paymentOption = '2177';
-  
+
     this.forms.memberType = 0;
+  }
+  getProductbyId() {
+    const farmid = 2165
+    this.fms.produtListById(this.pid, farmid).subscribe((res: any) => {
+      console.log(res)
+      this.formsell = res.productMaster;
+      this.spinnerService.hide();
+      this.getImgListByProductId(this.pid);
+
+    })
   }
   showtemp() {
     this.isShowAddseller = true;
   }
   editseller(sellerList: any) {
-    this.edit=true;
+    this.edit = true;
     this.isShowAddseller = true;
-    this.previews=[]
+    this.previews = []
 
     this.formsell = sellerList;
-   // this.formsell.myfile=sellerList.productImage;
- 
+    // this.formsell.myfile=sellerList.productImage;
+
     console.log('edit', sellerList);
-console.log(this.url)
-    
-    
+    console.log(this.url)
+
+
     this.getImgListByProductId(sellerList.productID);
   }
-  getImgListByProductId(id:number){
-    this.fms.getimgListbyProductId(id).subscribe((res:any)=>{
-      if(res.length >0 ){
-        res.forEach((e:any) => {debugger
-          const imgs=this.productPicUrl+e.imageName;
-          if(e.contentType =="video/mp4"){
-             this.isvideo=true;
-             this.url='';
-             this.url= this.productVideoUrl+e.imageName;
+  getImgListByProductId(id: number) {
+    this.fms.getimgListbyProductId(id).subscribe((res: any) => {
+      if (res.length > 0) {
+        res.forEach((e: any) => {
+          debugger
+          const imgs = this.productPicUrl + e.imageName;
+          if (e.contentType == "video/mp4") {
+            this.isvideo = true;
+            this.url = '';
+            this.url = this.productVideoUrl + e.imageName;
 
-           }else {
+          } else {
 
-             this.previews.push(imgs)
-           }
+            this.previews.push(imgs)
+          }
         });
       }
     })
   }
-  public listItemskeys: Array<{ text: string; value: number }> = [
-    { text: 'Please Select', value: 0 },
-    { text: 'Farm', value: 2171 },
-    { text: 'Transport', value: 2172 },
-    { text: 'Shop', value: 2173 },
-  ];
-  // getProfile() {
-  //
-  //   this.gs.memberListbyId(this.u).subscribe(res => {
-  //     console.log(res);
 
-  //     this.forms = res;
-  //   })
-  // }
+
   onFileSelect(event: any) {
-    if(this.edit){
-      this.previews=[];
-      this.edit=false;
-      this.editimages=true;
+    if (this.edit) {
+      this.previews = [];
+      this.edit = false;
+      this.editimages = true;
     }
     debugger
     this.message = [];
     this.progressInfos = [];
     this.selectedFiles = event.target.files;
-   this.uploadFiles.push( event.target.files[0]);
+    this.uploadFiles.push(event.target.files[0]);
     console.log(this.uploadFiles)
-   // this.previews = [];
+    // this.previews = [];
     if (this.selectedFiles && this.selectedFiles[0]) {
       const numberOfFiles = this.selectedFiles.length;
       for (let i = 0; i < numberOfFiles; i++) {
@@ -187,72 +196,23 @@ console.log(this.url)
     }
   }
 
-  getCurrenyList() {
-    this.fms.getSellCurrencyDropList().subscribe((res) => {
-      console.log(res);
-      this.currencyList = res;
-    });
-  }
-  getGender() {
-    this.fms.getSellGenderDropList().subscribe((res) => {
-      console.log(res);
-      this.genderList = res;
-    });
-  }
-  getWeight() {
-    this.fms.getSellWeightDropList().subscribe((res) => {
-      console.log(res);
-      this.weightList = res;
-    });
-  }
-  getBreadType() {
-    this.fms.getSellBreedTypeDropList().subscribe((ress) => {
-      this.breedList = ress;
-    });
-  }
 
-  getbread() {
-    this.fms.getSellingBreed().subscribe((ress) => {
-      this.breeds = ress;
-    });
-  }
-  getAgeList() {
-    this.fms.getSellAgeDropList().subscribe((ress) => {
-      this.ageList = ress;
-    });
-  }
-  getPaymentTypeList() {
-    this.fms.getSellPaymentTypeDropList().subscribe((ress) => {
-      this.paymentList = ress;
-    });
-  }
-  getOrderHistory() {
-    this.fms.getOrderHistory().subscribe((res) => {
-      console.log(res);
-      this.orderHistory = res;
-    });
-  }
-  getSellerList() {
-    this.fms.getReadyToSellList().subscribe((res) => {
-      this.sellerList = res;
-    });
-  }
-
-  createsell() {debugger
+  createsell() {
+    debugger
 
     this.spinnerService.show();
-    if(this.formsell.discount ==undefined){
-      this.formsell.discount=0;
+    if (this.formsell.discount == undefined) {
+      this.formsell.discount = 0;
     }
-    if(  this.formsell.weight ==undefined){
-      this.formsell.weight=0;
+    if (this.formsell.weight == undefined) {
+      this.formsell.weight = 0;
     }
-    if(!this.editvideos && this.edit){
-      this.videoFile=[]
-    }
-    if(!this.editimages){
-      this.uploadFiles=[]
-    }
+    // if (!this.editvideos && this.edit) {
+    //   this.videoFile = []
+    // }
+    // if (!this.editimages && this.edit) {
+    //   this.uploadFiles = []
+    // }
     console.log(this.formsell);
     var formdata = new FormData();
     formdata.append('ProductId', this.formsell.productID);
@@ -280,7 +240,7 @@ console.log(this.url)
     formdata.append('CreatedOn', '1944-05-31T06:21:21.373Z');
     formdata.append('ModifiedOn', '1974-05-13T00:14:37.989Z');
     formdata.append('Age', this.formsell.age);
-    formdata.append('Breed',this.formsell.breed);
+    formdata.append('Breed', this.formsell.breed);
     formdata.append('Province', this.formsell.province);
     formdata.append('AgeType', this.formsell.ageType);
     for (var i = 0; i < this.uploadFiles.length; i++) {
@@ -302,7 +262,8 @@ console.log(this.url)
           console.log(resp)
           if (resp) {
 
-            this.getSellerList();
+            this.router.navigate(['menu/readytosell']);
+
           }
         })
       }
@@ -310,27 +271,6 @@ console.log(this.url)
     });
   }
 
-  delete(rowdata: any) {
-    Swal.fire({
-      title: 'Are you sure you want to delete the record?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, go ahead.',
-      cancelButtonText: 'No, let me think',
-    }).then((result) => {
-      if (result.value) {
-        this.fms.DeleteProduct(rowdata.productID).subscribe((res) => {
-          console.log(res);
-          if (res) {
-            this.ngOnInit();
-
-          }
-        });
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire('Cancelled');
-      }
-    });
-  }
 
   test(i: number) {
     this.previews.splice(i, 1);
@@ -346,19 +286,13 @@ console.log(this.url)
     //   console.log(this.address)
     // })
   }
-  getAddressList() {
-    // alert('')
-    this.fms.addressList().subscribe((res) => {
-      this.addresslist = res;
-      console.log(this.addresslist);
-    });
-  }
+
 
 
   onSelectFile(event: any) {
     debugger;
-    if(this.edit){
-      this.editvideos=true;
+    if (this.edit) {
+      this.editvideos = true;
     }
     const file = event.target.files && event.target.files[0];
     if (file) {
@@ -371,7 +305,7 @@ console.log(this.url)
       }
       reader.onload = (event) => {
         this.url = (<FileReader>event.target).result;
-        this.isvideo=true;
+        this.isvideo = true;
       };
       this.videoFile = file;
     }
@@ -400,12 +334,65 @@ console.log(this.url)
     { text: 'Home', value: 2175, name: 'Home' },
     { text: 'Office', value: 2176, name: 'Office' },
   ];
-
+  public listItemskeys: Array<{ text: string; value: number }> = [
+    { text: 'Please Select', value: 0 },
+    { text: 'Farm', value: 2171 },
+    { text: 'Transport', value: 2172 },
+    { text: 'Shop', value: 2173 },
+  ];
   // @ViewChild('fruitInput') fruitInput: ElementRef<any>;
   ////test 
-
-
-
+  getAddressList() {
+    // alert('')
+    this.fms.addressList().subscribe((res) => {
+      this.addresslist = res;
+      console.log(this.addresslist);
+    });
+  }
+  getCurrenyList() {
+    this.fms.getSellCurrencyDropList().subscribe((res) => {
+      console.log(res);
+      this.currencyList = res;
+    });
+  }
+  getGender() {
+    this.fms.getSellGenderDropList().subscribe((res) => {
+      console.log(res);
+      this.genderList = res;
+    });
+  }
+  getWeight() {
+    this.fms.getSellWeightDropList().subscribe((res) => {
+      console.log(res);
+      this.weightList = res;
+    });
+  }
+  getBreadType() {
+    this.fms.getSellBreedTypeDropList().subscribe((ress) => {
+      this.breedList = ress;
+    });
+  }
+  getOrderHistory() {
+    this.fms.getOrderHistory().subscribe((res) => {
+      console.log(res);
+      this.orderHistory = res;
+    });
+  }
+  getbread() {
+    this.fms.getSellingBreed().subscribe((ress) => {
+      this.breeds = ress;
+    });
+  }
+  getAgeList() {
+    this.fms.getSellAgeDropList().subscribe((ress) => {
+      this.ageList = ress;
+    });
+  }
+  getPaymentTypeList() {
+    this.fms.getSellPaymentTypeDropList().subscribe((ress) => {
+      this.paymentList = ress;
+    });
+  }
 
 
   private removeFirst<T>(array: T[], toRemove: T): void {

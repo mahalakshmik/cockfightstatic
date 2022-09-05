@@ -25,6 +25,7 @@ export class ProdcutDetailsComponent implements OnInit {
   userdetails: any;
   productID: any;
   productPicUrl = environment.ProductUrl;
+  productvideoUrl = environment.videoUrl;
   images: any;
   fst: any;
   current: number = 0;
@@ -44,6 +45,7 @@ export class ProdcutDetailsComponent implements OnInit {
   isHide: any;
   cartLst: any =[];
   comments:string='';
+  videoname: any;
   constructor(
     private fms: FmsService,
     private ls: LoginService,
@@ -93,6 +95,7 @@ export class ProdcutDetailsComponent implements OnInit {
       }, 100);
     this.productPicUrl.concat();
     this.members = data.member;
+    this.videoname=data.productVideo.imageName;
    // localStorage.setItem('sellerName', JSON.stringify(this.members));
     localStorage.setItem('selectedProdutList', JSON.stringify(this.product));
       //console.log('prdID', this.prdId);

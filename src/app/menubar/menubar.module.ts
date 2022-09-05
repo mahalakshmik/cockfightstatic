@@ -29,6 +29,7 @@ import { ChangepasswordComponent } from './changepassword/changepassword.compone
 import {MatChipsModule} from '@angular/material/chips';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
+import { AddsellerComponent } from './selling/addseller/addseller.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { MatSelectModule } from '@angular/material/select';
     NotificationComponent,
     InboxMessageComponent,
     WishlistComponent,
-    ChangepasswordComponent
+    ChangepasswordComponent,
+    AddsellerComponent
   ],
   imports: [
     CommonModule,
