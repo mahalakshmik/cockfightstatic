@@ -29,6 +29,8 @@ export class HomeComponent implements OnInit {
   stocklst: any;
   isWishicon: boolean = true;
   userid: any;
+  videoname:string='21207';
+  productvideoUrl=environment.videoUrl;
   constructor(
     private matDialog: MatDialog,
     private fms: LoginService,
@@ -171,5 +173,16 @@ export class HomeComponent implements OnInit {
   //localStorage.setItem('selectedProdutList', JSON.stringify(p));
     this.rout.navigate(['customer/ProdcutDetails/',p.productID, p.sellerID])
 
+  }
+  
+
+  openDialog(templateRef:any,pid:any) {debugger
+    let dialogRef = this.matDialog.open(templateRef, {
+     width: '300px',
+     height: '500px',
+     panelClass: 'mydialogclass'
+   });
+const url=this.productvideoUrl+pid
+   this.videoname=url.concat('_0.mp4')
   }
 }

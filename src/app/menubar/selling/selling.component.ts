@@ -88,6 +88,8 @@ export class SellingComponent implements OnInit {
     this.getbread();
     // this.getvideoList();
     this.vedio = true;
+    this.spinnerService.show();
+
     this.getSellerList();
     // this.getProfile();
     this.getAddressList();
@@ -235,6 +237,8 @@ console.log(this.url)
   getSellerList() {
     this.fms.getReadyToSellList().subscribe((res) => {
       this.sellerList = res;
+    this.spinnerService.hide();
+      
     });
   }
 

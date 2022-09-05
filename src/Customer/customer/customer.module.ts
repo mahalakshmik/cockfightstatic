@@ -23,6 +23,7 @@ import { CustomerAddressComponent } from './address/customer-address/customer-ad
 import { MaterialExampleModule } from 'src/material.module';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from 'src/shared/shared.module';
+import { NgImageSliderModule } from 'ng-image-slider';
 @NgModule({
   declarations: [
     CustomerAddressComponent,
@@ -47,7 +48,7 @@ import { SharedModule } from 'src/shared/shared.module';
   imports: [
     CommonModule,
     CustomerRoutingModule,
-    MaterialExampleModule,FormsModule,SharedModule
+    MaterialExampleModule,FormsModule,SharedModule,NgImageSliderModule
   ],
   exports: [
   NotificationsComponent

@@ -73,6 +73,7 @@ export class AddsellerComponent implements OnInit {
   edit: boolean = false;
   editimages: boolean = false;
   editvideos: boolean = false;
+  count: number=0;
   constructor(
     private fms: FmsService,
     private blobService: AzureBlobStorageService,
@@ -168,7 +169,8 @@ export class AddsellerComponent implements OnInit {
 
 
   onFileSelect(event: any) {
-    if (this.edit) {
+ this.count++
+    if (this.pid != 0 && this.count ==1) {
       this.previews = [];
       this.edit = false;
       this.editimages = true;

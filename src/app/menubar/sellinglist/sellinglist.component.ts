@@ -28,6 +28,8 @@ export class SellinglistComponent implements OnInit {
   onChange(e: any) {
     console.log(e.target.value)
     this.selectedOrder = e.target.value;
+    this.spinnerService.show();
+
     this.getSellerList()
     //this.sellerlst=this.sellerlst.filter((i:any)=>i.OrderStatus==value);
   }
@@ -38,7 +40,6 @@ export class SellinglistComponent implements OnInit {
     })
   }
   getSellerList() {
-    this.spinnerService.show();
     this.fms.getSellerListLatest(this.selectedOrder).subscribe((res:any) => {  
       for (let i = 0; i < res.orderHeader.length; i++) {
         res.orderHeader[i].orderDetails=[]

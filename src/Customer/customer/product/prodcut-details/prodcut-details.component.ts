@@ -19,6 +19,23 @@ declare var FB: any;
   styleUrls: ['./prodcut-details.component.scss'],
 })
 export class ProdcutDetailsComponent implements OnInit {
+  newimageObject:any=[];
+  imageObject = [
+    {
+      video: 'https://lgistorage.blob.core.windows.net/fmsvideos/21207_0.mp4',
+      alt: 'No video',
+      // title: 'video',
+      thumbImage:''
+
+    },
+    {
+      image: 'https://lgistorage.blob.core.windows.net/fmsimages/21207_1.jpeg',
+      thumbImage:
+        'https://lgistorage.blob.core.windows.net/fmsimages/21207_1.jpeg',
+      // title: 'Images',
+      alt:''
+    },
+  ];
   form: any = new MessageHeader();
   matDialogRef!: MatDialogRef<LoginComponent>;
   product: any;
@@ -90,12 +107,29 @@ export class ProdcutDetailsComponent implements OnInit {
       console.log(this.images)
       localStorage.removeItem('images');
       localStorage.setItem('images', JSON.stringify(this.images[0].imageName));
-      setInterval(() => {
-        this.current = ++this.current % this.images.length;
-      }, 100);
+      this.productvideoUrl
+      this.images.forEach((e:any) => {
+       let imaglist={
+        "thumbImage":this.productPicUrl+e.imageName,
+        "image": this.productPicUrl+e.imageName
+       }
+     this.newimageObject.push(imaglist)
+        
+      });
+      if(data.productVideo != null){debugger
+        const videourl=this.productvideoUrl+data.productVideo.imageName;
+        this.newimageObject.push({'video':videourl})
+      }
+      console.log('checkthis',this.newimageObject)
+      // this.imageObject['video']
+      // video: 'https://lgistorage.blob.core.windows.net/fmsvideos/21207_0.mp4',
+      // alt: 'No video',
+      // title: 'video',
+      // setInterval(() => {
+      //   this.current = ++this.current % this.images.length;
+      // }, 100);
     this.productPicUrl.concat();
     this.members = data.member;
-    this.videoname=data.productVideo.imageName;
    // localStorage.setItem('sellerName', JSON.stringify(this.members));
     localStorage.setItem('selectedProdutList', JSON.stringify(this.product));
       //console.log('prdID', this.prdId);
