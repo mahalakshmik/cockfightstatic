@@ -13,8 +13,8 @@
                             <div class="col-sm-5">
                                 <div id="consulting-carousel" class="carousel slide" data-ride="carousel">
                                     <div class="carousel-inner" role="listbox">
-                                        <div class="item "
-                                            *ngFor="let item of images;let index = index;let isFirst = first"
+                                        <!-- oldone -->
+                                        <!-- <div class="item " *ngFor="let item of images;let index = index;let isFirst = first"
                                             [ngClass]="{active:isFirst}">
                                             <span class="consulting-caption">
                                                 <div class="not_img" *ngIf="images == 'undefined'"
@@ -24,9 +24,15 @@
                                                     class="d-block w-100" alt="image">
 
                                             </span>
-                                        </div>
+                                        </div> -->
+                                        <!-- oldone -->
 
+                                        <div #container [ngStyle]="{width: 300+'px'}" style="height:900px; text-align:center;margin:0; padding:0;">
+                                            <ng-image-slider #nav [images]="newimageObject" [infinite]="true" [manageImageRatio]=true [autoSlide]="1"
+                                              [animationSpeed]="0.5" [imageSize]="{width: container.style.width, space:0}" slideImage="1"></ng-image-slider>
+                                          </div>
                                     </div>
+                                    <!-- downimage -->
                                     <ol class="carousel-indicators">
                                         <li data-target="#consulting-carousel"
                                             *ngFor="let item of images;let index = index;let isFirst = first"
@@ -89,7 +95,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-2">
-                                <label> Type:
+                                <label> Payment:
                                 </label>
                             </div>
                             <div class="col-sm-10">
@@ -341,3 +347,10 @@
 <!-- send message popup -->
 
 <ngx-spinner size="medium" color="orange" backgroundcolor="white" type="ball-fussion"></ngx-spinner>
+
+
+<!-- Change the width here    -->
+<!-- <div #container [ngStyle]="{width: 300+'px'}" style="height: 5100px; text-align:center;margin:0; padding:0;">
+    <ng-image-slider #nav [images]="imageObject" [infinite]="false" [manageImageRatio]=true [autoSlide]="1"
+      [animationSpeed]="0.1" [imageSize]="{width: container.style.width, space:0}" slideImage="1"></ng-image-slider>
+  </div> -->

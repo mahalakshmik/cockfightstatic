@@ -3,57 +3,7 @@
         <app-left-nav></app-left-nav>
         <div class="col-md-9">
             <div class="card">
-                <div *ngIf="!isShowAddseller">
-                    <div class="row">
-                        <div class="col-sm-7">
-                            <div class="title-bar">
-                                <h2 class="title text-left m-0">Ready To Sell List </h2>
-                            </div>
-                        </div>
-                        <div class="col-sm-5 text-right">
-                            <a class="btn btn-primary" routerLink="../addseller/0"> Sell Your Product</a>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="border-bottom"></div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12 m-t-20">
-                            <table class="table table-responsive table-striped sell-table">
-                                <thead>
-                                    <tr>
-                                        <th>Image</th>
-                                        <th> Product Name</th>
-                                        <th> Price</th>
-                                        <th>Actions </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let p of sellerList;">
-                                        <td>
-                                            <!-- <img src="{{productPicUrl}}{{p.productImage}}" width="70"
-                                                height="70" onerror="this.src='./assets/images/defaultImg.jpg';"
-                                                class="d-block w-100" alt="image"> -->
-                                            <img src="{{productPicUrl}}{{p.productImage}}" width="70"
-                                                height="70" 
-                                                class="d-block w-100" alt="image">
-                                        </td>
-                                        <td> {{p.productName}} </td>
-                                        <td> {{p.standardPrice | number: '1.2-2'}} </td>
-
-                                        <!-- <td> <a (click)="editseller()"> <i class="icon-note f-18"></i> </a> -->
-                                        <td> <a routerLink="../addseller/{{p.productID}}"> <i class="icon-note f-18"></i> </a>
-                                            <a (click)="delete(p)"> <i class="icon-trash f-18 m-l-10"></i></a>
-                                        </td>
-
-                                    </tr>
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div *ngIf="isShowAddseller">
+              
 
                     <form name="form" (ngSubmit)="f.form.valid && createsell() " #f="ngForm"  novalidate>
 
@@ -388,7 +338,7 @@
                                             <i class="icon-cloud-upload f-20"
                                                 style="margin-right:15px; vertical-align: middle;"></i> Choose a
                                             File...</button>
-                                        <input  type="file" accept="image/*" name="myfile" multiple (change)="onFileSelect($event)" 
+                                        <input  type="file" accept="image/*" name="myfile"  (change)="onFileSelect($event)" 
                                        
                                         />
                                       
@@ -414,7 +364,6 @@
                         </div>
                     </form>
                
-            </div>
         </div>
     </div>
 </div>
