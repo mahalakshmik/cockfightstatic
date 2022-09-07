@@ -168,13 +168,13 @@ export class AddsellerComponent implements OnInit {
   }
 
 
-  onFileSelect(event: any) {
- this.count++
-    if (this.pid != 0 && this.count ==1) {
-      this.previews = [];
-      this.edit = false;
-      this.editimages = true;
-    }
+  onFileSelect(event: any) {debugger
+//  this.count++
+//     if (this.pid != 0 && this.count ==1) {
+//       this.previews = [];
+//       this.edit = false;
+//       this.editimages = true;
+//     }
     debugger
     this.message = [];
     this.progressInfos = [];
