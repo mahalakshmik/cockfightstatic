@@ -73,7 +73,7 @@ export class AddsellerComponent implements OnInit {
   edit: boolean = false;
   editimages: boolean = false;
   editvideos: boolean = false;
-  count: number=0;
+  count: number = 0;
   constructor(
     private fms: FmsService,
     private blobService: AzureBlobStorageService,
@@ -147,7 +147,7 @@ export class AddsellerComponent implements OnInit {
 
     this.getImgListByProductId(sellerList.productID);
   }
-  getImgListByProductId(id: number) {
+  getImgListByProductId(id: number) {debugger
     this.fms.getimgListbyProductId(id).subscribe((res: any) => {
       if (res.length > 0) {
         res.forEach((e: any) => {
@@ -161,6 +161,7 @@ export class AddsellerComponent implements OnInit {
           } else {
 
             this.previews.push(imgs)
+
           }
         });
       }
@@ -168,13 +169,14 @@ export class AddsellerComponent implements OnInit {
   }
 
 
-  onFileSelect(event: any) {debugger
-//  this.count++
-//     if (this.pid != 0 && this.count ==1) {
-//       this.previews = [];
-//       this.edit = false;
-//       this.editimages = true;
-//     }
+  onFileSelect(event: any) {
+    debugger
+    //  this.count++
+    //     if (this.pid != 0 && this.count ==1) {
+    //       this.previews = [];
+    //       this.edit = false;
+    //       this.editimages = true;
+    //     }
     debugger
     this.message = [];
     this.progressInfos = [];
@@ -191,8 +193,8 @@ export class AddsellerComponent implements OnInit {
           this.previews.push(e.target.result);
           // this.uploadFiles.push(event.target.files[i]);
 
+          console.log(this.uploadFiles)
         };
-
         reader.readAsDataURL(this.selectedFiles[i]);
       }
     }
@@ -201,6 +203,7 @@ export class AddsellerComponent implements OnInit {
 
   createsell() {
     debugger
+    this.uploadFiles.push(...this.previews)
 
     this.spinnerService.show();
     if (this.formsell.discount == undefined) {
@@ -252,25 +255,7 @@ export class AddsellerComponent implements OnInit {
     formdata.append('productVideos', this.videoFile);
 
 
-    this.fms.saveSeller(formdata).subscribe((res) => {
-      this.spinnerService.hide();
-      if (res) {
-        Swal.fire({
-          title: 'Saved Successfully',
-          icon: 'success',
-          timer: 700,
-        });
-        this.fms.saveImagename(res).subscribe(resp => {
-          console.log(resp)
-          if (resp) {
-
-            this.router.navigate(['menu/readytosell']);
-
-          }
-        })
-      }
-      this.isShowAddseller = false;
-    });
+   
   }
 
 
