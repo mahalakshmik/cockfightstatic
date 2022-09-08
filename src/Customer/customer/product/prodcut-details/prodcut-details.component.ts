@@ -325,9 +325,12 @@ export class ProdcutDetailsComponent implements OnInit {
     }
   }
   postComment() {
-    this.spinnerService.show();
     //before send message check login
+    this.spinnerService.show();
+
     if (!this.userid) {
+    this.spinnerService.hide();
+
       this.Login();
     } else {
       if (this.form) {
@@ -442,6 +445,8 @@ export class ProdcutDetailsComponent implements OnInit {
 
     this.fms.postCommnets(payload).subscribe((data: any) => {
       this.spinnerService.hide();
+      this.form.messageSubject='';
+
       //console.log(data);
       if(data){
         this.getComments();
