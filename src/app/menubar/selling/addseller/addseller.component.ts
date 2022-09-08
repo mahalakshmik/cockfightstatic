@@ -14,6 +14,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { environment } from 'src/environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { timingSafeEqual } from 'crypto';
 @Component({
   selector: 'app-addseller',
   templateUrl: './addseller.component.html',
@@ -127,7 +128,7 @@ export class AddsellerComponent implements OnInit {
       this.formsell = res.productMaster;
       this.spinnerService.hide();
       this.getImgListByProductId(this.pid);
-
+this.formsell.productImage = this.pid.concat("_0.jpeg")
     })
   }
   showtemp() {
@@ -202,7 +203,7 @@ export class AddsellerComponent implements OnInit {
 
 
   createsell() {
-    debugger
+    
     this.uploadFiles.push(...this.previews)
 
     this.spinnerService.show();
@@ -219,6 +220,7 @@ export class AddsellerComponent implements OnInit {
     //   this.uploadFiles = []
     // }
     console.log(this.formsell);
+    alert(this.formsell.productID)
     var formdata = new FormData();
     formdata.append('ProductId', this.formsell.productID);
     formdata.append('ProductCode', this.formsell.productCode);
@@ -237,8 +239,8 @@ export class AddsellerComponent implements OnInit {
     formdata.append('Discount', this.formsell.discount);
     formdata.append('Currency', this.formsell.currency);
     formdata.append('PaymentOption', this.formsell.paymentOption);
-    formdata.append('ProductImage', 'NULL');
-    formdata.append('Remarks', 'dummy');
+    formdata.append('ProductImage', this.formsell.productImage);
+    formdata.append('Remarks', 'test');
     formdata.append('IsActive', 'true');
     formdata.append('IsAvailable', 'true');
     formdata.append('StockQty', this.formsell.stockQty);
@@ -255,6 +257,29 @@ export class AddsellerComponent implements OnInit {
     formdata.append('productVideos', this.videoFile);
 
 
+    this.fms.saveSeller(formdata).subscribe((res) => {
+      this.spinnerService.hide();
+      if (res) {
+        Swal.fire({
+          title: 'Saved Successfully',
+          icon: 'success',
+          timer: 700,
+        });
+        if(this.formsell.productID ==0){
+
+          this.fms.saveImagename(res).subscribe(resp => {
+            console.log(resp)
+            if (resp) {
+  
+              this.router.navigate(['menu/readytosell']);
+  
+            }
+          })
+        }
+      }
+      this.isShowAddseller = false;
+    });
+  
    
   }
 
