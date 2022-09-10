@@ -92,14 +92,14 @@ export class SellingComponent implements OnInit {
 
     this.getSellerList();
     // this.getProfile();
-    this.getAddressList();
-    this.getOrderHistory();
-    this.getCurrenyList();
-    this.getGender();
-    this.getAgeList();
-    this.getBreadType();
-    this.getPaymentTypeList();
-    this.getWeight();
+    // this.getAddressList();
+    // this.getOrderHistory();
+    // this.getCurrenyList();
+    // this.getGender();
+    // this.getAgeList();
+    // this.getBreadType();
+    // this.getPaymentTypeList();
+    // this.getWeight();
     this.formsell.gender = '';
     this.formsell.breedType = '';
     this.formsell.ageType = '2131';

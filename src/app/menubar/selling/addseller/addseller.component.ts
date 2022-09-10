@@ -28,11 +28,7 @@ export class AddsellerComponent implements OnInit {
   // newone
   separatorKeysCodes: number[] = [ENTER, COMMA];
   videoFile: any = [];
-  sas =
-    'sp=r&st=2022-08-03T19:40:38Z&se=2022-08-04T03:40:38Z&spr=https&sv=2021-06-08&sr=c&sig=0%2FCosr%2BcZKsAqkp7lL3ieunRX8jJVVSMS8Lmb2arHtY%3D';
-  videosas =
-    'sp=racwdl&st=2022-05-31T16:40:31Z&se=2023-01-03T00:40:31Z&spr=https&sv=2020-08-04&sr=c&sig=GL2giHB4GndIybklT1P6tuIAvI7%2B%2BcUD9799sHnBVHQ%3D';
-  /* Local host URL end points  */
+
   productPicUrl = environment.ProductUrl;
   productVideoUrl = environment.videoUrl;
 
@@ -73,7 +69,7 @@ export class AddsellerComponent implements OnInit {
   edit: boolean = false;
   editimages: boolean = false;
   editvideos: boolean = false;
-  count: number=0;
+  count: number = 0;
   constructor(
     private fms: FmsService,
     private blobService: AzureBlobStorageService,
@@ -95,7 +91,7 @@ export class AddsellerComponent implements OnInit {
   ngOnInit() {
     if (this.pid != 0) {
       this.spinnerService.show();
-
+      this.formsell.productImage = this.pid.concat("_0.jpeg")
       this.getProductbyId();
     }
     this.getAddressList();
@@ -169,8 +165,8 @@ export class AddsellerComponent implements OnInit {
 
 
   onFileSelect(event: any) {
- this.count++
-    if (this.pid != 0 && this.count ==1) {
+    this.count++
+    if (this.pid != 0 && this.count == 1) {
       this.previews = [];
       this.edit = false;
       this.editimages = true;
@@ -234,7 +230,7 @@ export class AddsellerComponent implements OnInit {
     formdata.append('Discount', this.formsell.discount);
     formdata.append('Currency', this.formsell.currency);
     formdata.append('PaymentOption', this.formsell.paymentOption);
-    formdata.append('ProductImage', 'NULL');
+    formdata.append('ProductImage', this.formsell.productImage);
     formdata.append('Remarks', 'dummy');
     formdata.append('IsActive', 'true');
     formdata.append('IsAvailable', 'true');
@@ -312,25 +308,11 @@ export class AddsellerComponent implements OnInit {
       this.videoFile = file;
     }
   }
-  public videoSelected(e: any) {
-    const file = e.target.files[0];
-    this.blobService.uploadVIDEOS(this.videosas, file, file.name, () => {
-      this.reloadVideos();
-    });
-  }
+
   reloadVideos() {
     this.blobService.listVideos;
   }
 
-  getvideoList() {
-    debugger;
-    this.videoList = this.blobService
-      .listVideos(this.videosas)
-      .then((data: any) => {
-        this.videoList = data;
-        console.log(data);
-      });
-  }
   public listItemskey: Array<{ text: string; value: number; name: string }> = [
     { text: 'Please select', value: 0, name: 'select' },
     { text: 'Home', value: 2175, name: 'Home' },
