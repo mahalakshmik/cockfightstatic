@@ -183,8 +183,7 @@ this.vedio=false;
   }
   
   createsell() {
-    alert('test')
-    debugger
+    
     console.log(this.formsell)
 
     var formdata = new FormData();

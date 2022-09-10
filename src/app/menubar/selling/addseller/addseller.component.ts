@@ -220,7 +220,6 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
     //   this.uploadFiles = []
     // }
     console.log(this.formsell);
-    alert(this.formsell.productID)
     var formdata = new FormData();
     formdata.append('ProductId', this.formsell.productID);
     formdata.append('ProductCode', this.formsell.productCode);
@@ -265,6 +264,7 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
           icon: 'success',
           timer: 700,
         });
+
         if(this.formsell.productID ==0){
 
           this.fms.saveImagename(res).subscribe(resp => {
@@ -276,8 +276,9 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
             }
           })
         }
+        this.router.navigateByUrl('/menu/readytosell')
       }
-      this.isShowAddseller = false;
+      // this.isShowAddseller = false;
     });
   
    

@@ -97,9 +97,11 @@ export class AppComponent {
   getNotification() {
     this.fms.getNotifications(this.userID).subscribe((res:any) => {
       this.notifications = res;
+  
+    
 
-      this.notifcount =  this.notifications((x:any)=>x.isRead === false).length;
-      console.log(this.notifcount.messageHeader);
+      this.notifcount =  res.filter((x:any)=>{x.isRead === false}).length;
+      console.log(this.notifcount);
     });
   }
 
