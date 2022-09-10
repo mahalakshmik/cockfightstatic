@@ -14,6 +14,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { environment } from 'src/environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { timingSafeEqual } from 'crypto';
 @Component({
   selector: 'app-addseller',
   templateUrl: './addseller.component.html',
@@ -123,7 +124,7 @@ export class AddsellerComponent implements OnInit {
       this.formsell = res.productMaster;
       this.spinnerService.hide();
       this.getImgListByProductId(this.pid);
-
+this.formsell.productImage = this.pid.concat("_0.jpeg")
     })
   }
   showtemp() {
@@ -143,7 +144,7 @@ export class AddsellerComponent implements OnInit {
 
     this.getImgListByProductId(sellerList.productID);
   }
-  getImgListByProductId(id: number) {
+  getImgListByProductId(id: number) {debugger
     this.fms.getimgListbyProductId(id).subscribe((res: any) => {
       if (res.length > 0) {
         res.forEach((e: any) => {
@@ -157,6 +158,7 @@ export class AddsellerComponent implements OnInit {
           } else {
 
             this.previews.push(imgs)
+
           }
         });
       }
@@ -165,13 +167,14 @@ export class AddsellerComponent implements OnInit {
 
 
   onFileSelect(event: any) {
-    this.count++
-    if (this.pid != 0 && this.count == 1) {
-      this.previews = [];
-      this.edit = false;
-      this.editimages = true;
-    }
-    debugger
+    
+    //  this.count++
+    //     if (this.pid != 0 && this.count ==1) {
+    //       this.previews = [];
+    //       this.edit = false;
+    //       this.editimages = true;
+    //     }
+    
     this.message = [];
     this.progressInfos = [];
     this.selectedFiles = event.target.files;
@@ -187,8 +190,8 @@ export class AddsellerComponent implements OnInit {
           this.previews.push(e.target.result);
           // this.uploadFiles.push(event.target.files[i]);
 
+          console.log(this.uploadFiles)
         };
-
         reader.readAsDataURL(this.selectedFiles[i]);
       }
     }
@@ -196,7 +199,8 @@ export class AddsellerComponent implements OnInit {
 
 
   createsell() {
-    debugger
+    
+    this.uploadFiles.push(...this.previews)
 
     this.spinnerService.show();
     if (this.formsell.discount == undefined) {
@@ -231,7 +235,7 @@ export class AddsellerComponent implements OnInit {
     formdata.append('Currency', this.formsell.currency);
     formdata.append('PaymentOption', this.formsell.paymentOption);
     formdata.append('ProductImage', this.formsell.productImage);
-    formdata.append('Remarks', 'dummy');
+    formdata.append('Remarks', 'test');
     formdata.append('IsActive', 'true');
     formdata.append('IsAvailable', 'true');
     formdata.append('StockQty', this.formsell.stockQty);
@@ -256,17 +260,24 @@ export class AddsellerComponent implements OnInit {
           icon: 'success',
           timer: 700,
         });
-        this.fms.saveImagename(res).subscribe(resp => {
-          console.log(resp)
-          if (resp) {
 
-            this.router.navigate(['menu/readytosell']);
+        if(this.formsell.productID ==0){
 
-          }
-        })
+          this.fms.saveImagename(res).subscribe(resp => {
+            console.log(resp)
+            if (resp) {
+  
+              this.router.navigate(['menu/readytosell']);
+  
+            }
+          })
+        }
+        this.router.navigateByUrl('/menu/readytosell')
       }
-      this.isShowAddseller = false;
+      // this.isShowAddseller = false;
     });
+  
+   
   }
 
 
