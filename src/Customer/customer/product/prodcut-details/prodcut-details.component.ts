@@ -19,6 +19,7 @@ declare var FB: any;
   styleUrls: ['./prodcut-details.component.scss'],
 })
 export class ProdcutDetailsComponent implements OnInit {
+  isEditing:boolean=false;
   newimageObject:any=[];
   imageObject = [
     {
@@ -431,7 +432,9 @@ export class ProdcutDetailsComponent implements OnInit {
       }
     });
   }
-
+  replyClick() {
+    this.isEditing = !this.isEditing;
+  }
   //#oldcode 
   
   getMember() {

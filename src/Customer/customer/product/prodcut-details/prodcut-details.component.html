@@ -288,25 +288,29 @@
             <div class="title-bar">
                 <h2 class="title">Comments </h2><span class="title-border"></span>
             </div>
-            <div class="row">
-                <div class="col-sm-6">
-
-                    <p *ngFor="let p of message"> {{p.comment}} </p>
+           
+            <div class="replies" *ngFor="let p of message">
+                <div class="main">
+                    <div class="left">
+                      
+                    </div>
+                    <div class="right">
+                        <div class="detail">
+                            <span class="user">{{p.senderName}}</span>
+                            <span class="date">{{p.createdOn}}</span>
+                        </div>
+                        <div class="comment">
+                            <p>{{p.comment}}</p>
+                        </div>
+                        <a style="color: #f15502;" (click)="replyClick()" >Reply Message</a>
+                        <!-- <app-comment-box (add)="onAdd($event)" *ngIf="isEditing"></app-comment-box> -->
+                        <div class="comment-box" *ngIf="isEditing">
+                            <textarea></textarea>
+                            <button >post</button>
+                            <button >cancel</button>
+                          </div>
+                    </div>
                 </div>
-                <div class="col-sm-6">
-
-                    <p *ngFor="let p of message">{{p.senderName}} {{p.createdOn | date:'dd/mm/yyyy h:mm:ss a'}}
-                        <a class="btn btn-primary" (click)="sendreply()">
-                            ReplyMessage
-                        </a>
-                        <a class="btn btn-primary">
-                            Message(Inbox)
-                        </a>
-                    </p>
-
-                </div>
-
-            </div>
         </div>
     </div>
 </div>
