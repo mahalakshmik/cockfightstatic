@@ -1,0 +1,67 @@
+<div class="replies" >
+    <div class="main">
+        <div class="left">
+          
+        </div>
+        <div class="right">
+            <div class="detail">
+                <span class="user">{{comment.senderName}}</span>
+                <span class="date">{{comment.createdOn}}</span>
+            </div>
+            <div class="comment">
+                <p>{{comment.comment}}</p>
+            </div>
+            <a style="color: #f15502;" (click)="replyClick()" >Reply Message</a> 
+            <a style="color: #f15502;  padding-left: 20px;" (click)="dialogbox(breedtemplate,comment)">Message(Inbox)</a>
+            <app-commentbox (add)="onAdd($event)" *ngIf="isEditing"></app-commentbox>
+	<!-- <app-comments-list *ngFor="let c of comment" [comment]="c"></app-comments-list> -->
+           
+        </div>
+    </div>
+</div>
+
+
+<ng-template #breedtemplate>
+    <div>
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header model-hdr-pdng">
+                <button type="button" class="close message-to-sellar" (click)="breeddialogRef.close()">×</button>
+                <h4 class="modal-title center-block">Send Message to Seller</h4>
+            </div>
+            <!-- Modal Body -->
+            <div class="modal-body" id="dialogMessage">
+                <form autocomplete="off" name="form" (ngSubmit)="f.form.valid" #f="ngForm"
+                    class="form-horizontal center-block">
+                    <div class="row">
+                        <div class="col-md-12">
+
+
+                            <div class="form-group">
+
+                                <div class="col-sm-12">
+                                    <textarea class="form-control" cols="20" name="comments" [(ngModel)]="comments"
+                                        placeholder="Message" rows="8" value=""></textarea>
+                                </div>
+                            </div>
+                            <!-- <input type="file" name="fileName" [(ngModel)]="form.fileName" #fileName="ngModel"
+                                (click)="uploadFile($event)"> -->
+                            <div id="pswderror" style="color:red" class="ui-state-error-text">
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-8">
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="button" (click)="SendMessageToSeller(comment)"
+                                        class="custom-btn btn btn-default message-sellar-submit">Submit</button>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</ng-template>

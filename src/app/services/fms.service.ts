@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, tap } from 'rxjs';
 import { Address } from 'src/commonFiles/register/register.model';
 import { environment } from 'src/environments/environment';
 
@@ -13,6 +14,9 @@ export class FmsService {
   isGuest: boolean = false;
   prodList: any;
   orderID: any;
+  comentList!:postcomments[]
+
+
   constructor(private http: HttpClient) {
     this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
     // this.orderID = JSON.parse(localStorage.getItem('orderID') || '{}');
@@ -157,7 +161,11 @@ export class FmsService {
       `${this.baseURL}MessageDetails/ProductComments/${productId}`
     );
   }
-  getFollowersList() {
+  getpostcommentobs(productId: any) :Observable<postcomments[]>{
+    return this.http.get<postcomments[]>(`${this.baseURL}MessageDetails/ProductComments/${productId}`).
+    pipe(tap(data => console.log('All: ' + JSON.stringify(data))) );
+  }
+  getFollowersList():Observable<any>  {
     return this.http.get(
       `${this.baseURL}MemberFollowings/FollowedList/` + this.userdetails.userId
     );
@@ -346,4 +354,14 @@ export class FmsService {
 
    return this.http.get(`${this.baseURL}Carts/cartOrderDetails/`+this.userdetails.userId)
   }
+}
+
+
+export interface postcomments {
+  senderName: string;
+  createdOn: string;
+  messageID: any;
+  productID: any;
+  senderID: any;
+  comment?:any
 }

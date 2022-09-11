@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -11,6 +11,9 @@ import Swal from 'sweetalert2';
 import * as lookupStatic from 'src/assets/lookuplist.json';
 import { Lookup } from './lookuplist.model';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Comment } from "../comments-list/comment.model";
+import { Observable } from 'rxjs';
+
 //to import json i added 2 lines code in tsconfig.json (compilerOptions)(line:21,22)
 declare var FB: any;
 @Component({
@@ -19,6 +22,8 @@ declare var FB: any;
   styleUrls: ['./prodcut-details.component.scss'],
 })
 export class ProdcutDetailsComponent implements OnInit {
+  @Input() comment!: Comment;
+  src!: Observable<any> ;
   isEditing:boolean=false;
   newimageObject:any=[];
   imageObject = [
@@ -79,6 +84,7 @@ export class ProdcutDetailsComponent implements OnInit {
     this.productID = this.router.snapshot.paramMap.get('productID');
     this.sellerID = this.router.snapshot.paramMap.get('sellerID');
     localStorage.setItem('productID', JSON.stringify(this.productID));
+    localStorage.setItem('sellerID', JSON.stringify(this.sellerID));
     this.imgList = [
       { name: 'assets/images/consult/c1.jpg' },
       { name: 'assets/images/consult/c2.jpg' },
@@ -87,12 +93,16 @@ export class ProdcutDetailsComponent implements OnInit {
     ];
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {debugger
     this.spinnerService.show();
     this.productList();
 
     this.userid = this.as.getToken();
-    this.getComments();
+    this.ls.refreshNeedes.subscribe(()=>{
+      this.getComments();
+    })
+    //this.src =  this.fms.getpostcommentobs(this.productID);
+   // this.message=this.src;
     // this.getImages();
     // this.getMember();
   
@@ -133,7 +143,7 @@ export class ProdcutDetailsComponent implements OnInit {
         this.newimageObject.push({'video':videourl})
       }
       console.log('checkthis',this.newimageObject)
-      
+      this.getComments()
    
    // localStorage.setItem('sellerName', JSON.stringify(this.members));
       //console.log('prdID', this.prdId);
@@ -257,61 +267,62 @@ export class ProdcutDetailsComponent implements OnInit {
       }
     });
   }
-  SendMessageToSeller() {
-    ;
-    //before send message check login
-    // alert(this.userdetails.userid)
-    // const userid= this.as.getToken();
-    if (!this.userid) {
-      this.Login();
-    } else {
-      if (this.form.fileName == "")
-      {
-        this.form.fileName= "nofile";
-      }
-      var formdata = new FormData();
-      formdata.append('messageId', '0');
-      formdata.append('senderId', this.userid);
-      formdata.append('receiverId', this.sellerID);
-      formdata.append('productId', this.productID);
-      formdata.append('createdOn', '2022-08-16T06:38:00.037Z');
-      formdata.append('fileName', this.form.fileName);
-      formdata.append('messageSubject', this.form.messageSubject);
-    // withour filename also updating the savecomments use name 'nofile' to validte
-      this.fms.sendMessageToseller(formdata).subscribe((res:any) => {
-        console.log(res);
-       // this.isHide = res.success
-        if (res) {
-          this.breeddialogRef.close();
-          Swal.fire({
-            icon: 'success',
-            title: 'Message Sent',
-            text: 'Message To Seller Successfully',
-            // type: "success",
-            timer: 500,
-          });
-          var comentspayload = {
-            itemId: 0,
-            messageId: res,
-            memberId: this.userid,
-            messageTo: this.sellerID,
-            comment: this.comments,
-            createdOn: '2022-08-16T06:38:00.037Z',
-            isRead: true,
-          };
-          this.sendMessage(comentspayload);
-
+    SendMessageToSeller() {
+      
+      //before send message check login
+      // alert(this.userdetails.userid)
+      // const userid= this.as.getToken();
+      if (!this.userid) {
+        this.Login();
+      } else {
+        if (this.form.fileName == "")
+        {
+          this.form.fileName= "nofile";
         }
-      });
-      // //console.log(this.form)
+        var formdata = new FormData();
+        formdata.append('messageId', '0');
+        formdata.append('senderId', this.userid);
+        formdata.append('receiverId', this.sellerID);
+        formdata.append('productId', this.productID);
+        formdata.append('createdOn', '2022-08-16T06:38:00.037Z');
+        formdata.append('fileName', this.form.fileName);
+        formdata.append('messageSubject', this.form.messageSubject);
+      // withour filename also updating the savecomments use name 'nofile' to validte
+        this.fms.sendMessageToseller(formdata).subscribe((res:any) => {
+          console.log(res);
+        // this.isHide = res.success
+          if (res) {
+            this.breeddialogRef.close();
+            Swal.fire({
+              icon: 'success',
+              title: 'Message Sent',
+              text: 'Message To Seller Successfully',
+              // type: "success",
+              timer: 500,
+            });
+            var comentspayload = {
+              itemId: 0,
+              messageId: res,
+              memberId: this.userid,
+              messageTo: this.sellerID,
+              comment: this.comments,
+              createdOn: '2022-08-16T06:38:00.037Z',
+              isRead: true,
+            };
+            this.sendMessage(comentspayload);
+
+          }
+        });
+        // //console.log(this.form)
+      }
     }
-  }
   getComments() {
     this.fms.getpostcomment(this.productID).subscribe((res: any) => {
       //console.log(res);
       this.message = res;
     });
   }
+
   dialogbox(breedtemplate: any) {
     if (!this.userid) {
       this.Login();
@@ -435,6 +446,19 @@ export class ProdcutDetailsComponent implements OnInit {
   replyClick() {
     this.isEditing = !this.isEditing;
   }
+
+  Submitcomments($event :any){debugger
+
+console.log(this.comment)
+  }
+
+
+
+
+
+
+
+
   //#oldcode 
   
   getMember() {

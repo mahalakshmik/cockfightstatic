@@ -24,6 +24,8 @@ import { MaterialExampleModule } from 'src/material.module';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from 'src/shared/shared.module';
 import { NgImageSliderModule } from 'ng-image-slider';
+import { CommentboxComponent } from './product/commentbox/commentbox.component';
+import { CommentsListComponent } from './product/comments-list/comments-list.component';
 @NgModule({
   declarations: [
     CustomerAddressComponent,
@@ -43,7 +45,9 @@ import { NgImageSliderModule } from 'ng-image-slider';
     InboxComponent,
     InboxDetailsComponent,
     OrderHistoryComponent,
-    VerifyComponent
+    VerifyComponent,
+    CommentboxComponent,
+    CommentsListComponent
   ],
   imports: [
     CommonModule,

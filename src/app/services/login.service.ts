@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -7,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class LoginService {
   baseURL = environment.api;
-
+private _refershNeededs=new Subject<void>();
   constructor(private http:HttpClient) { }
 
 // produtList(){
@@ -37,19 +38,34 @@ export class LoginService {
   return this.http.post(`${this.baseURL}Members/ProfileUpdate`,payload)
 }
 
+
 getLookUp(){
   return this.http.get(`${this.baseURL}Lookup`)
 }
+// refresh api concept
+ 
+get refreshNeedes(){
+  return this._refershNeededs;
+}
+getALichotehkies(productId:any): Observable<postcomments[]> {
+  return this.http.get<postcomments[]>(`${this.baseURL}MessageDetails/ProductComments/${productId}`);
 
-    //budgetdetsave(payload){
-    //  payload["id"]=0;
-     
-    //  payload["CampaignID"]=this.id;
-  //  return this.http.post(this.baseURL +"operation/campaign/budgetdetails/save",payload)
-  //}
+}
 
-  //deleteaccount(id){
-   // return this.http.get(`${this.baseURL}advertiser/delete/${id}`)
-  //}
+postCommnetsls(payload: any):Observable<postcomments> {
+  //api/MessageDetails/saveMessageDetails
+  return this.http.post<postcomments>(`${this.baseURL}MessageDetails/saveMessageDetails`,payload)
+  .pipe(tap(()=>{
+this._refershNeededs.next();
+  }));
+}
 
+}
+export interface postcomments {
+  senderName: string;
+  createdOn: string;
+  messageID: any;
+  productID: any;
+  senderID: any;
+  comment?:any
 }

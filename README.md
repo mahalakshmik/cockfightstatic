@@ -33,3 +33,5 @@ note:added Ngx spinner if we get any version we need to remove , it supports onl
 
    #send message to seller without file upload filename default is 'nofile'
   
+>>>comments example taken form this link
+https://stackblitz.com/edit/ng-comment-tree?file=src%2Fapp%2Fapp.component.ts
