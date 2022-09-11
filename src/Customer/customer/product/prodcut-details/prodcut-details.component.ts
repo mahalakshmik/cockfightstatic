@@ -63,6 +63,8 @@ export class ProdcutDetailsComponent implements OnInit {
   cartLst: any =[];
   comments:string='';
   videoname: any;
+  smallvideo: any;
+  isoutOfStock: any=false;
   constructor(
     private fms: FmsService,
     private ls: LoginService,
@@ -86,28 +88,37 @@ export class ProdcutDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.spinnerService.show();
+    this.productList();
 
     this.userid = this.as.getToken();
     this.getComments();
-    this.productList();
     // this.getImages();
     // this.getMember();
   
   }
  
-  productList() {
+  productList() {debugger
     this.fms.produtListById(this.productID,this.sellerID).subscribe((data: any) => {
       this.product = data.productMaster;
       //  this.product.isGuest = false;
-
       console.log(data);
+      if(data.productVideo ){
+
+        this.smallvideo=data.productVideo.imageName
+      }
       this.prdId = this.product.productId;
       this.images=data.productImages;
-      this.spinnerService.hide();
+      if(this.product.stockQty <=0){
+        
+        this.isoutOfStock=true;
+      }
+      this.members = data.member;
+      
       console.log(this.images)
       localStorage.removeItem('images');
       localStorage.setItem('images', JSON.stringify(this.images[0].imageName));
-      this.productvideoUrl
+      this.spinnerService.hide();
+      localStorage.setItem('selectedProdutList', JSON.stringify(this.product));
       this.images.forEach((e:any) => {
        let imaglist={
         "thumbImage":this.productPicUrl+e.imageName,
@@ -116,22 +127,14 @@ export class ProdcutDetailsComponent implements OnInit {
      this.newimageObject.push(imaglist)
         
       });
-      if(data.productVideo != null){debugger
+      if(data.productVideo != null){
         const videourl=this.productvideoUrl+data.productVideo.imageName;
         this.newimageObject.push({'video':videourl})
       }
       console.log('checkthis',this.newimageObject)
-      // this.imageObject['video']
-      // video: 'https://lgistorage.blob.core.windows.net/fmsvideos/21207_0.mp4',
-      // alt: 'No video',
-      // title: 'video',
-      // setInterval(() => {
-      //   this.current = ++this.current % this.images.length;
-      // }, 100);
-    this.productPicUrl.concat();
-    this.members = data.member;
+      
+   
    // localStorage.setItem('sellerName', JSON.stringify(this.members));
-    localStorage.setItem('selectedProdutList', JSON.stringify(this.product));
       //console.log('prdID', this.prdId);
       // localStorage.setItem('selectedProdut', JSON.stringify(this.product));
       // this.getgender();
@@ -142,7 +145,7 @@ export class ProdcutDetailsComponent implements OnInit {
 
 
   addCart() {
-    if (!this.as.isLoggedIn()) {debugger
+    if (!this.as.isLoggedIn()) {
       console.log(localStorage.getItem('localCartLst') )
 
       if(localStorage.getItem('localCartLst')){
@@ -174,7 +177,7 @@ export class ProdcutDetailsComponent implements OnInit {
       console.log(payload1)
       console.log(this.cartLst)
       this.route.navigateByUrl('/Cartitems')
-      // this.fms.saveCartList(payload1).subscribe((res: any) => {debugger
+      // this.fms.saveCartList(payload1).subscribe((res: any) => {
       //   //console.log(res);
       //   if (res) {
       //     Swal.fire({
@@ -254,7 +257,7 @@ export class ProdcutDetailsComponent implements OnInit {
     });
   }
   SendMessageToSeller() {
-    debugger;
+    ;
     //before send message check login
     // alert(this.userdetails.userid)
     // const userid= this.as.getToken();
@@ -274,7 +277,7 @@ export class ProdcutDetailsComponent implements OnInit {
       formdata.append('fileName', this.form.fileName);
       formdata.append('messageSubject', this.form.messageSubject);
     // withour filename also updating the savecomments use name 'nofile' to validte
-      this.fms.sendMessageToseller(formdata).subscribe((res:any) => {debugger
+      this.fms.sendMessageToseller(formdata).subscribe((res:any) => {
         console.log(res);
        // this.isHide = res.success
         if (res) {
@@ -324,7 +327,7 @@ export class ProdcutDetailsComponent implements OnInit {
       // });
     }
   }
-  postComment() {
+  postComment() {debugger
     //before send message check login
     this.spinnerService.show();
 
@@ -408,36 +411,10 @@ export class ProdcutDetailsComponent implements OnInit {
       this.selectedFiles = event.target.files[0];
       this.uploadedFile = event.target.files[0];
     }
-    // this.fileToUpload = file.item(0);
-
-    //Show image preview
-    //let reader = new FileReader();
-    // let file = event.target.files[0];
-    // reader.onload = (event: any) => {
-    //   this.imageUrl = event.target.result;
-    // }
-    // reader.readAsDataURL(file);
-    //main
-    // let reader = new FileReader(); // HTML5 FileReader API
-    // let file = event.target.files[0];
-    // reader.readAsDataURL(file);
-    // //console.log(file)
-
-    // if (event.target.files && event.target.files[0]) {
-    //   reader.readAsDataURL(file);
-
-    //   // When file uploads set it to file formcontrol
-    //   // reader.onload = () => {
-    //   //   this.imageUrl = reader.result;
-    //   //   this.registrationForm.patchValue({
-    //   //     file: reader.result
-    //   //   });
-    //   //   this.editFile = false;
-    //   //   this.removeUpload = true;
-    //   // }
-    //   // // ChangeDetectorRef since file is loading outside the zone
-    //   // this.cd.markForCheck();
-    // }
+   
+  }
+  sendreply(){
+    this.postComment();
   }
 
   sendMessage(payload:any){
