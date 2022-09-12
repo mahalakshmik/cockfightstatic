@@ -11,7 +11,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12" *ngFor="let p of inboxlst?.messageHeader">
+                    <div class="col-sm-12" *ngFor="let p of inboxlst?.messageHeader" routerLink="/menu/inboxdetail/{{p.messageID}}/{{this.memberid}}">
                         <p><b>{{p.messageSubject}}:</b>{{p.productName}}</p>
                         <p><b>{{p.senderName}}</b>({{p.senderEmail}})</p>
                         <p *ngFor="let cmt of p.messageDetails">{{cmt?.comment}}</p>

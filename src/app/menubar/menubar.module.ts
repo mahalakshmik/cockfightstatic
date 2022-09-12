@@ -30,6 +30,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
 import { AddsellerComponent } from './selling/addseller/addseller.component';
+import { InboxdetailComponent } from './inbox-message/inboxdetail/inboxdetail.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { AddsellerComponent } from './selling/addseller/addseller.component';
     InboxMessageComponent,
     WishlistComponent,
     ChangepasswordComponent,
-    AddsellerComponent
+    AddsellerComponent,
+    InboxdetailComponent
   ],
   imports: [
     CommonModule,

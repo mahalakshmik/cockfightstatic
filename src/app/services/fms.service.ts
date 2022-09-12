@@ -242,6 +242,11 @@ export class FmsService {
         this.userdetails.memberType
     );
   }
+  getInboxdetails(messageid: any,membertype: any) {
+    return this.http.get(
+      `${this.baseURL}Profile/InboxDetail/`+messageid+'/'+membertype+'/' +this.userdetails.userId 
+    );
+  }
   ////LookUps
   getSellCurrencyDropList() {
     return this.http.get(`${this.baseURL}Lookups/Currency`);
@@ -306,6 +311,7 @@ export class FmsService {
     );
   }
   postCommnets(payload: any) {
+    payload.memberId=this.userdetails.userId;
     //api/MessageDetails/saveMessageDetails
     return this.http.post(
       `${this.baseURL}MessageDetails/saveMessageDetails`,

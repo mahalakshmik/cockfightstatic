@@ -9,6 +9,7 @@ import { BreedListComponent } from './breed-list/breed-list.component';
 import { FollowersComponent } from './followers/followers.component';
 import { FollowingComponent } from './following/following.component';
 import { InboxMessageComponent } from './inbox-message/inbox-message.component';
+import { InboxdetailComponent } from './inbox-message/inboxdetail/inboxdetail.component';
 import { LeftNavComponent } from './left-nav/left-nav.component';
 import { NotificationComponent } from './notification/notification.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path:'breedList',component:BreedListComponent},
   { path:'inbox/:senderID/:memberType',component:InboxMessageComponent},
   { path:'orderhistory',component:OrderHistoryComponent},
+  { path:'inboxdetail/:messageID/:memberType',component:InboxdetailComponent},
 
 ];
 
