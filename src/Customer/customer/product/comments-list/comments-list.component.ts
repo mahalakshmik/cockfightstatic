@@ -161,7 +161,7 @@ export class CommentsListComponent implements OnInit {
       var formdata = new FormData();
       formdata.append('messageId', '0');
       formdata.append('senderId', this.userid);
-      formdata.append('receiverId', comment.sellerID);
+      formdata.append('receiverId', comment.senderID);
       formdata.append('productId', comment.productID);
       formdata.append('createdOn', '2022-08-16T06:38:00.037Z');
       formdata.append('fileName', this.form.fileName);

@@ -40,7 +40,8 @@ export class InboxdetailComponent implements OnInit {
       console.log(this.messageDetails)
       console.log(this.messageHeader)
     this.spinnerService.hide();
-
+this.senderid=this.messageHeader[0].senderID
+console.log(this.senderid)
       if(this.messageHeader.length ==0){
         this.senderid=0
 

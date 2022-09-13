@@ -4,79 +4,83 @@
 
         <div class="col-md-9">
             <div class="card ">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="title-bar">
-                        <h2 class="title">Sub: Product Inquiry  </h2><span class="title-border"></span>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="title-bar">
+                            <h2 class="title">Sub: Product Inquiry </h2><span class="title-border"></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="profile bg-2">
-                <div class="forum-topics">
-                    <div class="content">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <!-- {{messageHeader[0].MessageSubject}} -->
-                                <hr />
-                                <div class="scroll">
+                <div class="profile bg-2">
+                    <div class="forum-topics">
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!-- {{messageHeader[0].MessageSubject}} -->
+                                    <hr />
+                                    <div class="scroll">
 
-                                    <div class="row mrgn-top" *ngFor="let m of messageDetails">
+                                        <div class="row mrgn-top" *ngFor="let m of messageDetails">
+                                            <div class="col-md-2">
+                                                <div class="pull-right">
+                                                    <!-- <img
+                                                    src="~/Uploads/@Model.postList[i].MemberType/@Model.postList[i].MemberID/@Model.postList[i].ProfilePhoto" /> -->
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="comments">
+                                                   
+                                                    <div *ngIf="senderid === m.memberID; else other_content" >
+
+
+
+                                                        <div class="pull-left comment-bg-left">
+                                                            <p class="pdng0">{{m.comment}}</p>
+                                                            <span class="date-msg">{{m.createdOn }}</span>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <ng-template #other_content>
+                                                        <div class="pull-right comment-bg-right">
+                                                            <p>{{m.MemberID}}</p>
+                                                            <p class="pdng0">{{m.comment}}</p>
+
+                                                            <span class="date-msg">{{m.createdOn |
+                                                                date:'medium'}}</span>
+
+                                                        </div>
+                                                    </ng-template>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </div>
+                                    <hr />
+                                    <div class="row mrgn-top">
                                         <div class="col-md-2">
                                             <div class="pull-right">
-                                                <!-- <img
-                                                    src="~/Uploads/@Model.postList[i].MemberType/@Model.postList[i].MemberID/@Model.postList[i].ProfilePhoto" /> -->
+                                                <!-- <img src="https://cockfightkaichon.azurewebsites.net/Images/th221808586.jpg" alt="avatar" /> -->
+                                                <img src="~/Uploads/@Model.member.MemberType/@Model.member.UserID/@Model.member.ProfilePhoto" alt="avatar"  />
                                             </div>
                                         </div>
-
-                                        <div class="col-md-12">
-                                            <div class="comments">
-                                                <div *ngIf="senderid == m.MemberID; else other_content">
-
-
-
-                                                    <div class="pull-left comment-bg-left">
-                                                        <p class="pdng0">{{m.comment}}</p>
-                                                        <span class="date-msg">{{m.createdOn }}</span>
-                                                    </div>
-                                                </div>
-
-                                              
-                                                <ng-template #other_content>
-  <div class="pull-right comment-bg-right">
-    <p class="pdng0">{{m.comment}}</p>
-
-    <span class="date-msg">{{m.createdOn | date:'medium'}}</span>
-
-</div>
-                                                </ng-template>
-
-                                            </div>
+                                        <div class="col-md-10">
+                                            <form id="frmInboxComments" name="frmInboxComments">
+                                                <textarea id="Comments" name="Comments" placeholder="Comments"
+                                                    class="form-control" maxlength="1000"
+                                                    [(ngModel)]="comments"></textarea>
+                                                <span id="chars">1000</span>
+                                                <!-- @AppResource.CharsRemaining -->
+                                                <!-- <button type="button" onclick="InboxPostComments(messageHeader[0].MessageID)" class="btn btn-default pull-right">@AppResource.ReplyMessage</button> -->
+                                                <a type="button" (click)="InboxPostComments()"
+                                                    class="btn btn-default pull-right">Reply Message</a>
+                                            </form>
                                         </div>
-                                    </div>
-
-
-
-
-                                </div>
-                                <hr />
-                                <div class="row mrgn-top">
-                                    <div class="col-md-2">
-                                        <div class="pull-right">
-                                            <img
-                                                src="~/Uploads/@Model.member.MemberType/@Model.member.UserID/@Model.member.ProfilePhoto" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-10">
-                                        <form id="frmInboxComments" name="frmInboxComments">
-                                            <textarea id="Comments" name="Comments" placeholder="Comments"
-                                                class="form-control" maxlength="1000" [(ngModel)]="comments"></textarea>
-                                            <span id="chars">1000</span>
-                                            <!-- @AppResource.CharsRemaining -->
-                                            <!-- <button type="button" onclick="InboxPostComments(messageHeader[0].MessageID)" class="btn btn-default pull-right">@AppResource.ReplyMessage</button> -->
-                                            <a type="button" 
-                                                (click)="InboxPostComments()"
-                                                class="btn btn-default pull-right">Reply Message</a>
-                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -85,6 +89,5 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </div>
