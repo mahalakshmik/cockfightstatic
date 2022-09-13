@@ -6,7 +6,7 @@
         <div class="right" style="margin-top: -50px;">
             <div class="detail">
                 <span class="user">{{comment.senderName}}</span>
-                <span class="date">{{comment.createdOn}}</span>
+                <span class="date">{{comment.createdOn | date:'medium'}}</span>
             </div>
             <div class="comment">
                 <p>{{comment.comment}}</p>
