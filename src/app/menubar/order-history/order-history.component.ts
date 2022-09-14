@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FmsService } from 'src/app/services/fms.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-order-history',
@@ -9,7 +10,7 @@ import { FmsService } from 'src/app/services/fms.service';
 })
 export class OrderHistoryComponent implements OnInit {
   orderHistory: any;
-
+  productPicUrl = environment.azureblobImgUrl;
   constructor(private fms: FmsService,private router: Router) {
   }
 
