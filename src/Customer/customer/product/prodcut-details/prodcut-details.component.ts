@@ -11,7 +11,6 @@ import Swal from 'sweetalert2';
 import * as lookupStatic from 'src/assets/lookuplist.json';
 import { Lookup } from './lookuplist.model';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Comment } from "../comments-list/comment.model";
 import { Observable } from 'rxjs';
 
 //to import json i added 2 lines code in tsconfig.json (compilerOptions)(line:21,22)
