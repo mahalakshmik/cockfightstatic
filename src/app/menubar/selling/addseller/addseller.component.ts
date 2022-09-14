@@ -178,7 +178,10 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
     this.message = [];
     this.progressInfos = [];
     this.selectedFiles = event.target.files;
-    this.uploadFiles.push(event.target.files[0]);
+    for (let i = 0; i < event.target.files.length; i++) {
+      this.uploadFiles.push(event.target.files[i]);
+      
+    }
     console.log(this.uploadFiles)
     // this.previews = [];
     if (this.selectedFiles && this.selectedFiles[0]) {

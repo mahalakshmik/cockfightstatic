@@ -45,7 +45,7 @@ export class AddressdeliveryComponent implements OnInit {
     console.log(rowdata)
 
     const dialogs=this.dialog.open(AddaddressComponent, {
-      width: '800px',
+      width: '700px',
       height: '700px',
       data: rowdata[i]
     });
