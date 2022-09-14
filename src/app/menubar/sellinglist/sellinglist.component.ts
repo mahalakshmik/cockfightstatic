@@ -15,6 +15,7 @@ export class SellinglistComponent implements OnInit {
   selectedValue: any;
   productPicUrl = environment.azureblobImgUrl;
   orderData: any;
+  totalAmt: number =0;
 
   constructor(private fms: FmsService,public spinnerService: NgxSpinnerService) {
 
@@ -41,7 +42,10 @@ export class SellinglistComponent implements OnInit {
   getSellerList() {
     this.spinnerService.show();
 
+
     this.fms.getSellerListLatest(this.selectedOrder).subscribe((res:any) => {  
+      console.log(res)
+     
       for (let i = 0; i < res.orderHeader.length; i++) {
         res.orderHeader[i].orderDetails=[]
         res.orderHeader[i].orderPayment=[]
@@ -50,9 +54,16 @@ export class SellinglistComponent implements OnInit {
         res.orderHeader[i].orderDetails=resu
         res.orderHeader[i].orderPayment=payment
       }
+
       this.spinnerService.hide();
       console.log(res.orderHeader)
       this.orderData = res.orderHeader;
+      //  this.orderData.forEach((data:any) => {
+      //   data.orderDetails.forEach((res:any) => {
+      //     this.totalAmt = (res.standardPrice * res.quantity) - res.discountAmount
+          
+      //   });
+      //  });
       console.log(this.orderData)
     })
   }

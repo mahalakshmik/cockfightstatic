@@ -20,6 +20,7 @@ export class VieworderComponent implements OnInit {
   orderID: any;
   productPicUrl = environment.ProductUrl;
   images:any;
+  totalAmt: any;
 
   constructor(private fms: FmsService, private route: ActivatedRoute, private router: Router,private spinnerService: NgxSpinnerService) {
     this.orderNumber = this.route.snapshot.paramMap.get('id');
@@ -40,6 +41,7 @@ export class VieworderComponent implements OnInit {
       this.spinnerService.hide()
 
       this.orderID = this.orderHistory.orderHeader[0]?.orderID
+      this.totalAmt = (this.orderHistory.orderDetail[0].standardPrice * this.orderHistory.orderDetail[0].quantity) - this.orderHistory.orderDetail[0].discountAmount
       console.log(this.orderID)
     })
   }

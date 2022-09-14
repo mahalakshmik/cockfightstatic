@@ -10,6 +10,7 @@ import { FmsService } from 'src/app/services/fms.service';
 })
 export class SoldoutlistComponent implements OnInit {
   soldoutList: any;
+  totalAmt: number =0;
 
   constructor(private http: FmsService,public spinnerService: NgxSpinnerService) { }
 
@@ -20,6 +21,11 @@ export class SoldoutlistComponent implements OnInit {
     this.spinnerService.show()
     this.http.soldOutList().subscribe(res => {
       this.soldoutList = res;
+      this.soldoutList.orderDetail.forEach((data:any) => {
+        this.totalAmt = (data.standardPrice * data.quantity) - data.discountAmount
+        
+      });
+      //this.totalAmt = (this.soldoutList.orderDetail[0].standardPrice * this.soldoutList.orderDetail[0].quantity) - this.soldoutList.orderDetail[0].discountAmount
       this.spinnerService.hide()
       console.log(this.soldoutList)
     })
