@@ -92,7 +92,7 @@ export class HomeComponent implements OnInit {
       }
     });
   }
-  addwish(p: any, index: any) {
+  addwish(p: any, index: any) {debugger
     if (!this.userid) {
       this.Login()
       //alert('please login!');

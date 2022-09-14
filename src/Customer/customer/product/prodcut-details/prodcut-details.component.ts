@@ -22,15 +22,15 @@ declare var FB: any;
 })
 export class ProdcutDetailsComponent implements OnInit {
   @Input() comment!: Comment;
-  src!: Observable<any> ;
-  isEditing:boolean=false;
-  newimageObject:any=[];
+  src!: Observable<any>;
+  isEditing: boolean = false;
+  newimageObject: any = [];
   imageObject = [
     {
       video: 'https://lgistorage.blob.core.windows.net/fmsvideos/21207_0.mp4',
       alt: 'No video',
       // title: 'video',
-      thumbImage:''
+      thumbImage: ''
 
     },
     {
@@ -38,7 +38,7 @@ export class ProdcutDetailsComponent implements OnInit {
       thumbImage:
         'https://lgistorage.blob.core.windows.net/fmsimages/21207_1.jpeg',
       // title: 'Images',
-      alt:''
+      alt: ''
     },
   ];
   form: any = new MessageHeader();
@@ -65,11 +65,11 @@ export class ProdcutDetailsComponent implements OnInit {
   model: any = {};
   uploadedFile: any;
   isHide: any;
-  cartLst: any =[];
-  comments:string='';
+  cartLst: any = [];
+  comments: string = '';
   videoname: any;
   smallvideo: any;
-  isoutOfStock: any=false;
+  isoutOfStock: any = false;
   constructor(
     private fms: FmsService,
     private ls: LoginService,
@@ -92,59 +92,61 @@ export class ProdcutDetailsComponent implements OnInit {
     ];
   }
 
-  ngOnInit(): void {debugger
+  ngOnInit(): void {
+    debugger
     this.spinnerService.show();
     this.productList();
 
     this.userid = this.as.getToken();
-    this.ls.refreshNeedes.subscribe(()=>{
+    this.ls.refreshNeedes.subscribe(() => {
       this.getComments();
     })
     //this.src =  this.fms.getpostcommentobs(this.productID);
-   // this.message=this.src;
+    // this.message=this.src;
     // this.getImages();
     // this.getMember();
-  
+
   }
- 
-  productList() {debugger
-    this.fms.produtListById(this.productID,this.sellerID).subscribe((data: any) => {
+
+  productList() {
+    debugger
+    this.fms.produtListById(this.productID, this.sellerID).subscribe((data: any) => {
       this.product = data.productMaster;
       //  this.product.isGuest = false;
       console.log(data);
-      if(data.productVideo ){
+      if (data.productVideo) {
 
-        this.smallvideo=data.productVideo.imageName
+        this.smallvideo = data.productVideo.imageName
       }
       this.prdId = this.product.productId;
-      this.images=data.productImages;
-      if(this.product.stockQty <=0){
-        
-        this.isoutOfStock=true;
+      this.images = data.productImages;
+      if (this.product.stockQty <= 0) {
+
+        this.isoutOfStock = true;
       }
       this.members = data.member;
-      
+
       console.log(this.images)
       localStorage.removeItem('images');
       localStorage.setItem('images', JSON.stringify(this.images[0].imageName));
       this.spinnerService.hide();
       localStorage.setItem('selectedProdutList', JSON.stringify(this.product));
-      this.images.forEach((e:any) => {
-       let imaglist={
-        "thumbImage":this.productPicUrl+e.imageName,
-        "image": this.productPicUrl+e.imageName
-       }
-     this.newimageObject.push(imaglist)
-        
+      this.images.forEach((e: any) => {
+        let imaglist = {
+          "thumbImage": this.productPicUrl + e.imageName,
+          "image": this.productPicUrl + e.imageName
+        }
+        this.newimageObject.push(imaglist)
+
       });
-      if(data.productVideo != null){
-        const videourl=this.productvideoUrl+data.productVideo.imageName;
-        this.newimageObject.push({'video':videourl})
+      if (data.productVideo != null) {
+        const videourl = this.productvideoUrl + data.productVideo.imageName;
+        this.newimageObject.push({ 'video': videourl })
       }
-      console.log('checkthis',this.newimageObject)
+      console.log('checkthis', this.newimageObject)
       this.getComments()
-   
-   // localStorage.setItem('sellerName', JSON.stringify(this.members));
+
+      // localStorage.setItem('sellerName', JSON.stringify(this.members));
       //console.log('prdID', this.prdId);
       // localStorage.setItem('selectedProdut', JSON.stringify(this.product));
       // this.getgender();
@@ -156,28 +158,28 @@ export class ProdcutDetailsComponent implements OnInit {
 
   addCart() {
     if (!this.as.isLoggedIn()) {
-      console.log(localStorage.getItem('localCartLst') )
+      console.log(localStorage.getItem('localCartLst'))
 
-      if(localStorage.getItem('localCartLst')){
+      if (localStorage.getItem('localCartLst')) {
         const localdata = JSON.parse(localStorage.getItem('localCartLst') || '{}');
         this.cartLst.map(localdata)
         console.log(this.cartLst)
       }
-    
+
       var payload1 = {
-        CartId : 0,
-        ProductId : this.product.productID,
-        productName : this.product.productName,
-        SellerId : this.product.sellerID,
-        sellerName : this.product.sellerName,
-        MemberId : 0,
-        Quantity : 1,
-        UnitPrice : this.product.standardPrice,
-        Currency : this.product.currency,
-        DiscountAmount : this.product.discount,
-        DiscountType : 0,
-        TotalAmount : 65,
-        IsGuest : true,
+        CartId: 0,
+        ProductId: this.product.productID,
+        productName: this.product.productName,
+        SellerId: this.product.sellerID,
+        sellerName: this.product.sellerName,
+        MemberId: 0,
+        Quantity: 1,
+        UnitPrice: this.product.standardPrice,
+        Currency: this.product.currency,
+        DiscountAmount: this.product.discount,
+        DiscountType: 0,
+        TotalAmount: 65,
+        IsGuest: true,
         stockQty: this.product.stockQty,
         PaymentOptionDesc: this.product.paymentOptionDesc,
       };
@@ -201,17 +203,17 @@ export class ProdcutDetailsComponent implements OnInit {
       // });
     } else {
       var payload = {
-        CartId : 0,
-        ProductId : this.product.productID,
-        SellerId : this.product.sellerID,
-        MemberId : this.userdetails.userId,
-        Quantity : 1,
-        UnitPrice : this.product.standardPrice,
-        Currency : this.product.currency,
-        DiscountAmount : this.product.discount,
-        DiscountType : 0,
-        TotalAmount : 65,
-        IsGuest : false,
+        CartId: 0,
+        ProductId: this.product.productID,
+        SellerId: this.product.sellerID,
+        MemberId: this.userdetails.userId,
+        Quantity: 1,
+        UnitPrice: this.product.standardPrice,
+        Currency: this.product.currency,
+        DiscountAmount: this.product.discount,
+        DiscountType: 0,
+        TotalAmount: 65,
+        IsGuest: false,
         stockQty: this.product.stockQty,
         PaymentOptionDesc: this.product.paymentOptionDesc,
         // "IsGuest":false
@@ -241,13 +243,13 @@ export class ProdcutDetailsComponent implements OnInit {
     });
   }
   byNow() {
-    localStorage.setItem('isCart','false')
+    localStorage.setItem('isCart', 'false')
 
     if (!this.as.isLoggedIn()) {
       this.Login();
     } else {
       localStorage.removeItem('selectedProdut');
-     localStorage.setItem('selectedProdut', JSON.stringify(this.product));
+      localStorage.setItem('selectedProdut', JSON.stringify(this.product));
       this.route.navigate(['Addressdelivery']);
     }
   }
@@ -266,55 +268,54 @@ export class ProdcutDetailsComponent implements OnInit {
       }
     });
   }
-    SendMessageToSeller() {
-      
-      //before send message check login
-      // alert(this.userdetails.userid)
-      // const userid= this.as.getToken();
-      if (!this.userid) {
-        this.Login();
-      } else {
-        if (this.form.fileName == "")
-        {
-          this.form.fileName= "nofile";
-        }
-        var formdata = new FormData();
-        formdata.append('messageId', '0');
-        formdata.append('senderId', this.userid);
-        formdata.append('receiverId', this.sellerID);
-        formdata.append('productId', this.productID);
-        formdata.append('createdOn', '2022-08-16T06:38:00.037Z');
-        formdata.append('fileName', this.form.fileName);
-        formdata.append('messageSubject', this.form.messageSubject);
-      // withour filename also updating the savecomments use name 'nofile' to validte
-        this.fms.sendMessageToseller(formdata).subscribe((res:any) => {
-          console.log(res);
-        // this.isHide = res.success
-          if (res) {
-            this.breeddialogRef.close();
-            Swal.fire({
-              icon: 'success',
-              title: 'Message Sent',
-              text: 'Message To Seller Successfully',
-              // type: "success",
-              timer: 500,
-            });
-            var comentspayload = {
-              itemId: 0,
-              messageId: res,
-              memberId: this.userid,
-              messageTo: this.sellerID,
-              comment: this.comments,
-              createdOn: '2022-08-16T06:38:00.037Z',
-              isRead: true,
-            };
-            this.sendMessage(comentspayload);
+  SendMessageToSeller() {
 
-          }
-        });
-        // //console.log(this.form)
+    //before send message check login
+    // alert(this.userdetails.userid)
+    // const userid= this.as.getToken();
+    if (!this.userid) {
+      this.Login();
+    } else {
+      if (this.form.fileName == "") {
+        this.form.fileName = "nofile";
       }
+      var formdata = new FormData();
+      formdata.append('messageId', '0');
+      formdata.append('senderId', this.userid);
+      formdata.append('receiverId', this.sellerID);
+      formdata.append('productId', this.productID);
+      formdata.append('createdOn', '2022-08-16T06:38:00.037Z');
+      formdata.append('fileName', this.form.fileName);
+      formdata.append('messageSubject', this.form.messageSubject);
+      // withour filename also updating the savecomments use name 'nofile' to validte
+      this.fms.sendMessageToseller(formdata).subscribe((res: any) => {
+        console.log(res);
+        // this.isHide = res.success
+        if (res) {
+          this.breeddialogRef.close();
+          Swal.fire({
+            icon: 'success',
+            title: 'Message Sent',
+            text: 'Message To Seller Successfully',
+            // type: "success",
+            timer: 500,
+          });
+          var comentspayload = {
+            itemId: 0,
+            messageId: res,
+            memberId: this.userid,
+            messageTo: this.sellerID,
+            comment: this.comments,
+            createdOn: '2022-08-16T06:38:00.037Z',
+            isRead: true,
+          };
+          this.sendMessage(comentspayload);
+
+        }
+      });
+      // //console.log(this.form)
     }
+  }
   getComments() {
     this.fms.getpostcomment(this.productID).subscribe((res: any) => {
       //console.log(res);
@@ -338,12 +339,13 @@ export class ProdcutDetailsComponent implements OnInit {
       // });
     }
   }
-  postComment() {debugger
+  postComment() {
+    debugger
     //before send message check login
     this.spinnerService.show();
 
     if (!this.userid) {
-    this.spinnerService.hide();
+      this.spinnerService.hide();
 
       this.Login();
     } else {
@@ -422,21 +424,21 @@ export class ProdcutDetailsComponent implements OnInit {
       this.selectedFiles = event.target.files[0];
       this.uploadedFile = event.target.files[0];
     }
-   
+
   }
-  sendreply(){
+  sendreply() {
     this.postComment();
   }
 
-  sendMessage(payload:any){
+  sendMessage(payload: any) {
     this.spinnerService.show();
 
     this.fms.postCommnets(payload).subscribe((data: any) => {
       this.spinnerService.hide();
-      this.form.messageSubject='';
+      this.form.messageSubject = '';
 
       //console.log(data);
-      if(data){
+      if (data) {
         this.getComments();
 
       }
@@ -446,9 +448,10 @@ export class ProdcutDetailsComponent implements OnInit {
     this.isEditing = !this.isEditing;
   }
 
-  Submitcomments($event :any){debugger
+  Submitcomments($event: any) {
+    debugger
 
-console.log(this.comment)
+    console.log(this.comment)
   }
 
 
@@ -459,7 +462,7 @@ console.log(this.comment)
 
 
   //#oldcode 
-  
+
   getMember() {
     this.ls.memberListbyId(this.sellerID).subscribe((res: any) => {
       //console.log('member' + res);
@@ -497,7 +500,7 @@ console.log(this.comment)
     this.fms.getProductImages(this.productID).subscribe((res: any) => {
       //console.log(res);
       this.images = res;
-     // //console.log(this.images[0].imageName);
+      // //console.log(this.images[0].imageName);
       localStorage.removeItem('images');
       localStorage.setItem('images', JSON.stringify(this.images[0].imageName));
       //this.fst = this.images[0].imageName;
@@ -505,5 +508,26 @@ console.log(this.comment)
     });
     this.productPicUrl.concat();
   }
-//#endoldcode
+
+  addwish() {
+    if (!this.userid) {
+      this.Login()
+      //alert('please login!');
+    } else {
+      
+      this.fms.saveWishList(this.product).subscribe((res) => {
+        console.log(res);
+        Swal.fire({
+          icon: 'success',
+          title: 'Added to wishList!',
+          // text: "You clicked the button!",
+          // type: "success",
+          timer: 500,
+        });
+        this.ngOnInit();
+      });
+    }
+  }
+  //#endoldcode
 }
+
