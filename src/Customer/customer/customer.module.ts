@@ -26,6 +26,7 @@ import { SharedModule } from 'src/shared/shared.module';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { CommentboxComponent } from './product/commentbox/commentbox.component';
 import { CommentsListComponent } from './product/comments-list/comments-list.component';
+import { ProductdetailComponent } from './product/productdetails/productdetail/productdetail.component';
 @NgModule({
   declarations: [
     CustomerAddressComponent,
@@ -47,7 +48,8 @@ import { CommentsListComponent } from './product/comments-list/comments-list.com
     OrderHistoryComponent,
     VerifyComponent,
     CommentboxComponent,
-    CommentsListComponent
+    CommentsListComponent,
+    ProductdetailComponent
   ],
   imports: [
     CommonModule,
