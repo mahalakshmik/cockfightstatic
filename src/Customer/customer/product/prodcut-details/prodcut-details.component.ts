@@ -12,6 +12,7 @@ import * as lookupStatic from 'src/assets/lookuplist.json';
 import { Lookup } from './lookuplist.model';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
+import { VediolistComponent } from '../productvediolist/vediolist/vediolist.component';
 
 //to import json i added 2 lines code in tsconfig.json (compilerOptions)(line:21,22)
 declare var FB: any;
@@ -70,6 +71,7 @@ export class ProdcutDetailsComponent implements OnInit {
   videoname: any;
   smallvideo: any;
   isoutOfStock: any = false;
+  dialogRef!: MatDialogRef<VediolistComponent, any>;
   constructor(
     private fms: FmsService,
     private ls: LoginService,
@@ -116,7 +118,8 @@ export class ProdcutDetailsComponent implements OnInit {
       console.log(data);
       if (data.productVideo) {
 
-        this.smallvideo = data.productVideo.imageName
+        this.smallvideo = data.productVideo.imageName;
+        localStorage.setItem('smallvedio', JSON.stringify(this.smallvideo));
       }
       this.prdId = this.product.productId;
       this.images = data.productImages;
@@ -527,6 +530,20 @@ export class ProdcutDetailsComponent implements OnInit {
         this.ngOnInit();
       });
     }
+  }
+
+  openDialog() {
+   
+    this.dialogRef = this.matDialog.open(VediolistComponent, {
+      width: '400px',
+      height: '400px',
+
+    });
+    this.dialogRef.afterClosed().subscribe(res => {
+      if ((res == true)) {
+
+      }
+    });
   }
   //#endoldcode
 }

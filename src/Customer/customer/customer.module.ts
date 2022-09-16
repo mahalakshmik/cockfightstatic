@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CustomerRoutingModule } from './customer-routing.module';
@@ -27,6 +27,7 @@ import { NgImageSliderModule } from 'ng-image-slider';
 import { CommentboxComponent } from './product/commentbox/commentbox.component';
 import { CommentsListComponent } from './product/comments-list/comments-list.component';
 import { ProductdetailComponent } from './product/productdetails/productdetail/productdetail.component';
+import { VediolistComponent } from './product/productvediolist/vediolist/vediolist.component';
 @NgModule({
   declarations: [
     CustomerAddressComponent,
@@ -49,7 +50,8 @@ import { ProductdetailComponent } from './product/productdetails/productdetail/p
     VerifyComponent,
     CommentboxComponent,
     CommentsListComponent,
-    ProductdetailComponent
+    ProductdetailComponent,
+    VediolistComponent
   ],
   imports: [
     CommonModule,
@@ -58,6 +60,7 @@ import { ProductdetailComponent } from './product/productdetails/productdetail/p
   ],
   exports: [
   NotificationsComponent
-  ]
+  ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class CustomerModule { }

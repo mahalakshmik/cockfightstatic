@@ -4,10 +4,11 @@ import { LeftNavbarComponent } from 'src/commonFiles/left-navbar/left-navbar.com
 import { MaterialExampleModule } from 'src/material.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [LeftNavbarComponent],
-  imports: [CommonModule, MatProgressSpinnerModule, MaterialExampleModule],
+  imports: [CommonModule, MatProgressSpinnerModule, MaterialExampleModule,MatDialogModule],
   exports: [
     LeftNavbarComponent,
     MatProgressSpinnerModule,

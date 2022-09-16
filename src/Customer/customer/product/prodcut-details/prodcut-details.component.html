@@ -15,14 +15,14 @@
                                 <div id="consulting-carousel" class="carousel slide" data-ride="carousel">
                                     <div class="carousel-inner" role="listbox">
                                         <!-- oldone -->
-                                        <div class="item " *ngFor="let item of images;let index = index;let isFirst = first"
+                                        <div class="item "
+                                            *ngFor="let item of images;let index = index;let isFirst = first"
                                             [ngClass]="{active:isFirst}">
                                             <span class="consulting-caption">
                                                 <div class="not_img" *ngIf="images == 'undefined'"
                                                     style="background-color: red;">370 x 440px</div>
-                                                <img src="{{productPicUrl}}{{item.imageName}}" 
-                                                    *ngIf="item.imageName" width="350" height="350"
-                                                    class="d-block w-100" alt="image">
+                                                <img src="{{productPicUrl}}{{item.imageName}}" *ngIf="item.imageName"
+                                                    width="350" height="350" class="d-block w-100" alt="image">
 
                                             </span>
                                         </div>
@@ -37,7 +37,7 @@
                                                 [imageSize]="{width: container.style.width, space:0}" slideImage="1">
                                             </ng-image-slider>
                                         </div> -->
-                                         <!-- carousel both vedio and image -->
+                                        <!-- carousel both vedio and image -->
                                     </div>
                                     <!-- downimage -->
                                     <ol class="carousel-indicators">
@@ -58,7 +58,7 @@
 
 
                                     </ol>
-                                    <a> 
+                                    <a (click)="openDialog()">
                                         <i class="fa fa-play-circle ytube-icon"></i>
                                     </a>
                                 </div>
@@ -133,7 +133,7 @@
                                 </div>
                                 <!-- for style only added remove if any issue -->
                             </div>
-                     
+
                         </div>
                     </div>
 
@@ -159,12 +159,12 @@
                             <a> <i class="fa fa-facebook-square" width="30px" (click)="facebookUI('test')"></i></a>
                         </div>
                     </div>
-                
+
 
                 </div>
             </div>
             <!-- dletehere -->
-          
+
 
         </div>
 
@@ -300,3 +300,5 @@
     <ng-image-slider #nav [images]="imageObject" [infinite]="false" [manageImageRatio]=true [autoSlide]="1"
       [animationSpeed]="0.1" [imageSize]="{width: container.style.width, space:0}" slideImage="1"></ng-image-slider>
   </div> -->
+
+
