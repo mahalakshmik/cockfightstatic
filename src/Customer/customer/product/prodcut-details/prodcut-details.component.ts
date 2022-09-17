@@ -119,7 +119,7 @@ export class ProdcutDetailsComponent implements OnInit {
       console.log(data);
       if (data.productVideo) {
 
-        this.smallvideo = data.productVideo.imageName;
+        this.smallvideo = data.productVideo;
         this.vedioCount = data.productVideo?.length;
         console.log(this.smallvideo)
         console.log(data.productVideo?.length)
