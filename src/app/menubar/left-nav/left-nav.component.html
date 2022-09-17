@@ -24,13 +24,14 @@
 
                     <div class="navbar-header">
 
-                        <button class="navbar-toggle" data-toggle="collapse" data-target=".menubar">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
+                        <button class="navbar-toggle" data-toggle="collapse" data-target="#collapseExample" aria-controls="collapseExample">
+                            <span style="color: red;">Menu</span>
+                            <!-- <span class="icon-bar"></span>
+                            <span class="icon-bar"></span> -->
                         </button>
                     </div>
-                    <div class="collapse navbar-collapse menubar">
+                    <div class="collapse navbar-collapse menubar" id="collapseExample"  
+                >
                         <ul class="nav navbar-nav">
                             <li ><a (click)="pageNavigate('profile')"> <i class="icon-user"></i> &nbsp;&nbsp;Profile </a></li>
                             <!-- <li><a (click)="myDir='address'">Address</a></li> -->

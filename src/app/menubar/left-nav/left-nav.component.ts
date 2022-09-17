@@ -53,7 +53,8 @@ export class LeftNavComponent implements OnInit {
   userType: any;
   memberType: number;
   username: any;
-
+  isVisited: boolean=false;
+  addclass:string=''
 
   constructor(private fms: FmsService, private gs: LoginService, public as: AuthService, private spinnerService: NgxSpinnerService,
     private dialog: MatDialog, private router: Router, private activatedRoute: ActivatedRoute) {
@@ -73,7 +74,7 @@ export class LeftNavComponent implements OnInit {
 
     // }
   }
-
+  
 
   pageNavigate(tab: string) {
     if (tab === 'profile') {
@@ -120,7 +121,11 @@ export class LeftNavComponent implements OnInit {
 
 
 
-
+  mobilenav(){debugger
+    this.isVisited = true;
+    console.log('test')
+    alert('test')
+  }
   ngOnInit(): void {
     this.userType = this.as.getuserType();
     //  this.getBread()
