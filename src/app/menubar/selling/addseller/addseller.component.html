@@ -323,8 +323,13 @@
                                             File...</button>
                                         <!-- <video [src]="url" *ngIf="format==='video' && url" height="200"
                                             controls></video> <br /> -->
-                                        <video [src]="url" *ngIf="isvideo" height="200"
-                                            controls></video> <br />
+                                            <div *ngFor='let vedio of vedios;let i=index'>
+                                                <!-- removed this if condition for now if needed need to add -->
+                                                <!-- <video [src]="vedio" *ngIf="isvideo" height="200"
+                                                controls></video> <br /> -->
+                                                <video [src]="vedio"  height="200"
+                                                controls></video> <br />
+                                            </div>
                                         <input type='file' accept="video/*"  multiple (change)="onSelectFile($event)" />
                                     </div>
 

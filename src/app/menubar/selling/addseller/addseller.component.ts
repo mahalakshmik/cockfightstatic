@@ -71,6 +71,8 @@ export class AddsellerComponent implements OnInit {
   editimages: boolean = false;
   editvideos: boolean = false;
   count: number = 0;
+  selectedVedio: any;
+  vedios: any[]=[];
   constructor(
     private fms: FmsService,
     private blobService: AzureBlobStorageService,
@@ -308,25 +310,36 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
     if (this.edit) {
       this.editvideos = true;
     }
-    const file = event.target.files && event.target.files[0];
-    if (file) {
-      var reader = new FileReader();
-      reader.readAsDataURL(file);
-      if (file.type.indexOf('image') > -1) {
-        this.format = 'image';
-      } else if (file.type.indexOf('video') > -1) {
-        this.format = 'video';
-      }
-      reader.onload = (event) => {
-        this.url = (<FileReader>event.target).result;
-        this.isvideo = true;
-      };
-    //  this.videoFile = file;
-      for (let i = 0; i < event.target.files.length; i++) {
-        this.videoFile.push(event.target.files[i]);
-        
+    this.selectedVedio = event.target.files;
+    for (let i = 0; i < event.target.files.length; i++) {
+      this.videoFile.push(event.target.files[i]);
+    }
+    if (this.selectedVedio && this.selectedVedio[0]) {
+      const numberOfFiles = this.selectedVedio.length;
+      for (let i = 0; i < numberOfFiles; i++) {
+        const reader = new FileReader();
+
+        reader.onload = (e: any) => {
+          this.vedios.push(e.target.result);
+          // this.uploadFiles.push(event.target.files[i]);
+
+          console.log(this.vedios)
+        };
+        reader.readAsDataURL(this.selectedVedio[i]);
       }
     }
+    // if (this.selectedVedio) {
+    //   var reader = new FileReader();
+    //   reader.readAsDataURL(this.selectedVedio);
+    //   if (this.selectedVedio.type.indexOf('image') > -1) {
+    //     this.format = 'image';
+    //   } else if (this.selectedVedio.type.indexOf('video') > -1) {
+    //     this.format = 'video';
+    //   }
+     
+    // //  this.videoFile = file;
+    
+    // }
   }
 
   reloadVideos() {
