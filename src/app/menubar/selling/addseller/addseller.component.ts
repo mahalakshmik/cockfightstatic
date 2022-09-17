@@ -166,40 +166,7 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
   }
 
 
-  onFileSelect(event: any) {
-    
-    //  this.count++
-    //     if (this.pid != 0 && this.count ==1) {
-    //       this.previews = [];
-    //       this.edit = false;
-    //       this.editimages = true;
-    //     }
-    
-    this.message = [];
-    this.progressInfos = [];
-    this.selectedFiles = event.target.files;
-    for (let i = 0; i < event.target.files.length; i++) {
-      this.uploadFiles.push(event.target.files[i]);
-      
-    }
-    console.log(this.uploadFiles)
-    // this.previews = [];
-    if (this.selectedFiles && this.selectedFiles[0]) {
-      const numberOfFiles = this.selectedFiles.length;
-      for (let i = 0; i < numberOfFiles; i++) {
-        const reader = new FileReader();
-
-        reader.onload = (e: any) => {
-          this.previews.push(e.target.result);
-          // this.uploadFiles.push(event.target.files[i]);
-
-          console.log(this.uploadFiles)
-        };
-        reader.readAsDataURL(this.selectedFiles[i]);
-      }
-    }
-  }
-
+ 
 
   createsell() {
     
@@ -251,8 +218,10 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
     for (var i = 0; i < this.uploadFiles.length; i++) {
       formdata.append('uploadProductImages', this.uploadFiles[i]);
     }
+    for (var i = 0; i < this.videoFile.length; i++) {
+      formdata.append('productVideos', this.videoFile[i]);
+    }
 
-    formdata.append('productVideos', this.videoFile);
 
 
     this.fms.saveSeller(formdata).subscribe((res) => {
@@ -300,6 +269,39 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
   }
 
 
+  onFileSelect(event: any) {
+    
+    //  this.count++
+    //     if (this.pid != 0 && this.count ==1) {
+    //       this.previews = [];
+    //       this.edit = false;
+    //       this.editimages = true;
+    //     }
+    
+    this.message = [];
+    this.progressInfos = [];
+    this.selectedFiles = event.target.files;
+    for (let i = 0; i < event.target.files.length; i++) {
+      this.uploadFiles.push(event.target.files[i]);
+      
+    }
+    console.log(this.uploadFiles)
+    // this.previews = [];
+    if (this.selectedFiles && this.selectedFiles[0]) {
+      const numberOfFiles = this.selectedFiles.length;
+      for (let i = 0; i < numberOfFiles; i++) {
+        const reader = new FileReader();
+
+        reader.onload = (e: any) => {
+          this.previews.push(e.target.result);
+          // this.uploadFiles.push(event.target.files[i]);
+
+          console.log(this.uploadFiles)
+        };
+        reader.readAsDataURL(this.selectedFiles[i]);
+      }
+    }
+  }
 
   onSelectFile(event: any) {
     debugger;
@@ -319,7 +321,11 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
         this.url = (<FileReader>event.target).result;
         this.isvideo = true;
       };
-      this.videoFile = file;
+    //  this.videoFile = file;
+      for (let i = 0; i < event.target.files.length; i++) {
+        this.videoFile.push(event.target.files[i]);
+        
+      }
     }
   }
 

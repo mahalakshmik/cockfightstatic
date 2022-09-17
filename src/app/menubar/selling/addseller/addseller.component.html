@@ -325,7 +325,7 @@
                                             controls></video> <br /> -->
                                         <video [src]="url" *ngIf="isvideo" height="200"
                                             controls></video> <br />
-                                        <input type='file' accept="video/*" (change)="onSelectFile($event)" />
+                                        <input type='file' accept="video/*"  multiple (change)="onSelectFile($event)" />
                                     </div>
 
                                 </div>

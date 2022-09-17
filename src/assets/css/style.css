@@ -10237,18 +10237,14 @@ font-size: 13px;
 
 
     /*---======PROFILE START======---*/
-    .profile_nav {}
-
-    .profile_left {
-    }
+   
 
     .nav_button {
         display: inherit;
         position:relative;
     }
 
-    .profile_nav .side-menu-list {
-    }
+    
 
     .side-menu-list.collapse {
         padding-left: 0px !important;
