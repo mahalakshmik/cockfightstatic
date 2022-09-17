@@ -119,7 +119,9 @@ export class LeftNavComponent implements OnInit {
     // this.appComponent.checkWebUrl(tab)
   }
 
-
+  check(){
+    alert('teste')
+  }
 
   mobilenav(){debugger
     this.isVisited = true;

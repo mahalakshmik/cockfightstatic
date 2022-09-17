@@ -1301,7 +1301,7 @@ label {
     background-color: #f5f8fa;
     border: none;
     padding: 10px;
-    position: inherit;
+    /* position: inherit; */
 }
 
 .left-navbar .navbar-nav {
