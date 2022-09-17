@@ -72,6 +72,7 @@ export class ProdcutDetailsComponent implements OnInit {
   smallvideo: any;
   isoutOfStock: any = false;
   dialogRef!: MatDialogRef<VediolistComponent, any>;
+  vedioCount: any;
   constructor(
     private fms: FmsService,
     private ls: LoginService,
@@ -119,6 +120,9 @@ export class ProdcutDetailsComponent implements OnInit {
       if (data.productVideo) {
 
         this.smallvideo = data.productVideo.imageName;
+        this.vedioCount = data.productVideo?.length;
+        console.log(this.smallvideo)
+        console.log(data.productVideo?.length)
         localStorage.setItem('smallvedio', JSON.stringify(this.smallvideo));
       }
       this.prdId = this.product.productId;
@@ -131,7 +135,7 @@ export class ProdcutDetailsComponent implements OnInit {
 
       console.log(this.images)
       localStorage.removeItem('images');
-      localStorage.setItem('images', JSON.stringify(this.images[0].imageName));
+      localStorage.setItem('images', JSON.stringify(this.images[0]?.imageName));
       this.spinnerService.hide();
       localStorage.setItem('selectedProdutList', JSON.stringify(this.product));
       this.images.forEach((e: any) => {
