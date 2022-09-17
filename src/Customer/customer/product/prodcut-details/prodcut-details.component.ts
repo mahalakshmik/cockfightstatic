@@ -532,18 +532,14 @@ export class ProdcutDetailsComponent implements OnInit {
     }
   }
 
-  openDialog() {
+  openDialog(vediopopup:any) {
    
-    this.dialogRef = this.matDialog.open(VediolistComponent, {
+    this.dialogRef = this.matDialog.open(vediopopup, {
       width: '400px',
       height: '400px',
 
     });
-    this.dialogRef.afterClosed().subscribe(res => {
-      if ((res == true)) {
-
-      }
-    });
+    
   }
   //#endoldcode
 }

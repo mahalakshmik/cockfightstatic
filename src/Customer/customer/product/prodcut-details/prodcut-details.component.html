@@ -48,19 +48,19 @@
                                             <!-- <img src="{{productPicUrl}}/{{prdId}}/{{item.imageName}}" alt="image"> -->
 
                                         </li>
-                                        <!-- <div style=" margin-top: -22px; ">
-                                        <li data-target="#consulting-carousel">
-                                            <video type="video/mp4" src="{{productvideoUrl}}{{smallvideo}}"
-                                                alt="novideo" height="94px" ></video>
-                                        </li></div> -->
+                                        <div >
+                                            <li data-target="#consulting-carousel" (click)="openDialog(vediopopup)">
+                                                <div class="vediopopup" style="background-color: red;">Click here for Vedios</div>
+                                                <!-- <video type="video/mp4" src="{{productvideoUrl}}{{smallvideo}}"
+                                                alt="novideo" height="94px" ></video> -->
+                                            </li>
+                                        </div>
 
 
 
 
                                     </ol>
-                                    <a (click)="openDialog()">
-                                        <i class="fa fa-play-circle ytube-icon"></i>
-                                    </a>
+                                   
                                 </div>
 
 
@@ -302,3 +302,15 @@
   </div> -->
 
 
+<ng-template #vediopopup>
+    <div >
+        <div class="modal-header model-hdr-pdng">
+            <button type="button" class="close message-to-sellar" (click)="dialogRef.close()">×</button>
+            <h4 class="modal-title center-block">Vedio List</h4>
+        </div>
+        <li data-target="#consulting-carousel" (click)="openDialog(vediopopup)">
+            <video type="video/mp4" src="{{productvideoUrl}}{{smallvideo}}"
+            alt="novideo" height="94px" ></video>
+        </li>
+    </div>
+</ng-template>
