@@ -37,7 +37,7 @@ export class AddsellerComponent implements OnInit {
   myDir: any = 'profile';
   address: any;
   format: any;
-  url: any;
+  url: any =[];
   formsell: any = new ProductMaster();
   forms: any = new Member();
   public adform: Address;
@@ -125,7 +125,20 @@ export class AddsellerComponent implements OnInit {
       console.log(res)
       this.formsell = res.productMaster;
       this.spinnerService.hide();
-      this.getImgListByProductId(this.pid);
+      
+      res.productImages.forEach((e: any) => {
+        const imgs = this.productPicUrl + e.imageName;
+        this.previews.push(imgs)
+        
+      })
+      res.productVideo.forEach((e: any) => {
+        const imgs = this.productVideoUrl + e.imageName;
+        this.vedios.push(imgs)
+        
+      })
+    
+      console.log(this.previews)
+     // this.getImgListByProductId(this.pid);
 this.formsell.productImage = this.pid.concat("_0.jpeg")
     })
   }
@@ -154,9 +167,8 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
           const imgs = this.productPicUrl + e.imageName;
           if (e.contentType == "video/mp4") {
             this.isvideo = true;
-            this.url = '';
-            this.url = this.productVideoUrl + e.imageName;
-
+            this.url.push(this.productVideoUrl + e.imageName);
+            this.vedios=this.url;
           } else {
 
             this.previews.push(imgs)
