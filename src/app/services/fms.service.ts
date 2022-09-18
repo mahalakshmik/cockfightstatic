@@ -328,8 +328,10 @@ export class FmsService {
   }
   orderConfirmDelivery(orderId: any) {
     ///api/OrderDetails/orderConfirmDelivery/{orderId}
+   const id=this.userdetails.userId
+
     return this.http.get(
-      `${this.baseURL}OrderDetails/orderConfirmDelivery/${orderId}`
+      `${this.baseURL}OrderDetails/orderConfirmDelivery/${orderId}/${id}`
     );
   }
   orderCancel(orderId: any, cancelBy: any,orderno:string) {

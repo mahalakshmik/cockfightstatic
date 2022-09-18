@@ -78,8 +78,21 @@ this.fms.orderCancel(id,cancelby,orderno).subscribe(res=>{
 
 })
   }
-  ConformOrder(id:any){
+  ConformPayment(id:any){
+  this.spinnerService.show();
 
+this.fms.orderConfirmDelivery(id).subscribe(res=>{
+  console.log(res)
+  this.spinnerService.hide();
+  if(res){
+    Swal.fire({
+      title: 'Order Confirmed Successfully',
+      icon: 'success',
+      timer: 700,
+    });
+    this.getSellerList();
+  }
+})
   }
   CanceldOrder(id:any){
 
