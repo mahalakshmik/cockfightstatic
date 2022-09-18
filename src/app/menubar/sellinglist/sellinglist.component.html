@@ -85,10 +85,11 @@
                          ORDERDELIVERED = 2182;
                          ORDERCANCELED = 2183;
                          ORDERCLOSED = 2184; -->
-                        <button  *ngIf="p.orderStatus==2180" class="btn btn-primary" onclick="CancelOrder(q.OrderID)">Cancel Order</button>
-                        <button  *ngIf="p.orderStatus==2181 || p.orderStatus==2181" class="btn btn-primary" onclick="CancelOrder(q.OrderID)">Confirm Delivered</button>
-                        <button  *ngIf="p.orderStatus==2180  && p.PaymentMode == 2178 && p.ReferenceNo != null" class="btn btn-primary" onclick="CancelOrder(q.OrderID)">Confirm Payment</button>
-                        <button  *ngIf="p.orderStatus==2180 || p.orderStatus==2183" class="btn btn-primary" onclick="CancelOrder(q.OrderID)">Close Order</button>
+                         <!-- <div *ngIf="currentStatus !== 'open' || currentStatus !== 'reopen'"></div> -->
+                        <button  *ngIf="p.orderStatus==2180" class="btn btn-primary" (click)="CancelOrder(q.orderID,p.orderNo)">Cancel Order</button>
+                        <button  *ngIf="p.orderStatus=='2181' || p.orderStatus=='2181'" class="btn btn-primary" (click)="CanceldOrder(q.orderID)">Confirm Delivered</button>
+                        <button  *ngIf="p.orderStatus=='2180'  " class="btn btn-primary" (click)="ConformOrder(q.orderID)">Confirm Payment</button>
+                        <button  *ngIf="p.orderStatus=='2182'|| p.orderStatus=='2183'" class="btn btn-primary" (click)="CanceldOrder(q.orderID)">Close Order</button>
                         
                     </div>
                 </div>

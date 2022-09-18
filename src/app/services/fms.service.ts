@@ -205,6 +205,7 @@ export class FmsService {
   }
   getReadyToSellList() {
     //return this.http.get(`${this.baseURL}Seller/List/en/userID`, { params: queryParams })
+    this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
     return this.http.get(
       `${this.baseURL}Seller/RedytoSellList/` +
         this.userdetails.userId +
@@ -333,8 +334,10 @@ export class FmsService {
   }
   orderCancel(orderId: any, cancelBy: any,orderno:string) {
     ///OrderDetails/orderCancel/{orderId}/{cancelBy}
+    cancelBy=this.userdetails.userId
+   const username=this.userdetails.userName
     return this.http.get(
-      `${this.baseURL}OrderDetails/orderCancel/${orderId}/${cancelBy}/${orderno}`
+      `${this.baseURL}OrderDetails/orderCancel/${orderId}/${cancelBy}/${username}/${orderno}`
     );
   }
   orderClose(orderId: any, USERID: any) {
