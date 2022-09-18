@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -22,6 +22,8 @@ declare var FB: any;
   styleUrls: ['./prodcut-details.component.scss'],
 })
 export class ProdcutDetailsComponent implements OnInit {
+  @ViewChild('video') myVideo: ElementRef | any;
+  isplay=false;
   @Input() comment!: Comment;
   src!: Observable<any>;
   isEditing: boolean = false;
@@ -535,7 +537,15 @@ export class ProdcutDetailsComponent implements OnInit {
       });
     }
   }
-
+  playVideo(){
+    if(this.isplay){
+        this.myVideo.nativeElement.pause();
+    }
+    else{
+        this.myVideo.nativeElement.play();
+    }  
+    this.isplay=!this.isplay
+  }
   openDialog(vediopopup:any) {
    
     this.dialogRef = this.matDialog.open(vediopopup, {
