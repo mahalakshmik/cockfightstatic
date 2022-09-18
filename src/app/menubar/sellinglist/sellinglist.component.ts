@@ -94,8 +94,27 @@ this.fms.orderConfirmDelivery(id).subscribe(res=>{
   }
 })
   }
-  CanceldOrder(id:any){
+  closeOrder(id:any){
+    
+    this.fms.orderClose(id).subscribe(res =>{
+      console.log(res)
+      this.spinnerService.hide();
+      if (res) {
+        Swal.fire({
+          icon: 'success',
+          title: "Order Closed !",         
+          // type: "success",
+          timer: 700
+        });
+    this.getSellerList();
+    
+      }
 
+    })
+  }
+
+  Confirm(id:any){
+   
   }
 }
 

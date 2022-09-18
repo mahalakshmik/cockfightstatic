@@ -94,17 +94,20 @@ export class AppComponent {
    });
    console.log(this.inboxcount)
   }
-  getNotification() {
+  getNotification() {debugger
     this.fms.getNotifications(this.userID).subscribe((res:any) => {
       this.notifications = res;
-  
+  this.getnotificationcount()
     
-
-      this.notifcount =  res.filter((x:any)=>{x.isRead === false}).length;
-      console.log(this.notifcount);
     });
   }
+getnotificationcount(){let res=[]
+  res= this.notifications.filter((x:any)=> x.isRead === false)
+  
+  this.notifcount=res.length;
 
+    console.log(res);
+}
   ngOnInit() {
     //this.getInboxCount();
     // this.getCartList();

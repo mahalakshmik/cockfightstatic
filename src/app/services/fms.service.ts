@@ -217,10 +217,14 @@ export class FmsService {
     return this.http.get(`${this.baseURL}Lookups/OrderStatus`);
   }
   getNotifications(userid: any) {
+    this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
+    
     return this.http.get(`${this.baseURL}NotificationListSP/` + userid + '/50');
   }
-  getNotificationCount(userid: any) {
-    return this.http.get(`${this.baseURL}NotificationListSP/NotificationsCount/userid?userid=` + userid);
+  getNotificationCount() {
+    this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
+
+    return this.http.get(`${this.baseURL}NotificationListSP/NotificationsCount/userid?userid=` + this.userdetails.userId);
   }
   getWishList() {
     return this.http.get(
@@ -342,10 +346,10 @@ export class FmsService {
       `${this.baseURL}OrderDetails/orderCancel/${orderId}/${cancelBy}/${username}/${orderno}`
     );
   }
-  orderClose(orderId: any, USERID: any) {
+  orderClose(orderId: any) {
     ///OrderDetails/orderCancel/{orderId}/{cancelBy}
     return this.http.get(
-      `${this.baseURL}OrderDetails/orderClose/${orderId}/${USERID}`
+      `${this.baseURL}OrderDetails/orderClose/${orderId}/${this.userdetails.userId}`
     );
   }
   saveOrderCOD(payload: any) {

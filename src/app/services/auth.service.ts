@@ -142,8 +142,9 @@ export class AuthService {
   notifyCount() {
     
     const id=this.getToken();
-    this.fms.getNotificationCount(id).subscribe((res:any) => {
-     return res;      
+    this.fms.getNotificationCount().subscribe((res:any) => {
+      console.log(res)    
+     return res;  
     });
   }
 
