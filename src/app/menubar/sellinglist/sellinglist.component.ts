@@ -14,6 +14,7 @@ export class SellinglistComponent implements OnInit {
   selectedOrder: number | undefined;
   selectedValue: any;
   productPicUrl = environment.azureblobImgUrl;
+  fileuploadUrl=environment.fileUrl
   orderData: any;
   totalAmt: number =0;
 
@@ -44,7 +45,6 @@ export class SellinglistComponent implements OnInit {
 
 
     this.fms.getSellerListLatest(this.selectedOrder).subscribe((res:any) => {  
-      console.log(res)
      
       for (let i = 0; i < res.orderHeader.length; i++) {
         res.orderHeader[i].orderDetails=[]
@@ -52,19 +52,13 @@ export class SellinglistComponent implements OnInit {
         var resu = res.orderDetail.filter((j: { orderID: any; })=>j.orderID==res.orderHeader[i].orderID);
         var payment = res.orderPayment.filter((j: { orderID: any; })=>j.orderID==res.orderHeader[i].orderID);
         res.orderHeader[i].orderDetails=resu
-        res.orderHeader[i].orderPayment=payment
+        res.orderHeader[i].orderPayment.push(payment[0])
       }
 
       this.spinnerService.hide();
       console.log(res.orderHeader)
       this.orderData = res.orderHeader;
-      //  this.orderData.forEach((data:any) => {
-      //   data.orderDetails.forEach((res:any) => {
-      //     this.totalAmt = (res.standardPrice * res.quantity) - res.discountAmount
-          
-      //   });
-      //  });
-      console.log(this.orderData)
+     
     })
   }
 

@@ -11,6 +11,7 @@ export const environment = {
   azureimgUrl:"https://lgistorage.blob.core.windows.net/fmsimages/",
   videoUrl:"https://lgistorage.blob.core.windows.net/fmsvideos/",
   imgUrl:"https://cockfightkaichon.azurewebsites.net/Images/",
+  fileUrl:"https://cockfightkaichon.azurewebsites.net/",
   azureblobImgUrl:'https://lgistorage.blob.core.windows.net/fmsimages/',
   sas :
     'sp=r&st=2022-08-03T19:40:38Z&se=2022-08-04T03:40:38Z&spr=https&sv=2021-06-08&sr=c&sig=0%2FCosr%2BcZKsAqkp7lL3ieunRX8jJVVSMS8Lmb2arHtY%3D',
