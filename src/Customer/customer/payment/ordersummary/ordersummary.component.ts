@@ -164,7 +164,7 @@ export class OrdersummaryComponent implements OnInit {
       paymentModeDesc: '',
     };
 
-    this.orderVM.memberID = this.selectedProdut.sellerID;
+    this.orderVM.memberID = this.userdetails.userId;
     this.orderVM.addressId = this.deliveryaddress.addressId;
     this.orderVM.orderAmount = this.selectedProdut.standardPrice;
     this.orderVM.discountAmount = this.selectedProdut.discountAmount;
@@ -265,7 +265,7 @@ export class OrdersummaryComponent implements OnInit {
     };
 
 
-    this.orderVM.memberID = this.selectedProdut.sellerID;
+    this.orderVM.memberID = this.userdetails.userId;
     this.orderVM.addressId = this.deliveryaddress.addressId;
     this.orderVM.orderAmount = this.selectedProdut.standardPrice;
     this.orderVM.discountAmount = this.selectedProdut.discount;
