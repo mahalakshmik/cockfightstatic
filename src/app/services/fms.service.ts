@@ -200,6 +200,8 @@ export class FmsService {
     // return this.http.get(`${this.baseURL}Seller/SellingList/` + this.userdetails.userId + '/' + 'en')
   }
   getSellerListLatest(OrderStatusID: any) {
+    this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
+
     return this.http.get(
       `${this.baseURL}Seller/SellingList/` +
         this.userdetails.userId +
@@ -336,6 +338,14 @@ export class FmsService {
     return this.http.post(
       `${this.baseURL}MessageDetails/sendMessageToseller`,
       payload
+    );
+  }
+  orderconfirmPayment(orderId: any) {
+    ///api/OrderDetails/orderConfirmDelivery/{orderId}
+   const id=this.userdetails.userId
+
+    return this.http.get(
+      `${this.baseURL}OrderDetails/confirmPayment/${orderId}/${id}`
     );
   }
   orderConfirmDelivery(orderId: any) {

@@ -22,7 +22,6 @@ export class AddressdeliveryComponent implements OnInit {
   getaddressesList(){
     this.fms.addressList().subscribe((res:any) => {
       this.addresslist = res;
-      console.log(this.addresslist)
     })
   }
   continue(){
@@ -36,12 +35,11 @@ export class AddressdeliveryComponent implements OnInit {
     
   }
   getaddress(i:any){
-  //  alert(i)
     this.addresselect = i;
     localStorage.setItem('deliveryaddress',JSON.stringify(i))
 
   }
-  edit(rowdata: any, i: number) {debugger
+  edit(rowdata: any, i: number) {
     console.log(rowdata)
 
     const dialogs=this.dialog.open(AddaddressComponent, {
@@ -50,9 +48,8 @@ export class AddressdeliveryComponent implements OnInit {
       data: rowdata[i]
     });
     dialogs.afterClosed().subscribe((res:any) => {
-      //alert(res)
-      if (res === true) {
-        this.ngOnInit()
+      if (res) {
+        this.getaddressesList()
       }
     });
   }
@@ -64,9 +61,9 @@ export class AddressdeliveryComponent implements OnInit {
       //data: rowdata
     });
     dialogsave.afterClosed().subscribe((res:any) => {
-     // alert(res)
-      if (res === true) {
-        this.ngOnInit()
+
+      if (res) {
+        this.getaddressesList();
       }
     });
   }
