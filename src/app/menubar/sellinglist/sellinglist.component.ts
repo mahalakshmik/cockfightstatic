@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { FmsService } from 'src/app/services/fms.service';
 import { environment } from 'src/environments/environment';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sellinglist',
@@ -61,6 +62,59 @@ export class SellinglistComponent implements OnInit {
      
     })
   }
+  CancelOrder(id:any,orderno:any){debugger
+    this.spinnerService.show();
 
+    const cancelby='0'
+this.fms.orderCancel(id,cancelby,orderno).subscribe(res=>{
+  console.log(res)
+  this.spinnerService.hide();
+  Swal.fire({
+    title: 'Order Cancelled Successfully',
+    icon: 'success',
+    timer: 700,
+  });
+  this.getSellerList();
+
+})
+  }
+  ConformPayment(id:any){
+  this.spinnerService.show();
+
+this.fms.orderConfirmDelivery(id).subscribe(res=>{
+  console.log(res)
+  this.spinnerService.hide();
+  if(res){
+    Swal.fire({
+      title: 'Order Confirmed Successfully',
+      icon: 'success',
+      timer: 700,
+    });
+    this.getSellerList();
+  }
+})
+  }
+  closeOrder(id:any){
+    
+    this.fms.orderClose(id).subscribe(res =>{
+      console.log(res)
+      this.spinnerService.hide();
+      if (res) {
+        Swal.fire({
+          icon: 'success',
+          title: "Order Closed !",         
+          // type: "success",
+          timer: 700
+        });
+    this.getSellerList();
+    
+      }
+
+    })
+  }
+
+  Confirm(id:any){
+   
+  }
 }
 

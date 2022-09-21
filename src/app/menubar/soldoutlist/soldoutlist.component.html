@@ -12,46 +12,64 @@
 
                 </div>               
 
-                <div class="card" >
-                    <div class="row" *ngFor="let p of soldoutList?.orderHeader">
-                        <div class="col-sm-8" >
+                <div class="card" *ngFor="let p of orderData">
+                    <div class="row">
+                        <div class="col-sm-8">
                             <p><b>Order No.:</b> {{p.orderNo}}</p>
-                            <p><b>Order Date:</b> {{p.orderDate | date:'dd/MM/yyyy'}} </p>
+                            <p><b>Order Date:</b> {{p.orderDate | date:'dd/MM/yyyy'}}</p>
                             <p><b>Buyer Name:</b> {{p.userName}}</p>
                             <p><b>Order Status:</b> {{p.orderStatusDesc}}</p>
                             <hr>
 
                         </div>
                         <div class="col-sm-2">
-                            <p><b>Total Amount: {{totalAmt}}</b></p>
-                            <!-- <button class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true">Payment
-                                    slip</i></button> -->
+                            <p><b>Total Amount:{{p.totalAmount}}</b></p>
+                            <!-- *ngIf="==2178" -->
+                            
+                            <!-- if (paymentslip != null && paymentslip.PaymentMode == Utility.ONLINE && paymentslip.ReferenceNo != null)
+                            {
+                            } -->
+                            <!-- CASHONDELIVERY = 2177 -->
+                            <!-- Online = 2178 -->
+
+                            <!-- if (paymentslip.ReferenceNo != null)
+                            {
+                <a class="btn btn-default btn-blue pull-right" style="cursor:pointer;" href="~/Uploads/OrderPayment/@Model.orderHeader[i].OrderID/@(paymentslip != null ? paymentslip.ReferenceNo : "")" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> &nbsp;@AppResource.PaymentSlip</a>
+                            }
+                            else
+                            {
+                <a class="btn btn-default btn-blue pull-right" style="cursor:pointer;" href="javascript:void(0);" onclick="ShowPaymentslip()"><i class="fa fa-eye" aria-hidden="true"></i> &nbsp;@AppResource.PaymentSlip</a>
+                            } -->
+                            <div *ngFor="let pay of p.orderPayment">
+                                <!-- href="~/Uploads/OrderPayment/@Model.orderHeader[i].OrderID/@(paymentslip != null ? paymentslip.ReferenceNo : "")" -->
+                                <a *ngIf="pay.paymentMode==2178" class="btn btn-primary" href="{{fileuploadUrl}}Uploads/OrderPayment/{{p.orderID}}/{{pay.referenceNo}}"  target="_blank"><i class="fa fa-eye" aria-hidden="true" >Payment
+                                        slip</i></a>
+                            </div>
 
                         </div>
 
                     </div>
-                    <div class="row" *ngFor="let q of soldoutList?.orderDetail">
-                        <div class="col-sm-3">
-                            <img src="" width="100" />
-                        </div>
-                        <div class="col-sm-6">
-                            <p><b>Product Name:</b> {{q.productName}}</p>
-                            <p><b>Payment Type:</b> {{q.paymentOptionDescription}}</p>
-                            <p><b>Quantity:</b> {{q.quantity}}</p>
-                        </div>
-                        <div class="col-sm-3">
-                            <p><b>Price:</b> {{q.standardPrice}}</p>
-                            <p><b>Discount:</b> {{q.discountAmount}}</p>
+                    <div class="row" *ngFor="let q of p.orderDetails">
+                        <div *ngIf="p.orderID ===q.orderID">
 
-                        </div>
-                        <hr>
-                        <!-- <div class="pull-right">
+                            <div class="col-sm-3">
+                                <img src={{productPicUrl}}{{q.productImage}} width="100" />
+                            </div>
+                            <div class="col-sm-6">
+                                <p><b>Product Name:</b> {{q.productName}}</p>
+                                <p><b>Payment Type:</b> {{q.paymentOptionDescription}}</p>
+                                <p><b>Quantity:</b> {{q.quantity}}</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <p><b>Price:</b> {{q.standardPrice}}</p>
+                                <p><b>Discount:</b> {{q.discountAmount}}</p>
+
+                            </div>
+                            <hr>
+
                           
-                            <button class="custom-btn btn btn-default" 
-                                >Confirm Delivered</button>
-                            <button class="btn btn-default btn-custom" >Cancel Order</button>
-                        </div> -->
-
+                        </div>
+                  
                     </div>
                 </div>
             </div>

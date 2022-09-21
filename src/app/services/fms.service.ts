@@ -172,12 +172,20 @@ export class FmsService {
   }
   getOrderHistory() {
     return this.http.get(
-      `${this.baseURL}OrderDetails/orderHeaderList/` +
+      `${this.baseURL}Profile/OrderHistory/` +
         this.userdetails.userId +
         '/' +
         'en'
     );
   }
+  // getOrderHistory() {
+  //   return this.http.get(
+  //     `${this.baseURL}OrderDetails/orderHeaderList/` +
+  //       this.userdetails.userId +
+  //       '/' +
+  //       'en'
+  //   );
+  // }
   //USERID?USERID=11020
   getSellerList() {
     // let queryParams = new HttpParams();
@@ -205,6 +213,7 @@ export class FmsService {
   }
   getReadyToSellList() {
     //return this.http.get(`${this.baseURL}Seller/List/en/userID`, { params: queryParams })
+    this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
     return this.http.get(
       `${this.baseURL}Seller/RedytoSellList/` +
         this.userdetails.userId +
@@ -216,10 +225,14 @@ export class FmsService {
     return this.http.get(`${this.baseURL}Lookups/OrderStatus`);
   }
   getNotifications(userid: any) {
+    this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
+    
     return this.http.get(`${this.baseURL}NotificationListSP/` + userid + '/50');
   }
-  getNotificationCount(userid: any) {
-    return this.http.get(`${this.baseURL}NotificationListSP/NotificationsCount/userid?userid=` + userid);
+  getNotificationCount() {
+    this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
+
+    return this.http.get(`${this.baseURL}NotificationListSP/NotificationsCount/userid?userid=` + this.userdetails.userId);
   }
   getWishList() {
     return this.http.get(
@@ -327,20 +340,24 @@ export class FmsService {
   }
   orderConfirmDelivery(orderId: any) {
     ///api/OrderDetails/orderConfirmDelivery/{orderId}
+   const id=this.userdetails.userId
+
     return this.http.get(
-      `${this.baseURL}OrderDetails/orderConfirmDelivery/${orderId}`
+      `${this.baseURL}OrderDetails/orderConfirmDelivery/${orderId}/${id}`
     );
   }
   orderCancel(orderId: any, cancelBy: any,orderno:string) {
     ///OrderDetails/orderCancel/{orderId}/{cancelBy}
+    cancelBy=this.userdetails.userId
+   const username=this.userdetails.userName
     return this.http.get(
-      `${this.baseURL}OrderDetails/orderCancel/${orderId}/${cancelBy}/${orderno}`
+      `${this.baseURL}OrderDetails/orderCancel/${orderId}/${cancelBy}/${username}/${orderno}`
     );
   }
-  orderClose(orderId: any, USERID: any) {
+  orderClose(orderId: any) {
     ///OrderDetails/orderCancel/{orderId}/{cancelBy}
     return this.http.get(
-      `${this.baseURL}OrderDetails/orderClose/${orderId}/${USERID}`
+      `${this.baseURL}OrderDetails/orderClose/${orderId}/${this.userdetails.userId}`
     );
   }
   saveOrderCOD(payload: any) {

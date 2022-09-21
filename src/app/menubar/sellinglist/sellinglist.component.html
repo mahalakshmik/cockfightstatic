@@ -34,7 +34,7 @@
 
                         </div>
                         <div class="col-sm-2">
-                            <p><b>Total Amount:{{totalAmt}}</b></p>
+                            <p><b>Total Amount:{{p.totalAmount}}</b></p>
                             <!-- *ngIf="==2178" -->
                             
                             <!-- if (paymentslip != null && paymentslip.PaymentMode == Utility.ONLINE && paymentslip.ReferenceNo != null)
@@ -42,6 +42,15 @@
                             } -->
                             <!-- CASHONDELIVERY = 2177 -->
                             <!-- Online = 2178 -->
+
+                            <!-- if (paymentslip.ReferenceNo != null)
+                            {
+                <a class="btn btn-default btn-blue pull-right" style="cursor:pointer;" href="~/Uploads/OrderPayment/@Model.orderHeader[i].OrderID/@(paymentslip != null ? paymentslip.ReferenceNo : "")" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> &nbsp;@AppResource.PaymentSlip</a>
+                            }
+                            else
+                            {
+                <a class="btn btn-default btn-blue pull-right" style="cursor:pointer;" href="javascript:void(0);" onclick="ShowPaymentslip()"><i class="fa fa-eye" aria-hidden="true"></i> &nbsp;@AppResource.PaymentSlip</a>
+                            } -->
                             <div *ngFor="let pay of p.orderPayment">
                                 <!-- href="~/Uploads/OrderPayment/@Model.orderHeader[i].OrderID/@(paymentslip != null ? paymentslip.ReferenceNo : "")" -->
                                 <a *ngIf="pay.paymentMode==2178" class="btn btn-primary" href="{{fileuploadUrl}}Uploads/OrderPayment/{{p.orderID}}/{{pay.referenceNo}}"  target="_blank"><i class="fa fa-eye" aria-hidden="true" >Payment
@@ -69,13 +78,40 @@
                             </div>
                             <hr>
 
-                            <button class="btn btn-primary">Cancel Order</button>
-
+                          
                         </div>
+                         <!-- ORDERPLACED = 2180;
+                         ORDERCONFIRMED = 2181;
+                         ORDERDELIVERED = 2182;
+                         ORDERCANCELED = 2183;
+                         ORDERCLOSED = 2184; -->
+                         <!-- <div *ngIf="currentStatus !== 'open' || currentStatus !== 'reopen'"></div> -->
+                        <button  *ngIf="p.orderStatus==2180" class="btn btn-primary" (click)="CancelOrder(q.orderID,p.orderNo)">Cancel Order</button>
+                        <button  *ngIf="p.orderStatus=='2181' || p.orderStatus=='2181'" class="btn btn-primary" (click)="Confirm(q.orderID)">Confirm Delivered</button>
+                        <button  *ngIf="p.orderStatus=='2180'  " class="btn btn-primary" (click)="ConformPayment(q.orderID)">Confirm Payment</button>
+                        <button  *ngIf="p.orderStatus=='2182'|| p.orderStatus=='2183'" class="btn btn-primary" (click)="closeOrder(q.orderID)">Close Order</button>
+                        
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!-- <div class="pull-right">
+    @if (Model.orderHeader[i].OrderStatus == Utility.ORDERPLACED)
+    {
+    <button class="btn btn-default btn-custom btn-custom" onclick="CancelOrder(@Model.orderHeader[i].OrderID)">@AppResource.CancelOrder</button>
+    }
+    @if (paymentslip != null && paymentslip.PaymentMode == Utility.ONLINE && paymentslip.ReferenceNo != null && Model.orderHeader[i].OrderStatus == Utility.ORDERPLACED)
+    {
+    <button class="btn btn-default btn-custom btn-custom" onclick="ConfirmPayment(@Model.orderHeader[i].OrderID)">@AppResource.ConfirmPayment</button>
+    }
+    @if (Model.orderHeader[i].OrderStatus == Utility.ORDERCONFIRMED)
+    {
+    <button class="btn btn-default btn-custom btn-custom" onclick="ConfirmDelivery(@Model.orderHeader[i].OrderID)">@AppResource.ConfirmDelivered</button>
+    }
+    @if (Model.orderHeader[i].OrderStatus == Utility.ORDERDELIVERED || Model.orderHeader[i].OrderStatus == Utility.ORDERCANCELED)
+    {
+    <button class="btn btn-default btn-custom" onclick="CloseOrder(@Model.orderHeader[i].OrderID)">@AppResource.CloseOrder</button>
+    }
+</div> -->
