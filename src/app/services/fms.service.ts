@@ -172,12 +172,20 @@ export class FmsService {
   }
   getOrderHistory() {
     return this.http.get(
-      `${this.baseURL}OrderDetails/orderHeaderList/` +
+      `${this.baseURL}Profile/OrderHistory/` +
         this.userdetails.userId +
         '/' +
         'en'
     );
   }
+  // getOrderHistory() {
+  //   return this.http.get(
+  //     `${this.baseURL}OrderDetails/orderHeaderList/` +
+  //       this.userdetails.userId +
+  //       '/' +
+  //       'en'
+  //   );
+  // }
   //USERID?USERID=11020
   getSellerList() {
     // let queryParams = new HttpParams();

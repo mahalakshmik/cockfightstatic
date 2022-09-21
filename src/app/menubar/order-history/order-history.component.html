@@ -2,134 +2,89 @@
     <div class="row">
         <app-left-nav></app-left-nav>
         <div class="col-md-9">
-            <div class="card">
+            <div class="card ">
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-9">
                         <div class="title-bar">
                             <h2 class="title">Order History </h2><span class="title-border"></span>
                         </div>
                     </div>
 
                 </div>
+                <div class="card" *ngFor="let p of orderData">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <p><b>Order No.:</b> {{p.orderNo}}</p>
+                            <p><b>Order Date:</b> {{p.orderDate | date:'dd/MM/yyyy'}}</p>
+                            <p><b>Buyer Name:</b> {{p.userName}}</p>
+                            <p><b>Order Status:</b> {{p.orderStatusDesc}}</p>
+                            <hr>
 
-                <!-- 
-                <div class="row">
-                    <div class="col-sm-6" *ngFor="let p of orderHistory">
-                        <li>Order No.:{{p.orderNo}}</li>
-                        <li>Order Date:{{p.orderDate | date:'dd/mm/yyyy'}}</li>
-                        <li>Order Status:{{p.orderStatusDesc}}</li>
-                        <li>totalAmount:{{p.totalAmount}}</li>
-                        <li>totalAmount:{{p.totalAmount}}</li>
+                        </div>
+                        <div class="col-sm-2">
+                            <p><b>Total Amount:{{p.totalAmount}}</b></p>
+                            <!-- *ngIf="==2178" -->
+
+                            <!-- if (paymentslip != null && paymentslip.PaymentMode == Utility.ONLINE && paymentslip.ReferenceNo != null)
+                            {
+                            } -->
+                            <!-- CASHONDELIVERY = 2177 -->
+                            <!-- Online = 2178 -->
+
+                            <!-- if (paymentslip.ReferenceNo != null)
+                            {
+                <a class="btn btn-default btn-blue pull-right" style="cursor:pointer;" href="~/Uploads/OrderPayment/@Model.orderHeader[i].OrderID/@(paymentslip != null ? paymentslip.ReferenceNo : "")" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> &nbsp;@AppResource.PaymentSlip</a>
+                            }
+                            else
+                            {
+                <a class="btn btn-default btn-blue pull-right" style="cursor:pointer;" href="javascript:void(0);" onclick="ShowPaymentslip()"><i class="fa fa-eye" aria-hidden="true"></i> &nbsp;@AppResource.PaymentSlip</a>
+                            } -->
+                            <div *ngFor="let pay of p.orderPayment">
+                                <!-- href="~/Uploads/OrderPayment/@Model.orderHeader[i].OrderID/@(paymentslip != null ? paymentslip.ReferenceNo : "")" -->
+                                <a *ngIf="pay.paymentMode==2178" class="btn btn-primary"
+                                    href="{{fileuploadUrl}}Uploads/OrderPayment/{{p.orderID}}/{{pay.referenceNo}}"
+                                    target="_blank"><i class="fa fa-eye" aria-hidden="true">Payment
+                                        slip</i></a>
+                            </div>
+
+                        </div>
 
                     </div>
+                    <div class="row" *ngFor="let q of p.orderDetails">
+                        <div *ngIf="p.orderID ===q.orderID">
 
-                </div> -->
-
-
-
-                <!-- <div class="row">
-                    <div class="col-sm-12 text-right m-t-10">
-                        <a class="btn btn-primary">Confirm All Changes</a>
-                       
-                    </div>
-                </div> -->
-
-                <div class="panel-body " *ngFor="let p of orderHistory">
-                    <div class="col-md-12 border ">
-                        <div class="col-md-8 col-xs-12">
-                            <div class="order-id " >
-                                <p><strong>Order No.: </strong>
-                                    {{p.orderNo}}</p>
-                                <p><strong>Order Date: </strong>
-                                    {{p.orderDate | date:'dd/MM/yyyy'}}</p>
-                                <p><strong>Order Status: </strong>{{p.orderStatusDesc}}</p>
-                                
+                            <div class="col-sm-3">
+                                <img src={{productPicUrl}}{{q.productImage}} width="100" />
                             </div>
-                        </div>
-                        <div class="col-md-4 col-xs-12">
-                            <div class="order-id pull-right-lg">
-                                <p>
-                                    <strong>Total Amount : </strong>
-                                    {{p.totalAmount| number: '1.2-2'}}
-                                </p>
+                            <div class="col-sm-6">
+                                <p><b>Product Name:</b> {{q.productName}}</p>
+                                <p><b>Payment Type:</b> {{q.paymentOptionDescription}}</p>
+                                <p><b>Quantity:</b> {{q.quantity}}</p>
                             </div>
-                        </div>
-                    </div>
+                            <div class="col-sm-3">
+                                <p><b>Price:</b> {{q.standardPrice}}</p>
+                                <p><b>Discount:</b> {{q.discountAmount}}</p>
 
-                    <div class="col-md-12 border">
-                        <div class="col-md-3">
-                            <div class="order-image">
-                                <img src="{{productPicUrl}}{{p.productImage}}" width="70"
-                                                height="70" onerror="this.src='./assets/images/defaultImg.jpg';"
-                                                class="d-block w-100" alt="image">
                             </div>
-                        </div>
-                        <div class="col-md-9">
-                            <div class="col-md-7">
-                                <div class="order-detailes">
-                                    <div>
-                                        <span>
-                                            <b>Product Name : </b>
-                                            {{p.userName}}
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <span>
-                                            <b>Seller : </b>
-                                            {{p.seller}}
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <span>
-                                            <b>Quantity : </b>
-                                            1
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <span>
-                                            <b>Province : </b>
-                                            {{p.locality}}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <div class="order-detailes pull-right">
-                                    <div>
-                                        <span>
-                                            <b>Price : </b>
-                                            {{p.orderAmount | number: '1.2-2'}}
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <span>
-                                            <b>Discount : </b>
-                                           {{p.discountAmount | number: '1.2-2'}}
-                                        </span>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                            <hr>
 
 
-                    <div class="col-md-12 border">
-                        <div class="col-md-6">
+                        </div>
+                        <!-- ORDERPLACED = 2180;
+                         ORDERCONFIRMED = 2181;
+                         ORDERDELIVERED = 2182;
+                         ORDERCANCELED = 2183;
+                         ORDERCLOSED = 2184; -->
+                        <!-- <div *ngIf="currentStatus !== 'open' || currentStatus !== 'reopen'"></div> -->
+                        <button *ngIf="p.orderStatus==2180" class="btn btn-primary"
+                            (click)="CancelOrder(q.orderID,p.orderNo)">Cancel Order</button>
+                        <!-- <button  *ngIf="p.orderStatus=='2181' || p.orderStatus=='2181'" class="btn btn-primary" (click)="Confirm(q.orderID)">Confirm Delivered</button>
+                        <button  *ngIf="p.orderStatus=='2180'  " class="btn btn-primary" (click)="ConformPayment(q.orderID)">Confirm Payment</button>
+                        <button  *ngIf="p.orderStatus=='2182'|| p.orderStatus=='2183'" class="btn btn-primary" (click)="closeOrder(q.orderID)">Close Order</button> -->
 
-                        </div>
-                        <div class="pull-right">
-                            <button class="custom-btn btn btn-default" style="display:none"
-                                onclick="trackOrder(p.orderID)">Track Your Order</button>
-                            <button class="btn btn-default btn-custom" onclick="CancelOrder(p.orderID)">Cancel Order</button>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-
-<!-- extra -->
