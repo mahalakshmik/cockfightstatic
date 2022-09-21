@@ -263,7 +263,11 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
       // this.isShowAddseller = false;
     });
   
-   
+  
+      this.fms.postBlob1(formdata).subscribe(res =>{
+        console.log(res)
+      })
+    
   }
 
 
@@ -445,4 +449,6 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
       }
     }
   }
+
+  
 }

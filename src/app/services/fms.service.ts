@@ -315,6 +315,15 @@ export class FmsService {
     payload.farmId = this.userdetails.userId;
     return this.http.post(`${this.baseURL}Breeds`, payload);
   }
+  postBlob(payload: any) {
+   // payload.farmId = this.userdetails.userId;
+    return this.http.post(`${this.baseURL}seller/postblob`, payload);
+  }
+  postBlob1(payload: any) {
+   // payload.farmId = this.userdetails.userId;
+    return this.http.post(`${this.baseURL}seller/postblob/true`, payload);
+  }
+  
   DeleteProduct(id: any) {
     return this.http.get(`${this.baseURL}Seller/DeleteProduct/${id}`);
   }
