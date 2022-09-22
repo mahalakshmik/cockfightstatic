@@ -21,23 +21,22 @@
 
                     <mat-horizontal-stepper  #stepper>
                         <!-- keep icons as numbers during edit-->
-                        <!--
+                    
                       <ng-template matStepperIcon="edit" let-index="index">
                             {{index +1}}
                         </ng-template>
-                      -->
                     
                         <!-- change default 'edit' icon -->
-                      <ng-template matStepperIcon="edit">
-                            <!-- <mat-icon>bubble_chart</mat-icon> -->
+                      <ng-template matStepperIcon="home">
+                            <mat-icon>done_all</mat-icon>
                         </ng-template>
                     
                         <!-- change default 'done' icon -->
                         <!--
-                      <ng-template matStepperIcon="done">
-                            <mat-icon>done_all</mat-icon>
-                        </ng-template>
-                      -->
+                        -->
+                        <ng-template matStepperIcon="form">
+                              <mat-icon>done</mat-icon>
+                          </ng-template>
                     
                         <!-- changed step icons -->
                         <ng-template matStepperIcon="home">
