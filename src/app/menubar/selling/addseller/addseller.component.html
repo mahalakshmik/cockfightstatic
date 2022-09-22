@@ -311,7 +311,14 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-sm-12 text-right m-t-10">
+                                <!-- <a href="" class="btn btn-primary">Confirm And Proceed</a> -->
 
+                                <button class="btn btn-primary" type="submit">Confirm And Proceed</button>
+                            </div>
+                        </div>
+                    </form>
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -332,6 +339,8 @@
                                             </div>
                                         <input type='file' accept="video/*"  multiple (change)="onSelectFile($event)" />
                                     </div>
+                                <button class="btn btn-primary" (click)="uploadImages()" > Proceed</button>
+
 
                                 </div>
                             </div>
@@ -358,16 +367,10 @@
                                     </div>
                                 </div>
                             </div>
+                            <button class="btn btn-primary" (click)="uploadImages()" > Upload Images</button>
 
                         </div>
-                        <div class="row">
-                            <div class="col-sm-12 text-right m-t-10">
-                                <!-- <a href="" class="btn btn-primary">Confirm And Proceed</a> -->
-
-                                <button class="btn btn-primary" type="submit">Confirm And Proceed</button>
-                            </div>
-                        </div>
-                    </form>
+                    
                
         </div>
     </div>

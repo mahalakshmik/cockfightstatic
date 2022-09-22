@@ -73,6 +73,7 @@ export class AddsellerComponent implements OnInit {
   count: number = 0;
   selectedVedio: any;
   vedios: any[]=[];
+  isNew: boolean=true;
   constructor(
     private fms: FmsService,
     private blobService: AzureBlobStorageService,
@@ -93,6 +94,7 @@ export class AddsellerComponent implements OnInit {
 
   ngOnInit() {
     if (this.pid != 0) {
+      this.isNew=false
       this.spinnerService.show();
       this.formsell.productImage = this.pid.concat("_0.jpeg")
       this.getProductbyId();
@@ -229,22 +231,23 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
     formdata.append('Breed', this.formsell.breed);
     formdata.append('Province', this.formsell.province);
     formdata.append('AgeType', this.formsell.ageType);
-    for (var i = 0; i < this.uploadFiles.length; i++) {
-      formdata.append('uploadProductImages', this.uploadFiles[i]);
-    }
-    for (var i = 0; i < this.videoFile.length; i++) {
-      formdata.append('productVideos', this.videoFile[i]);
-    }
+    // for (var i = 0; i < this.uploadFiles.length; i++) {
+    //   formdata.append('uploadProductImages', this.uploadFiles[i]);
+    // }
+    // for (var i = 0; i < this.videoFile.length; i++) {
+    //   formdata.append('productVideos', this.videoFile[i]);
+    // }
 
 
 
     this.fms.saveSeller(formdata).subscribe((res) => {
+      
       this.spinnerService.hide();
       if (res) {
         Swal.fire({
-          title: 'Saved Successfully',
+          title: 'Saved Successfully Please Upload Files',
           icon: 'success',
-          timer: 700,
+          timer: 900,
         });
 
         if(this.formsell.productID ==0){
@@ -258,19 +261,61 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
             }
           })
         }
-        this.router.navigateByUrl('/menu/readytosell')
       }
       // this.isShowAddseller = false;
     });
   
   
-      this.fms.postBlob1(formdata).subscribe(res =>{
-        console.log(res)
-      })
     
   }
 
+  uploadVideos(){
+    this.spinnerService.show();
 
+    var formdata = new FormData();
+
+  
+    for (var i = 0; i < this.videoFile.length; i++) {
+        formdata.append('files', this.videoFile[i]);
+      }
+    formdata.append('ProductId', this.formsell.productID);
+    this.fms.postfiles(formdata,this.formsell.productID, this.userdetails.userId,this.isNew).subscribe(res =>{
+      this.spinnerService.hide();
+
+      if (res) {
+        Swal.fire({
+          title: 'Saved Successfully',
+          icon: 'success',
+          timer: 700,
+        });
+      }
+    });
+  }
+  uploadImages(){
+    this.isNew
+      this.spinnerService.show();
+  
+      var formdata = new FormData();
+  
+      for (var i = 0; i < this.uploadFiles.length; i++) {
+        formdata.append('files', this.uploadFiles[i]);
+      }
+      formdata.append('SellerId', this.userdetails.userId);
+  
+      formdata.append('ProductId', this.formsell.productID);
+      this.fms.postfiles(formdata,this.formsell.productID, this.userdetails.userId,this.isNew).subscribe(res =>{
+        this.spinnerService.hide();
+  
+        if (res) {
+          Swal.fire({
+            title: 'Saved Successfully',
+            icon: 'success',
+            timer: 700,
+          });
+        }
+      });
+    }
+ 
   test(i: number) {
     this.previews.splice(i, 1);
   }
