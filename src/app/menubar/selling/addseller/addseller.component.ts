@@ -285,7 +285,7 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
 
       if (res) {
         Swal.fire({
-          title: 'Saved Successfully',
+          title: 'Videos Uploaded Successfully',
           icon: 'success',
           timer: 700,
         });
@@ -308,7 +308,7 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
   
         if (res) {
           Swal.fire({
-            title: 'Saved Successfully',
+            title: 'Images Uploaded Successfully',
             icon: 'success',
             timer: 700,
           });
