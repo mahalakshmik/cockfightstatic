@@ -15,6 +15,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { environment } from 'src/environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { timingSafeEqual } from 'crypto';
+import { FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-addseller',
   templateUrl: './addseller.component.html',
@@ -93,6 +94,16 @@ export class AddsellerComponent implements OnInit {
 
 
   ngOnInit() {
+    this.formsell.gender = '';
+    this.formsell.breedType = '';
+    this.formsell.ageType = '2131';
+    this.formsell.breed = '';
+    this.formsell.uom = '2151';
+    this.formsell.stockQty = 1;
+    this.formsell.currency = 'THB';
+    this.formsell.paymentOption = '2177';
+    this.formsell.ProductType='2165'
+    this.forms.memberType = 0;
     if (this.pid != 0) {
       this.isNew=false
       this.spinnerService.show();
@@ -100,7 +111,7 @@ export class AddsellerComponent implements OnInit {
       this.getProductbyId();
     }
     this.getAddressList();
-    this.getOrderHistory();
+   // this.getOrderHistory();
     this.getCurrenyList();
     this.getGender();
     this.getAgeList();
@@ -110,16 +121,7 @@ export class AddsellerComponent implements OnInit {
     // this.getvideoList();
     this.vedio = true;
 
-    this.formsell.gender = '';
-    this.formsell.breedType = '';
-    this.formsell.ageType = '2131';
-    this.formsell.breed = '';
-    this.formsell.uom = '2151';
-    this.formsell.stockQty = 1;
-    this.formsell.currency = 'THB';
-    this.formsell.paymentOption = '2177';
 
-    this.forms.memberType = 0;
   }
   getProductbyId() {
     const farmid = 2165
@@ -202,35 +204,35 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
     //   this.uploadFiles = []
     // }
     console.log(this.formsell);
-    var formdata = new FormData();
-    formdata.append('ProductId', this.formsell.productID);
-    formdata.append('ProductCode', this.formsell.productCode);
-    formdata.append('ProductName', this.formsell.productName);
-    formdata.append('ProductType', '2165');
-    formdata.append('Gender', this.formsell.gender);
-    formdata.append('BreedType', this.formsell.breedType);
-    formdata.append('SellerId', this.userdetails.userId);
-    formdata.append('Talents', this.formsell.talents);
-    formdata.append('FightingRecord', this.formsell.fightingRecord);
-    formdata.append('ProductBrand', 'NULL');
-    formdata.append('DateOfBirth', '1964-12-16T01:00:34.149Z');
-    formdata.append('Uom', this.formsell.uom);
-    formdata.append('Weight', this.formsell.weight);
-    formdata.append('StandardPrice', this.formsell.standardPrice);
-    formdata.append('Discount', this.formsell.discount);
-    formdata.append('Currency', this.formsell.currency);
-    formdata.append('PaymentOption', this.formsell.paymentOption);
-    formdata.append('ProductImage', this.formsell.productImage);
-    formdata.append('Remarks', 'test');
-    formdata.append('IsActive', 'true');
-    formdata.append('IsAvailable', 'true');
-    formdata.append('StockQty', this.formsell.stockQty);
-    formdata.append('CreatedOn', '1944-05-31T06:21:21.373Z');
-    formdata.append('ModifiedOn', '1974-05-13T00:14:37.989Z');
-    formdata.append('Age', this.formsell.age);
-    formdata.append('Breed', this.formsell.breed);
-    formdata.append('Province', this.formsell.province);
-    formdata.append('AgeType', this.formsell.ageType);
+    // var formdata = new FormData();
+    // formdata.append('ProductId', this.formsell.productID);
+    // formdata.append('ProductCode', this.formsell.productCode);
+    // formdata.append('ProductName', this.formsell.productName);
+    // formdata.append('ProductType', '2165');
+    // formdata.append('Gender', this.formsell.gender);
+    // formdata.append('BreedType', this.formsell.breedType);
+    // formdata.append('SellerId', this.userdetails.userId);
+    // formdata.append('Talents', this.formsell.talents);
+    // formdata.append('FightingRecord', this.formsell.fightingRecord);
+    // formdata.append('ProductBrand', 'NULL');
+    // formdata.append('DateOfBirth', '1964-12-16T01:00:34.149Z');
+    // formdata.append('Uom', this.formsell.uom);
+    // formdata.append('Weight', this.formsell.weight);
+    // formdata.append('StandardPrice', this.formsell.standardPrice);
+    // formdata.append('Discount', this.formsell.discount);
+    // formdata.append('Currency', this.formsell.currency);
+    // formdata.append('PaymentOption', this.formsell.paymentOption);
+    // formdata.append('ProductImage', this.formsell.productImage);
+    // formdata.append('Remarks', 'test');
+    // formdata.append('IsActive', 'true');
+    // formdata.append('IsAvailable', 'true');
+    // formdata.append('StockQty', this.formsell.stockQty);
+    // formdata.append('CreatedOn', '1944-05-31T06:21:21.373Z');
+    // formdata.append('ModifiedOn', '1974-05-13T00:14:37.989Z');
+    // formdata.append('Age', this.formsell.age);
+    // formdata.append('Breed', this.formsell.breed);
+    // formdata.append('Province', this.formsell.province);
+    // formdata.append('AgeType', this.formsell.ageType);
     // for (var i = 0; i < this.uploadFiles.length; i++) {
     //   formdata.append('uploadProductImages', this.uploadFiles[i]);
     // }
@@ -240,8 +242,8 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
 
 
 
-    this.fms.saveSeller(formdata).subscribe((res) => {
-      
+    this.fms.saveSeller(this.formsell).subscribe((res) => {
+      this.formsell.productID=res
       this.spinnerService.hide();
       if (res) {
         Swal.fire({
@@ -250,13 +252,12 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
           timer: 900,
         });
 
-        if(this.formsell.productID ==0){
+        if(this.isNew){
 
           this.fms.saveImagename(res).subscribe(resp => {
             console.log(resp)
             if (resp) {
-  
-              this.router.navigate(['menu/readytosell']);
+            //  this.router.navigate(['menu/readytosell']);
   
             }
           })
@@ -269,7 +270,7 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
     
   }
 
-  uploadVideos(){
+  uploadVideos(){debugger
     this.spinnerService.show();
 
     var formdata = new FormData();
@@ -292,7 +293,6 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
     });
   }
   uploadImages(){
-    this.isNew
       this.spinnerService.show();
   
       var formdata = new FormData();

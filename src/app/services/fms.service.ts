@@ -318,7 +318,7 @@ export class FmsService {
  
   postfiles(payload: any,productid:any,sellerId:any,isnew:boolean) {
    // payload.farmId = this.userdetails.userId;
-    return this.http.post(`${this.baseURL}seller/postblob/${productid}/${sellerId}/{isnew}`, payload);
+    return this.http.post(`${this.baseURL}seller/postblob/${productid}/${sellerId}/${isnew}`, payload);
   }
   
   DeleteProduct(id: any) {
