@@ -356,6 +356,30 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
+                                    <label class="is-invalid" > Upload Images *</label>
+                                    <div class="upload-btn-wrapper">
+                                        <button class="btn1">
+                                            <i class="icon-cloud-upload f-20"
+                                                style="margin-right:15px; vertical-align: middle;"></i> Choose a
+                                            File...</button>
+                                        <input  type="file" accept="image/*" multiple name="myfile"  (change)="onFileSelect($event)" 
+                                       
+                                        />
+                                      
+                                    </div>
+    
+                                </div>
+                                <div class="row">
+                                    <div class="test col-md-3" (click)="test(i)"
+                                        *ngFor='let preview of previews;let i=index'>
+                                        <p> x</p>
+                                        <img [src]="preview" width="100px" height="100px" class="preview">
+                                    </div>
+                                    <button class="btn btn-primary" (click)="uploadImages()" style="margin-left: 179px; margin-bottom: -29px;"> Upload Images</button>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
                                     <label> Video Link</label>
                                     <div class="upload-btn-wrapper">
                                         <button class="btn1">
@@ -378,30 +402,8 @@
     
                                 </div>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="is-invalid" > Upload Images *</label>
-                                    <div class="upload-btn-wrapper">
-                                        <button class="btn1">
-                                            <i class="icon-cloud-upload f-20"
-                                                style="margin-right:15px; vertical-align: middle;"></i> Choose a
-                                            File...</button>
-                                        <input  type="file" accept="image/*" multiple name="myfile"  (change)="onFileSelect($event)" 
-                                       
-                                        />
-                                      
-                                    </div>
-    
-                                </div>
-                                <div class="row">
-                                    <div class="test col-md-3" (click)="test(i)"
-                                        *ngFor='let preview of previews;let i=index'>
-                                        <p> x</p>
-                                        <img [src]="preview" width="100px" height="100px" class="preview">
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="btn btn-primary" (click)="uploadImages()" style="margin-left: 179px; margin-bottom: -29px;"> Upload Images</button>
+                          
+                         
     
                         </div>
                     

@@ -280,8 +280,9 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
         formdata.append('files', this.videoFile[i]);
       }
     formdata.append('ProductId', this.formsell.productID);
+    this.spinnerService.hide();
+    this.router.navigate(['menu/readytosell']);
     this.fms.postfiles(formdata,this.formsell.productID, this.userdetails.userId,this.isNew).subscribe(res =>{
-      this.spinnerService.hide();
 
       if (res) {
         Swal.fire({
