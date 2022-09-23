@@ -235,14 +235,14 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label> Weight</label>
+                                                <label> Weight *</label>
                                                 <input type="text" [(ngModel)]="formsell.weight" #weight="ngModel"
                                                     name="weight" class="form-control"
-                                                    [ngClass]="{ 'is-invalid': f.submitted && weight.invalid }" />
+                                                    [ngClass]="{ 'is-invalid': f.submitted && weight.invalid }" required/>
                                                 <div *ngIf="f.submitted && weight.invalid" class="invalid-feedback">
-                                                    <div *ngIf="weight.errors?.['required']" style="color:red">
+                                                    <!-- <div *ngIf="weight.errors?.['required']" style="color:red">
                                                         Weight is
-                                                        required</div>
+                                                        required</div> -->
                                                 </div>
 
                                             </div>
