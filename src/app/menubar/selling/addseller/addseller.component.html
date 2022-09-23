@@ -15,7 +15,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-6 text-right">
-
+                                <button class="btn-primary" routerLink="/menu/readytosell"><i class="fa fa-arrow-left" aria-hidden="true"></i>back</button>
                             </div>
                         </div>
 
@@ -375,7 +375,7 @@
                                         <p> x</p>
                                         <img [src]="preview" width="100px" height="100px" class="preview">
                                     </div>
-                                    <button class="btn btn-primary" (click)="uploadImages()" style="margin-left: 179px; margin-bottom: -29px;"> Upload Images</button>
+                                    <button class="btn btn-primary" (click)="uploadImages()" style="margin-left: 179px; margin-bottom: -29px;"> Save Images</button>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -397,7 +397,7 @@
                                             </div>
                                         <input type='file' accept="video/*"  multiple (change)="onSelectFile($event)" />
                                     </div>
-                                <button class="btn btn-primary" (click)="uploadVideos()" style="margin-left: 145px;"> Upload Videos</button>
+                                <button class="btn btn-primary" (click)="uploadVideos()" style="margin-left: 145px;"> Save Videos</button>
     
     
                                 </div>

@@ -11,7 +11,7 @@ export class ProductMaster {
     productBrand:any | null;
     dateOfBirth:  any='1944-05-31T06:21:21.373Z';
     uom: any;
-    weight: any;
+    weight: any=0;
     standardPrice: any;
     discount: any;
     currency: any;

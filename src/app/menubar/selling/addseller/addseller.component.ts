@@ -16,6 +16,7 @@ import { environment } from 'src/environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { timingSafeEqual } from 'crypto';
 import { FormControl, FormGroup } from '@angular/forms';
+import { stringify } from 'querystring';
 @Component({
   selector: 'app-addseller',
   templateUrl: './addseller.component.html',
@@ -191,10 +192,10 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
     this.uploadFiles.push(...this.previews)
 
     this.spinnerService.show();
-    if (this.formsell.discount == undefined) {
+    if (this.formsell.discount == undefined || this.formsell.discount == '') {
       this.formsell.discount = 0;
     }
-    if (this.formsell.weight == undefined) {
+    if (this.formsell.weight == '' || this.formsell.weight == undefined ) {
       this.formsell.weight = 0;
     }
     // if (!this.editvideos && this.edit) {
