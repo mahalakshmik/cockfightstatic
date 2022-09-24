@@ -76,6 +76,7 @@ export class ProdcutDetailsComponent implements OnInit {
   dialogRef!: MatDialogRef<VediolistComponent, any>;
   vedioCount: any;
   selectedItem: any;
+  timeinterval: any=3000;
   constructor(
     private fms: FmsService,
     private ls: LoginService,
