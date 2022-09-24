@@ -395,7 +395,7 @@
                                                 <video [src]="vedio"  height="200"
                                                 controls></video> <br />
                                             </div>
-                                        <input type='file' accept="video/*"  multiple (change)="onSelectFile($event)" />
+                                        <input type='file' accept="video/*"   (change)="onSelectFile($event)" />
                                     </div>
                                 <button class="btn btn-primary" (click)="uploadVideos()" style="margin-left: 145px;"> Save Videos</button>
     

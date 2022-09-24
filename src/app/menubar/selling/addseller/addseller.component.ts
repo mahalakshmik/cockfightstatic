@@ -275,15 +275,14 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
     this.spinnerService.show();
 
     var formdata = new FormData();
-
+    formdata.append('files', this.videoFile);
   
-    for (var i = 0; i < this.videoFile.length; i++) {
-        formdata.append('files', this.videoFile[i]);
-      }
+    // for (var i = 0; i < this.videoFile.length; i++) {
+    //     formdata.append('files', this.videoFile[i]);
+    //   }
     formdata.append('ProductId', this.formsell.productID);
-    this.spinnerService.hide();
-    this.router.navigate(['menu/readytosell']);
     this.fms.postfiles(formdata,this.formsell.productID, this.userdetails.userId,this.isNew).subscribe(res =>{
+      this.spinnerService.hide();
 
       if (res) {
         Swal.fire({
@@ -374,9 +373,11 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
       this.editvideos = true;
     }
     this.selectedVedio = event.target.files;
-    for (let i = 0; i < event.target.files.length; i++) {
-      this.videoFile.push(event.target.files[i]);
-    }
+       this.videoFile=event.target.files[0];
+
+    // for (let i = 0; i < event.target.files.length; i++) {
+    //   this.videoFile.push(event.target.files[i]);
+    // }
     if (this.selectedVedio && this.selectedVedio[0]) {
       const numberOfFiles = this.selectedVedio.length;
       for (let i = 0; i < numberOfFiles; i++) {
