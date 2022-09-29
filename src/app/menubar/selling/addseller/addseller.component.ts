@@ -259,16 +259,7 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
           timer: 900,
         });
 
-        if(this.isNew){
-
-          this.fms.saveImagename(res).subscribe(resp => {
-            console.log(resp)
-            if (resp) {
-            //  this.router.navigate(['menu/readytosell']);
-  
-            }
-          })
-        }
+       
       }
       // this.isShowAddseller = false;
     });
@@ -277,7 +268,7 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
     
   }
 
-  uploadVideos(){
+  uploadVideosrecord(){
     this.spinnerService.show();
     var formdata = new FormData();
     formdata.append('files', this.videoFile);
@@ -323,9 +314,7 @@ console.log(res.imageName)
   test(i: number) {
     this.previews.splice(i, 1);
   }
-  addVideo(){
-
-  }
+ 
   onSubmit() {
     console.log(this.forms);
     this.gs.userRegister(this.forms).subscribe((res) => {
