@@ -320,11 +320,7 @@ console.log(res.imageName)
     this.gs.userRegister(this.forms).subscribe((res) => {
       console.log(res);
     });
-    // console.log(this.adform)
-    // this.fms.saveaddress(this.adform).subscribe(res => {
-    //   this.address = res;
-    //   console.log(this.address)
-    // })
+   
   }
 
 

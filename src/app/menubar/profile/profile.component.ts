@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/services/auth.service';
 import { FmsService } from 'src/app/services/fms.service';
 import { LoginService } from 'src/app/services/login.service';
@@ -21,8 +22,10 @@ export class ProfileComponent implements OnInit {
   profilePic: any;
   imageUrl: any;
   matDialogRef!: MatDialogRef<ChangepasswordComponent>;
+  profileImage!: string  ;
 
-  constructor(private fms: FmsService, private as: AuthService, private gs: LoginService,private router: Router,private matDialog: MatDialog,) {
+   
+  constructor(private fms: FmsService, private as: AuthService, public spinnerService: NgxSpinnerService, private gs: LoginService,private router: Router,private matDialog: MatDialog,) {
     const userDetails = this.as.getLoggedUserDetails();
     this.userID = userDetails.userId;
 
@@ -33,7 +36,7 @@ export class ProfileComponent implements OnInit {
     this.getProfile();
   }
 
-  onImageFileSelect(e: any) {
+  onImageFileSelect(e: any) {debugger
     this.message = [];
     this.progressInfos = [];
     const selectedFiles = e.target.files;
@@ -45,7 +48,8 @@ export class ProfileComponent implements OnInit {
         this.imageUrl = event.target.result;
       }
       reader.readAsDataURL(selectedFiles[0]);
-
+     
+      console.log(this.profileImage)
     }
 
   }
@@ -53,10 +57,11 @@ export class ProfileComponent implements OnInit {
 
 
     this.gs.memberListbyId(this.userID).subscribe(res => {
-      console.log(res);
+     //// console.log(res);
 
       this.forms = res;
       localStorage.setItem('user', JSON.stringify(res));
+      this.profileImage=this.forms.profilePhoto;
     })
   }
   openModal(){
@@ -77,7 +82,8 @@ export class ProfileComponent implements OnInit {
 
   }
   onSubmit() {
-    console.log(this.forms)
+   //// console.log(this.forms)
+   this.spinnerService.show();
 
     const formData = new FormData();
     formData.append("UserId", this.userID);
@@ -96,8 +102,10 @@ export class ProfileComponent implements OnInit {
     formData.append("IsAcceptedTermsConditions", "false");
     formData.append("FileName", this.profilePic);
     this.gs.userRegisterUpdate(formData).subscribe(res => {
-      console.log(res)
+     //// console.log(res)
       if (res) {
+   this.spinnerService.hide();
+
         Swal.fire({
           icon: 'success',
           title: "Profile Updated Succesfully!",
@@ -110,10 +118,10 @@ export class ProfileComponent implements OnInit {
       }
 
     })
-    // console.log(this.adform)
+    ////// console.log(this.adform)
     // this.fms.saveaddress(this.adform).subscribe(res => {
     //   this.address = res;
-    //   console.log(this.address)
+    //  //// console.log(this.address)
     // })
   }
   public listItemskeys: Array<{ text: string; value: any; }> = [
