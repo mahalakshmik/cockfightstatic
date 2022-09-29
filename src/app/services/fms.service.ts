@@ -320,6 +320,9 @@ export class FmsService {
    // payload.farmId = this.userdetails.userId;
     return this.http.post(`${this.baseURL}seller/postblob/${productid}/${sellerId}/${isnew}`, payload);
   }
+  saveVideos(payload: any,productid:any,sellerId:any,isnew:boolean) {
+    return this.http.post(`${this.baseURL}seller/SaveVideo/${productid}/${sellerId}/${isnew}`, payload);
+  }
   
   DeleteProduct(id: any) {
     return this.http.get(`${this.baseURL}Seller/DeleteProduct/${id}`);

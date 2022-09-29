@@ -40,16 +40,16 @@
                     
                         <!-- changed step icons -->
                         <ng-template matStepperIcon="home">
-                            <mat-icon>home</mat-icon>
+                            <mat-icon>Create Product</mat-icon>
                         </ng-template>
                         <ng-template matStepperIcon="form">
-                            <mat-icon>format_align_center</mat-icon>
+                            <mat-icon>Images Upload</mat-icon>
                         </ng-template>
-                        <!-- <ng-template matStepperIcon="last">
-                            <mat-icon>done_all</mat-icon>
-                        </ng-template> -->
+                        <ng-template matStepperIcon="last">
+                            <mat-icon>Videos Upload</mat-icon>
+                        </ng-template>
                       
-                        <mat-step label="First Step" state="form">
+                        <mat-step label="Product" state="form">
                             <form name="form" (ngSubmit)="f.form.valid && createsell() " #f="ngForm"  novalidate>
     
                                 
@@ -352,7 +352,7 @@
                             </form>
                         </mat-step>
                     
-                      <mat-step label="Upload Files" state="home">
+                      <mat-step label="Images" state="home">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -378,6 +378,21 @@
                                     <button class="btn btn-primary" (click)="uploadImages()" style="margin-left: 179px; margin-bottom: -29px;"> Save Images</button>
                                 </div>
                             </div>
+                        
+                          
+                         
+    
+                        </div>
+                    
+                          <!-- <div>
+                            <button mat-button matStepperPrevious>Back</button>
+                            <button mat-button matStepperNext>Next</button>
+                          </div> -->
+                      </mat-step>
+                    
+                      <mat-step label="Videos" state="home">
+                        <div class="row">
+                           
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label> Video Link</label>
@@ -388,17 +403,28 @@
                                             File...</button>
                                         <!-- <video [src]="url" *ngIf="format==='video' && url" height="200"
                                             controls></video> <br /> -->
-                                            <div *ngFor='let vedio of vedios;let i=index'>
-                                                <!-- removed this if condition for now if needed need to add -->
-                                                <!-- <video [src]="vedio" *ngIf="isvideo" height="200"
-                                                controls></video> <br /> -->
-                                                <video [src]="vedio"  height="200"
-                                                controls></video> <br />
-                                            </div>
-                                        <input type='file' accept="video/*"   (change)="onSelectFile($event)" />
+                                            
+                                            <input type='file' accept="video/*"   (change)="onSelectFile($event)" />
+                                            <table class="table-headed table-striped">
+                                               
+                                                <tbody>
+                                                    <tr *ngFor="let item of vedios ">
+                                                        <td> 
+                                                            <video [src]="item"  height="150" width="150"  
+                                                            controls></video> </td>
+                                                      
+                                                        <td class="text-right">
+                                                           
+                                                           
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                     </div>
-                                <button class="btn btn-primary" (click)="uploadVideos()" style="margin-left: 145px;"> Save Videos</button>
-    
+                                <!-- <button class="btn btn-primary" (click)="uploadVideos()" style="margin-left: 145px;"> Save Videos</button> -->
+                                <a  class="btn btn-primary" tooltip="Upload file" (click)="uploadVideos()">
+                                    Save
+                                 </a>
     
                                 </div>
                             </div>
