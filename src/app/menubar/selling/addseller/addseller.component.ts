@@ -108,7 +108,7 @@ videosas =
     this.formsell.uom = '2151';
     this.formsell.stockQty = 1;
     this.formsell.currency = 'THB';
-    this.formsell.paymentOption = '2177';
+    this.formsell.paymentOption = '2178';
     this.formsell.ProductType='2165'
     this.forms.memberType = 0;
     if (this.pid != 0) {
@@ -204,6 +204,7 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
     if (this.formsell.weight == '' || this.formsell.weight == undefined ) {
       this.formsell.weight = 0;
     }
+    this.formsell.paymentOption='2178';
     // if (!this.editvideos && this.edit) {
     //   this.videoFile = []
     // }
