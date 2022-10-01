@@ -30,6 +30,8 @@ export class HomeComponent implements OnInit {
   isWishicon: boolean = true;
   userid: any;
   videoname:string='21207';
+  isIconUncheck='fa fa-thumbs-up thum-icon' ;
+  isIconcheck='fa fa-thumbs-o-up thum-icon' ;
   productvideoUrl=environment.videoUrl;
   constructor(
     private matDialog: MatDialog,
@@ -114,6 +116,7 @@ export class HomeComponent implements OnInit {
       localStorage.setItem('prodList', JSON.stringify(this.prd));
       // this.quantity = this.prd.stockQty
       // this.prd.push(this.quantity)
+      
       this.fmss.saveWishList(p).subscribe((res) => {
         console.log(res);
         Swal.fire({
