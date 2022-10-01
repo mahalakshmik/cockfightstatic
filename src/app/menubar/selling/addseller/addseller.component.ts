@@ -16,6 +16,7 @@ import { environment } from 'src/environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { timingSafeEqual } from 'crypto';
 import { FormControl, FormGroup } from '@angular/forms';
+import { stringify } from 'querystring';
 @Component({
   selector: 'app-addseller',
   templateUrl: './addseller.component.html',
@@ -74,6 +75,12 @@ export class AddsellerComponent implements OnInit {
   count: number = 0;
   selectedVedio: any;
   vedios: any[]=[];
+  // please check the token expiry for the upload video  inside generate sas token when we right click on the container we get start and end date
+  sas =
+  'sp=r&st=2022-08-03T19:40:38Z&se=2022-08-04T03:40:38Z&spr=https&sv=2021-06-08&sr=c&sig=0%2FCosr%2BcZKsAqkp7lL3ieunRX8jJVVSMS8Lmb2arHtY%3D';
+videosas =
+  'sp=racwdl&st=2022-09-29T01:49:45Z&se=2023-03-15T09:49:45Z&spr=https&sv=2021-06-08&sr=c&sig=x2qyZUkbtRhvD31X6hew9fwf%2FNOjOPTLY4P7%2FT61cjo%3D';
+/* Local host URL end points  */
   isNew: boolean=true;
   constructor(
     private fms: FmsService,
@@ -163,7 +170,7 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
 
     this.getImgListByProductId(sellerList.productID);
   }
-  getImgListByProductId(id: number) {debugger
+  getImgListByProductId(id: number) {
     this.fms.getimgListbyProductId(id).subscribe((res: any) => {
       if (res.length > 0) {
         res.forEach((e: any) => {
@@ -191,10 +198,10 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
     this.uploadFiles.push(...this.previews)
 
     this.spinnerService.show();
-    if (this.formsell.discount == undefined) {
+    if (this.formsell.discount == undefined || this.formsell.discount == '') {
       this.formsell.discount = 0;
     }
-    if (this.formsell.weight == undefined) {
+    if (this.formsell.weight == '' || this.formsell.weight == undefined ) {
       this.formsell.weight = 0;
     }
     // if (!this.editvideos && this.edit) {
@@ -252,16 +259,7 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
           timer: 900,
         });
 
-        if(this.isNew){
-
-          this.fms.saveImagename(res).subscribe(resp => {
-            console.log(resp)
-            if (resp) {
-            //  this.router.navigate(['menu/readytosell']);
-  
-            }
-          })
-        }
+       
       }
       // this.isShowAddseller = false;
     });
@@ -270,27 +268,24 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
     
   }
 
-  uploadVideos(){debugger
+  uploadVideosrecord(){
     this.spinnerService.show();
-
     var formdata = new FormData();
-
+    formdata.append('files', this.videoFile);
   
-    for (var i = 0; i < this.videoFile.length; i++) {
-        formdata.append('files', this.videoFile[i]);
-      }
+    // for (var i = 0; i < this.videoFile.length; i++) {
+    //     formdata.append('files', this.videoFile[i]);
+    //   }
     formdata.append('ProductId', this.formsell.productID);
-    this.fms.postfiles(formdata,this.formsell.productID, this.userdetails.userId,this.isNew).subscribe(res =>{
-      this.spinnerService.hide();
+    this.fms.saveVideos(formdata,this.formsell.productID, this.userdetails.userId,this.isNew).subscribe((res:any) =>{debugger
+console.log(res.imageName)
+      if (res.imageName) {
+    this.onSelectFiles(this.videoFile,res.imageName)
 
-      if (res) {
-        Swal.fire({
-          title: 'Videos Uploaded Successfully',
-          icon: 'success',
-          timer: 700,
-        });
+       
       }
     });
+    
   }
   uploadImages(){
       this.spinnerService.show();
@@ -319,16 +314,13 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
   test(i: number) {
     this.previews.splice(i, 1);
   }
+ 
   onSubmit() {
     console.log(this.forms);
     this.gs.userRegister(this.forms).subscribe((res) => {
       console.log(res);
     });
-    // console.log(this.adform)
-    // this.fms.saveaddress(this.adform).subscribe(res => {
-    //   this.address = res;
-    //   console.log(this.address)
-    // })
+   
   }
 
 
@@ -367,14 +359,16 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
   }
 
   onSelectFile(event: any) {
-    debugger;
+    
     if (this.edit) {
       this.editvideos = true;
     }
     this.selectedVedio = event.target.files;
-    for (let i = 0; i < event.target.files.length; i++) {
-      this.videoFile.push(event.target.files[i]);
-    }
+       this.videoFile=event.target.files[0];
+
+    // for (let i = 0; i < event.target.files.length; i++) {
+    //   this.videoFile.push(event.target.files[i]);
+    // }
     if (this.selectedVedio && this.selectedVedio[0]) {
       const numberOfFiles = this.selectedVedio.length;
       for (let i = 0; i < numberOfFiles; i++) {
@@ -495,5 +489,15 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
     }
   }
 
-  
+  public onSelectFiles(file: File,filename:string) {debugger
+    this.blobService.uploadVIDEOS(this.videosas, file,filename, () => {
+      this.spinnerService.hide();
+
+      Swal.fire({
+        title: 'Videos Uploaded Successfully',
+        icon: 'success',
+        timer: 700,
+      });
+    })
+  }
 }

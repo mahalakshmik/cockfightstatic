@@ -12,12 +12,13 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-5">
-                                <div id="consulting-carousel" class="carousel slide" data-ride="carousel">
-                                    <div class="carousel-inner" role="listbox" data-interval="3000">
+                                <div id="carousel-example-generic" id="consulting-carousel" class="carousel slide" data-bs-interval="timeinterval" data-ride="carousel" data-pause="hover" >
+                                <!-- <div id="consulting-carousel" class="carousel slide" data-ride="carousel"> -->
+                                    <div class="carousel-inner" role="listbox" >
                                         <!-- oldone -->
                                         <div class="item "
                                             *ngFor="let item of images;let index = index;let isFirst = first"
-                                            [ngClass]="{active:isFirst}">
+                                            [ngClass]="{'active': selectedItem == item}" >
                                             <span class="consulting-caption">
                                                 <div class="not_img" *ngIf="images == 'undefined'"
                                                     style="background-color: red;">370 x 440px</div>
@@ -43,15 +44,13 @@
                                     <ol class="carousel-indicators">
                                         <li data-target="#consulting-carousel"
                                             *ngFor="let item of images;let index = index;let isFirst = first"
-                                            [ngClass]="{active:isFirst}">
+                                            [ngClass]="{'active': selectedItem == item}" (click)="listClick($event, item)">
                                             <img src="{{productPicUrl}}{{item.imageName}}" alt="image">
-                                            <!-- <img src="{{productPicUrl}}/{{prdId}}/{{item.imageName}}" alt="image"> -->
 
                                         </li>
                                         <div >
                                             <li data-target="#consulting-carousel"  class="vediopopup"  (click)="openDialog(vediopopup)">
-                                                    <!-- <img src="https://cdn.pixabay.com/photo/2014/10/09/13/14/video-481821_960_720.png" alt="image"> -->
-                                                    <img src="https://media.istockphoto.com/vectors/video-player-interface-for-web-vector-vector-id494616116?k=20&m=494616116&s=612x612&w=0&h=PLF_kgB_3dqvGnYSwh8f0MCk-orcxyGz2JeeMVS_6rw=" alt="image">
+                                                    <img src="assets/images/videosam.jpg" alt="image">
                                                  <a style="font-size:9px">  Vedio(s) <p style="margin-top: -27px;
                                                     margin-left: -48px;"> {{vedioCount}}</p></a>
                                                 <!-- <video type="video/mp4" src="{{productvideoUrl}}{{smallvideo}}"

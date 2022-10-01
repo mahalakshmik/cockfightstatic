@@ -72,40 +72,14 @@ export class ProfileComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    this.getBread()
-    this.getSellerList();
-    this.getProfile();
-    this.getAddressList();
-    this.getOrderHistory();
-    this.getCurrenyList();
-    this.getGender();
-    this.getAgeList();
-    this.getBreadType();
-    this.getPaymentTypeList();
-    this.getWeight();
-    this.formsell.gender = '';
-    this.formsell.breedType = '';
-    this.formsell.ageType = '';
-    this.formsell.uom = '';
-    this.formsell.currency = '';
-    this.formsell.paymentOption = '';
-    this.forms.memberType = 0;
-  } simpleAlert() {
-    Swal.fire('Hello Angular');
-    //this.saveaddress()
+
+
   }
+  
   showtemp() {
     this.isShowAddseller = true;
   }
-  editseller(sellerList: any) {
-    this.isShowAddseller = true;
-    //this.formsell.index=i;
-    // data:rowdata;
-    this.formsell = sellerList;
-    //  console.log('edit',rowdata)
-    console.log('edit', sellerList)
-
-  }
+ 
   public listItemskeys: Array<{ text: string; value: any; }> = [
     { text: "Please Select", value: null },
     { text: "Farm", value: 2171 },

@@ -6,12 +6,12 @@ export const environment = {
   production: false,
   /* Production/Beta URL End points */
   //test
- api:'https://cockfightkaichon.azurewebsites.net/api/',
-//api:'http://localhost:13866/api/',
+//  api:'https://cockfightkaichon.azurewebsites.net/api/',
+api:'http://localhost:13866/api/',
   ProductUrl:"https://lgistorage.blob.core.windows.net/fmsimages/",
   azureimgUrl:"https://lgistorage.blob.core.windows.net/fmsimages/",
   videoUrl:"https://lgistorage.blob.core.windows.net/fmsvideos/",
-  imgUrl:"https://cockfightkaichon.azurewebsites.net/Images/",
+  //imgUrl:"https://cockfightkaichon.azurewebsites.net/Images/",
   fileUrl:"https://cockfightkaichon.azurewebsites.net/",
   azureblobImgUrl:'https://lgistorage.blob.core.windows.net/fmsimages/',
   sas :
@@ -21,7 +21,7 @@ export const environment = {
   /* Local host URL end points  */
   
   // ProductUrl:"http://localhost:13866/Uploads/Products",
-  // imgUrl:"http://localhost:13866/Images/",
+   imgUrl:"http://localhost:13866/Images/",
 // azureblobUrl:'https://audiencestreetcreatives.blob.core.windows.net/videos/'x`
 };
 

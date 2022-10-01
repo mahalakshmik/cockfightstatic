@@ -75,6 +75,8 @@ export class ProdcutDetailsComponent implements OnInit {
   isoutOfStock: any = false;
   dialogRef!: MatDialogRef<VediolistComponent, any>;
   vedioCount: any;
+  selectedItem: any;
+  timeinterval: any=3000;
   constructor(
     private fms: FmsService,
     private ls: LoginService,
@@ -129,6 +131,7 @@ export class ProdcutDetailsComponent implements OnInit {
       }
       this.prdId = this.product.productId;
       this.images = data.productImages;
+      this.selectedItem=this.images[0]
       if (this.product.stockQty <= 0) {
 
         this.isoutOfStock = true;
@@ -163,7 +166,11 @@ export class ProdcutDetailsComponent implements OnInit {
       // this.getPaymentType();
     });
   }
-
+  listClick(event:any, newValue:any) {
+    console.log(newValue);
+    this.selectedItem = newValue;  // don't forget to update the model here
+    // ... do other stuff here ...
+}
 
   addCart() {
     if (!this.as.isLoggedIn()) {
