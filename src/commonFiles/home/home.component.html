@@ -174,9 +174,11 @@
                                         <!-- <span class="qty">Stock: {{p.stockQty}}</span> -->
                                         <label *ngIf="p.stockQty != 0" style="color: green"><b>In Stock</b></label>
                                         <label *ngIf="p.stockQty == 0" style="color:red"><b>Out of Stock</b></label>
+                                        <a (click)="openDialog(template,p.productID)" *ngIf="p.hasVideo" >
+                                             <img src="assets/images/video.png" width="40" class="img-fluid" alt="tbl"></a>
+
                                         <span class="qty" style="display: flex;">
                                             <div class="price price1">฿{{p.standardPrice}}</div>
-                                           <a (click)="openDialog(template,p.productID)" *ngIf="p.hasVideo"> <i class="fa fa-play-circle ytube-icon"></i></a>
                                            <a> <i (click)="addwish(p,i)"
                                                 [ngClass]="p.productLikesCount > 0 ? 'fa fa-thumbs-up thum-icon': 'fa fa-thumbs-o-up thum-icon' " >{{p.productLikesCount}}</i>
                                                 <i class="fa fa-comments-o" style="margin-left: 5px;" routerLink="customer/ProdcutDetails/{{p.productID}}/{{p.sellerID}}"></i>
