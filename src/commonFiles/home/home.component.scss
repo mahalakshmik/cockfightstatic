@@ -85,3 +85,21 @@
     width: 30% !important;
     margin-left: 40%;
 }
+
+@media (max-width: 767px){
+.slider-section .bg-content .col-xs-12 {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+}
+@media (max-width: 767px){
+section.slider-section {
+    margin-top: -400px !important;
+}
+}
+
+section.\(max-width\:.\.bg-content.\.col-xs-12.\37 67px\)\.rhs_bar.\@media.slider-section {
+    padding: 0px !important;
+    margin-top: -368px !important;
+    
+}
