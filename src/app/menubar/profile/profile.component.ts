@@ -98,7 +98,7 @@ export class ProfileComponent implements OnInit {
     formData.append("CreatedOn", "2018-12-18T05:05:14.914Z");
     formData.append("AboutUs", this.forms.aboutUs);
     formData.append("Website", this.forms.website);
-    formData.append("ProfilePhoto", this.forms.ProfilePhoto);
+    formData.append("ProfilePhoto", this.profileImage);
     formData.append("IsAcceptedTermsConditions", "false");
     formData.append("FileName", this.profilePic);
     this.gs.userRegisterUpdate(formData).subscribe(res => {

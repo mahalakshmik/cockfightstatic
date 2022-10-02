@@ -63,7 +63,7 @@
 }
 
 #offcanvas-menu .close-menu {
-    position: absolute;
+    /* position: absolute; */
     top: 15px;
 	margin-left: -20px;
 }
