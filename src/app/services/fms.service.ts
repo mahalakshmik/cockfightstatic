@@ -72,6 +72,7 @@ export class FmsService {
     return this.http.post(`${this.baseURL}Notifications`, payload);
   }
 
+
   getconformOrder(orderid: any) {
     return this.http.get(`${this.baseURL}OrderDetails/orderHeader/` + orderid);
   }
@@ -236,6 +237,12 @@ export class FmsService {
 
     return this.http.get(`${this.baseURL}NotificationListSP/NotificationsCount/userid?userid=` + this.userdetails.userId);
   }
+  updateAllNotifications() {
+    this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
+
+    return this.http.get(`${this.baseURL}NotificationListSP/UpdateAllNotifications/${this.userdetails.userId}`);
+  }
+
   getWishList() {
     return this.http.get(
       `${this.baseURL}WishListListSP/` + this.userdetails.memberType
