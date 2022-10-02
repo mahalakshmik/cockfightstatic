@@ -28,6 +28,9 @@ export class NotificationComponent implements OnInit {
     this.notifications  = res;
   })
   }
+  markAsRead(){
+    this.fms.updateAllNotifications().subscribe(res =>{console.log(res)})
+  }
 changeStatus(id:number){
   this.spinnerService.show();
   this.fms.updateNotification(id).subscribe(res=>{
