@@ -172,11 +172,8 @@
                                         <h6 class="head1"> Seller : {{p.sellerName}} </h6>
                                         <h6 class="head2 m-b-20"> Province : {{p.province}} </h6>
                                         <!-- <span class="qty">Stock: {{p.stockQty}}</span> -->
-                                        <label *ngIf="p.stockQty != 0" style="color: green"><b>In Stock</b></label>
-                                        <label *ngIf="p.stockQty == 0" style="color:red"><b>Out of Stock</b></label>
-                                        <a (click)="openDialog(template,p.productID)" *ngIf="p.hasVideo" >
-                                             <img src="assets/images/video.png" width="40" class="img-fluid" alt="tbl"></a>
-
+                                        <label *ngIf="p.stockQty > 0" style="color: green"><b>In Stock</b></label>
+                                        <label *ngIf="p.stockQty <= 0" style="color:red"><b>Out of Stock</b></label>
                                         <span class="qty" style="display: flex;">
                                             <div class="price price1">฿{{p.standardPrice}}</div>
                                            <a> <i (click)="addwish(p,i)"
