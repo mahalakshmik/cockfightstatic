@@ -297,8 +297,8 @@ export class ProdcutDetailsComponent implements OnInit {
       }
       var formdata = new FormData();
       formdata.append('messageId', '0');
-      formdata.append('senderId', this.userid);
-      formdata.append('receiverId', this.sellerID);
+      formdata.append('senderId', this.sellerID);
+      formdata.append('receiverId', this.userid);
       formdata.append('productId', this.productID);
       formdata.append('createdOn', '2022-08-16T06:38:00.037Z');
       formdata.append('fileName', this.form.fileName);
