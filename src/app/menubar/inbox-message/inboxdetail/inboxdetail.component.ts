@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthService } from 'src/app/services/auth.service';
 import { FmsService } from 'src/app/services/fms.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class InboxdetailComponent implements OnInit {
   messageHeader:any []=[];
   senderid: number=0;
   comments:string='';
-  constructor(private route: ActivatedRoute,private fms:FmsService,private spinnerService: NgxSpinnerService) { 
+  constructor(private route: ActivatedRoute,private fms:FmsService,private spinnerService: NgxSpinnerService, public as: AuthService,) { 
 
      
     this.sub = this.route.params.subscribe(params => {
@@ -49,10 +50,10 @@ console.log(this.senderid)
  
     })
   }
-  InboxPostComments(){
+  InboxPostComments(){debugger
     this.spinnerService.show();
 
-    const userid=0
+   const userid = this.as.getToken();
     // assuming mesaageto
     var payload = {
       itemId: 0,

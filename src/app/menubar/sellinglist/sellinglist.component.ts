@@ -95,6 +95,10 @@ export class SellinglistComponent implements OnInit {
       }
     })
   }
+  updateStock() {
+  //  this.fms.updateStock(const t,cont p)
+  //         .subscribe((data) => {console.log(data);});
+  }
   closeOrder(id: any) {
 
     this.fms.orderClose(id).subscribe(res => {
@@ -117,7 +121,8 @@ export class SellinglistComponent implements OnInit {
   ConformPayment(id: any) {
     this.spinnerService.show();
 
-    this.fms.orderconfirmPayment(id).subscribe(res => {
+    this.fms.orderconfirmPayment(id).subscribe(
+      res => {
       console.log(res)
       this.spinnerService.hide();
       if (res) {
@@ -128,7 +133,20 @@ export class SellinglistComponent implements OnInit {
         });
         this.getSellerList();
       }
-    })
+    },
+    error =>{
+      console.error(error.error.text)
+         this.spinnerService.hide();
+         Swal.fire
+         ({
+          title: error.error.text,
+          icon: 'error',
+          text: 'Please Cancel the Order!',
+        });
+    }
+    
+    
+    )
   }
 }
 

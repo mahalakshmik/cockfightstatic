@@ -105,7 +105,6 @@ export class OrdersummaryComponent implements OnInit {
 
       if (this.selectedProdut.paymentOption == 2177) {
         this.confirmOrderforCOD();
-        //this.saveNotificaton()
       }
       else {
         // this.route.navigate(['payment']);

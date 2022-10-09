@@ -21,10 +21,13 @@ export class NotificationComponent implements OnInit {
      }
 
   ngOnInit(): void {
+    this.spinnerService.show()
     this.getNotification()
   }
   getNotification() {
-    this.fms.getNotifications(this.userID).subscribe(res => { console.log(res) ;
+    this.fms.getNotifications(this.userID).subscribe(res => { 
+    this.spinnerService.hide()
+      
     this.notifications  = res;
   })
   }

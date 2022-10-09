@@ -160,14 +160,14 @@ export class CommentsListComponent implements OnInit {
       }
       var formdata = new FormData();
       formdata.append('messageId', '0');
-      formdata.append('senderId', this.userid);
-      formdata.append('receiverId', comment.senderID);
+      formdata.append('senderId', comment.senderID);
+      formdata.append('receiverId', this.userid);
       formdata.append('productId', comment.productID);
       formdata.append('createdOn', '2022-08-16T06:38:00.037Z');
       formdata.append('fileName', this.form.fileName);
       formdata.append('messageSubject', this.form.messageSubject);
     // withour filename also updating the savecomments use name 'nofile' to validte
-      this.fms.sendMessageToseller(formdata).subscribe((res:any) => {
+      this.fms.sendMessageToseller(formdata).subscribe((res:any) => {debugger
         console.log(res);
       // this.isHide = res.success
         if (res) {
@@ -183,7 +183,7 @@ export class CommentsListComponent implements OnInit {
             itemId: 0,
             messageId: res,
             memberId: this.userid,
-            messageTo: this.sellerID,
+            messageTo: comment.senderID,
             comment: this.comments,
             createdOn: '2022-08-16T06:38:00.037Z',
             isRead: false,

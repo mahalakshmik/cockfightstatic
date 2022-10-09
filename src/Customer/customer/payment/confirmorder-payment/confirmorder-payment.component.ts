@@ -70,15 +70,8 @@ export class ConfirmorderPaymentComponent implements OnInit {
       ' for product ' +
       this.selectedProdut.productName;
     console.log(this.notification);
-    this.fms.saveNotifications(this.notification).subscribe((res) => {debugger
-      console.log(res);
-      if (res) {
-        this.fms
-          .updateStock(this.selectedProdut.productID, this.selectedquntity)
-          .subscribe((data) => {
-            console.log(data);
-          });
-      }
+    this.fms.saveNotifications(this.notification).subscribe((res) => {
+      
     });
   }
 }
