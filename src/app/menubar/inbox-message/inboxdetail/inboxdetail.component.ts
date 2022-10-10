@@ -36,6 +36,7 @@ export class InboxdetailComponent implements OnInit {
   getdetails(){
 
     this.fms.getInboxdetails(this.messageid,this.memberid,).subscribe((res:any)=>{
+      console.log(res)
       this.messageDetails=res.messageDetails
       this.messageHeader=res.messageHeader
       console.log(this.messageDetails)
@@ -55,6 +56,7 @@ console.log(this.senderid)
 
    const userid = this.as.getToken();
     // assuming mesaageto
+    //herer need to change itemid 
     var payload = {
       itemId: 0,
       messageId: this.messageid,
@@ -69,4 +71,7 @@ console.log(this.senderid)
       this.getdetails();
     })
   }
+
+
+  
 }

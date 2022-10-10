@@ -12,10 +12,13 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12" *ngFor="let p of inboxlst?.messageHeader" routerLink="/menu/inboxdetail/{{p.messageID}}/{{this.memberid}}">
-                        <p><b>{{p.messageSubject}}:</b>{{p.productName}}</p>
+                        <p><b>{{p.messageSubject}}:{{p.productName}}</b></p>
                         <p><b>{{p.senderName}}</b>({{p.senderEmail}})</p>
-                        <p *ngFor="let cmt of p.messageDetails">{{cmt?.comment}}</p>
-                        <p>{{p.createdOn | date:'dd-mm-yy hh:mm '}}</p>
+                        <span class="pull-right font-12">
+                            {{p.createdOn | date:'dd-mm-yy hh:mm '}}
+                        </span>
+                       
+                            <p>{{p.messageDetails[0].comment}}</p>
                         <hr>
 
                     </div>

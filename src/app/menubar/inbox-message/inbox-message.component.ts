@@ -30,14 +30,18 @@ export class InboxMessageComponent implements OnInit {
   }
   getInboxList() {
     this.spinnerService.show();
-    this.fms.getInbox().subscribe(res => {
-      console.log(res);
+    this.fms.getInbox().subscribe((res:any) => {
       if(res){
         this.spinnerService.hide();
       }
+      
+      for (let i = 0; i < res.messageHeader.length; i++) {
+        res.messageHeader[i].messageDetails= []
+        res.messageHeader[i].messageDetails = res.messageDetails.filter((j: { messageID: any; }) => j.messageID == res.messageHeader[i].messageID);
+        
+      }
       this.inboxlst = res;
-      // console.log(this.inboxlst.messageHeader[0].productName);
-      // console.log(this.inboxlst.messageHeader[0].productName);
+      console.log( this.inboxlst);
 
     })
   }
