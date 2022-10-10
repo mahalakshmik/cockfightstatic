@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  // delte
   /* Production/Beta URL End points */
   //test
   api:'https://cockfightkaichon.azurewebsites.net/api/',
