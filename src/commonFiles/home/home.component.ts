@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit {
   isIconUncheck='fa fa-thumbs-up thum-icon' ;
   isIconcheck='fa fa-thumbs-o-up thum-icon' ;
   productvideoUrl=environment.videoUrl;
+  dialogRef: any;
   constructor(
     private matDialog: MatDialog,
     private fms: LoginService,
@@ -179,11 +180,12 @@ export class HomeComponent implements OnInit {
   }
   
 
-  openDialog(templateRef:any,pid:any) {debugger
-    let dialogRef = this.matDialog.open(templateRef, {
-     width: '300px',
-     height: '500px',
-     panelClass: 'mydialogclass'
+  openDialog(templateRef:any,pid:any) {
+   this.dialogRef = this.matDialog.open(templateRef, {
+      width: "80vw",
+        height: "90vh",
+        maxWidth: "350px",
+        maxHeight: "500px"
    });
 const url=this.productvideoUrl+pid
    this.videoname=url.concat('_0.mp4')

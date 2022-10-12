@@ -245,7 +245,7 @@ export class OrdersummaryComponent implements OnInit {
     }
   }
  
-  confirmPayment() {
+  confirmPayment() {debugger
 
     const payload = {
       sellingPrice: this.selectedProdut.standardPrice,
@@ -364,9 +364,10 @@ if(this.isCart){
     this.totalAmount = this.totalAmount - this.selectedProdut.discount;
   }
 
-  uploadFile(e: any) {
+  uploadFile(e: any) {debugger
     this.fileToUpload = e.target.files[0];
     console.log(this.fileToUpload.name)
+ 
     //Show image preview
     let reader = new FileReader();
     reader.readAsDataURL(this.fileToUpload);

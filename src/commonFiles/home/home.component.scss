@@ -103,3 +103,38 @@ section.\(max-width\:.\.bg-content.\.col-xs-12.\37 67px\)\.rhs_bar.\@media.slide
     margin-top: -368px !important;
     
 }
+.mat-dialog-container {
+    
+    width: 84% ;
+    height: 98%;
+
+}
+@media only screen and (max-width: 700px) {
+    .modal .mat-grid-tile {
+       width:100% !important;
+       position:relative!important;  
+       left:0 !important; 
+    }
+    .modal .mat-form-field {
+      width: 100%
+    }
+    .modal .mat-radio-button {
+      padding: 10px;
+    }
+    .modal .mat-raised-button.mat-warn {
+         margin:5px
+     }
+  }
+
+  .close message-to-sellar{
+   background: #f05603; 
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    color: #fff;
+}
+.modal-header .close {
+    margin-top: -6px;
+    margin-right: -8px;
+    font-weight: normal;
+}

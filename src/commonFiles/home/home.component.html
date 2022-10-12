@@ -103,7 +103,7 @@
 
                             <div class="content text-center">
                                 <h1 class="large-text wow fadeInDown" data-wow-delay="0.5s" data-wow-duration="0.6s">
-                                    </h1>
+                                </h1>
 
                                 <div class="guard">
                                     <p class="small-text wow fadeInDown" data-wow-delay="0.9s">
@@ -125,9 +125,9 @@
                             data-slide="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
-                </div>
+            </div>
         </section>
-         <!-- slider-section -->
+        <!-- slider-section -->
 
 
     </div>
@@ -154,13 +154,13 @@
 
                                     <div class="product-detail item-list">
                                         <!-- <a href="#"></a> -->
-                                        <a class="animate-scale" (click)="gotodetails(p)" >
+                                        <a class="animate-scale" (click)="gotodetails(p)">
                                             <div class="not_img" *ngIf="!p.productImage || p.productImage =='NULL' ">370
                                                 x
                                                 440px</div>
                                             <!-- <img class="img" src="{{productPicUrl}}/{{p.productImage}}"
                                                 *ngIf="p.productImage && p.productImage !='NULL' " /> -->
-                                          
+
                                             <img class="img" src="{{productPicUrl}}{{p.productImage}}"
                                                 *ngIf="p.productImage && p.productImage !='NULL' " />
                                         </a>
@@ -174,15 +174,18 @@
                                         <!-- <span class="qty">Stock: {{p.stockQty}}</span> -->
                                         <label *ngIf="p.stockQty > 0" style="color: green"><b>In Stock</b></label>
                                         <label *ngIf="p.stockQty <= 0" style="color:red"><b>Out of Stock</b></label>
-                                        <a (click)="openDialog(template,p.productID)" *ngIf="p.hasVideo" >
-                                            <img src="assets/images/video.png" width="40" class="img-fluid" alt="tbl"></a>
+                                        <a (click)="openDialog(template,p.productID)" *ngIf="p.hasVideo">
+                                            <!-- style="width: 311px;height: 440px;" -->
+                                            <img src="assets/images/video.png" width="40" class="img-fluid" alt="tbl">
+                                        </a>
                                         <span class="qty" style="display: flex;">
                                             <div class="price price1">฿{{p.standardPrice}}</div>
-                                           <a> <i (click)="addwish(p,i)"
-                                                [ngClass]="p.productLikesCount > 0 ? 'fa fa-thumbs-up thum-icon': 'fa fa-thumbs-o-up thum-icon' " >{{p.productLikesCount}}</i>
-                                                <i class="fa fa-comments-o" style="margin-left: 5px;" routerLink="customer/ProdcutDetails/{{p.productID}}/{{p.sellerID}}"></i>
+                                            <a> <i (click)="addwish(p,i)"
+                                                    [ngClass]="p.productLikesCount > 0 ? 'fa fa-thumbs-up thum-icon': 'fa fa-thumbs-o-up thum-icon' ">{{p.productLikesCount}}</i>
+                                                <i class="fa fa-comments-o" style="margin-left: 5px;"
+                                                    routerLink="customer/ProdcutDetails/{{p.productID}}/{{p.sellerID}}"><b>{{p.productCommentsCount}}</b></i>
                                             </a>
-                                               
+
                                             <!-- <i (click)="addwish(p,i)" *ngIf="!isWishicon" class="fa fa-thumbs-up thum-icon">{{likeCount}}</i> -->
                                         </span>
 
@@ -228,19 +231,12 @@
 </div>
 <ngx-spinner size="medium" color="orange" backgroundcolor="white" type="ball-fussion"></ngx-spinner>
 
-<section class="research-section section-padding">
 
-    <div class="row">
-
-
-        <div class="col-md-12">
-        </div>
-    </div>
-
-</section>
 
 
 <ng-template #template>
-    <video  autoplay [src]='videoname' controls="true" muted ></video>
-   </ng-template>
-   
+    <div class="modal-header model-hdr-pdng">
+        <button type="button" class="close " (click)="dialogRef.close()">×</button>
+        <video style="width: 335px;height: 499px;" autoplay [src]='videoname' controls="true" muted></video>
+    </div>
+</ng-template>
