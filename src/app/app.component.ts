@@ -94,7 +94,7 @@ export class AppComponent {
    });
    console.log(this.inboxcount)
   }
-  getNotification() {debugger
+  getNotification() {
     this.fms.getNotifications(this.userID).subscribe((res:any) => {
       this.notifications = res;
   this.getnotificationcount()
