@@ -171,7 +171,36 @@
         </div>
 
 
+        <div class="bg-content">
+            <div class="heading-name pull-left">
+                <img src="/assets/images/farm.jpg"  style="border-radius:50%; margin-right:10px; vertical-align:middle; width:50px; height:50px; display:inline; float:left">
+                <span class="heading">
+                    <a routerLink="/shop/productdetails/{{members?.userId}}"> {{members?.userName}}</a> 
+                 <img src="/assets/images/verify.png" class="img-responsive inline" style="display:inline">
+                </span>
 
+            </div>
+            <div class="clearfix"></div>
+                <!-- <div>
+                    hyd,test,ts,
+                    In
+                </div> -->
+            <!-- <div class="rating">
+                <i class="fa fa-star" aria-hidden="true"></i>
+             
+                <span><label value="3/5 Rating" class="" for="">3/5 Rating</label></span>
+            </div> -->
+            <div>
+                <h5>
+                    <b>
+                        <label value="" class="" >From {{members?.createdOn |date:'mediumDate'}} here</label>
+                    </b>
+                </h5>
+            </div>
+            <hr>
+       
+         
+        </div>
 
         <div class="row">
             <div class="col-sm-12 m-t-50">

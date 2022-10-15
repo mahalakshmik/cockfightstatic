@@ -51,17 +51,17 @@
                                             <div class="product-wrapper">
 
                                                 <div class="product-detail item-list">
-                                                    <a routerLink="/shop/Addproduct" class="animate-scale">
+                                                    <a routerLink="/customer/ProdcutDetails/{{p.productId}}/{{p.sellerId}}" class="animate-scale">
                                                         <div class="not_img">370 x 440px</div>
                                                     </a>
                                                     <h6 class="clr-red itemtitle">{{p.productName}}</h6>
-                                                    <h6 class="head1"> Seller : thafarm </h6>
+                                                    <h6 class="head1"> Seller : {{p.sellerName}} </h6>
                                                     <h6 class="head2 m-b-20"> Product Brand : {{p.productBrand}} </h6>
                                                     <h6 class="head2 m-b-20"> Province :{{p.province}} </h6>
-                                                    <div class="price price1">$ {{p.standardPrice}}</div>
+                                                    <div class="price price1">฿ {{p.standardPrice}}</div>
 
-                                                    <a href="#"> <i class="icon-heart"></i> </a>
-                                                    <a href="#"> <i class="icon-share"></i> </a>
+                                                    <!-- <a href="#"> <i class="icon-heart"></i> </a>
+                                                    <a href="#"> <i class="icon-share"></i> </a> -->
 
                                                 </div>
                                             </div>
@@ -77,7 +77,7 @@
                                                     <h6 class="head1"> Seller : thafarm </h6>
                                                     <h6 class="head2 m-b-20"> Product Brand : thafarm </h6>
                                                     <h6 class="head2 m-b-20"> Province : </h6>
-                                                    <div class="price price1">$ 2500.00</div>
+                                                    <div class="price price1">฿ 2500.00</div>
 
                                                     <a href="#"> <i class="icon-heart"></i> </a>
                                                     <a href="#"> <i class="icon-share"></i> </a>
@@ -96,7 +96,7 @@
                                                     <h6 class="head1"> Seller : thafarm </h6>
                                                     <h6 class="head2 m-b-20"> Product Brand : thafarm </h6>
                                                     <h6 class="head2 m-b-20"> Province : </h6>
-                                                    <div class="price price1">$ 2500.00</div>
+                                                    <div class="price price1">฿ 2500.00</div>
 
                                                     <a href="#"> <i class="icon-heart"></i> </a>
                                                     <a href="#"> <i class="icon-share"></i> </a>
@@ -115,7 +115,7 @@
                                                     <h6 class="head1"> Seller : thafarm </h6>
                                                     <h6 class="head2 m-b-20"> Product Brand : thafarm </h6>
                                                     <h6 class="head2 m-b-20"> Province : </h6>
-                                                    <div class="price price1">$ 2500.00</div>
+                                                    <div class="price price1">฿ 2500.00</div>
 
                                                     <a href="#"> <i class="icon-heart"></i> </a>
                                                     <a href="#"> <i class="icon-share"></i> </a>
@@ -137,7 +137,7 @@
                                                     <h6 class="head1"> Seller : thafarm </h6>
                                                     <h6 class="head2 m-b-20"> Product Brand : thafarm </h6>
                                                     <h6 class="head2 m-b-20"> Province : </h6>
-                                                    <div class="price price1">$ 2500.00</div>
+                                                    <div class="price price1">฿ 2500.00</div>
 
                                                     <a href="#"> <i class="icon-heart"></i> </a>
                                                     <a href="#"> <i class="icon-share"></i> </a>
@@ -156,7 +156,7 @@
                                                     <h6 class="head1"> Seller : thafarm </h6>
                                                     <h6 class="head2 m-b-20"> Product Brand : thafarm </h6>
                                                     <h6 class="head2 m-b-20"> Province : </h6>
-                                                    <div class="price price1">$ 2500.00</div>
+                                                    <div class="price price1">฿ 2500.00</div>
 
                                                     <a href="#"> <i class="icon-heart"></i> </a>
                                                     <a href="#"> <i class="icon-share"></i> </a>
@@ -175,7 +175,7 @@
                                                     <h6 class="head1"> Seller : thafarm </h6>
                                                     <h6 class="head2 m-b-20"> Product Brand : thafarm </h6>
                                                     <h6 class="head2 m-b-20"> Province : </h6>
-                                                    <div class="price price1">$ 2500.00</div>
+                                                    <div class="price price1">฿ 2500.00</div>
 
                                                     <a href="#"> <i class="icon-heart"></i> </a>
                                                     <a href="#"> <i class="icon-share"></i> </a>
@@ -194,7 +194,7 @@
                                                     <h6 class="head1"> Seller : thafarm </h6>
                                                     <h6 class="head2 m-b-20"> Product Brand : thafarm </h6>
                                                     <h6 class="head2 m-b-20"> Province : </h6>
-                                                    <div class="price price1">$ 2500.00</div>
+                                                    <div class="price price1">฿ 2500.00</div>
 
                                                     <a href="#"> <i class="icon-heart"></i> </a>
                                                     <a href="#"> <i class="icon-share"></i> </a>
@@ -215,10 +215,12 @@
                     </div>
 
                 </section> <!-- shop-page -->
-                <button class="followers" (click)="follower()">Followers</button>
-                <button class="btn btn-primary">Following</button>
+                <button class="followers" (click)="follower()">{{shopdetails?.followedCount}}  Followers</button>
+                <!-- <button class="btn btn-primary">Following</button> -->
             </div>
         </div>
 
     </div>
 </div>
+
+<ngx-spinner size="medium" color="orange" backgroundcolor="white" type="ball-fussion"></ngx-spinner>

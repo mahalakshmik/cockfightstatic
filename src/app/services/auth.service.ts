@@ -17,7 +17,7 @@ export class AuthService {
   private notificationsSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   public notificationtList = new BehaviorSubject<any>([]);
   public notifications$ = this.notificationsSubject.asObservable();
-    constructor(private http: HttpClient,private fms: FmsService) { 
+  constructor(private http: HttpClient, private fms: FmsService) {
     this.userdetail = JSON.parse(localStorage.getItem('user') || '{}');
   }
 
@@ -36,11 +36,11 @@ export class AuthService {
     payload.userId = this.userdetail.userId;
     return this.http.post(this.AUTH_API + 'Members/otpupdate', payload);
   }
- 
+
   forgotpassword(payload: any): Observable<any> {
     return this.http.post(this.AUTH_API + 'Members/forgotpassword', payload);
   }
- 
+
   verifyMobileNo(payload: any): Observable<any> {
     return this.http.post(this.AUTH_API + 'verifyMobileNo', payload);
   }
@@ -48,7 +48,7 @@ export class AuthService {
     payload.userId = this.userdetail.userId;
     return this.http.post(this.AUTH_API + 'Members/passwordChange', payload);
   }
-  
+
   removePerson() {
     localStorage.removeItem('userName');
     this.userName = undefined;
@@ -61,27 +61,27 @@ export class AuthService {
   }
   getPhoto() {
     const userdetails = JSON.parse(localStorage.getItem('user') || '{}');
-    let profilepic=userdetails.profilePhoto
-    if( profilepic == null){
-      profilepic= "../../../assets/images/pic.jpg"
-    }else{
-      profilepic= this.imgURL+profilepic;
+    let profilepic = userdetails.profilePhoto
+    if (profilepic == null) {
+      profilepic = "../../../assets/images/pic.jpg"
+    } else {
+      profilepic = this.imgURL + profilepic;
     }
     return profilepic;
   }
 
-  getMemberType() {  
+  getMemberType() {
     const userdetails = JSON.parse(localStorage.getItem('user') || '{}');
 
     return userdetails.memberType;
   }
-  
+
   logoutUser() {
     localStorage.clear()
     // this.route.navigate(['/login'])
   }
   //if no username then we will get error.
-  getToken(){
+  getToken() {
     const userdetails = JSON.parse(localStorage.getItem('user') || '{}');
 
     return userdetails.userId;
@@ -111,13 +111,13 @@ export class AuthService {
     return false;
   }
   getInbox() {
-   
+
     this.fms.getInbox().subscribe((res) => {
       return res;
     });
   }
   inboxCount() {
-   
+
     this.fms.getInboxCount().subscribe((res) => {
       return res;
     });
@@ -129,29 +129,37 @@ export class AuthService {
     });
   }
   getCartCount() {
-    let count=0;
-  count= JSON.parse(localStorage.getItem('cartCount') || '0');
-  return count
+    let count = 0;
+    count = JSON.parse(localStorage.getItem('cartCount') || '0');
+    return count
   }
   getNotification() {
-    const id=this.getToken();
-    this.fms.getNotifications(id).subscribe((res:any) => {
+    const id = this.getToken();
+    this.fms.getNotifications(id).subscribe((res: any) => {
       //res=res((x:any)=>x.isRead === false).length;
-     return res;
-      
+      return res;
+
     });
   }
-  notifyCount() {
-    const id=this.getToken();
-    this.fms.getNotifications(id).subscribe((res:any) => {
-      res= res.filter((x:any)=> x.isRead === false)
-this.notificationtList=res;
-     return res;
-  })
-}
-getProducts(){
-  return this.notificationtList.asObservable();
-}
+  // getTotalPrice() : number{
+  //   let grandTotal = 0;
+  //   this.cartItemList.map((a:any)=>{
+  //     grandTotal += a.total;
+  //   })
+  //   return grandTotal;
+  // }
+  notifyCount(): number {
+    
+    let data = 0;
+    this.fms.getNotificationCount().subscribe((res: any) => {
+
+      res = data;
+    })
+    return data;
+  }
+  getProducts() {
+    return this.notificationtList.asObservable();
+  }
 
 
   // private prodCount: number = 0;

@@ -138,7 +138,7 @@ export class ProdcutDetailsComponent implements OnInit {
       }
       this.members = data.member;
 
-      console.log(this.images)
+      console.log(this.members)
       localStorage.removeItem('images');
       localStorage.setItem('images', JSON.stringify(this.images[0]?.imageName));
       this.spinnerService.hide();

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { FmsService } from 'src/app/services/fms.service';
 
 @Component({
@@ -14,12 +15,13 @@ export class ProductlistComponent implements OnInit {
   productID: any;
   sellerID: any;
   shopId: string | null;
-  constructor(private fms: FmsService,private router: ActivatedRoute) { 
+  constructor(private fms: FmsService,private router: ActivatedRoute,public spinnerService: NgxSpinnerService,public route:Router) { 
     this.productID = this.router.snapshot.paramMap.get('productID');
     this.sellerID = this.router.snapshot.paramMap.get('sellerID');
     this.shopId = this.router.snapshot.paramMap.get('ID');
   }
   ngOnInit(): void {
+    this.spinnerService.show();
     this.getShopDetails();
   }
   getShopDetails() {
@@ -31,9 +33,12 @@ export class ProductlistComponent implements OnInit {
         + ',' + this.shopdetails.address.state + ',' + this.shopdetails.address.zipCode
       console.log(this.productLst)
       console.log(this.shopdetails)
+    this.spinnerService.hide();
+
     })
   }
   follower(){
+    this.route.navigateByUrl('/menu/FollowedList')
     
   }
 
