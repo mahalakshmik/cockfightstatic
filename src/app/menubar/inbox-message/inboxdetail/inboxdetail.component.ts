@@ -51,7 +51,7 @@ console.log(this.senderid)
  
     })
   }
-  InboxPostComments(){debugger
+  InboxPostComments(){
     this.spinnerService.show();
 
    const userid = this.as.getToken();

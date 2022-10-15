@@ -6,3 +6,24 @@
     padding: 10px;
     margin-bottom: 10px;
 }
+
+.img {
+    height: 200px;
+    line-height: 200px;
+    width: 100%;
+    display: block;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgb(0 0 0 / 10%), 0 0 5px rgb(0 0 0 / 10%), 0 1px 3px rgb(0 0 0 / 30%), 0 3px 5px rgb(0 0 0 / 20%), 0 5px 10px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 20%), 0 20px 20px rgb(0 0 0 / 15%);
+}
+.text-normal {
+    font-size: 16px;
+    font-weight: 600;
+}
+ h3 {
+    margin-top: 0px !important;
+    color: #f15502;
+    border-bottom: solid 2px #f15502;
+}

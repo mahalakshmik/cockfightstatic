@@ -11,7 +11,7 @@ export class WishlistComponent implements OnInit {
 
   constructor(private fms: FmsService) { }
 
-  ngOnInit(): void {debugger
+  ngOnInit(): void {
     this.getWishList()
   }
   getWishList() {

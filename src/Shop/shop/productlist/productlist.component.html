@@ -1,24 +1,29 @@
 <div class="main">
     <div class="card">
         <div class="row">
-            <div class="col-sm-1">
-                <img src="assets/images/img1.jpg" width="100" />
+            <div class="heading-name pull-left">
+                <span class="heading">
+                    <img src="assets/images/farm.jpg" onerror="this.src='/images/farm.jpg'" style="border-radius:50%; margin-right:10px; vertical-align:middle; width:50px; height:50px; display:inline; float:left">
+                    {{shopdetails?.member.userName}}
+                    <img src="assets/images/verify.png" class="img-responsive inline" style="display: inline !important;
+                    margin-left: 5px;">
+                </span>
+                <p> {{myaddress}}</p>
             </div>
             <div class="col-sm-11 p-l-50 product-list">
-                <h1> {{this.shopdetails?.address.addressName}} <img src="assets/images/verified.jpg" height="50"></h1>
-                <p> {{this.myaddress}}</p>
+            
 
         <div class="row">
             <div class="col-sm-12 m-t-20">
                 <div class="pro-details">
-                    <div>
+                    <!-- <div>
                         <span class="fa fa-star checked m-r-5"></span>
                         <span class="fa fa-star m-r-5 checked"></span>
                         <span class="fa fa-star m-r-5 checked"></span>
                         <span class="fa fa-star m-r-5 checkbox"></span>
                         <span class="fa fa-star m-r-5"></span>
                         (4.1) <a href="#"> 17679 Ratings </a> | <a href="#"> 933 Reviews </a>
-                    </div>
+                    </div> -->
 
                     <hr class="m-t-10 m-b-20">
 
@@ -27,14 +32,22 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-6">
-                <h2> About Seller </h2>
+            <div>
+                <h3 class="text-normal"><b>About Seller</b></h3>
+                <p>
+                   
+        
+                </p>
             </div>
-            <div class="col-sm-6">
+            <!-- <div class="col-sm-6">
                 <h2> Contact Details </h2>
                 <div class="form-grop">
-                    <label> Contact No.:{{this.shopdetails?.address.mobileNo}} </label>
+                    <label> Contact No.:{{shopdetails?.address.mobileNo}} </label>
                 </div>
+            </div> -->
+            <div>
+                <h3 class="text-normal"><b>Contact Details</b></h3>
+                <div><b>Contact No.:</b><b>{{shopdetails?.address.mobileNo}}</b></div>
             </div>
             <div class="col-sm-12 shop-page sub-page">
                 <section class="shop-section section-padding">
@@ -51,8 +64,10 @@
                                             <div class="product-wrapper">
 
                                                 <div class="product-detail item-list">
-                                                    <a routerLink="/customer/ProdcutDetails/{{p.productId}}/{{p.sellerId}}" class="animate-scale">
-                                                        <div class="not_img">370 x 440px</div>
+                                                    <a routerLink="/customer/ProdcutDetails/{{p.productID}}/{{p.sellerID}}" class="animate-scale">
+                                                        <div class="not_img" *ngIf="!p.productImage || p.productImage =='NULL' ">370x440px</div>
+                                                        <img class="img" src="{{productPicUrl}}{{p.productImage}}"
+                                                        *ngIf="p.productImage && p.productImage !='NULL' " />
                                                     </a>
                                                     <h6 class="clr-red itemtitle">{{p.productName}}</h6>
                                                     <h6 class="head1"> Seller : {{p.sellerName}} </h6>

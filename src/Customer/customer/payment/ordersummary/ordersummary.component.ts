@@ -56,7 +56,7 @@ export class OrdersummaryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    debugger
+    
     //userid mandatory for delete cart
     this.orderVM.deliveryAddress = this.deliveryaddress;
     this.isCart = JSON.parse(localStorage.getItem('isCart') || '')
@@ -94,7 +94,7 @@ export class OrdersummaryComponent implements OnInit {
   
 
   confirmOrder() {
-    debugger
+    
 
     localStorage.setItem('quantity', JSON.stringify(this.productCount));
 
@@ -117,7 +117,7 @@ export class OrdersummaryComponent implements OnInit {
   }
  
   confirmOrderforCOD() {
-    debugger;
+    ;
     this.spinnerService.show();
 
     //#payment options are two types  vvvimp
@@ -245,7 +245,7 @@ export class OrdersummaryComponent implements OnInit {
     }
   }
  
-  confirmPayment() {debugger
+  confirmPayment() {
 
     const payload = {
       sellingPrice: this.selectedProdut.standardPrice,
@@ -314,7 +314,7 @@ if(this.isCart){
     });
   }
   cartlistorder() {
-    debugger
+    
     this.fms.cartOrderList().subscribe((res: any) => {
       console.log('orderlist', res)
       this.orderVM = res;
@@ -329,7 +329,7 @@ if(this.isCart){
       });
     })
   }
-  cartIncrement(p:any,i:any){debugger
+  cartIncrement(p:any,i:any){
     if (this.orderVM.orderDetail[i].stockQty == this.productCount) {
       this.errormessage = `We are sorry! Only ${this.selectedProdut.stockQty} item(s) are available`;
     } else {
@@ -364,7 +364,7 @@ if(this.isCart){
     this.totalAmount = this.totalAmount - this.selectedProdut.discount;
   }
 
-  uploadFile(e: any) {debugger
+  uploadFile(e: any) {
     this.fileToUpload = e.target.files[0];
     console.log(this.fileToUpload.name)
  

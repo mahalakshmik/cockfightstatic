@@ -36,7 +36,7 @@ export class ProfileComponent implements OnInit {
     this.getProfile();
   }
 
-  onImageFileSelect(e: any) {debugger
+  onImageFileSelect(e: any) {
     this.message = [];
     this.progressInfos = [];
     const selectedFiles = e.target.files;

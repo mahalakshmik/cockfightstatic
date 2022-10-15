@@ -51,7 +51,7 @@ export class CartitemsComponent implements OnInit {
 
   }
   forEach() {
-    debugger
+    
     this.cartLst.forEach((data: any) => {
       if (data.paymentOptionDesc == 'ONLINE') {
         ////alert('aasas') ;
@@ -95,7 +95,7 @@ export class CartitemsComponent implements OnInit {
     });
   }
   proceedToPayment() {
-    debugger
+    
     //it will not work without login
     //need to check iscart save for now localstorage
 

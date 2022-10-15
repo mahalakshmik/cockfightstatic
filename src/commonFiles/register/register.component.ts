@@ -107,7 +107,7 @@ export class RegisterComponent implements OnInit {
     //this.verifymobileNO();
     //this.isLoading = true;
     if (this.form) {
-      debugger
+      
       this.sr.userRegister(this.form).subscribe({
         next: data => {
         //  this.isLoading = false;

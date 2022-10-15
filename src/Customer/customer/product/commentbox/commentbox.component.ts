@@ -14,7 +14,7 @@ export class CommentboxComponent implements OnInit {
 
   ngOnInit() {}
 
-  post() {debugger
+  post() {
     if (this.value.trim()) {
       this.add.emit(this.value);
     }

@@ -47,7 +47,7 @@ export class CommentsListComponent implements OnInit {
     this.isEditing = !this.isEditing;
   }
 
-  onAdd($event:any) {debugger
+  onAdd($event:any) {
     this.form.comment=$event;
     console.log(this.comment)
     this.postComment(this.comment)
@@ -61,7 +61,7 @@ export class CommentsListComponent implements OnInit {
   //     this.message = res;
   //   });
   // }
-  postComment(payload:any) {debugger
+  postComment(payload:any) {
     
     this.userid = this.as.getToken();
   //  this.spinnerService.show();
@@ -133,7 +133,7 @@ export class CommentsListComponent implements OnInit {
 
   dialogbox(breedtemplate: any,comment:any) {
     this.userid = this.as.getToken();
-    debugger
+    
     if (!this.userid) {
       this.Login();
     } else {
@@ -145,7 +145,7 @@ export class CommentsListComponent implements OnInit {
     }
   }
 
-  SendMessageToSeller(comment:any) {debugger
+  SendMessageToSeller(comment:any) {
     this.userid = this.as.getToken();
       
     //before send message check login
@@ -167,7 +167,7 @@ export class CommentsListComponent implements OnInit {
       formdata.append('fileName', this.form.fileName);
       formdata.append('messageSubject', this.form.messageSubject);
     // withour filename also updating the savecomments use name 'nofile' to validte
-      this.fms.sendMessageToseller(formdata).subscribe((res:any) => {debugger
+      this.fms.sendMessageToseller(formdata).subscribe((res:any) => {
         console.log(res);
       // this.isHide = res.success
         if (res) {

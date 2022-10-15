@@ -100,7 +100,7 @@ export class ProdcutDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    debugger
+    
     this.spinnerService.show();
     this.productList();
 
@@ -116,7 +116,7 @@ export class ProdcutDetailsComponent implements OnInit {
   }
 
   productList() {
-    debugger
+    
     this.fms.produtListById(this.productID, this.sellerID).subscribe((data: any) => {
       this.product = data.productMaster;
       //  this.product.isGuest = false;
@@ -356,7 +356,7 @@ export class ProdcutDetailsComponent implements OnInit {
     }
   }
   postComment() {
-    debugger
+    
     //before send message check login
     this.spinnerService.show();
 
@@ -465,7 +465,7 @@ export class ProdcutDetailsComponent implements OnInit {
   }
 
   Submitcomments($event: any) {
-    debugger
+    
 
     console.log(this.comment)
   }

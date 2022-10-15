@@ -73,7 +73,7 @@ export class LeftNavComponent implements OnInit {
  console.log(this.profilePic)
   }
   
-  ngOnChanges(changes:SimpleChanges){debugger
+  ngOnChanges(changes:SimpleChanges){
     if(this.parentData){
       
       this.profilePic =this.profilePicUrl+this.parentData;
@@ -84,7 +84,7 @@ export class LeftNavComponent implements OnInit {
     if (tab === 'profile') {
       this.router.navigate(['menu/profile']);
     } else if (tab === 'address') {
-      debugger
+      
       this.router.navigate(['menu/address']);
     } else if (tab === 'notification') {
       this.router.navigate(['menu/notification']);
@@ -127,7 +127,7 @@ export class LeftNavComponent implements OnInit {
     alert('teste')
   }
 
-  mobilenav(){debugger
+  mobilenav(){
     this.isVisited = true;
    // console.log('test')
     alert('test')

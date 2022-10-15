@@ -174,7 +174,7 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
     this.fms.getimgListbyProductId(id).subscribe((res: any) => {
       if (res.length > 0) {
         res.forEach((e: any) => {
-          debugger
+          
           const imgs = this.productPicUrl + e.imageName;
           if (e.contentType == "video/mp4") {
             this.isvideo = true;
@@ -278,7 +278,7 @@ this.formsell.productImage = this.pid.concat("_0.jpeg")
     //     formdata.append('files', this.videoFile[i]);
     //   }
     formdata.append('ProductId', this.formsell.productID);
-    this.fms.saveVideos(formdata,this.formsell.productID, this.userdetails.userId,this.isNew).subscribe((res:any) =>{debugger
+    this.fms.saveVideos(formdata,this.formsell.productID, this.userdetails.userId,this.isNew).subscribe((res:any) =>{
 console.log(res.imageName)
       if (res.imageName) {
     this.onSelectFiles(this.videoFile,res.imageName)
@@ -475,7 +475,7 @@ console.log(res.imageName)
     }
   }
   change(event: any, p: any) {
-    debugger
+    
     if (event.isUserInput) {
       console.log(event.source.value, event.source.selected);
       this.test1 = p.breedName
@@ -490,7 +490,7 @@ console.log(res.imageName)
     }
   }
 
-  public onSelectFiles(file: File,filename:string) {debugger
+  public onSelectFiles(file: File,filename:string) {
     this.blobService.uploadVIDEOS(this.videosas, file,filename, () => {
       this.spinnerService.hide();
 

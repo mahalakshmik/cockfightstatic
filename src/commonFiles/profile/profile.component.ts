@@ -87,7 +87,7 @@ export class ProfileComponent implements OnInit {
     { text: "Shop", value: 2173 },
   ];
   getProfile() {
-    debugger
+    
 
 
     this.gs.memberListbyId(this.userID).subscribe(res => {
@@ -303,7 +303,7 @@ export class ProfileComponent implements OnInit {
       cancelButtonText: 'No, let me think'
     }).then((result) => {
       if (result.value) {
-        debugger
+        
         this.breedLst.splice(index, 1);
       }
     })

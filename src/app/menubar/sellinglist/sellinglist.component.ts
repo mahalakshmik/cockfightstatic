@@ -63,7 +63,7 @@ export class SellinglistComponent implements OnInit {
     })
   }
   CancelOrder(id: any, orderno: any) {
-    debugger
+    
     this.spinnerService.show();
 
     const cancelby = '0'

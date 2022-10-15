@@ -67,7 +67,7 @@ export class BreedListComponent implements OnInit {
       } ,
     );
     
-    this.breeddialogRef.afterClosed().subscribe((data:any) => {debugger
+    this.breeddialogRef.afterClosed().subscribe((data:any) => {
       console.log("data returned from mat-dialog-close is ", data);
     })
 
@@ -87,7 +87,7 @@ export class BreedListComponent implements OnInit {
       cancelButtonText: 'No, let me think'
     }).then((result) => {
       if (result.value) {
-        debugger
+        
         this.breedLst.splice(index, 1);
       }
     })

@@ -283,7 +283,7 @@ this.vedio=false;
   }
 
 
-  onSelectFile(event:any) {debugger
+  onSelectFile(event:any) {
     const file = event.target.files && event.target.files[0];
     if (file) {
       var reader = new FileReader();

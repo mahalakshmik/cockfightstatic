@@ -131,7 +131,7 @@ console.log(this.url)
   getImgListByProductId(id:number){
     this.fms.getimgListbyProductId(id).subscribe((res:any)=>{
       if(res.length >0 ){
-        res.forEach((e:any) => {debugger
+        res.forEach((e:any) => {
           const imgs=this.productPicUrl+e.imageName;
           if(e.contentType =="video/mp4"){
              this.isvideo=true;
@@ -166,7 +166,7 @@ console.log(this.url)
       this.edit=false;
       this.editimages=true;
     }
-    debugger
+    
     this.message = [];
     this.progressInfos = [];
     this.selectedFiles = event.target.files;
@@ -242,7 +242,7 @@ console.log(this.url)
     });
   }
 
-  createsell() {debugger
+  createsell() {
 
     this.spinnerService.show();
     if(this.formsell.discount ==undefined){
@@ -360,7 +360,7 @@ console.log(this.url)
 
 
   onSelectFile(event: any) {
-    debugger;
+    ;
     if(this.edit){
       this.editvideos=true;
     }
@@ -391,7 +391,7 @@ console.log(this.url)
   }
 
   getvideoList() {
-    debugger;
+    ;
     this.videoList = this.blobService
       .listVideos(this.videosas)
       .then((data: any) => {
@@ -419,7 +419,7 @@ console.log(this.url)
     }
   }
   change(event: any, p: any) {
-    debugger
+    
     if (event.isUserInput) {
       console.log(event.source.value, event.source.selected);
       this.test1 = p.breedName
