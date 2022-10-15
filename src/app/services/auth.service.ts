@@ -1,6 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, map, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { FmsService } from './fms.service';
 
@@ -14,7 +14,9 @@ export class AuthService {
   userdetail: any;
   imgURL = environment.imgUrl;
   profileImageFileOutFileLink: string = "http://viitortechnologies.com/images/4.JPG"
-    
+  private notificationsSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  public notificationtList = new BehaviorSubject<any>([]);
+  public notifications$ = this.notificationsSubject.asObservable();
     constructor(private http: HttpClient,private fms: FmsService) { 
     this.userdetail = JSON.parse(localStorage.getItem('user') || '{}');
   }
@@ -140,14 +142,16 @@ export class AuthService {
     });
   }
   notifyCount() {
-    
     const id=this.getToken();
-    this.fms.getNotificationCount().subscribe((res:any) => {
-      console.log(res)    
-     return res;  
-    });
-  }
-
+    this.fms.getNotifications(id).subscribe((res:any) => {
+      res= res.filter((x:any)=> x.isRead === false)
+this.notificationtList=res;
+     return res;
+  })
+}
+getProducts(){
+  return this.notificationtList.asObservable();
+}
 
 
   // private prodCount: number = 0;

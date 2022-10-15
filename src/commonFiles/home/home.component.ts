@@ -155,8 +155,13 @@ export class HomeComponent implements OnInit {
   productList() {
     this.spinnerService.show();
     this.fmss.productSearch(this.form).subscribe((res) => {
-      console.log(res);
       this.product = res;
+      const nostockdata=this.product.filter((x:any)=>x.stockQty <=  0 );
+      const stockdata=this.product.filter((x:any)=>x.stockQty >  0 );
+      console.log(stockdata);
+      console.log(nostockdata);
+      // here showing no stock data last --praveen
+      this.product=stockdata.concat(nostockdata);
       this.spinnerService.hide();
     });
   }

@@ -108,9 +108,10 @@ getnotificationcount(){let res=[]
 
     console.log(res);
 }
-  ngOnInit() {
-    //this.getInboxCount();
-    // this.getCartList();
-    //  this.getNotification();
+  ngOnInit() {debugger
+    this.dataService.getProducts()
+    .subscribe(res=>{
+      this.notifcount = res.length;
+    })
   }
 }
