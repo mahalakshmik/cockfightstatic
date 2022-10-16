@@ -92,7 +92,9 @@
                                                 class="fa fa-envelope-o fa-color-white" 
                                                 title="Inbox"></i><span class="inbox-count"> {{inboxcount}}</span></a>
                                     </li>
-                                    <li>
+                                    <li><ng-container *ngIf="notifications$ | async as notifications">
+                                        <div >{{ notifications }}</div>
+                                      </ng-container>
                                         <a routerLink="/Cartitems"><i class="fa  fa-shopping-cart fa-color-white"></i>
                                             <span
                                                 class="login-cart-count" *ngIf="cartLst">{{this.dataService.getCartCount()}}</span>

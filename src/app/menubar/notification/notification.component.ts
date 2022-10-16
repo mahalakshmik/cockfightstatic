@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/services/auth.service';
 import { FmsService } from 'src/app/services/fms.service';
+import { NotificationService } from 'src/app/services/Notification.service';
 
 @Component({
   selector: 'app-notification',
@@ -13,7 +14,7 @@ export class NotificationComponent implements OnInit {
   notifications: any;
   userID: any;
 
-  constructor(private fms: FmsService,private as: AuthService,
+  constructor(private fms: FmsService,private ns:NotificationService,private as: AuthService,
     public spinnerService: NgxSpinnerService,private router:Router
     ) {
       const userDetails = this.as.getLoggedUserDetails();
@@ -43,7 +44,7 @@ export class NotificationComponent implements OnInit {
   }
 changeStatus(id:number){
   this.spinnerService.show();
-  this.fms.updateNotification(id).subscribe(res=>{
+  this.ns.updateNotification(id).subscribe(res=>{debugger
     console.log(res)
     if(res){
       this.spinnerService.hide();

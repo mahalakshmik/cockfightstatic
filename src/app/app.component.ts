@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import { withModule } from '@angular/core/testing';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Observable } from 'rxjs';
 import { LoginComponent } from 'src/commonFiles/login/login.component';
 import { RegisterComponent } from 'src/commonFiles/register/register.component';
 import { AuthService } from './services/auth.service';
 import { FmsService } from './services/fms.service';
+import { NotificationService } from './services/Notification.service';
 
 @Component({
   selector: 'app-root',
@@ -26,8 +28,9 @@ export class AppComponent {
   memberType: any;
   inboxcount: number=0;
   //userType: any;
+  public notifications$: Observable<number> | undefined;
   constructor(
-    private matDialog: MatDialog,private as: AuthService,
+    private matDialog: MatDialog,private as: AuthService,public ns: NotificationService,
     private fms: FmsService,
     public dataService: AuthService,
     private spinner: NgxSpinnerService
@@ -39,7 +42,7 @@ export class AppComponent {
     this.user = localStorage.getItem('user');
     if (this.user) {
      this.getCartList();
-     this.getNotification();
+     this.getnotificationcount();
   
 
     // this.getInbox();
@@ -96,19 +99,31 @@ export class AppComponent {
    });
    console.log(this.inboxcount)
   }
-  getNotification() {
-    this.notifcount= this.dataService.notifyCount();
-    console.log( this.dataService.notifyCount())
+  // getNotification() {
+  //   this.notifcount= this.dataService.notifyCount();
+  //   console.log( this.dataService.notifyCount())
     
    
-  }
-// getnotificationcount(){let res=[]
-//   res= this.notifications.filter((x:any)=> x.isRead === false)
+  // }
+getnotificationcount(){let res=[]
+  // res= this.notifications.filter((x:any)=> x.isRead === false)
   
-//   this.notifcount=res.length;
+  // this.notifcount=res.length;
 
-//     console.log(res);
-// }
+  //   console.log(res);
+  this.fms.getNotificationCount().subscribe((res:any)=>
+    {
+      console.log(res);
+      this.notifcount=res;
+
+    }
+  )
+}
   ngOnInit() {
+    this.ns.refreshNeeded$.subscribe(res=>{
+      this.getnotificationcount();
+
+    })
+   // this.notifications$ = this.notificationService.notifications$
   }
 }
