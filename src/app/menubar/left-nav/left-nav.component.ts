@@ -55,7 +55,7 @@ export class LeftNavComponent implements OnInit {
   addclass:string=''
 @Input() parentData: string | undefined;
   constructor(private fms: FmsService, private gs: LoginService, public as: AuthService, private spinnerService: NgxSpinnerService,
-    private dialog: MatDialog, private router: Router, private activatedRoute: ActivatedRoute) {
+    private dialog: MatDialog, public router: Router, private activatedRoute: ActivatedRoute) {
 
     this.adform = new Address;
    // console.log(this.adform)
