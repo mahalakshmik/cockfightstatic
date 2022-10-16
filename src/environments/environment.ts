@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   // delte
   /* Production/Beta URL End points */
-  //test
+
   api:'https://cockfightkaichon.azurewebsites.net/api/',
 // api:'http://localhost:13866/api/',
   ProductUrl:"https://lgistorage.blob.core.windows.net/fmsimages/",
