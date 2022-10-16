@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { withModule } from '@angular/core/testing';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 import { LoginComponent } from 'src/commonFiles/login/login.component';
@@ -29,8 +30,9 @@ export class AppComponent {
   inboxcount: number=0;
   //userType: any;
   public notifications$: Observable<number> | undefined;
+  userType: any;
   constructor(
-    private matDialog: MatDialog,private as: AuthService,public ns: NotificationService,
+    private matDialog: MatDialog,private as: AuthService,public ns: NotificationService,public router:Router,
     private fms: FmsService,
     public dataService: AuthService,
     private spinner: NgxSpinnerService
@@ -125,5 +127,52 @@ getnotificationcount(){let res=[]
 
     })
    // this.notifications$ = this.notificationService.notifications$
+   this.userType = this.as.getuserType();
+
+  }
+
+
+  //moved from left to here
+  pageNavigate(tab: string) {
+    if (tab === 'profile') {
+      this.router.navigate(['menu/profile']);
+    } else if (tab === 'address') {
+      
+      this.router.navigate(['menu/address']);
+    } else if (tab === 'notification') {
+      this.router.navigate(['menu/notification']);
+    } else if (tab === 'inbox') {
+      this.router.navigate(['menu/inbox/' + this.userID + '/' + this.memberType]);
+    } else if (tab === 'Verify') {
+      this.router.navigate(['menu/Verify']);
+    } else if (tab === 'followers') {
+      this.router.navigate(['menu/FollowedList']);
+    } else if (tab === 'following') {
+      this.router.navigate(['menu/FollowingList']);
+    } else if (tab === 'breedList') {
+      this.router.navigate(['menu/breedList']);
+    }
+    else if (tab === 'WishList') {
+      this.router.navigate(['menu/WishList']);
+    }
+    else if (tab === 'readytosell') {
+      this.router.navigate(['menu/readytosell']);
+    }
+    else if (tab === 'SellingList') {
+      this.router.navigate(['menu/SellingList']);
+    }
+    else if (tab === 'SoldOutList') {
+      this.router.navigate(['menu/SoldOutList']);
+    }
+    else if (tab === 'orderhistory') {
+      this.router.navigate(['menu/orderhistory']);
+    }
+    else if (tab === 'TransporterBookingList') {
+      this.router.navigate(['menu/TransporterBookingList']);
+    }
+    else if (tab === 'breadList') {
+      this.router.navigate(['/farm/BreadList']);
+    }
+    // this.appComponent.checkWebUrl(tab)
   }
 }
