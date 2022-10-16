@@ -4,6 +4,7 @@
         <div class="col-md-9">
             <div class="card ">
                 <div class="row">
+                   
                     <div class="col-sm-9">
                         <div class="title-bar">
                             <h2 class="title">Selling List </h2><span class="title-border"></span>
@@ -36,7 +37,7 @@
                         <div class="col-sm-2">
                             <p><b>Total Amount:{{p.totalAmount}}</b></p>
                             <!-- *ngIf="==2178" -->
-                            
+
                             <!-- if (paymentslip != null && paymentslip.PaymentMode == Utility.ONLINE && paymentslip.ReferenceNo != null)
                             {
                             } -->
@@ -53,7 +54,9 @@
                             } -->
                             <div *ngFor="let pay of p.orderPayment">
                                 <!-- href="~/Uploads/OrderPayment/@Model.orderHeader[i].OrderID/@(paymentslip != null ? paymentslip.ReferenceNo : "")" -->
-                                <a *ngIf="pay?.paymentMode==2178" class="btn btn-primary" href="{{fileuploadUrl}}Uploads/OrderPayment/{{p.orderID}}/{{pay.referenceNo}}"  target="_blank"><i class="fa fa-eye" aria-hidden="true" >Payment
+                                <a *ngIf="pay?.paymentMode==2178" class="btn btn-primary"
+                                    href="{{fileuploadUrl}}Uploads/OrderPayment/{{p.orderID}}/{{pay.referenceNo}}"
+                                    target="_blank"><i class="fa fa-eye" aria-hidden="true">Payment
                                         slip</i></a>
                             </div>
 
@@ -78,19 +81,23 @@
                             </div>
                             <hr>
 
-                          
+
                         </div>
-                         <!-- ORDERPLACED = 2180;
+                        <!-- ORDERPLACED = 2180;
                          ORDERCONFIRMED = 2181;
                          ORDERDELIVERED = 2182;
                          ORDERCANCELED = 2183;
                          ORDERCLOSED = 2184; -->
-                         <!-- <div *ngIf="currentStatus !== 'open' || currentStatus !== 'reopen'"></div> -->
-                        <button  *ngIf="p.orderStatus==2180" class="btn btn-primary" (click)="CancelOrder(q.orderID,p.orderNo)">Cancel Order</button>
-                        <button  *ngIf="p.orderStatus=='2181' || p.orderStatus=='2181'" class="btn btn-primary" (click)="Confirmdelivery(q.orderID)">Confirm Delivered</button>
-                        <button  *ngIf="p.orderStatus=='2180'  " class="btn btn-primary" (click)="ConformPayment(q.orderID)">Confirm Payment</button>
-                        <button  *ngIf="p.orderStatus=='2182'|| p.orderStatus=='2183'" class="btn btn-primary" (click)="closeOrder(q.orderID)">Close Order</button>
-                        
+                        <!-- <div *ngIf="currentStatus !== 'open' || currentStatus !== 'reopen'"></div> -->
+                        <button *ngIf="p.orderStatus==2180" class="btn btn-primary"
+                            (click)="CancelOrder(q.orderID,p.orderNo)">Cancel Order</button>
+                        <button *ngIf="p.orderStatus=='2181' || p.orderStatus=='2181'" class="btn btn-primary"
+                            (click)="Confirmdelivery(q.orderID)">Confirm Delivered</button>
+                        <button *ngIf="p.orderStatus=='2180'  " class="btn btn-primary"
+                            (click)="ConformPayment(q.orderID)">Confirm Payment</button>
+                        <button *ngIf="p.orderStatus=='2182'|| p.orderStatus=='2183'" class="btn btn-primary"
+                            (click)="closeOrder(q.orderID)">Close Order</button>
+
                     </div>
                 </div>
             </div>
