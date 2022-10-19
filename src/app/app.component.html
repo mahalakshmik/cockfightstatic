@@ -32,6 +32,7 @@
                     <ul class="list-inline list-unstyled icons-topp logincls" *ngIf="!dataService.isLoggedIn()">
                         <li class="dropdown" >
                             <a  (click)="OpenModal()">Login</a>
+                            <h1>{{'dashboard'|translate}}</h1>
                         </li>
                         <li>
                             <a routerLink="/Cartitems"><i class="fa  fa-shopping-cart fa-color-white"></i>
@@ -39,6 +40,18 @@
                                     class="login-cart-count" *ngIf="cartLst">{{this.dataService.getCartCount()}}</span>
                                     <span class="login-cart-count" *ngIf="!cartLst">0</span></a>
                         </li>
+
+
+                        <!-- <li>
+                            <select #select (change)="switchLang(selectlang.value)" >
+                            <option *ngFor="let lng of translate.getLangs()" [value]="langauge"
+                            [selected="language === translate.currentLang">
+                            {{language}}
+
+                            </option>
+                            </select>
+                            </li> -->
+                           
                     </ul>
 
                     <div class="pull-right loggedincls" *ngIf="dataService.isLoggedIn()">

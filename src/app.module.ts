@@ -16,7 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './commonFiles/register/register.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './commonFiles/login/login.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AddaddressComponent } from './commonFiles/addAddress/addaddress/addaddress.component';
@@ -26,7 +26,14 @@ import { WishListComponent } from './commonFiles/wish-list/wish-list.component';
 import { PaymentComponent } from './commonFiles/payment/payment.component';
 import { PaymentsuccesComponent } from './commonFiles/payment/paymentsucces/paymentsucces.component';
 import { PostcommentsComponent } from './commonFiles/postcomments/postcomments.component';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 
+
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient, "assets/i18n/", ".json");
+}
 @NgModule({
   declarations: [
     AppComponent,HeaderComponent, FooterComponent, HomeComponent, ProfileComponent,
@@ -39,6 +46,13 @@ import { PostcommentsComponent } from './commonFiles/postcomments/postcomments.c
     // MatProgressSpinnerModule,
     // MaterialExampleModule,
     FormsModule,HttpClientModule,ReactiveFormsModule,SharedModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
     
   ],
   providers: [],

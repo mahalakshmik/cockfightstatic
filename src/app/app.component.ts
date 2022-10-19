@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { withModule } from '@angular/core/testing';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 import { LoginComponent } from 'src/commonFiles/login/login.component';
@@ -31,12 +32,23 @@ export class AppComponent {
   //userType: any;
   public notifications$: Observable<number> | undefined;
   userType: any;
-  constructor(
+    
+
+  constructor(public translate: TranslateService,
     private matDialog: MatDialog,private as: AuthService,public ns: NotificationService,public router:Router,
     private fms: FmsService,
     public dataService: AuthService,
     private spinner: NgxSpinnerService
   ) {
+//lang transalte
+
+    translate.addLangs(["en", "fr"]);
+    translate.setDefaultLang('en');
+
+   // let browserLang = translate.getBrowserLang();
+   // translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
+//lang transalte
+
     const userDetails = this.as.getLoggedUserDetails();
     this.userID = userDetails.userId;
     //this.username = userDetails.userName;
@@ -53,6 +65,17 @@ export class AppComponent {
       this.userName = this.user.userName;
     }
   }
+
+//lang transalte
+
+
+
+switchLang(lang:string){
+this.translate.use(lang);
+}
+//lang transalte
+
+
   logout() {
    // alert('test')
     localStorage.clear();
