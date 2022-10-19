@@ -31,18 +31,24 @@ export class InboxMessageComponent implements OnInit {
   getInboxList() {
     this.spinnerService.show();
     this.fms.getInbox().subscribe((res:any) => {
+      this.spinnerService.hide();
       if(res){
-        this.spinnerService.hide();
-      }
+      
       
       for (let i = 0; i < res.messageHeader.length; i++) {
         res.messageHeader[i].messageDetails= []
         res.messageHeader[i].messageDetails = res.messageDetails.filter((j: { messageID: any; }) => j.messageID == res.messageHeader[i].messageID);
         
+       res.messageHeader[i].isRead= res.messageHeader[i].messageDetails.some((x:any) => x.isRead === false);
+       console.log( res.messageHeader[i].isRead)
       }
       this.inboxlst = res;
       console.log( this.inboxlst);
 
+//       if any messagedetails array contains false header making true;
+// bcz if false means no read
+// but if length 0 then (this all doing bcz header don't have read status taking from details)
+    }
     })
   }
 }

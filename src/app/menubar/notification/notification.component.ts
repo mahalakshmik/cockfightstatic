@@ -34,7 +34,7 @@ export class NotificationComponent implements OnInit {
   }
   markAsRead(){
     this.spinnerService.show();
-    this.fms.updateAllNotifications().subscribe(res =>{console.log(res)
+    this.ns.updateAllNotifications().subscribe(res =>{console.log(res)
     if(res){
       this.spinnerService.hide();
       this.getNotification();

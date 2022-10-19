@@ -126,6 +126,10 @@ getnotificationcount(){let res=[]
       this.getnotificationcount();
 
     })
+    this.ns.refreshNeededForinbox$.subscribe(res=>{
+      this.getInboxCount();
+
+    })
    // this.notifications$ = this.notificationService.notifications$
    this.userType = this.as.getuserType();
 

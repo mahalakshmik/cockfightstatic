@@ -43,7 +43,7 @@ export class FmsService {
     payload.isGuest = this.isGuest;
     //payload.quantity = this.prodList.stockQty;
     payload.quantity = 1;
-    return this.http.post(`${this.baseURL}WishLists/saveWishItem`, payload);
+    return this.http.post(`${this.baseURL}WishLists/saveWhishlist`, payload);
   }
   Payment(payload: any) {
     payload.memberId = this.userdetails.userId;
@@ -65,6 +65,10 @@ export class FmsService {
   }
   verifyUpload(payload: any) {
     return this.http.post(`${this.baseURL}Profile/verfiyDocument`, payload);
+  }
+  getdocuments() {
+    
+    return this.http.get(`${this.baseURL}Profile/verfiyDocument/${this.userdetails.userId}`);
   }
   saveNotifications(payload: any) {
     // payload.memberId = this.userdetails.userId

@@ -14,11 +14,19 @@
                     <div class="col-sm-12" *ngFor="let p of inboxlst?.messageHeader" routerLink="/menu/inboxdetail/{{p.messageID}}/{{this.memberid}}">
                         <p><b>{{p.messageSubject}}:{{p.productName}}</b></p>
                         <p><b>{{p.senderName}}</b>({{p.senderEmail}})</p>
+                        <span class="pull-right font-12" style="margin-top: -84px;">
+
+                            <a> <i class="fa fa-circle" style="color:green" *ngIf="p.isRead" aria-hidden="true" title="mark as Read"></i></a>
+                            <a>  <i class="fa fa-circle" style="color:darkgray" *ngIf="!p.isRead" aria-hidden="true" title="mark as Read"></i></a>
+                        </span>
                         <span class="pull-right font-12">
                             {{p.createdOn | date:'dd-mm-yy hh:mm '}}
+                          
+                                <!-- <h6>Read:{{p.isRead}}</h6> -->
+                          
                         </span>
                        
-                            <p>{{p.messageDetails[0].comment}}</p>
+                            <p>{{p.messageDetails[0]?.comment}}</p>
                         <hr>
 
                     </div>

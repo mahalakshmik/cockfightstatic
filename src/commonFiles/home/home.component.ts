@@ -81,55 +81,60 @@ export class HomeComponent implements OnInit {
     });
     this.productPicUrl.concat();
   }
-  Login() {
-    this.matDialogRefL = this.matDialog.open(LoginComponent, {
+  Login(p:any) {
+    const dialogReference  = this.matDialog.open(LoginComponent, {
       // data: { name: this.name },
       disableClose: true,
       width: '400px',
       height: '550px',
     });
 
-    this.matDialogRef.afterClosed().subscribe((res) => {
+    dialogReference.afterClosed().subscribe((res) => {debugger
       if (res == true) {
-        // this.name = "";
+        this.saveLike(p);
+
       }
     });
   }
-  addwish(p: any, index: any) {
+  addwish(p: any, index: any) {debugger
+    this.userid = this.as.getToken();
     if (!this.userid) {
-      this.Login()
+    this.Login(p);
+    
+  
+    }else{
+      this.saveLike(p)
+  }
       //alert('please login!');
-    } else {
-      console.log(p);
-      p.select = !p.select;
-      // p.forEach((element:any) => {
-      //   console.log(element);
-      //   icon:"fa fa-thumbs-o-up thum-icon"
-
-      // });
-      // console.log(this.product[0].productId)
-      if (this.product) {
-        for (let i = 0; i < this.product.length; i++) {
-          this.prd = this.product[i];
-        }
-      }
-      console.log(this.prd);
-      localStorage.setItem('prodList', JSON.stringify(this.prd));
-      // this.quantity = this.prd.stockQty
-      // this.prd.push(this.quantity)
+    // } else {
+    //   console.log(p);
+    //   this.saveLike(p)
       
-      this.fmss.saveWishList(p).subscribe((res) => {
-        console.log(res);
-        Swal.fire({
-          icon: 'success',
-          title: 'Added to wishList!',
-          // text: "You clicked the button!",
-          // type: "success",
-          timer: 500,
-        });
-        this.ngOnInit();
-      });
+    // }
+  }
+  saveLike(p: any){
+    p.select = !p.select;
+   
+    if (this.product) {
+      for (let i = 0; i < this.product.length; i++) {
+        this.prd = this.product[i];
+      }
     }
+    console.log(this.prd);
+    localStorage.setItem('prodList', JSON.stringify(this.prd));
+  //if without login then check this
+    
+    this.fmss.saveWishList(p).subscribe((res) => {
+      console.log(res);
+      Swal.fire({
+        icon: 'success',
+        title: 'Added to wishList!',
+        // text: "You clicked the button!",
+        // type: "success",
+        timer: 500,
+      });
+      this.productList();
+    });
   }
   reset(form: any) {
     form.reset();

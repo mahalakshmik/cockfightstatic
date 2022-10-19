@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { FmsService } from 'src/app/services/fms.service';
 import { LoginService } from 'src/app/services/login.service';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -21,12 +22,21 @@ export class VerifydocumentComponent implements OnInit {
   selectedFiles2: any;
   selectedFiles1: any;
   breeddialogRef: any;
+  productPicUrl=environment.fileUrl;
   constructor(private fms: FmsService,private as: AuthService) { 
     const userDetails = this.as.getLoggedUserDetails();
     this.userID = userDetails.userId;
   }
 
   ngOnInit(): void {
+    this.getfiles();
+  }
+  getfiles(){
+    this.fms.getdocuments().subscribe(res=>{
+      console.log(res)
+      const imgs = this.productPicUrl + e.imageName;
+      this.previews.push(imgs)
+    })
   }
   onFileSelect(event: any, i: number) {
 

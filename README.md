@@ -35,3 +35,7 @@ note:added Ngx spinner if we get any version we need to remove , it supports onl
   
 >>>comments example taken form this link
 https://stackblitz.com/edit/ng-comment-tree?file=src%2Fapp%2Fapp.component.ts
+
+##Updated header count using behaviour subject
+1.it is autorefresh concept
+2.check notficatin service how the header is updating for message and inbox.(VVIMP)

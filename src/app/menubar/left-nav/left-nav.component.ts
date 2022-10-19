@@ -47,6 +47,7 @@ export class LeftNavComponent implements OnInit {
   activePage: string | undefined
   // myDir: string = 'address';
   profileImageFileOutFileLink: string = "http://viitortechnologies.com/images/4.JPG"
+  //feture if iisue check this
   imgData: any;
   userType: any;
   memberType: number;
@@ -130,7 +131,6 @@ export class LeftNavComponent implements OnInit {
   mobilenav(){
     this.isVisited = true;
    // console.log('test')
-    alert('test')
   }
   ngOnInit(): void {
     this.userType = this.as.getuserType();

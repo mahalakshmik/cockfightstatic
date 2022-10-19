@@ -9,13 +9,19 @@ import { FmsService } from './fms.service';
 })
 export class NotificationService {
     private notificationsSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+    private inboxcountSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
     public notifications$ = this.notificationsSubject.asObservable();
+    public inboxcount$=this.inboxcountSubject.asObservable();
     private _refreshNeeded$ = new Subject<void>();
+    private _refreshNeededForinbox$ = new Subject<void>();
     userdetails: any;
     baseURL = environment.api;
 
     get refreshNeeded$() {
       return this._refreshNeeded$;
+    }
+    get refreshNeededForinbox$() {
+      return this._refreshNeededForinbox$;
     }
     constructor(private http: HttpClient) {
         this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
@@ -29,15 +35,14 @@ export class NotificationService {
         payload.senderId = this.userdetails.userId;
         return this.http.post(`${this.baseURL}Notifications`, payload);
       }
-      getNotificationCount() {
-        this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
-    
-        return this.http.get(`${this.baseURL}NotificationListSP/NotificationsCount/userid?userid=` + this.userdetails.userId);
-      }
+     
       updateAllNotifications() {
         this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
     
-        return this.http.get(`${this.baseURL}NotificationListSP/UpdateAllNotifications/${this.userdetails.userId}`);
+        return this.http.get(`${this.baseURL}NotificationListSP/UpdateAllNotifications/${this.userdetails.userId}`)
+        .pipe(tap(()=>{
+          this._refreshNeeded$.next();
+        }));
       }
       getNotifications(userid: any) {
         this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
@@ -56,4 +61,14 @@ export class NotificationService {
             })
           );
       } 
+
+
+      // inbox
+  
+  
+      getInboxdetails(messageid: any,membertype: any) {
+        return this.http.get(
+          `${this.baseURL}Profile/InboxDetail/`+messageid+'/'+membertype+'/' +this.userdetails.userId 
+        ).pipe(tap(()=>{this._refreshNeededForinbox$.next()}))
+      }
 }

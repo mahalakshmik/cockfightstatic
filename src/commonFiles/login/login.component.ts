@@ -132,7 +132,7 @@ export class LoginComponent implements OnInit {
     this.fms.userLogin(this.form.value).subscribe(res => {
       console.log(res);
       localStorage.setItem('user', JSON.stringify(res));
-      this.dialogRef.close();
+      this.dialogRef.close(true);
       // Swal.fire('Good job!', 'You clicked the button!', 'success');
       this.spinnerService.hide();
       Swal.fire({
@@ -162,7 +162,7 @@ export class LoginComponent implements OnInit {
   }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 
   OpenModal() {

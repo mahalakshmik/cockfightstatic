@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/services/auth.service';
 import { FmsService } from 'src/app/services/fms.service';
+import { NotificationService } from 'src/app/services/Notification.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-inboxdetail',
@@ -17,7 +19,11 @@ export class InboxdetailComponent implements OnInit {
   messageHeader:any []=[];
   senderid: number=0;
   comments:string='';
-  constructor(private route: ActivatedRoute,private fms:FmsService,private spinnerService: NgxSpinnerService, public as: AuthService,) { 
+  profileImageFileOutFileLink: string = "http://viitortechnologies.com/images/4.JPG"
+  profilePic: string='';
+  profilePicUrl = environment.imgUrl;
+  //feture if iisue check this
+  constructor(private route: ActivatedRoute,private fms:FmsService,private ns:NotificationService, private spinnerService: NgxSpinnerService, public as: AuthService,) { 
 
      
     this.sub = this.route.params.subscribe(params => {
@@ -35,13 +41,20 @@ export class InboxdetailComponent implements OnInit {
   }
   getdetails(){
 
-    this.fms.getInboxdetails(this.messageid,this.memberid,).subscribe((res:any)=>{
+    this.ns.getInboxdetails(this.messageid,this.memberid,).subscribe((res:any)=>{
       console.log(res)
       this.messageDetails=res.messageDetails
       this.messageHeader=res.messageHeader
       console.log(this.messageDetails)
       console.log(this.messageHeader)
     this.spinnerService.hide();
+    
+    let profilepic=res.member.profilePhoto
+   if( profilepic == null){
+     this.profilePic= "../../../assets/images/pic.jpg"
+   }else{
+    this.profilePic= this.profilePicUrl+profilepic;
+   }
 this.senderid=this.messageHeader[0].senderID
 console.log(this.senderid)
       if(this.messageHeader.length ==0){
