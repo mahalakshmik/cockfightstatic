@@ -67,7 +67,8 @@ export class FmsService {
     return this.http.post(`${this.baseURL}Profile/verfiyDocument`, payload);
   }
   getdocuments() {
-    
+    this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
+
     return this.http.get(`${this.baseURL}Profile/verfiyDocument/${this.userdetails.userId}`);
   }
   saveNotifications(payload: any) {

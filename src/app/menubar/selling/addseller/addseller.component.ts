@@ -138,9 +138,9 @@ videosas =
       this.spinnerService.hide();
       
       res.productImages.forEach((e: any) => {
+        
         const imgs = this.productPicUrl + e.imageName;
         this.previews.push(imgs)
-        
       })
       res.productVideo.forEach((e: any) => {
         const imgs = this.productVideoUrl + e.imageName;

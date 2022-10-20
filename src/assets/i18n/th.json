@@ -1,5 +1,4 @@
-{
-    "home": {
+ {
         "dashboard": "Dashboard",
         "masterdata": "ฐานข้อมูล",
         "company": "ข้อมูลบริษัท",
@@ -442,4 +441,4 @@
          "advanceNotifyDay":"ADVANCE NOTIFY DAY"
 
     }
-}
+

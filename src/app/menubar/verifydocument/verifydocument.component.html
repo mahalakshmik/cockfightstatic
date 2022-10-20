@@ -24,7 +24,7 @@
                                         style="margin-right:15px; vertical-align: middle;"></i> Choose a
                                     File...</button>
                                 <input type="file" name="myfile" (change)="onFileSelect($event,1)" />
-                                <img [src]="preview" width="100px" height="100px" class="preview">
+                                <img [src]="priviewfile1" width="100px" height="100px" class="preview">
                             </div>
 
                         </div>
@@ -38,6 +38,8 @@
                                         style="margin-right:15px; vertical-align: middle;"></i> Choose a
                                     File...</button>
                                 <input type="file" name="myfile" (change)="onFileSelect($event,2)" />
+                                <img [src]="priviewfile2" width="100px" height="100px" class="preview">
+
                             </div>
                         </div>
                     </div>
@@ -52,6 +54,8 @@
                                         style="margin-right:15px; vertical-align: middle;"></i> Choose a
                                     File...</button>
                                 <input type="file" name="myfile" (change)="onFileSelect($event,3)" />
+                                <img [src]="priviewfile3" width="100px" height="100px" class="preview">
+
                             </div>
                         </div>
                     </div>
@@ -65,3 +69,5 @@
         </div>
     </div>
 </div>
+
+<ngx-spinner size="medium" color="orange" backgroundcolor="white" type="ball-fussion"></ngx-spinner>

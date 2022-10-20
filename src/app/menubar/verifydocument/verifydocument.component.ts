@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/services/auth.service';
 import { FmsService } from 'src/app/services/fms.service';
 import { LoginService } from 'src/app/services/login.service';
@@ -18,12 +19,19 @@ export class VerifydocumentComponent implements OnInit {
   previews: string[] = [];
   profilePic: any;
   breedLst: any;
-  selectedFiles3: any;
-  selectedFiles2: any;
-  selectedFiles1: any;
+  selectedFiles3: any=null;
+  selectedFiles2: any=null;
+  selectedFiles1: any=null;
+  priviewfile1: any;
+  priviewfile2: any;
+  priviewfile3: any;
   breeddialogRef: any;
-  productPicUrl=environment.fileUrl;
-  constructor(private fms: FmsService,private as: AuthService) { 
+  productPicUrl=environment.documentUrl;
+  isNew: boolean=true;
+  filename1: string="";
+  filename2: string="";
+  filename3: string="";
+  constructor(private fms: FmsService,private as: AuthService, public spinnerService: NgxSpinnerService,) { 
     const userDetails = this.as.getLoggedUserDetails();
     this.userID = userDetails.userId;
   }
@@ -32,28 +40,61 @@ export class VerifydocumentComponent implements OnInit {
     this.getfiles();
   }
   getfiles(){
-    this.fms.getdocuments().subscribe(res=>{
+    this.fms.getdocuments().subscribe((res:any)=>{
       console.log(res)
-      const imgs = this.productPicUrl + e.imageName;
-      this.previews.push(imgs)
+      if(res.length !=0){debugger
+       
+        this.priviewfile1=this.productPicUrl+res[0].userId+'/'+res[0].document1;
+        this.priviewfile2=this.productPicUrl+res[0].userId+'/'+res[0].document2;
+        this.priviewfile3=this.productPicUrl+res[0].userId+'/'+res[0].document3;
+        this.isNew=res.length !=0 ? false:true;
+        this.filename1=res[0].document1;
+        this.filename2=res[0].document2;
+        this.filename3=res[0].document3;
+        alert(this.isNew)
+      }
+
+      // const imgs = this.productPicUrl + e.imageName;
+      // this.previews.push(imgs)
     })
   }
   onFileSelect(event: any, i: number) {
 
     this.message = [];
     this.progressInfos = [];
-    if (i == 1) {
-
-      this.selectedFiles1 = event.target.files;
+    let reader = new FileReader();
+    switch (i) {
+      case 1:
+        
+     this.selectedFiles1 = event.target.files[0];
+     this.filename1=this.selectedFiles1.name;
+        reader.onload = (e: any) => {
+                this.priviewfile1=e.target.result;
+              };      
+        reader.readAsDataURL(event.target.files[0]);
+        break;
+      case 2:
+        this.selectedFiles2 = event.target.files[0];
+     this.filename2=this.selectedFiles2.name;
+        reader.onload = (e: any) => {
+                this.priviewfile2=e.target.result;
+              };      
+        reader.readAsDataURL(event.target.files[0]);
+        break;
+        case 3:
+          this.selectedFiles3 = event.target.files[0];
+     this.filename3=this.selectedFiles3.name;
+          reader.onload = (e: any) => {
+                  this.priviewfile3=e.target.result;
+                };      
+          reader.readAsDataURL(event.target.files[0]);
+        
+        break;
+    
+      default:
+        break;
     }
-    if (i == 2) {
 
-      this.selectedFiles2 = event.target.files;
-    }
-    if (i == 3) {
-
-      this.selectedFiles3 = event.target.files;
-    }
     console.log(this.selectedFiles1)
     this.previews = [];
 
@@ -73,28 +114,52 @@ export class VerifydocumentComponent implements OnInit {
   }
 
   verifyUpload() {
+    this.spinnerService.show();
+    if(this.isNew){
+
+      if(this.selectedFiles1 ==null || this.selectedFiles2==null || this.selectedFiles3==null){
+        alert('please upload files')
+        this.spinnerService.hide();
+        return;
+      }
+
+    }
     var formdata = new FormData();
-    formdata.append("Document1", this.selectedFiles1[0]);
-    formdata.append("Document2", this.selectedFiles2[0]);
-    formdata.append("Document3", this.selectedFiles3[0]);
+    formdata.append("Document1", this.selectedFiles1);
+    formdata.append("Document2", this.selectedFiles2);
+    formdata.append("Document3", this.selectedFiles3);
     formdata.append("MemberType", "123");
     formdata.append("UserID", this.userID);
     formdata.append("Isverified", "true");
-    formdata.append("Document1FileName", "test1");
-    formdata.append("Document2FileName", "test2");
-    formdata.append("Document3FileName", "test3");
+    formdata.append("Document1FileName", this.filename1);
+    formdata.append("Document2FileName", this.filename2);
+    formdata.append("Document3FileName", this.filename3);
     //console.log(formdata)
-    this.fms.verifyUpload(formdata).subscribe(res => { console.log(res);
+    this.fms.verifyUpload(formdata).subscribe(
+      res => { console.log(res);
+      this.spinnerService.hide();
     if(res){
+
       Swal.fire({
         title: 'Documents Uploaded Successfully',
         icon: 'success',
-       // text: ' you want to delete the Order, this action cannot be undone',
-        // showCancelButton: true,
-        // confirmButtonText: 'Yes, go ahead.',
-        // cancelButtonText: 'No, let me think'
+        timer:700
+     
       })
-    } })
+    } 
+  },
+  err=>{
+    console.log(err)
+    this.spinnerService.hide();
+   Swal.fire({
+    title: err.error.text,
+    icon: 'success',
+ 
+  })
+  }
+  );
+  
+  
     //Documents Uploaded Successfully
   }
 
