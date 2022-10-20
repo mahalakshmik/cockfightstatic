@@ -173,6 +173,7 @@ export class ProdcutDetailsComponent implements OnInit {
 }
 
   addCart() {
+    this.spinnerService.show();
     if (!this.as.isLoggedIn()) {
       console.log(localStorage.getItem('localCartLst'))
 
@@ -236,6 +237,7 @@ export class ProdcutDetailsComponent implements OnInit {
       };
       //console.log(payload);
       //this.route.navigate(['Cartitems'])
+      this.spinnerService.hide();
       this.fms.saveCartList(payload).subscribe((res: any) => {
         //console.log(res);
         if (res) {

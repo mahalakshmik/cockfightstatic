@@ -18,7 +18,7 @@ import { orderdetails, orderPayment, OrderVM } from '../orderVM.model';
 export class OrdersummaryComponent implements OnInit {
   selectedProdut: any;
   productCount: number = 1;
-  totalAmount: any;
+  totalAmount: any=0;
   disable: boolean = false;
   notification = new Notificationvm();
   orderVM = new OrderVM();
@@ -55,7 +55,7 @@ export class OrdersummaryComponent implements OnInit {
     console.log(this.selectedProdut);
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {debugger
     
     //userid mandatory for delete cart
     this.orderVM.deliveryAddress = this.deliveryaddress;
@@ -313,7 +313,7 @@ if(this.isCart){
       }
     });
   }
-  cartlistorder() {
+  cartlistorder() {debugger
     
     this.fms.cartOrderList().subscribe((res: any) => {
       console.log('orderlist', res)
@@ -325,6 +325,7 @@ if(this.isCart){
       console.log(this.orderVM.orderDetail)
       this.orderVM.orderDetail.forEach((data:any) => {
         var cartPrice = data.unitPrice;
+        this.totalAmount += cartPrice;
         console.log(cartPrice)
       });
     })

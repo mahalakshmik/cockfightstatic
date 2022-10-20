@@ -15,12 +15,15 @@
             </div>
 
         </div>
+        <div *ngIf="addresslist.length ==0">
+          <h2 style="color:red;text-align: center;">Please add the address</h2>
+        </div>
         <div class="row" *ngFor="let p of addresslist ;let i=index">
             <div class="col-sm-12 m-t-30">
                 <div class="panel address-panel">
-                    <div class="row ">
+                    <div class="row "  (click)="getaddress(p);selectedValue=p">
                         <div class="col-sm-1 address-radio">
-                            <input type="radio" (click)="getaddress(p)" [value]="i">
+                            <input type="radio" (click)="selectedValue=p"  [checked]="p === selectedValue" [value]="p.addressId" >
                         </div>
                         <div class="col-sm-9">
                             <h3 class="m-b-10">Home Address</h3>

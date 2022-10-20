@@ -1,3 +1,4 @@
+import { P } from '@angular/cdk/keycodes';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Router, Routes } from '@angular/router';
@@ -11,9 +12,10 @@ import { AddaddressComponent } from '../addAddress/addaddress/addaddress.compone
   styleUrls: ['./addressdelivery.component.scss']
 })
 export class AddressdeliveryComponent implements OnInit {
-  addresslist: any;
+  addresslist: any[]=[];
   selectAddres:number=0;
   addresselect: any | undefined;
+  selectedValue:any;
   constructor(private fms: FmsService,private dialog:MatDialog,private route:Router) { }
 
   ngOnInit() {
@@ -22,6 +24,8 @@ export class AddressdeliveryComponent implements OnInit {
   getaddressesList(){
     this.fms.addressList().subscribe((res:any) => {
       this.addresslist = res;
+
+      this.selectedValue=res[0]
     })
   }
   continue(){
@@ -35,6 +39,7 @@ export class AddressdeliveryComponent implements OnInit {
     
   }
   getaddress(i:any){
+    
     this.addresselect = i;
     localStorage.setItem('deliveryaddress',JSON.stringify(i))
 
