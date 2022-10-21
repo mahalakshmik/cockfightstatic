@@ -63,24 +63,24 @@
                                         class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu dropdown-menu-2">
                                     <li><a routerLink="/menu/profile" (click)="this.showlist = !this.showlist;"> <i
-                                        class="icon-user"></i>  Profile</a></li>
+                                        class="icon-user"></i>  {{'Profile'|translate}}</a></li>
                             <li><a routerLink="menu/WishList"
                                     *ngIf="this.dataService.getuserType() == '2170' "
                                     (click)="this.showlist = !this.showlist;"> <i class="icon-heart"></i>
-                                     Wish List</a></li>
+                                     {{'WishList'|translate}}</a></li>
                             <li><a routerLink="menu/orderhistory" (click)="this.showlist = !this.showlist;">
-                                    <i class="icon-basket"></i>  Purchase List</a></li>
+                                    <i class="icon-basket"></i>  {{'PurchaseList'|translate}}</a></li>
                             <li><a routerLink="menu/SellingList"
                                     *ngIf="this.dataService.getuserType() == '2171' && '2173' "
                                     (click)="this.showlist = !this.showlist;"> <i class="icon-list"></i>
                                      Selling List</a></li>
                             <li><a routerLink="menu/notification" (click)="this.showlist = !this.showlist;">
-                                    <i class="icon-bell"></i>  Notifications</a></li>
+                                    <i class="icon-bell"></i>  {{'Notifications'|translate}}</a></li>
                             <li><a routerLink="menu/Verify" (click)="this.showlist = !this.showlist;"> <i
-                                        class="icon-check"></i>  Verify Yourself</a></li>
+                                        class="icon-check"></i> {{'VerifyYourself'|translate}}</a></li>
                             <li><a (click)="dataService.logoutUser()" routerLink="/"
                                     (click)="this.showlist = !this.showlist;"> <i class="icon-power"></i>
-                                     Logout</a></li>
+                                     {{'Logout'|translate}}</a></li>
                                 </ul>
                             </li>
 

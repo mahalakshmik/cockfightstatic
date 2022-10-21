@@ -28,9 +28,9 @@
                     </div>
                     <div class="collapse navbar-collapse menubar">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a (click)="myDir='profile'"> Profile </a></li>
+                            <li class="active"><a (click)="myDir='profile'"> {{'Profile'|translate}} </a></li>
                             <li><a (click)="myDir='address'">Address</a></li>
-                            <li><a (click)="myDir='notification'">Notification</a></li>
+                            <li><a (click)="myDir='notification'">{{'Notifications'|translate}}</a></li>
                             <li><a (click)="myDir='inbox'">Message (Inbox)</a></li>
                             <li><a (click)="myDir='verify'">Verify Yourself</a></li>
                             <li><a (click)="myDir='followers'">Followers</a></li>
@@ -53,17 +53,17 @@
 
 
                                         <ul class="m-l-10">
-                                            <li> <a (click)="myDir='sellyourprodcut'"> Sell Your Product</a></li>
-                                            <li> <a (click)="myDir='sellinglist'"> Selling List</a></li>
-                                            <li> <a (click)="myDir='soldoutlist'"> Sold Out List</a></li>
-                                            <li> <a (click)="myDir='purchaselist'"> Purchase List</a></li>
+                                            <li> <a (click)="myDir='sellyourprodcut'"> {{'SellYourProduct'|translate}}</a></li>
+                                            <li> <a (click)="myDir='sellinglist'"> {{'SellingList'|translate}}</a></li>
+                                            <li> <a (click)="myDir='soldoutlist'"> {{'SoldOutList'|translate}}</a></li>
+                                            <li> <a (click)="myDir='purchaselist'"> {{'PurchaseList'|translate}}</a></li>
                                         </ul>
                                     </mat-expansion-panel>
 
                                 </mat-accordion>
                             </li>
                             <li><a (click)="myDir='trsnporterbookingList'">Transporter Booking List</a></li>
-                            <li><a (click)="myDir='logout'">Logout</a></li>
+                            <li><a (click)="myDir='logout'">{{'Logout'|translate}}</a></li>
                         </ul>
                     </div>
                 </nav>

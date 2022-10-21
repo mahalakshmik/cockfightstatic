@@ -23,6 +23,7 @@ export class OrderHistoryComponent implements OnInit {
     this.getOrderHistory()
   }
   getOrderHistory() {
+    this.spinnerService.show();
     this.fms.getOrderHistory().subscribe((res:any) => {
       if(res.orderDetail.length ==0){
           this.message=true
@@ -40,6 +41,8 @@ export class OrderHistoryComponent implements OnInit {
         res.orderHeader[i].orderPayment.push(payment[0])
       }
       this.orderHistory = res;
+    this.spinnerService.hide();
+
       console.log( this.orderHistory );
       this.orderData = res.orderHeader;
 

@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="title-bar">
-                            <h2 class="title">SoldOut List  </h2><span class="title-border"></span>
+                            <h2 class="title">{{'SoldOutList'|translate}}  </h2><span class="title-border"></span>
                         </div>
                     </div>
 
@@ -23,7 +23,7 @@
 
                         </div>
                         <div class="col-sm-2">
-                            <p><b>Total Amount:{{p.totalAmount}}</b></p>
+                            <p><b>{{'TotalAmount'|translate}}:{{p.totalAmount}}</b></p>
                             <!-- *ngIf="==2178" -->
                             
                             <!-- if (paymentslip != null && paymentslip.PaymentMode == Utility.ONLINE && paymentslip.ReferenceNo != null)
@@ -56,9 +56,9 @@
                                 <img src={{productPicUrl}}{{q.productImage}} width="100" />
                             </div>
                             <div class="col-sm-6">
-                                <p><b>Product Name:</b> {{q.productName}}</p>
-                                <p><b>Payment Type:</b> {{q.paymentOptionDescription}}</p>
-                                <p><b>Quantity:</b> {{q.quantity}}</p>
+                                <p><b>{{'ProductName'|translate}}:</b> {{q.productName}}</p>
+                                <p><b>{{'PaymentType'|translate}}:</b> {{q.paymentOptionDescription}}</p>
+                                <p><b>{{'Quantity'|translate}}:</b> {{q.quantity}}</p>
                             </div>
                             <div class="col-sm-3">
                                 <p><b>{{'Price'|translate}}:</b> {{q.standardPrice}}</p>
