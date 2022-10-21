@@ -127,3 +127,11 @@ a {
   padding: 0px !important;
   width: 48px;
 }
+//later change styles
+:host ::ng-deep  .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+  background-color: #eee;
+}
+
+:host ::ng-deep  .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+  background-color: #eee;
+}
