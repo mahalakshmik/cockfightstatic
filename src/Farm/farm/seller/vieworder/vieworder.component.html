@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="title-bar">
-                            <h2 class="title">View Order  </h2><span class="title-border"></span>
+                            <h2 class="title">ViewOrder  </h2><span class="title-border"></span>
                         </div>
                     </div>
 
@@ -15,15 +15,15 @@
                 <div class="card" *ngFor="let p of orderHistory?.orderHeader">
                     <div class="row" >
                         <div class="col-sm-8" >
-                            <p><b>Order No.:</b> {{p.orderNo}}</p>
-                            <p><b>Order Date:</b> {{p.orderDate | date:'dd/MM/yyyy'}}</p>
-                            <p><b>Buyer Name:</b> {{p.userName}}</p>
-                            <p><b>Order Status:</b> {{p.orderStatusDesc}}</p>
+                            <p><b>{{'OrderNo'|translate}}.:</b> {{p.orderNo}}</p>
+                            <p><b>{{'OrderDate'|translate}}:</b> {{p.orderDate | date:'dd/MM/yyyy'}}</p>
+                            <p><b>{{'BuyerName'|translate}}:</b> {{p.userName}}</p>
+                            <p><b>{{'OrderStatus'|translate}}:</b> {{p.orderStatusDesc}}</p>
                             <hr>
 
                         </div>
                         <div class="col-sm-2">
-                            <p><b>Total Amount:{{totalAmt}}</b></p>
+                            <p><b>{{'TotalAmount'|translate}}:{{totalAmt}}</b></p>
                             <!-- <button class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true">Payment
                                     slip</i></button> -->
 
@@ -35,13 +35,13 @@
                             <img src={{productPicUrl}}{{q.productImage}} width="100" />
                         </div>
                         <div class="col-sm-6">
-                            <p><b>Product Name:</b> {{q.productName}}</p>
-                            <p><b>Payment Type:</b> {{q.paymentOptionDescription}}</p>
-                            <p><b>Quantity:</b> {{q.quantity}}</p>
+                            <p><b>{{'ProductName'|translate}}:</b> {{q.productName}}</p>
+                            <p><b>{{'PaymentType'|translate}}:</b> {{q.paymentOptionDescription}}</p>
+                            <p><b>{{'Quantity'|translate}}:</b> {{q.quantity}}</p>
                         </div>
                         <div class="col-sm-3">
-                            <p><b>Price:</b> {{q.standardPrice}}</p>
-                            <p><b>Discount:</b> {{q.discountAmount}}</p>
+                            <p><b>{{'Price'|translate}}:</b> {{q.standardPrice}}</p>
+                            <p><b>{{'Discount'|translate}}:</b> {{q.discountAmount}}</p>
 
                         </div>
                         <hr>
@@ -64,8 +64,8 @@
                             } -->
                             <button class="btn btn-default btn-custom" (click)="CloseOrder(p.orderID)" *ngIf="p.orderStatus=='2183'">Close Order</button>
                             <button class="custom-btn btn btn-default" 
-                                (click)="confirmDelivered()">Confirm Delivered</button>
-                            <button class="btn btn-default btn-custom" (click)="cancelOrder()">Cancel Order</button>
+                                (click)="confirmDelivered()">{{'ConfirmDelivered'|translate}}</button>
+                            <button class="btn btn-default btn-custom" (click)="cancelOrder()">{{'CancelOrder'|translate}}</button>
                         </div>
 
                     </div>
