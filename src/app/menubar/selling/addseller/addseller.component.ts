@@ -17,6 +17,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { timingSafeEqual } from 'crypto';
 import { FormControl, FormGroup } from '@angular/forms';
 import { stringify } from 'querystring';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-addseller',
   templateUrl: './addseller.component.html',
@@ -82,7 +83,7 @@ videosas =
   'sp=racwdl&st=2022-09-29T01:49:45Z&se=2023-03-15T09:49:45Z&spr=https&sv=2021-06-08&sr=c&sig=x2qyZUkbtRhvD31X6hew9fwf%2FNOjOPTLY4P7%2FT61cjo%3D';
 /* Local host URL end points  */
   isNew: boolean=true;
-  constructor(
+  constructor( public translate: TranslateService,
     private fms: FmsService,
     private blobService: AzureBlobStorageService,
     private gs: LoginService,

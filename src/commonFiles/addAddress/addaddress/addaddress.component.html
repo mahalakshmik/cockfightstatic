@@ -29,7 +29,7 @@
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label>MobileNo </label>
+                    <label>{{'MobileNo|translate'}} </label>
                     <input type="text" class="form-control" [(ngModel)]="form.mobileNo" #mobileNo="ngModel" name="mobileNo" required/>
                     <div *ngIf="f.submitted && mobileNo.invalid"  >
                         <div *ngIf="mobileNo.errors" style="color: red;">MobileNo is required</div>

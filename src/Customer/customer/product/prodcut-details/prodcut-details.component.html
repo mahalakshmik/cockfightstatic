@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-sm-12 m-b-20">
                 <div class="title-bar">
-                    <h2 class="title text-left border-bottom top-35"> Product Details </h2>
+                    <h2 class="title text-left border-bottom top-35"> {{'ProductDetail'|translate}} </h2>
                 </div>
             </div>
             <!-- dletehere -->
@@ -99,7 +99,7 @@
                     <div class="row m-t-20">
                         <div class="form-group ">
                             <div class="col-sm-2">
-                                <label> Price: </label>
+                                <label> {{'Price'|translate}}: </label>
                             </div>
                             <div class="col-sm-10">
                                 <label class="orange-txt"> ฿ {{product?.standardPrice | number: '1.2-2'}}</label>
@@ -107,7 +107,7 @@
                         </div>
                         <div class="form-group ">
                             <div class="col-sm-2">
-                                <label> Size: </label>
+                                <label> {{'Size'|translate}}: </label>
                             </div>
                             <div class="col-sm-10">
                                 <label class="orange-txt">{{product?.weight}} {{product?.uomDesc}} </label>
@@ -115,7 +115,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-2">
-                                <label> Payment:
+                                <label> {{'Payment'|translate}}:
                                 </label>
                             </div>
                             <div class="col-sm-10">
@@ -124,7 +124,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-4">
-                                <label *ngIf="!isoutOfStock"> Quantity: <b>{{product?.stockQty}}</b></label>
+                                <label *ngIf="!isoutOfStock"> {{'Quantity'|translate}}: <b>{{product?.stockQty}}</b></label>
                                 <div class="example-chip-list" *ngIf="isoutOfStock">
 
                                     <label class="orange-txt">
@@ -145,12 +145,12 @@
                         <div class="col-sm-4 add-to-cart">
                             <!-- <a routerLink="/Cartitems" class="btn btn-primary addcart-btn"> Add to Cart</a> -->
                             <button [disabled]="product?.stockQty <=0" (click)="addCart()"
-                                class="btn btn-primary addcart-btn">Add to Cart</button>
+                                class="btn btn-primary addcart-btn">{{'AddToCart'|translate}}</button>
                         </div>
                         <div class="col-sm-4 buy-it-now">
                             <button [disabled]="product?.stockQty <=0" (click)="byNow()"
                                 class="btn btn-primary addcart-btn buy-btn" style="width:100%">
-                                Buy Now
+                               {{'BuyNow'|translate}}
                             </button>
                         </div>
 
@@ -211,33 +211,33 @@
 
                     <tbody>
                         <tr>
-                            <td width="400" class="first"> Product Name: </td>
+                            <td width="400" class="first"> {{'ProductName'|translate}}: </td>
                             <td> {{product?.productName | uppercase}}</td>
-                            <td> Age: </td>
+                            <td> {{'Age'|translate}}: </td>
                             <td> {{product?.age}} {{product?.ageTypeDescription}}</td>
                         </tr>
                         <tr>
-                            <td> Gender: </td>
+                            <td> {{'Gender'|translate}}: </td>
                             <td>{{product?.genderDesc}} </td>
-                            <td> Fighting Record: </td>
+                            <td> {{'FightingRecord' |translate}}: </td>
                             <td>{{product?.fightingRecord | uppercase}} </td>
                         </tr>
                         <tr>
                             <td> Sire/Breeder: </td>
                             <td>{{product?.breedTypeDesc}} </td>
-                            <td> Weight: </td>
+                            <td> {{'Weight'|translate}}: </td>
                             <td>{{product?.weight}} {{product?.uomDesc}} </td>
                         </tr>
                         <tr>
-                            <td>Breed: </td>
+                            <td>{{'Breed'|translate}}: </td>
                             <td>{{product?.breed }} </td>
-                            <td>Province: </td>
+                            <td>{{'Province'|translate}}: </td>
                             <td>{{product?.province| uppercase}} </td>
                         </tr>
                         <tr>
-                            <td>Talent:</td>
+                            <td>{{'Talent'|translate}}:</td>
                             <td>{{product?.talents}}</td>
-                            <td>Additional Information:</td>
+                            <td>{{'AdditionalInformation'|translate}}:</td>
                             <td>{{product?.productName}} </td>
                         </tr>
                     </tbody>
@@ -259,15 +259,15 @@
                 </form>
             </div>
             <div class="col-sm-12 text-right m-t-20">
-                <a (click)="postComment()" class="btn btn-default "> Post Comment</a>
-                <a (click)="dialogbox(breedtemplate)" class="btn btn-primary ">Send Message to Seller</a>
+                <a (click)="postComment()" class="btn btn-default "> {{'PostComments' |translate}}</a>
+                <a (click)="dialogbox(breedtemplate)" class="btn btn-primary ">{{'SendMessageToSeller'|translate}}</a>
 
             </div>
 
         </div>
         <div class="card" style="margin-top: 15px">
             <div class="title-bar">
-                <h2 class="title">Comments </h2><span class="title-border"></span>
+                <h2 class="title">{{'Comments'|translate}} </h2><span class="title-border"></span>
             </div>
             <app-commentbox (add)="Submitcomments($event)" *ngIf="isEditing"></app-commentbox>
             <app-comments-list *ngFor="let c of message " [comment]="c"></app-comments-list>
@@ -309,7 +309,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <button type="button" (click)="SendMessageToSeller()"
-                                        class="custom-btn btn btn-default message-sellar-submit">Submit</button>
+                                        class="custom-btn btn btn-default message-sellar-submit">{{'Submit'|translate}}</button>
                                 </div>
                             </div>
 
