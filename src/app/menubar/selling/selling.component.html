@@ -25,7 +25,7 @@
                                         <th>Image</th>
                                         <th> Product Name</th>
                                         <th> Price</th>
-                                        <th>Actions </th>
+                                        <th>{{'Actions'| translate}} </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -286,7 +286,7 @@
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label > Currency *</label>
+                                    <label > {{'Currency'|translate}} *</label>
                                     <select [(ngModel)]="formsell.currency" #currency="ngModel" name="currency"
                                         [ngClass]="{ 'is-invalid': f.submitted && currency.invalid }" required
                                         class="form-control">

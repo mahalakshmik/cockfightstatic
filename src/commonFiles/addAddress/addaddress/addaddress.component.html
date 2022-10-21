@@ -9,7 +9,7 @@
             <div class="col-sm-6">
                 
                 <div class="title-bar">
-                    <h2 class="title">Address </h2><span class="title-border"></span>
+                    <h2 class="title">{{'Address'|translate}} </h2><span class="title-border"></span>
                 </div>
             </div>
             <!-- <div class="col-sm-6 text-right">
@@ -70,7 +70,7 @@
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label>Country </label>
+                    <label>{{'Country'| translate}} </label>
                     <input type="text" class="form-control" [(ngModel)]="form.country" #country="ngModel" name="country" required/>
                     <div *ngIf="f.submitted && country.invalid" >
                         <div *ngIf="country.errors" style="color: red;">Country is required</div>
@@ -81,7 +81,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="form-group">
-                    <label>Address </label>
+                    <label> {{'Address'|translate}}</label>
                     <textarea class="form-control" [(ngModel)]="form.memberAddress" #memberAddress="ngModel" name="memberAddress" required>
 
             </textarea>
