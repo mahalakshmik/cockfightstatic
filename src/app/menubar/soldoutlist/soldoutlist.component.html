@@ -15,10 +15,10 @@
                 <div class="card" *ngFor="let p of orderData">
                     <div class="row">
                         <div class="col-sm-8">
-                            <p><b>Order No.:</b> {{p.orderNo}}</p>
-                            <p><b>Order Date:</b> {{p.orderDate | date:'dd/MM/yyyy'}}</p>
-                            <p><b>Buyer Name:</b> {{p.userName}}</p>
-                            <p><b>Order Status:</b> {{p.orderStatusDesc}}</p>
+                            <p><b>{{'OrderNo'|translate}}.:</b> {{p.orderNo}}</p>
+                            <p><b>{{'OrderDate'|translate}}:</b> {{p.orderDate | date:'dd/MM/yyyy'}}</p>
+                            <p><b>{{'BuyerName'|translate}}:</b> {{p.userName}}</p>
+                            <p><b>{{'OrderStatus'|translate}}:</b> {{p.orderStatusDesc}}</p>
                             <hr>
 
                         </div>
@@ -42,8 +42,8 @@
                             } -->
                             <div *ngFor="let pay of p.orderPayment">
                                 <!-- href="~/Uploads/OrderPayment/@Model.orderHeader[i].OrderID/@(paymentslip != null ? paymentslip.ReferenceNo : "")" -->
-                                <a *ngIf="pay.paymentMode==2178" class="btn btn-primary" href="{{fileuploadUrl}}Uploads/OrderPayment/{{p.orderID}}/{{pay.referenceNo}}"  target="_blank"><i class="fa fa-eye" aria-hidden="true" >Payment
-                                        slip</i></a>
+                                <a *ngIf="pay.paymentMode==2178" class="btn btn-primary" href="{{fileuploadUrl}}Uploads/OrderPayment/{{p.orderID}}/{{pay.referenceNo}}"  target="_blank"><i class="fa fa-eye" aria-hidden="true" >{{'Paymentslip'|translate}}
+                                        </i></a>
                             </div>
 
                         </div>
