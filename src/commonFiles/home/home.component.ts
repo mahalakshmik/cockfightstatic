@@ -189,10 +189,12 @@ export class HomeComponent implements OnInit {
 
   }
   addfollowseller(sid:number){
+    this.spinnerService.show();
     const fid=0;
     this.fmss.saveFollowers(sid,fid).subscribe(
       res=>
       {
+        this.spinnerService.hide();
         if(res){
           Swal.fire({
             icon: 'success',
