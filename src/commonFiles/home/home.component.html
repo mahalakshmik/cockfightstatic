@@ -179,11 +179,14 @@
                                             <img src="assets/images/video.png" width="40" class="img-fluid" alt="tbl">
                                         </a>
                                         <span class="qty" style="display: flex;">
-                                            <div class="price price1">฿{{p.standardPrice}}</div>
-                                            <a> <i (click)="addwish(p,i)"
-                                                    [ngClass]="p.productLikesCount > 0 ? 'fa fa-thumbs-up thum-icon': 'fa fa-thumbs-o-up thum-icon' ">{{p.productLikesCount}}</i>
+                                            <p class="price price1">฿{{p.standardPrice}}</p>
+                                            <a (click)="addfollowseller(p.sellerID)"><img class="followimg" src="../../assets/images/followi.jpg"/>
+                                            </a>
+                                            <a> 
                                                 <i class="fa fa-comments-o" style="margin-left: 5px;"
                                                     routerLink="customer/ProdcutDetails/{{p.productID}}/{{p.sellerID}}"><b>{{p.productCommentsCount}}</b></i>
+                                                <i (click)="addwish(p,i)"
+                                                    [ngClass]="p.productLikesCount > 0 ? 'fa fa-thumbs-up thum-icon': 'fa fa-thumbs-o-up thum-icon' ">{{p.productLikesCount}}</i>
                                             </a>
 
                                             <!-- <i (click)="addwish(p,i)" *ngIf="!isWishicon" class="fa fa-thumbs-up thum-icon">{{likeCount}}</i> -->

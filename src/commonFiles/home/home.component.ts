@@ -188,7 +188,23 @@ export class HomeComponent implements OnInit {
     this.rout.navigate(['customer/ProdcutDetails/',p.productID, p.sellerID])
 
   }
-  
+  addfollowseller(sid:number){
+    const fid=0;
+    this.fmss.saveFollowers(sid,fid).subscribe(
+      res=>
+      {
+        if(res){
+          Swal.fire({
+            icon: 'success',
+            title: 'Following ',
+            // text: "You clicked the button!",
+            // type: "success",
+            timer: 500,
+          });
+        }
+      }
+    )
+  }
 
   openDialog(templateRef:any,pid:any) {
    this.dialogRef = this.matDialog.open(templateRef, {

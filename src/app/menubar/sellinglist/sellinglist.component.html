@@ -14,8 +14,18 @@
                         <select class="form-control" [(ngModel)]="selectedOrder" (change)="onChange($event)"
                             name="selectedOrder">
                             <!-- <option value="0">All Orders</option> -->
-                            <option *ngFor="let drp of sellerType" [value]="drp.lookupId">{{drp.lookupDescription}}
-                            </option>
+                            <ng-container *ngIf="selectedlng === 'th';else second">
+
+                                <option *ngFor="let drp of sellerType" [value]="drp.lookupId" >
+                                    {{drp.lookupDescriptionTh}}
+                                </option>
+                            </ng-container>
+                            <ng-template #second>
+                                <option *ngFor="let drp of sellerType" [value]="drp.lookupId" >
+                                    {{drp.lookupDescription}}
+                                </option>
+
+                            </ng-template>
                             <!-- <option value="2181">ORDER CONFIRMED</option>
                             <option selected="selected" value="2182">ORDER DELIVERED</option>
                             <option value="2183">ORDER CANCELED</option>

@@ -45,6 +45,7 @@ export class AppComponent {
 
     translate.addLangs(["en", "th"]);
     translate.setDefaultLang('en');
+    localStorage.setItem('lng','en')
 
    // let browserLang = translate.getBrowserLang();
    // translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
@@ -75,9 +76,12 @@ console.log(value)
 if(value.checked){
   this.svalue="ไทย";
   this.translate.use('th');
+  localStorage.setItem('lng','th')
 }else{
   this.svalue="English";
 this.translate.use('en');
+localStorage.setItem('lng','en')
+
 }
 
 

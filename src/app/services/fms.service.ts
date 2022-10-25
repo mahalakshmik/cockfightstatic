@@ -176,6 +176,13 @@ export class FmsService {
       `${this.baseURL}MemberFollowings/FollowedList/` + this.userdetails.userId
     );
   }
+  saveFollowers(sellerid:number,followingid:number):Observable<any>  {
+    this.userdetails = JSON.parse(localStorage.getItem('user') || '{}');
+
+   const userid=this.userdetails.userId
+    return this.http.get(
+      `${this.baseURL}MemberFollowings/saveFollow/${sellerid}/${userid}/${followingid}`);
+  }
   getOrderHistory() {
     return this.http.get(
       `${this.baseURL}Profile/OrderHistory/` +
