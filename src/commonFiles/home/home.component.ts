@@ -152,10 +152,19 @@ export class HomeComponent implements OnInit {
     this.productList();
   }
   getStock() {
-    this.fmss.getStockList().subscribe((res) => {
+    this.fmss.getStockList().subscribe(
+      res => {
       console.log(res);
       this.stocklst = res;
-    });
+    },
+    error=>{
+      this.spinnerService.hide();
+      alert("Server error")
+
+    }
+    
+    
+    );
   }
   productList() {
     this.spinnerService.show();
