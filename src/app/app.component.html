@@ -34,7 +34,7 @@
                 <div class="col-md-6 col-sm-6 col-xs-12 nav_right">
                     <ul class="list-inline list-unstyled icons-topp logincls" *ngIf="!dataService.isLoggedIn()">
                         <li class="dropdown" >
-                            <a  (click)="OpenModal()">Login</a>
+                            <a  (click)="OpenModal()">{{'Login'|translate}}</a>
                           
                         </li>
                         <li>
