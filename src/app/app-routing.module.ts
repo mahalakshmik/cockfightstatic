@@ -32,7 +32,7 @@ const routes: Routes = [{
  { path:'wishlist',component:WishListComponent},
  { path:'payment',component:PaymentComponent},
  { path:'terms',component:TermsComponent},
- { path:'privacy',component:PrivacyComponent},
+ { path:'privacypolicy',component:PrivacyComponent},
  { path:'succuesspayment',component:PaymentsuccesComponent},
   { path: 'transport', loadChildren: () => import('src/Transport/transport/transport.module').then(m => m.TransportModule) },
   { path: 'shop', loadChildren: () => import('src/Shop/shop/shop.module').then(m => m.ShopModule) },

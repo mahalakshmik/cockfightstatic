@@ -87,7 +87,9 @@ export class LoginComponent implements OnInit {
       alert('please enter valid OTP')
     }
   }
-
+  gotopage(){
+    this.dialogRef.close();
+  }
   submitPass() {
     this.spinnerService.show();
     console.log(this.form1.value);
