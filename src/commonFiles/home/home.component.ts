@@ -156,11 +156,8 @@ export class HomeComponent implements OnInit {
       res => {
       console.log(res);
       this.stocklst = res;
-    },
-    error=>{
-      this.spinnerService.hide();
-      alert("Server error")
-
+    
+   
     }
     
     

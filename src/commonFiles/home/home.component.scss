@@ -144,3 +144,19 @@ section.\(max-width\:.\.bg-content.\.col-xs-12.\37 67px\)\.rhs_bar.\@media.slide
     margin-right: -8px;
     font-weight: normal;
 }
+@media (max-width: 991px) and (min-width: 768px) {
+    .lhs_links {
+        width: 30% !important;
+        padding: 0px !important;
+    }
+
+    .rhs_bar {
+        width: 66% !important;
+    }
+}
+
+.slideshow {
+    position: relative;
+    padding: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
