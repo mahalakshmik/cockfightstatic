@@ -172,8 +172,10 @@
                                         <h6 class="head1"> {{'Seller'|translate}} : {{p.sellerName}} </h6>
                                         <h6 class="head2 m-b-20"> {{'Province'|translate}} : {{p.province}} </h6>
                                         <!-- <span class="qty">Stock: {{p.stockQty}}</span> -->
-                                        <label *ngIf="p.stockQty > 0" style="color: green"><b>{{'InStock'|translate}}</b></label>
-                                        <label *ngIf="p.stockQty <= 0" style="color:red"><b>{{'OutofStock'|translate}}</b></label>
+                                        <label *ngIf="p.stockQty > 0"
+                                            style="color: green"><b>{{'InStock'|translate}}</b></label>
+                                        <label *ngIf="p.stockQty <= 0"
+                                            style="color:red"><b>{{'OutofStock'|translate}}</b></label>
                                         <a (click)="openDialog(template,p.productID)" *ngIf="p.hasVideo">
                                             <!-- style="width: 311px;height: 440px;" -->
                                             <img src="assets/images/video.png" width="40" class="img-fluid" alt="tbl">
@@ -181,23 +183,25 @@
                                         <div class="price price1">฿{{p.standardPrice}}</div>
                                         <span class="qty" style="display: flex;">
                                             <ul class="wrap">
-<li class="imgadjust">
-    
-    <a (click)="addfollowseller(p.sellerID)"><img class="followimg" src="../../assets/images/followi.jpg"/> 
-    </a>
-    <p>{{p.sellerFollowersCount}}</p>
-</li>
-<li>
+                                                <li class="imgadjust">
 
-    <a> <i (click)="addwish(p,i)"
-        [ngClass]="p.productLikesCount > 0 ? 'fa fa-thumbs-up thum-icon': 'fa fa-thumbs-o-up thum-icon' ">{{p.productLikesCount}}</i>
-        
-    </a>
-</li>
-<li>
-<a><i class="fa fa-comments-o" style="margin-left: 5px;"
-    routerLink="customer/ProdcutDetails/{{p.productID}}/{{p.sellerID}}"><b>{{p.productCommentsCount}}</b></i></a>
-</li>                                            </ul>
+                                                    <a (click)="addfollowseller(p.sellerID)"><img class="followimg"
+                                                            src="../../assets/images/followi.jpg" />
+                                                    </a>
+                                                    <p>{{p.sellerFollowersCount}}</p>
+                                                </li>
+                                                <li>
+
+                                                    <a> <i (click)="addwish(p,i)"
+                                                            [ngClass]="p.productLikesCount > 0 ? 'fa fa-thumbs-up thum-icon': 'fa fa-thumbs-o-up thum-icon' ">{{p.productLikesCount}}</i>
+
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a><i class="fa fa-comments-o" style="margin-left: 5px;"
+                                                            routerLink="customer/ProdcutDetails/{{p.productID}}/{{p.sellerID}}"><b>{{p.productCommentsCount}}</b></i></a>
+                                                </li>
+                                            </ul>
 
                                             <!-- <i (click)="addwish(p,i)" *ngIf="!isWishicon" class="fa fa-thumbs-up thum-icon">{{likeCount}}</i> -->
                                         </span>
