@@ -2,7 +2,7 @@
 <div class="card">
     <div class="row">
         <div class="col-sm-12 m-b-20">
-            <div  class="title-bar"><h2 class="title text-left border-bottom top-35"> Cart Items </h2> </div>
+            <div  class="title-bar"><h2 class="title text-left border-bottom top-35"> {{'CartItems'|translate}} </h2> </div>
         </div>
         <div class="col-sm-12 cartItems-productsList">
             <table id="e-product-list" class="table table-responsive table-striped" role="grid" style="width: 100%;">
@@ -49,8 +49,8 @@
             </table>
         </div>
         <div class="col-sm-12 text-right m-t-20 m-b-20">
-            <a class="btn btn-default" routerLink="/"> Continue Shopping </a>
-            <a class="btn btn-primary"  (click)="proceedToPayment()"> Proceed to Payment </a>
+            <a class="btn btn-default" routerLink="/"> {{'ContinueShopping'|translate}} </a>
+            <a class="btn btn-primary"  (click)="proceedToPayment()"> {{'ProceedtoPayment'|translate}} </a>
         </div>
     </div>
 </div>

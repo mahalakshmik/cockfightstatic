@@ -56,8 +56,8 @@
                                 <!-- href="~/Uploads/OrderPayment/@Model.orderHeader[i].OrderID/@(paymentslip != null ? paymentslip.ReferenceNo : "")" -->
                                 <a *ngIf="pay?.paymentMode==2178" class="btn btn-primary"
                                     href="{{fileuploadUrl}}Uploads/OrderPayment/{{p.orderID}}/{{pay.referenceNo}}"
-                                    target="_blank"><i class="fa fa-eye" aria-hidden="true">Payment
-                                        slip</i></a>
+                                    target="_blank"><i class="fa fa-eye" aria-hidden="true">{{'PaymentSlip'|translate}}
+                                        </i></a>
                             </div>
 
                         </div>
@@ -90,13 +90,13 @@
                          ORDERCLOSED = 2184; -->
                         <!-- <div *ngIf="currentStatus !== 'open' || currentStatus !== 'reopen'"></div> -->
                         <button *ngIf="p.orderStatus==2180" class="btn btn-primary"
-                            (click)="CancelOrder(q.orderID,p.orderNo)">Cancel Order</button>
+                            (click)="CancelOrder(q.orderID,p.orderNo)">{{'CancelOrder'|translate}}</button>
                         <button *ngIf="p.orderStatus=='2181' || p.orderStatus=='2181'" class="btn btn-primary"
-                            (click)="Confirmdelivery(q.orderID)">Confirm Delivered</button>
+                            (click)="Confirmdelivery(q.orderID)">{{'ConfirmDelivered'|translate}}</button>
                         <button *ngIf="p.orderStatus=='2180'  " class="btn btn-primary"
-                            (click)="ConformPayment(q.orderID)">Confirm Payment</button>
+                            (click)="ConformPayment(q.orderID)">{{'ConfirmPayment'|translate}}</button>
                         <button *ngIf="p.orderStatus=='2182'|| p.orderStatus=='2183'" class="btn btn-primary"
-                            (click)="closeOrder(q.orderID)">Close Order</button>
+                            (click)="closeOrder(q.orderID)">{{'CloseOrder'|translate}}</button>
 
                     </div>
                 </div>
