@@ -77,7 +77,7 @@
                             <li><a routerLink="menu/SellingList"
                                     *ngIf="this.dataService.getuserType() == '2171' && '2173' "
                                     (click)="this.showlist = !this.showlist;"> <i class="icon-list"></i>
-                                     Selling List</a></li>
+                                     {{'SellingList'|translate}}</a></li>
                             <li><a routerLink="menu/notification" (click)="this.showlist = !this.showlist;">
                                     <i class="icon-bell"></i>  {{'Notifications'|translate}}</a></li>
                             <li><a routerLink="menu/Verify" (click)="this.showlist = !this.showlist;"> <i

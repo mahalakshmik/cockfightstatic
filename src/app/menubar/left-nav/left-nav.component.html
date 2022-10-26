@@ -14,7 +14,7 @@
                     </div>
                     <div class="col-sm-8">
                         <h5>{{'Welcome'|translate}}</h5>
-                        <h6>{{username |titlecase}}</h6>
+                        <h6>{{username}}</h6>
                     </div>
                 </div>
 
@@ -25,7 +25,7 @@
                     <div class="navbar-header">
 
                         <button class="navbar-toggle" data-toggle="collapse" data-target="#collapseExample" aria-controls="collapseExample" style="float:unset ;">
-                            <span style="color: red;">Menu</span>
+                            <span style="color: red;">{{'Menu'|translate}}</span>
                             <!-- <span class="icon-bar"></span>
                             <span class="icon-bar"></span> -->
                         </button>
@@ -35,11 +35,11 @@
                         <ul class="list-inline list-unstyled icons-topp pull-left loggedincls" *ngIf="router.url.includes('readytosell') || router.url.includes('SellingList')|| router.url.includes('SoldOutList') ">
                             <li class="dropdown">
                                 <button aria-expanded="false" data-toggle="dropdown" class="dropdown-toggle"><span
-                                        class="title-overflow" style="color: #f15502;">Selling List</span></button>
+                                        class="title-overflow" style="color: #f15502;">{{'SellingList'|translate}}</span></button>
                                 <ul class="dropdown-menu dropdown-menu-2">
-                                    <li><a routerLink="/menu/readytosell"> Sell Your Product</a></li>
-                                    <li><a routerLink="/menu/SellingList">Selling List</a></li>
-                                    <li><a routerLink="/menu/SoldOutList">Sold Out List</a></li>
+                                    <li><a routerLink="/menu/readytosell"> {{'SellYourProduct'|translate}}</a></li>
+                                    <li><a routerLink="/menu/SellingList">{{'SellingList'|translate}}</a></li>
+                                    <li><a routerLink="/menu/SoldOutList">{{'SoldOutList'|translate}}</a></li>
                                 </ul>
                         </ul>
 
