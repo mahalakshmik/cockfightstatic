@@ -226,6 +226,7 @@ const  fid=0;
     res=>
     {
       this.spinnerService.hide();
+      
       if(res){
         Swal.fire({
           icon: 'success',
@@ -234,6 +235,7 @@ const  fid=0;
           // type: "success",
           timer: 500,
         });
+        this.productList();
       }
     }
   )
