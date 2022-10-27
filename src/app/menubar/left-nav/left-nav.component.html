@@ -51,7 +51,8 @@
                             <!-- <li ><a (click)="pageNavigate('profile')"> <i class="icon-user"></i> &nbsp;&nbsp;Profile </a></li> -->
                             <!-- <li><a (click)="myDir='address'">Address</a></li> -->
                             <li ><a  (click)="pageNavigate('address')"><i class="fa fa-map-marker"></i> {{'Address'|translate}}</a></li>
-                            <li><a *ngIf="userType=='2170' && '2173' " (click)="pageNavigate('WishList')"><i class="icon-heart"></i>{{'wishList'|translate}}</a></li>
+                            <!-- <li><a *ngIf="userType=='2170' && '2173' " (click)="pageNavigate('WishList')"><i class="icon-heart"></i>{{'wishList'|translate}}</a></li> -->
+                            <li><a  (click)="pageNavigate('WishList')"><i class="icon-heart"></i>{{'wishList'|translate}}</a></li>
                             <!-- <li><a (click)="pageNavigate('notification')"><i class="icon-bell"></i> &nbsp;Notification</a></li> -->
                             <li><a (click)="pageNavigate('inbox')"><i class="icon-envelope" aria-hidden="true"></i>{{'Message'|translate}} ({{'Inbox'|translate}})</a></li>
                             <!-- <li><a (click)="pageNavigate('Verify')"><i class="icon-check"></i> &nbsp;Verify Yourself</a></li> -->

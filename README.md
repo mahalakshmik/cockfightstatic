@@ -39,3 +39,8 @@ https://stackblitz.com/edit/ng-comment-tree?file=src%2Fapp%2Fapp.component.ts
 ##Updated header count using behaviour subject
 1.it is autorefresh concept
 2.check notficatin service how the header is updating for message and inbox.(VVIMP)
+
+#add to cart logic
+cartitem.Quantity = cartitem.Quantity + 1;
+                    cartitem.TotalAmount = cartitem.Quantity * cartitem.UnitPrice;
+                    //cartitem.DiscountAmount = cartitem.Quantity * cartitem.DiscountAmount;

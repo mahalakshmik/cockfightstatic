@@ -181,30 +181,27 @@
                                             <img src="assets/images/video.png" width="40" class="img-fluid" alt="tbl">
                                         </a>
                                         <div class="price price1">฿{{p.standardPrice}}</div>
-                                        <span class="qty" style="display: flex;">
-                                            <ul class="wrap">
-                                                <li class="imgadjust">
-
-                                                    <a (click)="addfollowseller(p.sellerID)"><img class="followimg"
-                                                            src="../../assets/images/followi.jpg" />
+                                       
+                                      
+                                        <div style="width: 100%; display: table;">
+                                            <div style="display: table-row">
+                                                <div style="display: table-cell;margin-top:20px"> 
+                                                    <a (click)="addfollowseller(p.sellerID)">
+                                                        <img class="followimg"
+                                                        src="../../assets/images/followi.jpg" style="width: 60px;height:30px" />
                                                     </a>
-                                                    <p>{{p.sellerFollowersCount}}</p>
-                                                </li>
-                                                <li>
-
-                                                    <a> <i (click)="addwish(p,i)"
-                                                            [ngClass]="p.productLikesCount > 0 ? 'fa fa-thumbs-up thum-icon': 'fa fa-thumbs-o-up thum-icon' ">{{p.productLikesCount}}</i>
-
-                                                    </a>
-                                                </li>
-                                                <li>
+                                                    <a><p class="followcart"><b>{{p.sellerFollowersCount}}</b></p></a>
+                                                    
+                                            </div>
+                                                <div style="display: table-cell;">  
                                                     <a><i class="fa fa-comments-o" style="margin-left: 5px;"
                                                             routerLink="customer/ProdcutDetails/{{p.productID}}/{{p.sellerID}}"><b>{{p.productCommentsCount}}</b></i></a>
-                                                </li>
-                                            </ul>
-
-                                            <!-- <i (click)="addwish(p,i)" *ngIf="!isWishicon" class="fa fa-thumbs-up thum-icon">{{likeCount}}</i> -->
-                                        </span>
+                                                </div>
+                                                <div style="display: table-cell;">   <a> <i (click)="addwish(p,i)"
+                                                    [ngClass]="p.productLikesCount > 0 ? 'fa fa-thumbs-up thum-icon': 'fa fa-thumbs-o-up thum-icon' ">{{p.productLikesCount}}</i>
+                                                </a></div>
+                                            </div>
+                                        </div>
 
 
                                         <!-- <i  class="fa fa-thumbs-o-up thum-icon"></i> -->

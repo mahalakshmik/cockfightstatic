@@ -12,10 +12,6 @@ export class WishListComponent implements OnInit {
   constructor(private fms: FmsService) { }
 
   ngOnInit(): void {
-    this.getWishList()
   }
-  getWishList() {
-    this.fms.getWishList().subscribe(res => { console.log(res) ;
-    this.wishlist = res;})
-  }
+ 
 }

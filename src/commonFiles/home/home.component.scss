@@ -167,3 +167,26 @@ section.\(max-width\:.\.bg-content.\.col-xs-12.\37 67px\)\.rhs_bar.\@media.slide
   justify-content: center;
   align-items: center;
 }
+
+
+
+
+.followcart{
+text-align: center;
+margin-top: -30px;
+margin-left: 70px;
+}
+div {
+    color: #fff;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    padding: 10px;
+}
+.container {
+    display:flex;
+}
+.fixed {
+    width: 200px;
+}
+.flex-item {
+    flex-grow: 1;
+}

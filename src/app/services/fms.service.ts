@@ -126,6 +126,14 @@ export class FmsService {
     payload.memberID = this.userdetails.userId;
     return this.http.post(`${this.baseURL}Carts`, payload);
   }
+  moveToCart(productid: number,wishid:number,payload:any) {
+    const memberID = this.userdetails.userId;
+    return this.http.post(`${this.baseURL}Carts/movetoCart/${productid}/${wishid}`,payload);
+  }
+  productidforcart(productid: number) {
+    const memberID = this.userdetails.userId;
+    return this.http.get(`${this.baseURL}ProductMasters/${productid}`,);
+  }
   deleteCartList(cartId: number) {
     return this.http.delete(`${this.baseURL}Carts/` + cartId);
   }
@@ -260,7 +268,12 @@ export class FmsService {
 
   getWishList() {
     return this.http.get(
-      `${this.baseURL}WishListListSP/` + this.userdetails.memberType
+      `${this.baseURL}WishLists/wishlist/${this.userdetails.userId}`
+    );
+  }
+  deleteWishList(wishid:number) {
+    return this.http.delete(
+      `${this.baseURL}WishLists/${wishid}`
     );
   }
   ///senderID/memberType
