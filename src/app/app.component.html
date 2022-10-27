@@ -10,17 +10,21 @@
                     <div class="header-search">
                         <form class="">
                             <div class="form-group">
-                                <!-- <div class="input-group">
-                                    <div class="">
+                                 <div class="input-group">
+                                    <div class="search">
 
-                                        <select class="form-control search-select" id="ddlLanguage"
+                                        <!-- <select class="form-control search-select" id="ddlLanguage"
                                             name="SelectedLanguage.LanguageCulture">
                                             <option value="th">ไทย</option>
                                             <option selected="selected" value="en">English</option>
-                                        </select>
+                                        </select> -->
 
+                                        <p>
+                                            <mat-slide-toggle  color="Link"  (change)="setValue($event )"><p style="color: white;">{{svalue}}</p></mat-slide-toggle>
+                                         </p>
+                                         <p routerLink="/">{{'Home'|translate}}</p>
                                     </div>
-                                </div> -->
+                                </div> 
                             </div>
                         </form>
                     </div>
@@ -28,9 +32,6 @@
 
                 <!-- Section : Login & Cart , Notifications -->
 
-                <p>
-                    <mat-slide-toggle  color="Link"  (change)="setValue($event )"><p style="color: white;">{{svalue}}</p></mat-slide-toggle>
-                 </p>
                 <div class="col-md-6 col-sm-6 col-xs-12 nav_right">
                     <ul class="list-inline list-unstyled icons-topp logincls" *ngIf="!dataService.isLoggedIn()">
                         <li class="dropdown" >

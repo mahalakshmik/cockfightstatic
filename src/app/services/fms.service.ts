@@ -176,6 +176,11 @@ export class FmsService {
       `${this.baseURL}MemberFollowings/FollowedList/` + this.userdetails.userId
     );
   }
+  getFollowingList():Observable<any>  {
+    return this.http.get(
+      `${this.baseURL}MemberFollowings/FollowingList/` + this.userdetails.userId
+    );
+  }
   saveFollowers(sellerid:number,userid:number,followingid:number):Observable<any>  {
 
     return this.http.get(

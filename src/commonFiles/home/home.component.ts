@@ -124,11 +124,11 @@ export class HomeComponent implements OnInit {
     localStorage.setItem('prodList', JSON.stringify(this.prd));
   //if without login then check this
     
-    this.fmss.saveWishList(p).subscribe((res) => {
+    this.fmss.saveWishList(p).subscribe((res:any) => {
       console.log(res);
       Swal.fire({
         icon: 'success',
-        title: 'Added to wishList!',
+        title: res?.message,
         // text: "You clicked the button!",
         // type: "success",
         timer: 500,
@@ -237,6 +237,7 @@ const  fid=0;
         });
         this.productList();
       }
+
     }
   )
 }
