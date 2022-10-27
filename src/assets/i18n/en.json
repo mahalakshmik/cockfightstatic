@@ -92,7 +92,9 @@
     "Gender": "Gender",
     "GoCompare": "Go Compare",
     "HasDiscount": "Has Discount",
+    "HomeAddress": "Home Address",
     "HasPromotion": "Has Promotion",
+
     "Home": "Home",
     "Image": "Image",
     "Inbox": "Inbox",
@@ -142,6 +144,7 @@
     "PaymentType": "Payment Type",
     "PostCategory": "Post Category",
     "PostComments": "Post Comments",
+    "Postyourcomment":"Post your comment",
     "PostDislikes": "Post Dislikes",
     "PostLikes": "Post Likes",
     "PostTopic": "Post Topic",
