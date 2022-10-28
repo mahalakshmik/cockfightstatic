@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-sm-12 m-b-20">
                 <div class="title-bar">
-                    <h2 class="title text-left border-bottom top-35"> OrderSummary </h2>
+                    <h2 class="title text-left border-bottom top-35"> {{'OrderSummary'|translate}} </h2>
                 </div>
             </div>
             <div class="row">
@@ -11,7 +11,7 @@
 
                 </div>
                 <div class="col-md-2">
-                    <p class=" text-left border-bottom top-35">TotalAmount:{{totalAmount | number: '1.2-2'}}</p>
+                    <p class=" text-left border-bottom top-35">{{'TotalAmount'|translate}}:{{totalAmount | number: '1.2-2'}}</p>
                 </div>
 
             </div>
@@ -22,9 +22,9 @@
                         style="margin-top: -50px;">
                 </div>
                 <div class="col-md-4">
-                    <p><b>ProductName</b>: {{selectedProdut.productName}}</p>
-                    <p><b>SellerID</b>: {{selectedProdut.sellerName}}</p>
-                    <p><b>Quantity </b>: {{productCount}}</p>
+                    <p><b>{{'ProductName'|translate}}</b>: {{selectedProdut.productName}}</p>
+                    <p><b>{{'SellerID'|translate}}</b>: {{selectedProdut.sellerName}}</p>
+                    <p><b>{{'Quantity'|translate}} </b>: {{productCount}}</p>
                     <div class="col-sm-10">
                         <label>
                             <div class="number-input">
@@ -43,22 +43,22 @@
 
                 </div>
                 <div class="col-md-2">
-                    <p>StandardPrice:{{selectedProdut.standardPrice | number: '1.2-2'}}</p>
-                    <p>Discount:{{selectedProdut.discount}}</p>
+                    <p>{{'StandardPrice'|translate}}:{{selectedProdut.standardPrice | number: '1.2-2'}}</p>
+                    <p>{{'Discount'|translate}}:{{selectedProdut.discount}}</p>
                 </div>
 
             </div>
             <button *ngIf="selectedProdut.paymentOption == 2177" (click)="confirmOrder()" class="btn btn-primary"
-                style="float: right;">Confirm Order</button>
+                style="float: right;">{{'ConfirmOrder'|translate}}</button>
             <button *ngIf="selectedProdut.paymentOption != 2177" (click)="confirmOrder()" class="btn btn-primary"
-                style="float: right;">Continue Payment</button>
+                style="float: right;">{{'ContinuePayment'|translate}}</button>
         </div>
     </div>
     <div class="card" *ngIf="isCart">
         <div class="row">
             <div class="col-sm-12 m-b-20">
                 <div class="title-bar">
-                    <h2 class="title text-left border-bottom top-35"> Order Summary </h2>
+                    <h2 class="title text-left border-bottom top-35"> {{'OrderSummary'|translate}} </h2>
                 </div>
             </div>
             <div class="row">
@@ -66,7 +66,7 @@
 
                 </div>
                 <div class="col-md-2">
-                    <p class=" text-left border-bottom top-35">TotalAmount:{{totalAmount | number: '1.2-2'}}</p>
+                    <p class=" text-left border-bottom top-35">{{'TotalAmount'|translate}}:{{totalAmount | number: '1.2-2'}}</p>
                 </div>
 
             </div>
@@ -77,9 +77,9 @@
                         style="margin-top: -50px;">
                 </div>
                 <div class="col-md-4">
-                    <p><b>ProductName</b>: {{p.productName}}</p>
-                    <p><b>SellerID</b>: {{p.sellerName}}</p>
-                    <p><b>Quantity </b>: {{p.quantity}}</p>
+                    <p><b>{{'ProductName'|translate}}</b>: {{p.productName}}</p>
+                    <p><b>{{'SellerID'|translate}}</b>: {{p.sellerName}}</p>
+                    <p><b>{{'Quantity'|translate}} </b>: {{p.quantity}}</p>
                     <div class="col-sm-10">
                         <label>
                             <div class="number-input">
@@ -98,15 +98,15 @@
 
                 </div>
                 <div class="col-md-2">
-                    <p>StandardPrice:{{p.unitPrice | number: '1.2-2'}}</p>
-                    <p>Discount:{{p.discountAmount}}</p>
+                    <p>{{'StandardPrice'|translate}}:{{p.unitPrice | number: '1.2-2'}}</p>
+                    <p>{{'Discount'|translate}}:{{p.discountAmount}}</p>
                 </div>
 
             </div>
             <button *ngIf="selectedProdut.paymentOption == 2177" (click)="confirmOrder()" class="btn btn-primary"
-                style="float: right;">Confirm Order</button>
+                style="float: right;">{{'ConfirmOrder'|translate}}</button>
             <button *ngIf="selectedProdut.paymentOption != 2177" (click)="confirmOrder()" class="btn btn-primary"
-                style="float: right;">Continue Payment</button>
+                style="float: right;">{{'ContinuePayment'|translate}}</button>
         </div>
     </div>
 </div>
@@ -121,7 +121,7 @@
             <div class="card ">
                 <div class="card-header">
                     <div class="title-bar">
-                        <h2 class="title text-left border-bottom top-35 m-0"> Payment </h2>
+                        <h2 class="title text-left border-bottom top-35 m-0"> {{'Payment'|translate}} </h2>
                     </div>
                     <div class="row">
                         <div class="col-md-7 m-b-50" style="float:none;margin:auto;">
@@ -139,7 +139,7 @@
                                     <li class="nav-item">
                                         <button data-toggle="pill" href="#paypal" class="nav-link ">
                                             <!-- <i class="fa fa-file m-r-5"></i> -->
-                                            Upload Receipt
+                                            {{"UploadReceipt"|translate}}
                                         </button>
                                     </li>
                                 </ul>
@@ -213,7 +213,7 @@
                                             <div class="upload-btn-wrapper">
                                                 <button class="btn2">
                                                     <i class="icon-cloud-upload f-25 dis-block"></i>
-                                                    <span class="dis-block m-t-5"> Click to Browse </span></button>
+                                                    <span class="dis-block m-t-5"> {{'ClicktoBrowse'|translate}} </span></button>
                                                 <input type="file" name="myfile" (change)="uploadFile($event)" />
                                                 <img width="60" *ngIf="imageUrl" [src]="imageUrl" class="image">
                                             </div>
@@ -222,8 +222,7 @@
                                         </label> </div>
                                     <div class="form-group">
                                         <button type="button" class="btn btn-primary border-radius6 m-t-10  "
-                                            (click)="savePayment()"><i class="fa fa-file f-15 m-r-5"></i> Confirm
-                                            Order</button>
+                                            (click)="savePayment()"><i class="fa fa-file f-15 m-r-5"></i> {{'ConfirmOrder'|translate}}</button>
                                     </div>
 
                                 </div> <!-- End -->

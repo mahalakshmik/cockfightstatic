@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit {
   isIconcheck='fa fa-thumbs-o-up thum-icon' ;
   productvideoUrl=environment.videoUrl;
   dialogRef: any;
+  islng: boolean=true;
   constructor(
     private matDialog: MatDialog,
     private fms: LoginService,
@@ -42,7 +43,13 @@ export class HomeComponent implements OnInit {
     public spinnerService: NgxSpinnerService,
     private as: AuthService,
     private rout:Router,
-  ) {}
+  ) {
+let language='en'
+if(language=='th'){
+
+  this.islng =!this.islng;
+}
+  }
 
   img_list = [
     'https://picsum.photos/600/400/?image=0',

@@ -15,7 +15,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-6 text-right">
-                                <button class="btn-primary" routerLink="/menu/readytosell"><i class="fa fa-arrow-left" aria-hidden="true"></i>back</button>
+                                <button class="btn-primary" routerLink="/menu/readytosell"><i class="fa fa-arrow-left" aria-hidden="true"></i>{{'Back'|translate}}</button>
                             </div>
                         </div>
 
@@ -49,7 +49,7 @@
                             <mat-icon>Videos Upload</mat-icon>
                         </ng-template>
                       
-                        <mat-step label="Product" state="form">
+                        <mat-step label="{{'Product'|translate}}" state="form">
                             <form name="form" (ngSubmit)="f.form.valid && createsell() " #f="ngForm"  novalidate>
     
                                 
@@ -101,7 +101,7 @@
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <label class="is-invalid" [ngClass]="{ 'is-invalid': f.submitted && breedType.invalid }"> Sire/Breeder *</label>
+                                                    <label class="is-invalid" [ngClass]="{ 'is-invalid': f.submitted && breedType.invalid }"> {{'SireBreeder'|translate}} *</label>
                                                     <select [(ngModel)]="formsell.breedType" #breedType="ngModel"
                                                         [ngClass]="{ 'is-invalid': f.submitted && breedType.invalid }" required
                                                         name="breedType" class="form-control">
@@ -346,22 +346,21 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12 text-right m-t-10">
-                                        <button class="btn btn-primary" type="submit" >Confirm And Proceed</button>
+                                        <button class="btn btn-primary" type="submit" >{{'ConfirmAndProceed'|translate}}</button>
                                     </div>
                                 </div>
                             </form>
                         </mat-step>
                     
-                      <mat-step label="Images" state="home">
+                      <mat-step label="{{'Images'|translate}}" state="home">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label class="is-invalid" > Upload Images *</label>
+                                    <label class="is-invalid" > {{'UploadImages'|translate}} *</label>
                                     <div class="upload-btn-wrapper">
                                         <button class="btn1">
                                             <i class="icon-cloud-upload f-20"
-                                                style="margin-right:15px; vertical-align: middle;"></i> Choose a
-                                            File...</button>
+                                                style="margin-right:15px; vertical-align: middle;"></i> {{'ChooseaFile'|translate}}...</button>
                                         <input  type="file" accept="image/*" multiple name="myfile"  (change)="onFileSelect($event)" 
                                        
                                         />
@@ -375,7 +374,7 @@
                                         <p> x</p>
                                         <img [src]="preview" width="100px" height="100px" class="preview">
                                     </div>
-                                    <button class="btn btn-primary" (click)="uploadImages()" style="margin-left: 179px; margin-bottom: -29px;"> Save Images</button>
+                                    <button class="btn btn-primary" (click)="uploadImages()" style="margin-left: 179px; margin-bottom: -29px;"> {{'SaveImages'|translate}}</button>
                                 </div>
                             </div>
                         
@@ -390,17 +389,16 @@
                           </div> -->
                       </mat-step>
                     
-                      <mat-step label="Videos" state="home">
+                      <mat-step label="{{'Videos'|translate}}" state="home">
                         <div class="row">
                            
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label> Video Link</label>
+                                    <label> {{'VideoLink'|translate}}</label>
                                     <div class="upload-btn-wrapper">
                                         <button class="btn1">
                                             <i class="icon-cloud-upload f-20"
-                                                style="margin-right:15px; vertical-align: middle;"></i> Choose a
-                                            File...</button>
+                                                style="margin-right:15px; vertical-align: middle;"></i> {{'ChooseaFile'|translate}}...</button>
                                         <!-- <video [src]="url" *ngIf="format==='video' && url" height="200"
                                             controls></video> <br /> -->
                                             
@@ -423,7 +421,7 @@
                                     </div>
                                 <!-- <button class="btn btn-primary" (click)="uploadVideos()" style="margin-left: 145px;"> Save Videos</button> -->
                                 <a  class="btn btn-primary" tooltip="Upload file" (click)="uploadVideosrecord()">
-                                    Save Video
+                                    {{'SaveVideo'|translate}}
                                  </a>
     
                                 </div>

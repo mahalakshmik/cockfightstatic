@@ -6,12 +6,11 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="title-bar">
-                            <h2 class="title">Breed List </h2><span class="title-border"></span>
+                            <h2 class="title">{{'BreedList'|translate}} </h2><span class="title-border"></span>
                         </div>
                     </div>
                     <div class="col-sm-6 text-right">
-                        <button  class="btn btn-primary" data-toggle="modal" data-target="#BreedModal" (click)="addBread(breedtemplate)"> Add New
-                            Breed</button>
+                        <button  class="btn btn-primary" data-toggle="modal" data-target="#BreedModal" (click)="addBread(breedtemplate)"> {{'AddNewBreed'|translate}}</button>
                     </div>
                 </div>
 
@@ -20,11 +19,11 @@
                     <thead>
                         <tr>
                             <!-- <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 125px;">Image</th> -->
-                            <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 1023px;">Bread Name</th>
+                            <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 1023px;">{{'BreedName'|translate}}</th>
                             <!-- <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 153px;">Amount</th> -->
                             <!-- <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 100px;">Edit</th> -->
                             <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 134px;text-align:center">
-                                Action
+                                {{'Action'|translate}}
                             </th>
                             <th></th>
                         </tr>
@@ -59,7 +58,7 @@
                             <div class="modal-header">
                                 <button type="button" class="close" (click)="breeddialogRef.close()">×</button>
                                 <h4 class="modal-title center-block">
-                                    BreedDetails
+                                    {{'BreedDetails'|translate}}
                                 </h4>
                             </div>
                             <div class="modal-body" id="breedDetail">
@@ -69,7 +68,7 @@
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <input class="form-control" [(ngModel)]="breadName" name="breadName"
-                                                placeholder="Breed Name" type="text" >
+                                                placeholder="{{'BreedName'|translate}}" type="text" >
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -77,9 +76,9 @@
                                             <div class="popup-btns-save-cncl pull-right">
                                                 <button type="button" (click)="SaveBreed()" id="btnSave"
                                                     class="btn btn-default forum-header-btn"
-                                                    >Save</button>
+                                                    >{{'Save'|translate}}</button>
                                                 <button type="button"  (click)="breeddialogRef.close()"
-                                                    class="btn btn-default forum-header-btn">Cancel</button>
+                                                    class="btn btn-default forum-header-btn">{{'Cancel'|translate}}</button>
                                             </div>
                                         </div>
                                     </div>

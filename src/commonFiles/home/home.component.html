@@ -4,7 +4,13 @@
             <select class="form-control" (click)="onChange($event)" [(ngModel)]="form.productType"
                 #productType="ngModel" name="productType">
 
-                <option *ngFor="let p of stocklst" [value]="p.lookupId"> {{p.lookupDescription}} </option>
+                    <ng-container *ngIf="islng;else other_content">
+                 
+                        <option *ngFor="let p of stocklst" [value]="p.lookupId"> {{p.lookupDescription}} </option>
+                    </ng-container>
+                    <ng-template #other_content>
+                        <option   *ngFor="let p of stocklst" [value]="p.lookupId"> {{p.lookupDescriptionTh}} </option>
+                        </ng-template>
                 <!-- <option> Medicine </option>
                 <option> Food </option>
                 <option> SUPPLEMENTARY FOOD </option>
@@ -45,7 +51,7 @@
                                 </div>
                                 <div class="list-group-item small d-flex align-items-center">
                                     <div class="form-group category-padding">
-                                        <label> {{'Price'|translate}}(From price - to price) </label>
+                                        <label> {{'Price'|translate}}(From {{'Price'|translate}} - to {{'Price'|translate}}) </label>
                                         <input id="slider" type="range" min="4" max="32" value="16"
                                             class=" slider m-b-20" />
                                         <div class="row">
@@ -69,15 +75,15 @@
                                 </div>
                                 <div class="list-group-item small d-flex align-items-center">
                                     <div class="form-group category-padding">
-                                        <label> Promotion/Discount </label> <br>
+                                        <label> {{'Promotion'|translate}}/{{'Discount'|translate}} </label> <br>
                                         <input type="checkbox" [(ngModel)]="form.promotion" #promotion="ngModel"
-                                            name="promotion"> Has Discount/Promotion
+                                            name="promotion"> {{'HasDiscount'|translate}}/{{'Promotion'|translate}}
                                     </div>
                                 </div>
                                 <mat-action-row>
                                     <button type="submit" mat-button class="primary" color="primary">Search</button>
                                     <!-- <button mat-button color="primary" (click)="f.reset()">clear</button> -->
-                                    <button mat-button color="primary" (click)="reset(f)">clear</button>
+                                    <button mat-button color="primary" (click)="reset(f)">{{'clear'|translate}}</button>
                                 </mat-action-row>
                             </form>
                         </mat-expansion-panel>
