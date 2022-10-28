@@ -28,6 +28,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 note:added Ngx spinner if we get any version we need to remove , it supports only 12-v.
 
 ##spinner code
+for spinner style check browseranimationmodule adde or not in appmodule.ts
   1.  public spinnerService: NgxSpinnerService,
    2. this.spinnerService.show();
 

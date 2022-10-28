@@ -19,7 +19,17 @@
                         <div class="form-group">
                             <select [(ngModel)]="forms.memberType" #memberType="ngModel" name="memberType"
                                 class="form-control">
-                                <option value="{{p.value}}" *ngFor="let p of listItemskeys">{{p.text}} </option>
+                                <option value="{{p.value}}" *ngFor="let p of listItemskeys">{{p.text |translate}} </option>
+                                <!-- <ng-container *ngIf="selectedlng === 'th';else second">
+                                    
+                                    <option value="{{p.value}}" *ngFor="let p of listItemskeys">{{p.text}} </option>
+                                 
+                                </ng-container>
+                                <ng-template #second>
+                                
+
+    
+                                </ng-template> -->
                             </select>
                         </div>
                         <div class="form-group">

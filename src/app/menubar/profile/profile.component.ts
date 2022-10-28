@@ -23,12 +23,16 @@ export class ProfileComponent implements OnInit {
   imageUrl: any;
   matDialogRef!: MatDialogRef<ChangepasswordComponent>;
   profileImage!: string  ;
-
+  selectedlng:string='en';
    
   constructor(private fms: FmsService, private as: AuthService, public spinnerService: NgxSpinnerService, private gs: LoginService,private router: Router,private matDialog: MatDialog,) {
     const userDetails = this.as.getLoggedUserDetails();
     this.userID = userDetails.userId;
-
+    this.selectedlng='th';
+    const data=localStorage.getItem('lng');
+    if(data != null){
+      this.selectedlng=data;
+    } 
 
    }
 
