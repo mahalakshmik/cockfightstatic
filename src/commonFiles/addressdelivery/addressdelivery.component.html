@@ -3,12 +3,12 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="title-bar">
-                    <h2 class="title text-left  m-0    "> Delivery Address </h2>
+                    <h2 class="title text-left  m-0    "> {{'DeliveryAddress'|translate}}</h2>
                 </div>
             </div>
             <div class="col-sm-6 text-right">
                 <a  (click)="openaddressDialog()" class=" btn btn-warning" data-toggle="modal" data-target="#AddAddress"> <i
-                        class="icon-plus m-r-5"></i> Add Address</a>
+                        class="icon-plus m-r-5"></i> {{'AddAddress'|translate}}</a>
             </div>
             <div class="col-sm-12">
                 <div class="border-bottom "></div>
@@ -26,9 +26,9 @@
                             <input type="radio" (click)="selectedValue=p"  [checked]="p === selectedValue" [value]="p.addressId" >
                         </div>
                         <div class="col-sm-9">
-                            <h3 class="m-b-10">Home Address</h3>
+                            <h3 class="m-b-10">{{'HomeAddress'|translate}}</h3>
                             <p>
-                                Home :{{p.addressName}} - {{p.mobileNo}}, <br>
+                                {{'Home'|translate}} :{{p.addressName}} - {{p.mobileNo}}, <br>
                                 {{p.memberAddress}} ,<br>
                                 {{p.landmark}},<br>
                                 {{p.locality}} - {{p.zipCode}}, {{p.state}}, {{p.country}}.
@@ -47,7 +47,7 @@
                 </div>
             </div>
         </div>
-        <button class="btn btn-primary"  (click)="continue()">Continue</button>
+        <button class="btn btn-primary"  (click)="continue()">{{'Continue'|translate}}</button>
        
     </div>
 </div>

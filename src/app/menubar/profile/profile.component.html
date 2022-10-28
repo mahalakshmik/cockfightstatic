@@ -6,11 +6,11 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="title-bar">
-                            <h2 class="title">Profile Information </h2><span class="title-border"></span>
+                            <h2 class="title">{{'ProfileInformation'|translate}} </h2><span class="title-border"></span>
                         </div>
                     </div>
                     <div class="col-sm-6 text-right">
-                        <a class="text-underline" (click)="openModal()"> Change Password</a>
+                        <a class="text-underline" (click)="openModal()">{{'ChangePassword'|translate}}</a>
                     </div>
                 </div>
 
@@ -23,12 +23,12 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label> First Name</label>
+                            <label> {{'FirstName'|translate}}</label>
                             <input type="text" [(ngModel)]="forms.firstName" #firstName="ngModel" name="firstName"
                             class="form-control" />
                         </div>
                         <div class="form-group">
-                            <label> Last Name</label>
+                            <label> {{'LastName'|translate}}</label>
                             <input type="text" [(ngModel)]="forms.lastName" #lastName="ngModel" name="lastName"
                                 class="form-control" />
                            
@@ -38,7 +38,7 @@
                         <div class="upload-btn-wrapper">
                             <button class="btn2">
                                 <i class="icon-cloud-upload f-25 dis-block"></i>
-                                <span class="dis-block m-t-5"> Upload Profile Photo </span></button>
+                                <span class="dis-block m-t-5"> {{'UploadProfilePhoto'|translate}} </span></button>
                             <input type="file" name="myfile" (change)="onImageFileSelect($event)" />
                             <img width="80%" *ngIf="imageUrl" [src]="imageUrl" class="image">
                         </div>
@@ -48,14 +48,14 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                             <label> Email ID</label>
+                             <label> {{'EmailID'|translate}}</label>
                             <input type="email" [(ngModel)]="forms.emailId" #emailId="ngModel" name="emailId"
                                 class="form-control" />
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label> Mobile No</label>
+                            <label> {{'MobileNo'|translate}}</label>
                             <input type="text" [(ngModel)]="forms.mobileNo" #mobileNo="ngModel" name="mobileNo"
                                 class="form-control" />
                         </div>
@@ -65,14 +65,14 @@
                     <div class="col-sm-6">
 
                         <div class="form-group">
-                            <label> About</label>
+                            <label> {{'About'|translate}}</label>
                             <input type="text" [(ngModel)]="forms.aboutUs" #aboutUs="ngModel" name="aboutUs"
                                 class="form-control" />
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label> Blog</label>
+                            <label> {{'Blog'|translate}}</label>
                             <input type="text" [(ngModel)]="forms.website" #website="ngModel" name="website"
                                 class="form-control" />
                         </div>
@@ -80,7 +80,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12 text-right m-t-10">
-                        <a (click)="onSubmit()" class="btn btn-primary">Confirm All Changes</a>
+                        <a (click)="onSubmit()" class="btn btn-primary">{{'ConfirmAllChanges'|translate}}</a>
                         <!-- <button  class="btn btn-primary"> Confirm All Changes</button> -->
                     </div>
                 </div>

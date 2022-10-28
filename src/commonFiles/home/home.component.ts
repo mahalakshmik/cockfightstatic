@@ -89,14 +89,14 @@ export class HomeComponent implements OnInit {
       height: '550px',
     });
 
-    dialogReference.afterClosed().subscribe((res) => {debugger
+    dialogReference.afterClosed().subscribe((res) => {
       if (res == true) {
         this.saveLike(p);
 
       }
     });
   }
-  addwish(p: any, index: any) {debugger
+  addwish(p: any, index: any) {
     this.userid = this.as.getToken();
     if (!this.userid) {
     this.Login(p);
@@ -124,16 +124,19 @@ export class HomeComponent implements OnInit {
     localStorage.setItem('prodList', JSON.stringify(this.prd));
   //if without login then check this
     
-    this.fmss.saveWishList(p).subscribe((res) => {
+    this.fmss.saveWishList(p).subscribe((res:any) => {debugger
       console.log(res);
-      Swal.fire({
-        icon: 'success',
-        title: 'Added to wishList!',
-        // text: "You clicked the button!",
-        // type: "success",
-        timer: 500,
-      });
-      this.productList();
+      if(res.success){
+
+        Swal.fire({
+          icon: 'success',
+          title: res.message,
+          // text: "You clicked the button!",
+          // type: "success",
+          timer: 500,
+        });
+        this.productList();
+      }
     });
   }
   reset(form: any) {
@@ -152,10 +155,16 @@ export class HomeComponent implements OnInit {
     this.productList();
   }
   getStock() {
-    this.fmss.getStockList().subscribe((res) => {
+    this.fmss.getStockList().subscribe(
+      res => {
       console.log(res);
       this.stocklst = res;
-    });
+    
+   
+    }
+    
+    
+    );
   }
   productList() {
     this.spinnerService.show();
@@ -188,8 +197,53 @@ export class HomeComponent implements OnInit {
     this.rout.navigate(['customer/ProdcutDetails/',p.productID, p.sellerID])
 
   }
-  
+  addfollowseller(sid:number){
+    this.userid = this.as.getToken();
+    this.spinnerService.show();
+    if (!this.userid) {
+      this.spinnerService.hide();
+      const dialogReference  = this.matDialog.open(LoginComponent, {
+        // data: { name: this.name },
+        
+        disableClose: true,
+        width: '400px',
+        height: '550px',
+      });
+      dialogReference.afterClosed().subscribe((res) => {
+        console.log(res)
+        if (res === true) {
+    this.userid = this.as.getToken();
 
+this.addfollow(sid,this.userid)
+
+        }
+      });
+    }else{
+this.addfollow(sid,this.userid)
+    }
+   
+  }
+addfollow(sid:number,uid:number){
+const  fid=0;
+  this.fmss.saveFollowers(sid,uid,fid).subscribe(
+    res=>
+    {
+      this.spinnerService.hide();
+      
+      if(res){
+        Swal.fire({
+          icon: 'success',
+          title: 'Following ',
+          // text: "You clicked the button!",
+          // type: "success",
+          timer: 500,
+        });
+        this.productList();
+      }
+
+    }
+  )
+}
   openDialog(templateRef:any,pid:any) {
    this.dialogRef = this.matDialog.open(templateRef, {
       width: "80vw",

@@ -5,6 +5,7 @@ import { MaterialExampleModule } from 'src/material.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [LeftNavbarComponent],
@@ -14,6 +15,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatProgressSpinnerModule,
     NgxSpinnerModule,
     MaterialExampleModule,
+    TranslateModule,
   ],
 })
 export class SharedModule {}

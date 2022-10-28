@@ -3,19 +3,19 @@
         <div class="row" >
             <div class="col-sm-12 m-b-20">
                 <div class="title-bar">
-                    <h2 class="title text-left border-bottom top-35"> Order Placed Successfully</h2>
+                    <h2 class="title text-left border-bottom top-35"> {{'OrderPlacedSuccessfully'|translate}}</h2>
                 </div>
             </div>
             <div *ngFor="let p of orderdetails">
             <div class="row">
                 <div class="col-md-2">
-                    <p class=" text-left border-bottom top-35">Order NO: {{p.orderNo}}</p>
+                    <p class=" text-left border-bottom top-35">{{'OrderNO'|translate}}: {{p.orderNo}}</p>
                  </div>
                 <div class="col-md-8">
 
                 </div>
                 <div class="col-md-2">
-                   <p class=" text-left border-bottom top-35">Total Amount: {{p.totalAmount}}</p>
+                   <p class=" text-left border-bottom top-35">{{'TotalAmount'|translate}}: {{p.totalAmount}}</p>
                 </div>
 
             </div>
@@ -26,18 +26,18 @@
                     class="d-block w-100" alt="image" >
                 </div>
                 <div class="col-md-4">
-                    <p>ProductName:{{this.selectedProdut.productName}}</p>
-                    <p>Seller:{{this.selectedProdut.sellerName}}</p>
-                    <p>Quantity:{{selectedquntity}}</p>
-                    <p>Address:{{deliveryaddress.locality}}</p>
+                    <p>{{'ProductName'|translate}}:{{this.selectedProdut.productName}}</p>
+                    <p>{{'Seller'|translate}}:{{this.selectedProdut.sellerName}}</p>
+                    <p>{{'Quantity'|translate}}:{{selectedquntity}}</p>
+                    <p>{{'Address'|translate}}:{{deliveryaddress.locality}}</p>
                       
                 </div>
                 <div class="col-md-2">
                    
                 </div>
                 <div class="col-md-2">
-                    <p>StandardPrice: {{p.orderAmount}}</p>
-                    <p>Discount: {{selectedProdut.discount}}</p>
+                    <p>{{'StandardPrice'|translate}}: {{p.orderAmount}}</p>
+                    <p>{{'Discount'|translate}}: {{selectedProdut.discount}}</p>
                 </div>
 
             </div>

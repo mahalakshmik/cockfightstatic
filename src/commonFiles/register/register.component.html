@@ -9,7 +9,7 @@
       <div>
         <div class="modal-header">
           <button type="button" class="close" (click)="onNoClick()">&times;</button>
-          <h4 class="modal-title">Register</h4>
+          <h4 class="modal-title">{{'Register'|translate}}</h4>
         </div>
         <div class="modal-body">
           <div class="form-group">
@@ -26,7 +26,7 @@
           </div>
           <div class="row">
             <div class="col-sm-6 form-group">
-              <label class="is-invalid" [ngClass]="{'is-invalid':f.submitted && firstName.invalid} ">First Name</label>
+              <label class="is-invalid" [ngClass]="{'is-invalid':f.submitted && firstName.invalid} ">{{'FirstName'|translate}}</label>
               <input type="text" class="form-control" name="firstName" [(ngModel)]="form.firstName" #firstName="ngModel"
                 [ngClass]="{'is-invalid':f.submitted && firstName.invalid} "   required />
               <div style="color: red;" *ngIf="firstName.errors && f.submitted">
@@ -34,12 +34,12 @@
               </div>
             </div>
             <div class="col-sm-6 form-group">
-              <label>Last Name</label>
+              <label>{{'LastName'|translate}}</label>
               <input type="text" class="form-control" name="lastName" [(ngModel)]="form.lastName" #lastName="ngModel" />
             </div>
           </div>
           <div class="form-group">
-            <label class="is-invalid" [ngClass]="{'is-invalid':f.submitted && userName.invalid} "> User Name </label>
+            <label class="is-invalid" [ngClass]="{'is-invalid':f.submitted && userName.invalid} "> {{'UserName'|translate}} </label>
             <input type="text" class="form-control" name="userName" [(ngModel)]="form.userName" #userName="ngModel"
               [ngClass]="{'is-invalid':f.submitted && userName.invalid} "  required />
             <div style="color: red;" *ngIf="userName.errors && f.submitted">
@@ -62,7 +62,7 @@
           </div>
 
           <div class="form-group">
-            <label class="is-invalid" [ngClass]="{'is-invalid':f.submitted && mobileNo.invalid} "> Mobile No. </label>
+            <label class="is-invalid" [ngClass]="{'is-invalid':f.submitted && mobileNo.invalid} "> {{'MobileNo'|translate}} </label>
             <div class="row">
               <div class="col-sm-4">
                 <select class="form-control" [(ngModel)]="form.countrycode" #countrycode="ngModel" name="countrycode"
@@ -74,26 +74,18 @@
                 <input type="text" class="form-control" name="mobileNo" [(ngModel)]="form.mobileNo" minLength="10"
                   #mobileNo="ngModel" [ngClass]="{ 'is-invalid': f.submitted && mobileNo.invalid }" required />
                 <div style="color: red;" *ngIf="mobileNo.errors && f.submitted">
-                  <!-- <div *ngIf="mobileNo.errors['required']">mobile No. is required</div>
-                  <div *ngIf="mobileNo.errors['minLength']">
-                    Mobile No. must be of 10 characters
-                  </div> -->
-                  <!-- <span *ngIf="proper else notProper">{{ proper }}</span> 
-              <ng-template #notProper>Not Proper</ng-template> -->
+                
                 </div>
               </div>
             </div>
 
           </div>
           <div class="form-group">
-            <label for="password" class="is-invalid" [ngClass]="{'is-invalid':f.submitted && password.invalid} ">Password</label>
+            <label for="password" class="is-invalid" [ngClass]="{'is-invalid':f.submitted && password.invalid} ">{{'Password'|translate}}</label>
             <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required
               minlength="6" #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" />
             <div style="color: red;" *ngIf="password.errors && f.submitted">
-              <!-- <div *ngIf="password.errors['required']">Password is required</div>
-              <div *ngIf="password.errors['minlength']">
-                Password must be at least 6 characters
-              </div> -->
+           
             </div>
           </div>
 
@@ -104,7 +96,7 @@
           <div style="color: red;" *ngIf="isAcceptedTermsConditions.errors && f.submitted">
             <!-- <div *ngIf="isAcceptedTermsConditions.errors['required']">Please tick the Terms &amp; Conditions</div> -->
           </div>
-          <button type="submit" class="btn btn-default width100 m-t-20 m-b-20" data-dismiss="modal">Register</button>
+          <button type="submit" class="btn btn-default width100 m-t-20 m-b-20" data-dismiss="modal">{{'Register'|translate}}</button>
         </div>
       </div>
     </div>
@@ -183,7 +175,7 @@
           <div class="row">
             <div class="col-sm-12">
               <div class="form-group">
-                <label>Address </label>
+                <label>{{'Address'| translate}} </label>
                 <textarea class="form-control">
 
                       </textarea>
@@ -201,7 +193,7 @@
             </div>
             <div class="col-sm-6">
               <div class="form-group">
-                <label>Country </label>
+                <label>{{'Country'| translate}} </label>
                 <input type="text" class="form-control" />
               </div>
             </div>
@@ -264,7 +256,7 @@
         class="form-control" required />
     </div>
     <div class="text-center m-t-20">
-      <button class="btn btn-primary"  (click)="verifyOtp()"> Submit </button>
+      <button class="btn btn-primary"  (click)="verifyOtp()"> {{'Submit'|translate}} </button>
     </div>
   </div>
       

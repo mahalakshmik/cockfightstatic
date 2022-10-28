@@ -32,7 +32,8 @@ export class AppComponent {
   //userType: any;
   public notifications$: Observable<number> | undefined;
   userType: any;
-    
+  selectlng:any;
+  svalue:any="English";
 
   constructor(public translate: TranslateService,
     private matDialog: MatDialog,private as: AuthService,public ns: NotificationService,public router:Router,
@@ -42,8 +43,9 @@ export class AppComponent {
   ) {
 //lang transalte
 
-    translate.addLangs(["en", "fr"]);
+    translate.addLangs(["en", "th"]);
     translate.setDefaultLang('en');
+    localStorage.setItem('lng','en')
 
    // let browserLang = translate.getBrowserLang();
    // translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
@@ -68,7 +70,22 @@ export class AppComponent {
 
 //lang transalte
 
+setValue(value:any)
+{
+console.log(value)
+if(value.checked){
+  this.svalue="ไทย";
+  this.translate.use('th');
+  localStorage.setItem('lng','th')
+}else{
+  this.svalue="English";
+this.translate.use('en');
+localStorage.setItem('lng','en')
 
+}
+
+
+}
 
 switchLang(lang:string){
 this.translate.use(lang);

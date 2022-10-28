@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { FmsService } from 'src/app/services/fms.service';
 
 @Component({
@@ -9,12 +10,15 @@ import { FmsService } from 'src/app/services/fms.service';
 export class FollowingComponent implements OnInit {
   following: any;
 
-  constructor(private fms:FmsService) { }
+  constructor(private fms:FmsService,private spinner:NgxSpinnerService) { }
   ngOnInit(): void {
     this.getFollowerLst();
   }
   getFollowerLst(){
-    this.fms.getFollowersList().subscribe(res => {console.log(res);
+    this.spinner.show();
+    this.fms.getFollowingList().subscribe(res => {
+    this.spinner.hide();
+      
     this.following = res})
   }
 

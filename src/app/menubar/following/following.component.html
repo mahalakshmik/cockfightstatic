@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="title-bar">
-                            <h2 class="title">Following List </h2><span class="title-border"></span>
+                            <h2 class="title">{{'FollowingList'|translate}} </h2><span class="title-border"></span>
                         </div>
                     </div>
                     <div class="col-sm-6 text-right">
@@ -17,12 +17,12 @@
                     <thead>
                         <tr>
                             <!-- <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 125px;">Image</th> -->
-                            <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 723px;">Following Name
+                            <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 723px;">{{'FollowingName'|translate}}
                             </th>
                             <!-- <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 153px;">Amount</th> -->
                             <!-- <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 100px;">Edit</th> -->
-                            <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 734px;">Following
-                                Type</th>
+                            <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 734px;">{{'FollowingType'|translate}}
+                                </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,10 +30,10 @@
                         <tr class="odd" *ngFor="let p of following">
 
                             <td class="pro-name">
-                                <p>{{p.memberName}}</p>
+                                <p>{{p.sellerName}}</p>
                             </td>
                             <td>
-                                <p>{{p.memberTypeDesc}}</p>
+                                <p>{{p.sellerTypeDesc}}</p>
                             </td>
                         </tr>
 

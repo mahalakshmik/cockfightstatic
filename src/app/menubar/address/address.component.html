@@ -6,12 +6,12 @@
 
                 <div class="col-sm-6">
                     <div class="title-bar">
-                        <h2 class="title">Address </h2><span class="title-border"></span>
+                        <h2 class="title">{{'Address'|translate}} </h2><span class="title-border"></span>
                     </div>
                 </div>
                 <div class="col-sm-6 text-right">
                     <!-- <a href="#" class="text-underline"> Add Address</a>   -->
-                    <button class="btn btn-primary" (click)="openDialog()">Add Address</button>
+                    <button class="btn btn-primary" (click)="openDialog()">{{'AddAddress'|translate}}</button>
                 </div>
             </div>
             <div class="row" *ngFor="let p of addresslist;let i=index;">
@@ -22,15 +22,15 @@
                                 <input type="radio">
                             </div>
                             <div class="col-sm-9">
-                                <h3 class="m-b-10">Home Address</h3>
-                                <p><b>Name</b> :{{p.addressName}}</p>
-                                <p><b>Mobile</b>:{{p.mobileNo}} </p>
-                                <p><b>Address</b>:{{p.memberAddress}} </p>
-                                <p><b>LandMark</b>:{{p.landmark}} </p>
-                                <p><b>Locality</b>:{{p.locality}} </p>
-                                <p><b>Zip Code </b>:{{p.zipCode}} </p>
-                                <p><b>State / Province</b> :{{p.state}},<b>Country</b>:{{p.country}} </p>
-                                <p><b>AddressType</b> :Home</p>
+                                <h3 class="m-b-10">{{'HomeAddress'|translate}}</h3>
+                                <p><b>{{'Name'|translate}}</b> :{{p.addressName}}</p>
+                                <p><b>{{'Mobile'|translate}}</b>:{{p.mobileNo}} </p>
+                                <p><b>{{'Address'|translate}}</b>:{{p.memberAddress}} </p>
+                                <p><b>{{'LandMark'|translate}}</b>:{{p.landmark}} </p>
+                                <p><b>{{'Locality'|translate}}</b>:{{p.locality}} </p>
+                                <p><b>{{'ZipCode'|translate}} </b>:{{p.zipCode}} </p>
+                                <p><b>{{'State'|translate}}/{{'Province'|translate}}</b> :{{p.state}},<b>Country</b>:{{p.country}} </p>
+                                <p><b>{{'AddressType'|translate}}</b> :Home</p>
                                 <!-- <p>
                         Name :{{p.addressName}}  <br>
                         Mobile:{{p.mobileNo}},

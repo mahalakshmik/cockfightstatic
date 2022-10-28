@@ -6,30 +6,55 @@
                 <div class="row">
                     <div class="col-sm-12 m-b-20">
                         <div class="title-bar">
-                            <h2 class="title text-left border-bottom top-35"> Wish List </h2>
+                            <h2 class="title text-left border-bottom top-35"> {{'WishList'|translate}} </h2>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-4">
-                        </div>
-                        <div class="col-md-4" *ngFor="let p of wishlist">
-                            <p style="font-weight: bold;color: red;font-size: medium;">ProductName:{{p.productName}}</p>
-                            <p>SellerName:{{p.sellerName}}</p>
-
-                        </div>
-                        <div class="col-md-4" *ngFor="let p of wishlist">
-                            <button class="btn btn-primary"> <i class="icon-basket" aria-hidden="true">Add to
-                                    Cart</i></button>
-                            <button class="btn btn-primary"> <i class="icon-trash"
-                                    aria-hidden="true">delete</i></button>
-                            <!-- <p>StandardPrice:{{selectedProdut.standardPrice | number: '1.2-2'}}</p>
-                    <p>Discount:{{selectedProdut.discount}}</p> -->
+                    <div class="custom-panel panel panel-default"  *ngFor="let p of wishlist">
+                        <div class="panel-body">
+                            <div class="col-md-3">
+                                <div class="order-image">
+                                    <img src="{{productPicUrl}}{{p.productImage}}" class="img-responsive" style="width: 100px;height:100px">
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="order-detailes">
+                                    <div>
+                                        <a href="javascript:void(0);">
+                                            <span class="product-name">
+                                                <b>
+                                                    <p style="font-weight: bold;color: red;font-size: medium;">
+                                                    {{'ProductName'|translate}}:{{p.productName}}</p>
+                                                </b>
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <span>
+                                                
+                                            <p style="font-weight: bold;">{{'SellerName'|translate}}:{{p.sellerName}}</p>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="pull-right-lg">
+                                    <p><a (click)="WishItemDelete(p.wishID)"  class="btn btn-default btn-custom">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i> &nbsp;Delete</a></p>
+                                    </div>
+                                    <div class="pull-right-lg">
+                                    <p><a (click)="MoveToCart(p.productID,p.wishID)" class="btn btn-default btn-custom"><i class="fa fa-shopping-cart" aria-hidden="true"></i> &nbsp;Add To Cart</a></p>
+                                </div>
+                            </div>
+                
                         </div>
                     </div>
-                    <!-- <button (click)="confirmOrder()" class="btn btn-primary" style="float: right;">Confirm Order</button> -->
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
+

@@ -2025,5 +2025,45 @@ input[type=number]::-webkit-outer-spin-button {
    }
 }
 
+@media (min-width: 1200px) {
+    .pull-right-lg {
+        float: right !important;
+    }
+    .hero {
+    margin-top: -10px;
+}
+    .mature-tread {
+    position: relative;
+    float: right;
+    top: 110px;
+}
+}
+@media only screen and (max-width: 540px){
+.icons-topp {
+    margin-top:0px;
+}
+.bottom{
+    height:1px;
+}
+.input-group {
+    border: none;
+}
+.search-select{
+    width:100%;
+}
+.bg-content{
+    padding: 10px 10px;
+}
+}
+@media only screen and (max-width: 790px) {
+ .navbar-brand > img {
+    padding-top: 0px;
+    }
+    .header{
+    padding-bottom: 5px;
+    padding-top: 5px;
+    }
+
+}
 
 

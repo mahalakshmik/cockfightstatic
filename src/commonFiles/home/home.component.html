@@ -17,7 +17,7 @@
                         <mat-expansion-panel hideToggle>
                             <mat-expansion-panel-header>
                                 <mat-panel-title>
-                                    <span class="col-sm-6" id="AccordionHeadings">SEARCH</span><span
+                                    <span class="col-sm-6" id="AccordionHeadings">{{'Search'|translate}}</span><span
                                         class="glyphicon glyphicon-menu-down col-sm-6 text-right f-10 menu-dropdown-accordion"></span>
 
                                 </mat-panel-title>
@@ -28,24 +28,24 @@
                             <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
                                 <div class="list-group-item small d-flex align-items-center ">
                                     <div class="form-group category-padding m-t-10">
-                                        <label> Product Name </label>
+                                        <label> {{'ProductName'|translate}} </label>
                                         <input type="text" class="form-control" [(ngModel)]="form.productName"
                                             #productName="ngModel" name="productName">
                                     </div>
                                     <div class="form-group category-padding">
-                                        <label> Product Brand </label>
+                                        <label> {{'ProductBrand'|translate}} </label>
                                         <input type="text" class="form-control" [(ngModel)]="form.productBrand"
                                             #productBrand="ngModel" name="productBrand">
                                     </div>
                                     <div class="form-group category-padding">
-                                        <label> Age </label>
+                                        <label> {{'Age'|translate}} </label>
                                         <input type="text" class="form-control" [(ngModel)]="form.age" #age="ngModel"
                                             name="age">
                                     </div>
                                 </div>
                                 <div class="list-group-item small d-flex align-items-center">
                                     <div class="form-group category-padding">
-                                        <label> Price(From price - to price) </label>
+                                        <label> {{'Price'|translate}}(From price - to price) </label>
                                         <input id="slider" type="range" min="4" max="32" value="16"
                                             class=" slider m-b-20" />
                                         <div class="row">
@@ -62,7 +62,7 @@
                                 </div>
                                 <div class="list-group-item small d-flex align-items-center">
                                     <div class="form-group category-padding">
-                                        <label> Province </label>
+                                        <label> {{'Province'|translate}} </label>
                                         <input type="text" class="form-control" [(ngModel)]="form.province"
                                             #province="ngModel" name="province">
                                     </div>
@@ -111,8 +111,8 @@
                                 </div>
 
                                 <div class="link-button wow fadeInUp" data-wow-delay="1.2s">
-                                    <a href="/#/aboutus" class="btn btn-primary">About us</a>
-                                    <a href="/#/contactus" class="btn btn-default">Contact</a>
+                                    <a href="/#/aboutus" class="btn btn-primary">{{'AboutUs'|translate}}</a>
+                                    <a href="/#/contactus" class="btn btn-default">{{'Contact'|translate}}</a>
                                 </div>
                             </div>
                         </div>
@@ -143,7 +143,7 @@
 
             <div class="col-md-12 m-t-20">
                 <div class="title-bar">
-                    <h2 class="title">NEW ARRIVALS </h2>
+                    <h2 class="title">{{'NewArrivals'|translate}} </h2>
                     <span class="title-border"></span>
                 </div> <!-- title-bar -->
                 <div class="right-bar">
@@ -169,25 +169,39 @@
                                         <h6 class="title1"
                                             routerLink="customer/ProdcutDetails/{{p.productID}}/{{p.sellerID}}">
                                             {{p.productName | titlecase}}</h6>
-                                        <h6 class="head1"> Seller : {{p.sellerName}} </h6>
-                                        <h6 class="head2 m-b-20"> Province : {{p.province}} </h6>
+                                        <h6 class="head1"> {{'Seller'|translate}} : {{p.sellerName}} </h6>
+                                        <h6 class="head2 m-b-20"> {{'Province'|translate}} : {{p.province}} </h6>
                                         <!-- <span class="qty">Stock: {{p.stockQty}}</span> -->
-                                        <label *ngIf="p.stockQty > 0" style="color: green"><b>In Stock</b></label>
-                                        <label *ngIf="p.stockQty <= 0" style="color:red"><b>Out of Stock</b></label>
+                                        <label *ngIf="p.stockQty > 0"
+                                            style="color: green"><b>{{'InStock'|translate}}</b></label>
+                                        <label *ngIf="p.stockQty <= 0"
+                                            style="color:red"><b>{{'OutofStock'|translate}}</b></label>
                                         <a (click)="openDialog(template,p.productID)" *ngIf="p.hasVideo">
                                             <!-- style="width: 311px;height: 440px;" -->
                                             <img src="assets/images/video.png" width="40" class="img-fluid" alt="tbl">
                                         </a>
-                                        <span class="qty" style="display: flex;">
-                                            <div class="price price1">฿{{p.standardPrice}}</div>
-                                            <a> <i (click)="addwish(p,i)"
+                                        <div class="price price1">฿{{p.standardPrice}}</div>
+                                       
+                                      
+                                        <div style="width: 100%; display: table;">
+                                            <div style="display: table-row">
+                                                <div style="display: table-cell;margin-top:20px"> 
+                                                    <a (click)="addfollowseller(p.sellerID)">
+                                                        <img class="followimg"
+                                                        src="../../assets/images/followi.jpg" style="width: 60px;height:30px" />
+                                                    </a>
+                                                    <a><p class="followcart"><b>{{p.sellerFollowersCount}}</b></p></a>
+                                                    
+                                            </div>
+                                                <div style="display: table-cell;">  
+                                                    <a><i class="fa fa-comments-o" style="margin-left: 5px;"
+                                                            routerLink="customer/ProdcutDetails/{{p.productID}}/{{p.sellerID}}"><b>{{p.productCommentsCount}}</b></i></a>
+                                                </div>
+                                                <div style="display: table-cell;">   <a> <i (click)="addwish(p,i)"
                                                     [ngClass]="p.productLikesCount > 0 ? 'fa fa-thumbs-up thum-icon': 'fa fa-thumbs-o-up thum-icon' ">{{p.productLikesCount}}</i>
-                                                <i class="fa fa-comments-o" style="margin-left: 5px;"
-                                                    routerLink="customer/ProdcutDetails/{{p.productID}}/{{p.sellerID}}"><b>{{p.productCommentsCount}}</b></i>
-                                            </a>
-
-                                            <!-- <i (click)="addwish(p,i)" *ngIf="!isWishicon" class="fa fa-thumbs-up thum-icon">{{likeCount}}</i> -->
-                                        </span>
+                                                </a></div>
+                                            </div>
+                                        </div>
 
 
                                         <!-- <i  class="fa fa-thumbs-o-up thum-icon"></i> -->

@@ -51,7 +51,6 @@ export class VerifydocumentComponent implements OnInit {
         this.filename1=res[0].document1;
         this.filename2=res[0].document2;
         this.filename3=res[0].document3;
-        alert(this.isNew)
       }
 
       // const imgs = this.productPicUrl + e.imageName;

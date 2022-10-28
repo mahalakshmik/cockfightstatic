@@ -18,9 +18,13 @@ export class SellinglistComponent implements OnInit {
   fileuploadUrl = environment.fileUrl
   orderData: any;
   totalAmt: number = 0;
-
+  selectedlng:string='en';
   constructor(private fms: FmsService, public spinnerService: NgxSpinnerService) {
-
+this.selectedlng='th';
+const data=localStorage.getItem('lng');
+if(data != null){
+  this.selectedlng=data;
+} 
   }
 
   ngOnInit(): void {

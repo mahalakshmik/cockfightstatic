@@ -7,15 +7,25 @@
                    
                     <div class="col-sm-9">
                         <div class="title-bar">
-                            <h2 class="title">Selling List </h2><span class="title-border"></span>
+                            <h2 class="title">{{'SellingList'|translate}} </h2><span class="title-border"></span>
                         </div>
                     </div>
                     <div class="col-sm-3 text-right">
                         <select class="form-control" [(ngModel)]="selectedOrder" (change)="onChange($event)"
                             name="selectedOrder">
                             <!-- <option value="0">All Orders</option> -->
-                            <option *ngFor="let drp of sellerType" [value]="drp.lookupId">{{drp.lookupDescription}}
-                            </option>
+                            <ng-container *ngIf="selectedlng === 'th';else second">
+
+                                <option *ngFor="let drp of sellerType" [value]="drp.lookupId" >
+                                    {{drp.lookupDescriptionTh}}
+                                </option>
+                            </ng-container>
+                            <ng-template #second>
+                                <option *ngFor="let drp of sellerType" [value]="drp.lookupId" >
+                                    {{drp.lookupDescription}}
+                                </option>
+
+                            </ng-template>
                             <!-- <option value="2181">ORDER CONFIRMED</option>
                             <option selected="selected" value="2182">ORDER DELIVERED</option>
                             <option value="2183">ORDER CANCELED</option>
@@ -27,15 +37,15 @@
                 <div class="card" *ngFor="let p of orderData">
                     <div class="row">
                         <div class="col-sm-8">
-                            <p><b>Order No.:</b> {{p.orderNo}}</p>
-                            <p><b>Order Date:</b> {{p.orderDate | date:'dd/MM/yyyy'}}</p>
-                            <p><b>Buyer Name:</b> {{p.userName}}</p>
-                            <p><b>Order Status:</b> {{p.orderStatusDesc}}</p>
+                            <p><b>{{'OrderNo'|translate}}.:</b> {{p.orderNo}}</p>
+                            <p><b>{{'OrderDate'|translate}}:</b> {{p.orderDate | date:'dd/MM/yyyy'}}</p>
+                            <p><b>{{'BuyerName'|translate}}:</b> {{p.userName}}</p>
+                            <p><b>{{'OrderStatus'|translate}}:</b> {{p.orderStatusDesc}}</p>
                             <hr>
 
                         </div>
                         <div class="col-sm-2">
-                            <p><b>Total Amount:{{p.totalAmount}}</b></p>
+                            <p><b>{{'TotalAmount'|translate}}:{{p.totalAmount}}</b></p>
                             <!-- *ngIf="==2178" -->
 
                             <!-- if (paymentslip != null && paymentslip.PaymentMode == Utility.ONLINE && paymentslip.ReferenceNo != null)
@@ -56,8 +66,8 @@
                                 <!-- href="~/Uploads/OrderPayment/@Model.orderHeader[i].OrderID/@(paymentslip != null ? paymentslip.ReferenceNo : "")" -->
                                 <a *ngIf="pay?.paymentMode==2178" class="btn btn-primary"
                                     href="{{fileuploadUrl}}Uploads/OrderPayment/{{p.orderID}}/{{pay.referenceNo}}"
-                                    target="_blank"><i class="fa fa-eye" aria-hidden="true">Payment
-                                        slip</i></a>
+                                    target="_blank"><i class="fa fa-eye" aria-hidden="true">{{'PaymentSlip'|translate}}
+                                        </i></a>
                             </div>
 
                         </div>
@@ -70,13 +80,13 @@
                                 <img src={{productPicUrl}}{{q.productImage}} width="100" />
                             </div>
                             <div class="col-sm-6">
-                                <p><b>Product Name:</b> {{q.productName}}</p>
-                                <p><b>Payment Type:</b> {{q.paymentOptionDescription}}</p>
-                                <p><b>Quantity:</b> {{q.quantity}}</p>
+                                <p><b>{{'ProductName'|translate}}:</b> {{q.productName}}</p>
+                                <p><b>{{'PaymentType'|translate}}:</b> {{q.paymentOptionDescription}}</p>
+                                <p><b>{{'Quantity'|translate}}:</b> {{q.quantity}}</p>
                             </div>
                             <div class="col-sm-3">
-                                <p><b>Price:</b> {{q.standardPrice}}</p>
-                                <p><b>Discount:</b> {{q.discountAmount}}</p>
+                                <p><b>{{'Price'|translate}}:</b> {{q.standardPrice}}</p>
+                                <p><b>{{'Discount'|translate}}:</b> {{q.discountAmount}}</p>
 
                             </div>
                             <hr>
@@ -90,13 +100,13 @@
                          ORDERCLOSED = 2184; -->
                         <!-- <div *ngIf="currentStatus !== 'open' || currentStatus !== 'reopen'"></div> -->
                         <button *ngIf="p.orderStatus==2180" class="btn btn-primary"
-                            (click)="CancelOrder(q.orderID,p.orderNo)">Cancel Order</button>
+                            (click)="CancelOrder(q.orderID,p.orderNo)">{{'CancelOrder'|translate}}</button>
                         <button *ngIf="p.orderStatus=='2181' || p.orderStatus=='2181'" class="btn btn-primary"
-                            (click)="Confirmdelivery(q.orderID)">Confirm Delivered</button>
+                            (click)="Confirmdelivery(q.orderID)">{{'ConfirmDelivered'|translate}}</button>
                         <button *ngIf="p.orderStatus=='2180'  " class="btn btn-primary"
-                            (click)="ConformPayment(q.orderID)">Confirm Payment</button>
+                            (click)="ConformPayment(q.orderID)">{{'ConfirmPayment'|translate}}</button>
                         <button *ngIf="p.orderStatus=='2182'|| p.orderStatus=='2183'" class="btn btn-primary"
-                            (click)="closeOrder(q.orderID)">Close Order</button>
+                            (click)="closeOrder(q.orderID)">{{'CloseOrder'|translate}}</button>
 
                     </div>
                 </div>
